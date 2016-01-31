@@ -17,7 +17,7 @@
 var game = new Phaser.Game(1000, 700, Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
-
+    game.load.image('button', 'images/button_lock.png');
     game.load.image('tetrisblock1', 'images/tetrisblock1.png');
     game.load.image('tetrisblock2', 'images/tetrisblock2.png');
     game.load.image('tetrisblock3', 'images/tetrisblock3.png');
@@ -31,6 +31,7 @@ var tetris2;
 var tetris3;
 var mouseBody;
 var mouseConstraint;
+var button;
 
 function create() {
         
@@ -76,6 +77,8 @@ function create() {
     game.input.onUp.add(release, this);
     game.input.addMoveCallback(move, this);
     
+    button = game.add.button(game.world.centerX - 95, 100, 'button', actionOnClick, this, 2, 1, 0);
+    
 }
 
 function click(pointer) {
@@ -120,6 +123,13 @@ function update() {
 function render() {
 
 //  game.debug.text(result, 32, 32);
+
+}
+
+function actionOnClick () {
+
+    tetris2.body.kinematic = true;
+    tetris3.body.kinematic = true;
 
 }
 
