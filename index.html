@@ -14,123 +14,94 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(1000, 700, Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(1400, 700, Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
-    game.load.image('button', 'images/button_lock.png');
-    game.load.image('tetrisblock1', 'images/tetrisblock1.png');
-    game.load.image('tetrisblock2', 'images/tetrisblock2.png');
-    game.load.image('tetrisblock3', 'images/tetrisblock3.png');
 
-    game.load.physics('physicsData', 'sprites.json');
+    game.load.image('tetris1', 'images/tetrisblock1.png');
+    game.load.image('tetris2', 'images/tetrisblock2.png');
+    game.load.image('tetris3', 'images/tetrisblock3.png');
+    
+    game.load.image('rotation', 'images/rotation.png');
 
 }
 
-var tetris1;
-var tetris2;
-var tetris3;
-var mouseBody;
-var mouseConstraint;
-var button;
+var nbF1 = 0;
+var nbF2 = 0;
+var nbF3 = 0;
+
+var rotationTest = 0;
 
 function create() {
-        
-    //  Enable p2 physics
-    game.physics.startSystem(Phaser.Physics.P2JS);
-    game.physics.p2.gravity.y = 1000;
     
-    tetris1 = game.add.sprite(300, 100, 'tetrisblock1');
-    tetris2 = game.add.sprite(375, 200, 'tetrisblock2');
-    tetris3 = game.add.sprite(450, 300, 'tetrisblock3');
+    var forme1 = game.add.sprite(100, 100, 'tetris1');
+    var forme2 = game.add.sprite(100, 300, 'tetris2');
+    var forme3 = game.add.sprite(100, 500, 'tetris3');
     
-    //  Create collision group for the blocks
-    var blockCollisionGroup = game.physics.p2.createCollisionGroup();
+    forme1.inputEnabled = true;
+    forme2.inputEnabled = true;
+    forme3.inputEnabled = true;
     
-    //  This part is vital if you want the objects with their own collision groups to still collide with the world bounds
-    //  (which we do) - what this does is adjust the bounds to use its own collision group.
-    game.physics.p2.updateBoundsCollisionGroup();
+    forme1.events.onInputDown.add(addForme1, this);
+    forme2.events.onInputDown.add(addForme2, this);
+    forme3.events.onInputDown.add(addForme3, this);
     
-    //  Enable the physics bodies on all the sprites
-    game.physics.p2.enable([ tetris1, tetris2, tetris3 ], false);
-    
-    tetris1.body.clearShapes();
-    tetris1.body.loadPolygon('physicsData', 'tetrisblock1');
-    tetris1.body.setCollisionGroup(blockCollisionGroup);
-    tetris1.body.collides([blockCollisionGroup]);
-    
-    tetris2.body.clearShapes();
-    tetris2.body.loadPolygon('physicsData', 'tetrisblock2');
-    tetris2.body.setCollisionGroup(blockCollisionGroup);
-    tetris2.body.collides([blockCollisionGroup]);
-    
-    tetris3.body.clearShapes();
-    tetris3.body.loadPolygon('physicsData', 'tetrisblock3');
-    tetris3.body.setCollisionGroup(blockCollisionGroup);
-    tetris3.body.collides([blockCollisionGroup]);   
-    
-    // create physics body for mouse which we will use for dragging clicked bodies
-    mouseBody = new p2.Body();
-    game.physics.p2.world.addBody(mouseBody);
-        
-    // attach pointer events
-    game.input.onDown.add(click, this);
-    game.input.onUp.add(release, this);
-    game.input.addMoveCallback(move, this);
-    
-    button = game.add.button(game.world.centerX - 95, 100, 'button', actionOnClick, this, 2, 1, 0);
+    var rot = game.add.sprite(1200, 550, 'rotation');
+    rot.inputEnabled = true;
+    rot.events.onInputDown.add(boutonRotation, this);
     
 }
 
-function click(pointer) {
-
-    var bodies = game.physics.p2.hitTest(pointer.position, [ tetris1.body, tetris2.body, tetris3.body ]);
-    
-    // p2 uses different coordinate system, so convert the pointer position to p2's coordinate system
-    var physicsPos = [game.physics.p2.pxmi(pointer.position.x), game.physics.p2.pxmi(pointer.position.y)];
-    
-    if (bodies.length)
-    {
-        var clickedBody = bodies[0];
-        var localPointInBody = [0, 0];
-        // this function takes physicsPos and coverts it to the body's local coordinate system
-        clickedBody.toLocalFrame(localPointInBody, physicsPos);
-        
-        // use a revoluteContraint to attach mouseBody to the clicked body
-        mouseConstraint = this.game.physics.p2.createRevoluteConstraint(mouseBody, [0, 0], clickedBody, [game.physics.p2.mpxi(localPointInBody[0]), game.physics.p2.mpxi(localPointInBody[1]) ]);
-    }   
-    
+function addForme1(forme1, pointer) {
+    nbF1 = nbF1 + 1;
+    var tempSprite = game.add.sprite(150*(nbF1+1), 100, 'tetris1');
+    tempSprite.inputEnabled = true;
+    tempSprite.input.enableDrag(false, true);
+    tempSprite.events.onInputDown.add(rotationForme, this);
 }
 
-function release() {
-
-    // remove constraint from object's body
-    game.physics.p2.removeConstraint(mouseConstraint);
-    
+function addForme2(forme2, pointer) {
+    nbF2 = nbF2 + 1;
+    var tempSprite = game.add.sprite(150*(nbF2+1), 300, 'tetris2');
+    tempSprite.inputEnabled = true;
+    tempSprite.input.enableDrag(false, true);
+    tempSprite.events.onInputDown.add(rotationForme, this);
 }
 
-function move(pointer) {
+function addForme3(forme3, pointer) {
+    nbF3 = nbF3 + 1;
+    var tempSprite = game.add.sprite(150*(nbF3+1), 500, 'tetris3');
+    tempSprite.inputEnabled = true;
+    tempSprite.input.enableDrag(false, true);
+    tempSprite.events.onInputDown.add(rotationForme, this);
+}
 
-    // p2 uses different coordinate system, so convert the pointer position to p2's coordinate system
-    mouseBody.position[0] = game.physics.p2.pxmi(pointer.position.x);
-    mouseBody.position[1] = game.physics.p2.pxmi(pointer.position.y);
+function rotationForme(tempSprite, pointer) {
+    if (rotationTest == 1){
+        tempSprite.angle += 45;
+    }
+}
 
+function boutonRotation(rot, pointer) {
+    if (rotationTest == 0){
+        rotationTest = 1;
+    }
+    else if (rotationTest == 1){
+        rotationTest = 0;
+    }
 }
 
 function update() {
-
+    
 }
 
 function render() {
-
-//  game.debug.text(result, 32, 32);
-
-}
-
-function actionOnClick () {
-
-    tetris2.body.kinematic = true;
-    tetris3.body.kinematic = true;
-
+    game.debug.style = '#fff';
+    game.debug.text('Cliquez sur un élément pour créer des nouvelles formes', 16, 24);
+    game.debug.text('forme1: ' + nbF1, 16, 48);
+    game.debug.text('forme2: ' + nbF2, 16, 60);
+    game.debug.text('forme3: ' + nbF3, 16, 72);
+    game.debug.text('Rotation: ' + rotationTest, 16, 84);
 }
 
 </script>
