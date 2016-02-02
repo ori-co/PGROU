@@ -19,6 +19,8 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: pr
 function preload() {
 
     game.load.image('patron1', 'images/patron1.png');
+    game.load.image('patron2', 'images/patron2.png');
+    game.load.image('patron3', 'images/patron3.png');
 
     game.load.image('tetris1', 'images/tetrisblock1.png');
     game.load.image('tetris2', 'images/tetrisblock2.png');
@@ -72,9 +74,13 @@ function create() {
     forme2.inputEnabled = true;
     forme3.inputEnabled = true;
     
-    var patron1 = P1.create(600, 500, 'patron1');
+    var patron1 = P1.create(900, 290, 'patron1');
+    var patron2 = P2.create(900, 200, 'patron2');
+    var patron3 = P3.create(900, 385, 'patron3');
     
     patron1.inputEnabled = true;
+    patron2.inputEnabled = true;
+    patron3.inputEnabled = true;
     
     forme1.events.onInputDown.add(addForme1, this);
     forme2.events.onInputDown.add(addForme2, this);
@@ -96,7 +102,7 @@ function addForme1(forme1, pointer) {
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(fixer, this);
+    tempSprite.events.onDragStop.add(fixer1, this);
 }
 
 function addForme2(forme2, pointer) {
@@ -105,7 +111,7 @@ function addForme2(forme2, pointer) {
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(fixer, this);
+    tempSprite.events.onDragStop.add(fixer2, this);
 }
 
 function addForme3(forme3, pointer) {
@@ -114,7 +120,7 @@ function addForme3(forme3, pointer) {
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(fixer, this);
+    tempSprite.events.onDragStop.add(fixer3, this);
 }
 
 function interactionForme(tempSprite, pointer) {
@@ -159,11 +165,34 @@ function boutonPoubelle(poub, pointer) {
     }
 }
 
-function fixer(tempSprite, pointer) {
-    if (((tempSprite.x-600>-50)||(600-tempSprite.x<50))&&((tempSprite.y-500>-50)||(500-tempSprite.y<50))) {
-        tempSprite.x = 600;
-        tempSprite.y = 500;
-    }
+function fixer1(tempSprite, pointer) {
+
+    P1.forEach(function(item) {
+        if (((tempSprite.x-item.x>-50)||(item.x-tempSprite.x<50))&&((tempSprite.y-item.y>-50)||(item.y-tempSprite.y<50))) {
+            tempSprite.x = item.x;
+            tempSprite.y = item.y;
+        }
+    }, this);
+}
+
+function fixer2(tempSprite, pointer) {
+
+    P2.forEach(function(item) {
+        if (((tempSprite.x-item.x>-50)||(item.x-tempSprite.x<50))&&((tempSprite.y-item.y>-50)||(item.y-tempSprite.y<50))) {
+            tempSprite.x = item.x;
+            tempSprite.y = item.y;
+        }
+    }, this);
+}
+
+function fixer3(tempSprite, pointer) {
+
+    P3.forEach(function(item) {
+        if (((tempSprite.x-item.x>-50)||(item.x-tempSprite.x<50))&&((tempSprite.y-item.y>-50)||(item.y-tempSprite.y<50))) {
+            tempSprite.x = item.x;
+            tempSprite.y = item.y;
+        }
+    }, this);
 }
 
 function update() {
