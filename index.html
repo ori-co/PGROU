@@ -18,11 +18,11 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: pr
 
 function preload() {
 
+    game.load.image('patron1', 'images/patron1.png');
+
     game.load.image('tetris1', 'images/tetrisblock1.png');
     game.load.image('tetris2', 'images/tetrisblock2.png');
     game.load.image('tetris3', 'images/tetrisblock3.png');
-    
-    game.load.image('patron1', 'images/patron1.png');
     
     game.load.image('rotation', 'images/rotation.png');
     game.load.image('poubelle', 'images/poubelle.png');
@@ -45,8 +45,6 @@ var P3;
 
 function create() {
     
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-    
     F1 = game.add.group();
     F2 = game.add.group();
     F3 = game.add.group();
@@ -55,9 +53,8 @@ function create() {
     P2 = game.add.group();
     P3 = game.add.group();
     
-    patrons = game.add.group();
     formes = game.add.group();
-    tous = game.add.group();
+    patrons = game.add.group();
     
     formes.add(F1);
     formes.add(F2);
@@ -67,18 +64,15 @@ function create() {
     patrons.add(P2);
     patrons.add(P3);
     
-    tous.add(formes);
-    tous.add(patrons);
-    
     var forme1 = game.add.sprite(100, 100, 'tetris1');
     var forme2 = game.add.sprite(100, 300, 'tetris2');
     var forme3 = game.add.sprite(100, 500, 'tetris3');
     
-    var patron1 = P1.create(600, 500, 'patron1');
-    
     forme1.inputEnabled = true;
     forme2.inputEnabled = true;
     forme3.inputEnabled = true;
+    
+    var patron1 = P1.create(600, 500, 'patron1');
     
     patron1.inputEnabled = true;
     
@@ -102,6 +96,7 @@ function addForme1(forme1, pointer) {
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
+    tempSprite.events.onDragStop.add(fixer, this);
 }
 
 function addForme2(forme2, pointer) {
@@ -110,6 +105,7 @@ function addForme2(forme2, pointer) {
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
+    tempSprite.events.onDragStop.add(fixer, this);
 }
 
 function addForme3(forme3, pointer) {
@@ -118,6 +114,7 @@ function addForme3(forme3, pointer) {
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
+    tempSprite.events.onDragStop.add(fixer, this);
 }
 
 function interactionForme(tempSprite, pointer) {
@@ -162,8 +159,15 @@ function boutonPoubelle(poub, pointer) {
     }
 }
 
-function update() {
+function fixer(tempSprite, pointer) {
+    if (((tempSprite.x-600>-50)||(600-tempSprite.x<50))&&((tempSprite.y-500>-50)||(500-tempSprite.y<50))) {
+        tempSprite.x = 600;
+        tempSprite.y = 500;
+    }
+}
 
+function update() {
+    game.world.bringToTop(formes);
 }
 
 function render() {
