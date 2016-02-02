@@ -45,6 +45,13 @@ var P1;
 var P2;
 var P3;
 
+var testFin1 = 0;
+var testFin2 = 0;
+var testFin3 = 0;
+
+var fin = 0;
+var nbAlert = 0;
+
 function create() {
     
     F1 = game.add.group();
@@ -197,6 +204,53 @@ function fixer3(tempSprite, pointer) {
 
 function update() {
     game.world.bringToTop(formes);
+    
+    P1.forEach(function(itemPatron) {
+    
+            testFin1 = 0;
+            
+            F1.forEach(function(itemForme) {
+                if (((itemPatron.x == itemForme.x)&&(itemPatron.y == itemForme.y))) {
+                    testFin1 = 1;
+                }
+            }, this);
+
+    }, this);
+    
+    P2.forEach(function(itemPatron) {
+    
+            testFin2 = 0;
+            
+            F2.forEach(function(itemForme) {
+                if (((itemPatron.x == itemForme.x)&&(itemPatron.y == itemForme.y))) {
+                    testFin2 = 1;
+                }
+            }, this);
+            
+    }, this);
+    
+    P3.forEach(function(itemPatron) {
+    
+            testFin3 = 0;
+            
+            F3.forEach(function(itemForme) {
+                if (((itemPatron.x == itemForme.x)&&(itemPatron.y == itemForme.y))) {
+                    testFin3 = 1;
+                }
+            }, this);
+            
+    }, this);
+    
+    if ((testFin1 == 1)&&(testFin2 == 1)&&(testFin3 == 1)) {
+        fin = 1;
+        if (nbAlert == 0){
+            nbAlert = 1;
+            var delay=500;
+            setTimeout(function(){
+                alert("Bravo! Vous avez réussi ce niveau!");
+            }, delay); 
+        }
+    }
 }
 
 
@@ -207,6 +261,10 @@ function render() {
     game.debug.text('Forme2 : ' + nbF2, 16, 60);
     game.debug.text('Forme3 : ' + nbF3, 16, 72);
     game.debug.text('Fonction : ' + test, 16, 84);
+    game.debug.text('testFin1 : ' + testFin1, 16, 96);
+    game.debug.text('testFin2 : ' + testFin2, 16, 108);
+    game.debug.text('testFin3 : ' + testFin3, 16, 120);
+    game.debug.text('Fin : ' + fin, 16, 132);
 }
 
 </script>
