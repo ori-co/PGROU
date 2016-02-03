@@ -81,9 +81,9 @@ function create() {
     forme2.inputEnabled = true;
     forme3.inputEnabled = true;
     
-    var patron1 = P1.create(500, 290, 'patron1');
-    var patron2 = P2.create(500, 200, 'patron2');
-    var patron3 = P3.create(500, 385, 'patron3');
+    var patron1 = P1.create(600, 190, 'patron1');
+    var patron2 = P2.create(600, 100, 'patron2');
+    var patron3 = P3.create(600, 285, 'patron3');
     
     patron1.inputEnabled = true;
     patron2.inputEnabled = true;
@@ -93,11 +93,11 @@ function create() {
     forme2.events.onInputDown.add(addForme2, this);
     forme3.events.onInputDown.add(addForme3, this);
     
-    var rot = game.add.sprite(900, 450, 'rotation');
+    var rot = game.add.sprite(700, 450, 'rotation');
     rot.inputEnabled = true;
     rot.events.onInputDown.add(boutonRotation, this);
     
-    var poub = game.add.sprite(750, 450, 'poubelle');
+    var poub = game.add.sprite(570, 450, 'poubelle');
     poub.inputEnabled = true;
     poub.events.onInputDown.add(boutonPoubelle, this);
     
