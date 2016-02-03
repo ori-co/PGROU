@@ -74,16 +74,16 @@ function create() {
     patrons.add(P3);
     
     var forme1 = game.add.sprite(100, 100, 'tetris1');
-    var forme2 = game.add.sprite(100, 300, 'tetris2');
-    var forme3 = game.add.sprite(100, 500, 'tetris3');
+    var forme2 = game.add.sprite(100, 275, 'tetris2');
+    var forme3 = game.add.sprite(100, 450, 'tetris3');
     
     forme1.inputEnabled = true;
     forme2.inputEnabled = true;
     forme3.inputEnabled = true;
     
-    var patron1 = P1.create(900, 290, 'patron1');
-    var patron2 = P2.create(900, 200, 'patron2');
-    var patron3 = P3.create(900, 385, 'patron3');
+    var patron1 = P1.create(500, 290, 'patron1');
+    var patron2 = P2.create(500, 200, 'patron2');
+    var patron3 = P3.create(500, 385, 'patron3');
     
     patron1.inputEnabled = true;
     patron2.inputEnabled = true;
@@ -93,11 +93,11 @@ function create() {
     forme2.events.onInputDown.add(addForme2, this);
     forme3.events.onInputDown.add(addForme3, this);
     
-    var rot = game.add.sprite(1200, 550, 'rotation');
+    var rot = game.add.sprite(900, 450, 'rotation');
     rot.inputEnabled = true;
     rot.events.onInputDown.add(boutonRotation, this);
     
-    var poub = game.add.sprite(1050, 550, 'poubelle');
+    var poub = game.add.sprite(750, 450, 'poubelle');
     poub.inputEnabled = true;
     poub.events.onInputDown.add(boutonPoubelle, this);
     
@@ -105,7 +105,7 @@ function create() {
 
 function addForme1(forme1, pointer) {
     nbF1 = nbF1 + 1;
-    var tempSprite = F1.create(150*(nbF1+1), 100, 'tetris1');
+    var tempSprite = F1.create(175*nbF1+100, 100, 'tetris1');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
@@ -114,7 +114,7 @@ function addForme1(forme1, pointer) {
 
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
-    var tempSprite = F2.create(150*(nbF2+1), 300, 'tetris2');
+    var tempSprite = F2.create(175*nbF2+100, 300, 'tetris2');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
@@ -123,7 +123,7 @@ function addForme2(forme2, pointer) {
 
 function addForme3(forme3, pointer) {
     nbF3 = nbF3 + 1;
-    var tempSprite = F3.create(150*(nbF3+1), 500, 'tetris3');
+    var tempSprite = F3.create(175*nbF3+100, 500, 'tetris3');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
