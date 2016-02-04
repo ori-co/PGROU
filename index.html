@@ -168,7 +168,7 @@ function boutonPoubelle(poub, pointer) {
 function fixer1(tempSprite, pointer) {
 
     P1.forEach(function(item) {
-        if (((tempSprite.x-item.x>-50)||(item.x-tempSprite.x<50))&&((tempSprite.y-item.y>-50)||(item.y-tempSprite.y<50))) {
+        if (((item.x-tempSprite.x>-50)&&(item.x-tempSprite.x<50))&&((item.y-tempSprite.y>-50)&&(item.y-tempSprite.y<50))) {
             tempSprite.x = item.x;
             tempSprite.y = item.y;
         }
@@ -178,7 +178,7 @@ function fixer1(tempSprite, pointer) {
 function fixer2(tempSprite, pointer) {
 
     P2.forEach(function(item) {
-        if (((tempSprite.x-item.x>-50)||(item.x-tempSprite.x<50))&&((tempSprite.y-item.y>-50)||(item.y-tempSprite.y<50))) {
+        if (((item.x-tempSprite.x>-50)&&(item.x-tempSprite.x<50))&&((item.y-tempSprite.y>-50)&&(item.y-tempSprite.y<50))) {
             tempSprite.x = item.x;
             tempSprite.y = item.y;
         }
@@ -188,7 +188,7 @@ function fixer2(tempSprite, pointer) {
 function fixer3(tempSprite, pointer) {
 
     P3.forEach(function(item) {
-        if (((tempSprite.x-item.x>-50)||(item.x-tempSprite.x<50))&&((tempSprite.y-item.y>-50)||(item.y-tempSprite.y<50))) {
+        if (((item.x-tempSprite.x>-50)&&(item.x-tempSprite.x<50))&&((item.y-tempSprite.y>-50)&&(item.y-tempSprite.y<50))) {
             tempSprite.x = item.x;
             tempSprite.y = item.y;
         }
@@ -198,6 +198,7 @@ function fixer3(tempSprite, pointer) {
 function update() {
     game.world.bringToTop(formes);
 }
+
 
 function render() {
     game.debug.style = '#fff';
