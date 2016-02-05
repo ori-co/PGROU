@@ -20,15 +20,10 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: pr
 //Charger en mémoire les images nécessaires avant le démarrage du jeu
 function preload() {
 
-    game.load.image('patron1', 'images/patron1.png');
-    game.load.image('patron2', 'images/patron2.png');
-    game.load.image('patron3', 'images/patron3.png');
-    game.load.image('patron4', 'images/patronblock.png');
-
-    game.load.image('tetris1', 'images/tetrisblock1.png');
-    game.load.image('tetris2', 'images/tetrisblock2.png');
-    game.load.image('tetris3', 'images/tetrisblock3.png');
-    game.load.image('tetris4', 'images/block.png');
+    game.load.image('carre', 'sprites/carre.png');
+    game.load.image('hexagone', 'sprites/hexagone.png');
+    game.load.image('trapeze', 'sprites/trapeze.png');
+    game.load.image('triangle', 'sprites/triangle.png');
     
     game.load.image('rotation', 'images/rotation.png');
     game.load.image('poubelle', 'images/poubelle.png');
@@ -58,10 +53,6 @@ var P4;
 
 
 //Tester la fin de la partie
-var testFin1 = 0;
-var testFin2 = 0;
-var testFin3 = 0;
-var testFin4 = 0;
 var fin = 0;
 
 //Ne pas recevoir un message de fin doublé
@@ -69,44 +60,124 @@ var nbAlert = 0;
 
 //Initialisation des matrices de quantisation pour les formes élémentaires
 
-var mat2 = new Array(10);
-for (var i = 0; i < 10; i++) {
-    mat2[i] = new Array(20);
+//Carré
+var mat1 = new Array(100);
+for (var i = 0; i < 100; i++) {
+    mat1[i] = new Array(100);
 }
-for (var i = 0; i < 10; i++) {
-    for (var j = 0; j < 20; j++) {
-        mat2[i][j] = 1;
+for (var i = 0; i < 100; i++) {
+    for (var j = 0; j < 100; j++) {
+        mat1[i][j] = 1;
     }
 }
 
-var mat4 = new Array(20);
-for (var i = 0; i < 20; i++) {
-    mat4[i] = new Array(20);
+//Trapeze
+var mat2 = new Array(200);
+for (var i = 0; i < 200; i++) {
+    mat2[i] = new Array(100);
 }
-for (var i = 0; i < 20; i++) {
-    for (var j = 0; j < 20; j++) {
+for (var i = 0; i < 200; i++) {
+    for (var j = 0; j < 100; j++) {
+        mat2[i][j] = 1;
+    }
+}
+var J=98;
+for (var i = 0; i < 49; i++) {
+    for (var j = 0; j < J; j++) {
+        mat2[i][j] = 0;
+    }
+    J=J-2;
+}
+var J=98;
+for (var i = 199; i > 149; i--) {
+    for (var j = 0; j < J; j++) {
+        mat2[i][j] = 0;
+    }
+    J=J-2;
+}
+
+//Hexagone
+var mat3 = new Array(200);
+for (var i = 0; i < 200; i++) {
+    mat3[i] = new Array(200);
+}
+for (var i = 0; i < 200; i++) {
+    for (var j = 0; j < 200; j++) {
+        mat3[i][j] = 1;
+    }
+}
+var J=98;
+for (var i = 0; i < 49; i++) {
+    for (var j = 0; j < J; j++) {
+        mat3[i][j] = 0;
+    }
+    J=J-2;
+}
+var J=98;
+for (var i = 199; i > 149; i--) {
+    for (var j = 0; j < J; j++) {
+        mat3[i][j] = 0;
+    }
+    J=J-2;
+}
+var J=101;
+for (var i = 0; i < 49; i++) {
+    for (var j = J; j < 200; j++) {
+        mat3[i][j] = 0;
+    }
+    J=J+2;
+}
+var J=101;
+for (var i = 199; i > 149; i--) {
+    for (var j = J; j < 200; j++) {
+        mat3[i][j] = 0;
+    }
+    J=J+2;
+}
+
+//Triangle
+var mat4 = new Array(100);
+for (var i = 0; i < 100; i++) {
+    mat4[i] = new Array(100);
+}
+for (var i = 0; i < 100; i++) {
+    for (var j = 0; j < 100; j++) {
         mat4[i][j] = 1;
     }
+}
+var J=98;
+for (var i = 0; i < 49; i++) {
+    for (var j = 0; j < J; j++) {
+        mat4[i][j] = 0;
+    }
+    J=J-2;
+}
+var J=98;
+for (var i = 99; i > 50; i--) {
+    for (var j = 0; j < J; j++) {
+        mat4[i][j] = 0;
+    }
+    J=J-2;
 }
 
 //Initialisation des matrices de quantisation des positions du problème (patron) et la solution proposée
 
-var matPatron = new Array(240);
-for (var i = 0; i < 240; i++) {
-    matPatron[i] = new Array(80);
+var matPatron = new Array(1200);
+for (var i = 0; i < 1200; i++) {
+    matPatron[i] = new Array(400);
 }
-for (var i = 0; i < 240; i++) {
-    for (var j = 0; j < 80; j++) {
+for (var i = 0; i < 1200; i++) {
+    for (var j = 0; j < 400; j++) {
         matPatron[i][j] = 0;
     }
 }
 
-var matSolution = new Array(240);
-for (var i = 0; i < 240; i++) {
-    matSolution[i] = new Array(80);
+var matSolution = new Array(1200);
+for (var i = 0; i < 1200; i++) {
+    matSolution[i] = new Array(400);
 }
-for (var i = 0; i < 240; i++) {
-    for (var j = 0; j < 80; j++) {
+for (var i = 0; i < 1200; i++) {
+    for (var j = 0; j < 400; j++) {
         matSolution[i][j] = 0;
     }
 }
@@ -143,34 +214,69 @@ function create() {
     
     //Création des Formes du Panier
     
-    var forme1 = game.add.sprite(100, 100, 'tetris1');
-    var forme2 = game.add.sprite(100, 280, 'tetris2');
-    var forme3 = game.add.sprite(100, 460, 'tetris3');
-    var forme4 = game.add.sprite(100, 640, 'tetris4');
+    var forme1 = game.add.sprite(100, 100, 'carre');
+    var forme2 = game.add.sprite(100, 250, 'trapeze');
+    var forme3 = game.add.sprite(100, 550, 'hexagone');
+    var forme4 = game.add.sprite(100, 400, 'triangle');
     
     forme1.inputEnabled = true;
     forme2.inputEnabled = true;
     forme3.inputEnabled = true;
     forme4.inputEnabled = true;
     
+    //Coloration aléatoire
+    forme1.tint = Math.random() * 0xffffff;
+    forme2.tint = Math.random() * 0xffffff;
+    forme3.tint = Math.random() * 0xffffff;
+    forme4.tint = Math.random() * 0xffffff;
+    
     //Création du patron souhaité
-    var patron1 = P1.create(600, 200, 'patron1');
-    var patron2 = P2.create(1000, 110, 'patron2');
-    var patron3 = P3.create(600, 290, 'patron3');
-    var patron4 = P4.create(900, 110, 'patron4');
+    var patron1 = P1.create(900, 210, 'carre');
+    var patron2 = P2.create(850, 310, 'trapeze');
+    var patron3 = P3.create(700, 210, 'hexagone');
+    var patron4 = P4.create(900, 110, 'triangle');
     
     patron1.inputEnabled = true;
     patron2.inputEnabled = true;
     patron3.inputEnabled = true;
     patron4.inputEnabled = true;
     
+    patron1.tint = 0xffcc00;
+    patron2.tint = 0xffcc00;
+    patron3.tint = 0xffcc00;
+    patron4.tint = 0xffcc00;
+    
     //Donner valeur à la matrice de quantisation du patron donné
+    P1.forEach(function(itemPatron) {
+        
+        for (var i = 0; i < 100; i++) {
+            for (var j = 0; j < 100; j++) {
+                if(mat1[i][j]==1){
+                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
     P2.forEach(function(itemPatron) {
         
-        for (var i = 0; i < 10; i++) {
-            for (var j = 0; j < 20; j++) {
+        for (var i = 0; i < 200; i++) {
+            for (var j = 0; j < 100; j++) {
                 if(mat2[i][j]==1){
-                    matPatron[((itemPatron.x)/5)+i][((itemPatron.y)/5)+j] = 1;
+                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    P3.forEach(function(itemPatron) {
+        
+        for (var i = 0; i < 200; i++) {
+            for (var j = 0; j < 200; j++) {
+                if(mat3[i][j]==1){
+                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
                 }
             }
         }
@@ -179,10 +285,10 @@ function create() {
     
     P4.forEach(function(itemPatron) {
         
-        for (var i = 0; i < 20; i++) {
-            for (var j = 0; j < 20; j++) {
+        for (var i = 0; i < 100; i++) {
+            for (var j = 0; j < 100; j++) {
                 if(mat4[i][j]==1){
-                    matPatron[((itemPatron.x)/5)+i][((itemPatron.y)/5)+j] = 1;
+                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
                 }
             }
         }
@@ -196,11 +302,11 @@ function create() {
     forme4.events.onInputDown.add(addForme4, this);
     
     //Ajouter les boutons de rotation et de poubelle
-    var rot = game.add.sprite(700, 450, 'rotation');
+    var rot = game.add.sprite(900, 550, 'rotation');
     rot.inputEnabled = true;
     rot.events.onInputDown.add(boutonRotation, this);
     
-    var poub = game.add.sprite(570, 450, 'poubelle');
+    var poub = game.add.sprite(770, 550, 'poubelle');
     poub.inputEnabled = true;
     poubelle.add(poub);
     
@@ -209,7 +315,8 @@ function create() {
 //Fonctions pour ajouter les formes à partir du panier
 function addForme1(forme1, pointer) {
     nbF1 = nbF1 + 1;
-    var tempSprite = F1.create(180*nbF1+100, 100, 'tetris1');
+    var tempSprite = F1.create(180*nbF1+100, 100, 'carre');
+    tempSprite.tint = Math.random() * 0xffffff;
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -219,7 +326,8 @@ function addForme1(forme1, pointer) {
 
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
-    var tempSprite = F2.create(180*nbF2+100, 280, 'tetris2');
+    var tempSprite = F2.create(250*nbF2+100, 250, 'trapeze');
+    tempSprite.tint = Math.random() * 0xffffff;
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -229,7 +337,8 @@ function addForme2(forme2, pointer) {
 
 function addForme3(forme3, pointer) {
     nbF3 = nbF3 + 1;
-    var tempSprite = F3.create(180*nbF3+100, 460, 'tetris3');
+    var tempSprite = F3.create(250*nbF3+100, 550, 'hexagone');
+    tempSprite.tint = Math.random() * 0xffffff;
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(10, 10, false, true);
@@ -239,7 +348,8 @@ function addForme3(forme3, pointer) {
 
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
-    var tempSprite = F4.create(180*nbF4+100, 640, 'tetris4');
+    var tempSprite = F4.create(180*nbF4+100, 400, 'triangle');
+    tempSprite.tint = Math.random() * 0xffffff;
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(10, 10, false, true);
@@ -269,50 +379,74 @@ function boutonRotation(rot, pointer) {
 //Fonction de fin de drag d'une forme (poubelle, rotation et mise à jour de la matrice quantisée de la solution) 
 function finDrag(tempSprite, pointer) {
 
-    if((game.input.y>450) && (game.input.y < 570) && (game.input.x > 570) && (game.input.x < 680)){
-        if (tempSprite.key == 'tetris1'){
+    if((game.input.y>550) && (game.input.y < 670) && (game.input.x > 770) && (game.input.x < 880)){
+        if (tempSprite.key == 'carre'){
             nbF1 = nbF1 - 1;
         }
-        if (tempSprite.key == 'tetris2'){
+        if (tempSprite.key == 'trapeze'){
             nbF2 = nbF2 - 1;
         }
-        if (tempSprite.key == 'tetris3'){
+        if (tempSprite.key == 'hexagone'){
             nbF3 = nbF3 - 1;
         }
-        if (tempSprite.key == 'tetris4'){
+        if (tempSprite.key == 'triangle'){
             nbF4 = nbF4 - 1;
         }
         tempSprite.destroy();
     }
     
-    if((game.input.y>450) && (game.input.y < 570) && (game.input.x > 700) && (game.input.x < 810)){
+    if((game.input.y>550) && (game.input.y < 670) && (game.input.x > 900) && (game.input.x < 1010)){
         tempSprite.angle += 45;
     }
     
-    for (var i = 0; i < 240; i++) {
-        for (var j = 0; j < 80; j++) {
+    for (var i = 0; i < 1200; i++) {
+        for (var j = 0; j < 400; j++) {
             matSolution[i][j] = 0;
         }
     }
     
-    F2.forEach(function(itemForme) {
+    F1.forEach(function(itemPatron) {
         
-        for (var i = 0; i < 10; i++) {
-            for (var j = 0; j < 20; j++) {
-                if(mat2[i][j]==1){
-                    matSolution[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
+        for (var i = 0; i < 100; i++) {
+            for (var j = 0; j < 100; j++) {
+                if(mat1[i][j]==1){
+                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
                 }
             }
         }
             
     }, this);
     
-    F4.forEach(function(itemForme) {
+    F2.forEach(function(itemPatron) {
         
-        for (var i = 0; i < 20; i++) {
-            for (var j = 0; j < 20; j++) {
+        for (var i = 0; i < 200; i++) {
+            for (var j = 0; j < 100; j++) {
+                if(mat2[i][j]==1){
+                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    F3.forEach(function(itemPatron) {
+        
+        for (var i = 0; i < 200; i++) {
+            for (var j = 0; j < 200; j++) {
+                if(mat3[i][j]==1){
+                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    F4.forEach(function(itemPatron) {
+        
+        for (var i = 0; i < 100; i++) {
+            for (var j = 0; j < 100; j++) {
                 if(mat4[i][j]==1){
-                    matSolution[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
+                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
                 }
             }
         }
@@ -328,46 +462,10 @@ function update() {
     game.world.bringToTop(formes);
     game.world.bringToTop(poubelle);
     
-    P1.forEach(function(itemPatron) {
-    
-            testFin1 = 0;
-            
-            F1.forEach(function(itemForme) {
-                if (((itemPatron.x == itemForme.x)&&(itemPatron.y == itemForme.y))) {
-                    testFin1 = 1;
-                }
-            }, this);
-
-    }, this);
-    
-    P2.forEach(function(itemPatron) {
-    
-            testFin2 = 0;
-            
-            F2.forEach(function(itemForme) {
-                if (((itemPatron.x == itemForme.x)&&(itemPatron.y == itemForme.y))) {
-                    testFin2 = 1;
-                }
-            }, this);
-            
-    }, this);
-    
-    P3.forEach(function(itemPatron) {
-    
-            testFin3 = 0;
-            
-            F3.forEach(function(itemForme) {
-                if (((itemPatron.x == itemForme.x)&&(itemPatron.y == itemForme.y))) {
-                    testFin3 = 1;
-                }
-            }, this);
-            
-    }, this);
-    
     valide = 1;
     
-    for (var i = 0; i < 240; i++) {
-        for (var j = 0; j < 80; j++) {
+    for (var i = 0; i < 1200; i++) {
+        for (var j = 0; j < 400; j++) {
             if(matSolution[i][j]!=matPatron[i][j]){
                 valide = 0;
             }
@@ -385,16 +483,6 @@ function update() {
         }
     }
     
-    if ((testFin1 == 1)&&(testFin2 == 1)&&(testFin3 == 1)) {
-        fin = 1;
-        if (nbAlert == 0){
-            nbAlert = 1;
-            var delay=500;
-            setTimeout(function(){
-                alert("Bravo! Vous avez réussi ce niveau!");
-            }, delay); 
-        }
-    }
 }
 
 //Mode de débougage
@@ -410,9 +498,6 @@ function render() {
     //game.debug.text('MatPatron : ' + matPatron[180][22], 16, 120);
     //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
     //game.debug.inputInfo(16, 144);
-    //game.debug.text('testFin1 : ' + testFin1, 16, 96);
-    //game.debug.text('testFin2 : ' + testFin2, 16, 108);
-    //game.debug.text('testFin3 : ' + testFin3, 16, 120);
 }
 
 </script>
