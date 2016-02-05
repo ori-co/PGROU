@@ -21,10 +21,12 @@ function preload() {
     game.load.image('patron1', 'images/patron1.png');
     game.load.image('patron2', 'images/patron2.png');
     game.load.image('patron3', 'images/patron3.png');
+    game.load.image('patronblock', 'images/patronblock.png');
 
     game.load.image('tetris1', 'images/tetrisblock1.png');
     game.load.image('tetris2', 'images/tetrisblock2.png');
     game.load.image('tetris3', 'images/tetrisblock3.png');
+    game.load.image('block', 'images/block.png');
     
     game.load.image('rotation', 'images/rotation.png');
     game.load.image('poubelle', 'images/poubelle.png');
@@ -34,20 +36,24 @@ function preload() {
 var nbF1 = 0;
 var nbF2 = 0;
 var nbF3 = 0;
+var nbF4 = 0;
 
 var test = 0;
 
 var F1;
 var F2;
 var F3;
+var F4;
 
 var P1;
 var P2;
 var P3;
+var P4;
 
 var testFin1 = 0;
 var testFin2 = 0;
 var testFin3 = 0;
+var testFin4 = 0;
 
 var fin = 0;
 var nbAlert = 0;
@@ -59,10 +65,12 @@ function create() {
     F1 = game.add.group();
     F2 = game.add.group();
     F3 = game.add.group();
+    F4 = game.add.group();
     
     P1 = game.add.group();
     P2 = game.add.group();
     P3 = game.add.group();
+    P4 = game.add.group();
     
     formes = game.add.group();
     patrons = game.add.group();
@@ -71,30 +79,37 @@ function create() {
     formes.add(F1);
     formes.add(F2);
     formes.add(F3);
+    formes.add(F4);
     
     patrons.add(P1);
     patrons.add(P2);
     patrons.add(P3);
+    patrons.add(P4);
     
     var forme1 = game.add.sprite(100, 100, 'tetris1');
     var forme2 = game.add.sprite(100, 280, 'tetris2');
     var forme3 = game.add.sprite(100, 460, 'tetris3');
+    var forme4 = game.add.sprite(100, 640, 'block');
     
     forme1.inputEnabled = true;
     forme2.inputEnabled = true;
     forme3.inputEnabled = true;
+    forme4.inputEnabled = true;
     
     var patron1 = P1.create(600, 200, 'patron1');
     var patron2 = P2.create(600, 110, 'patron2');
     var patron3 = P3.create(600, 290, 'patron3');
+    var patron4 = P4.create(900, 110, 'patron4');
     
     patron1.inputEnabled = true;
     patron2.inputEnabled = true;
     patron3.inputEnabled = true;
+    patron4.inputEnabled = true;
     
     forme1.events.onInputDown.add(addForme1, this);
     forme2.events.onInputDown.add(addForme2, this);
     forme3.events.onInputDown.add(addForme3, this);
+    forme4.events.onInputDown.add(addForme4, this);
     
     var rot = game.add.sprite(700, 450, 'rotation');
     rot.inputEnabled = true;
@@ -111,7 +126,7 @@ function addForme1(forme1, pointer) {
     var tempSprite = F1.create(180*nbF1+100, 100, 'tetris1');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
+    tempSprite.input.enableSnap(5, 5, false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
     tempSprite.events.onDragStop.add(finDrag, this);
 }
@@ -121,7 +136,7 @@ function addForme2(forme2, pointer) {
     var tempSprite = F2.create(180*nbF2+100, 280, 'tetris2');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
+    tempSprite.input.enableSnap(5, 5, false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
     tempSprite.events.onDragStop.add(finDrag, this);
 }
@@ -131,7 +146,17 @@ function addForme3(forme3, pointer) {
     var tempSprite = F3.create(180*nbF3+100, 460, 'tetris3');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
+    tempSprite.input.enableSnap(5, 5, false, true);
+    tempSprite.events.onInputDown.add(interactionForme, this);
+    tempSprite.events.onDragStop.add(finDrag, this);
+}
+
+function addForme4(forme4, pointer) {
+    nbF4 = nbF4 + 1;
+    var tempSprite = F4.create(180*nbF4+100, 640, 'block');
+    tempSprite.inputEnabled = true;
+    tempSprite.input.enableDrag(false, true);
+    tempSprite.input.enableSnap(5, 5, false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
     tempSprite.events.onDragStop.add(finDrag, this);
 }
@@ -164,6 +189,9 @@ function finDrag(tempSprite, pointer) {
         }
         if (tempSprite.key == 'tetris3'){
             nbF3 = nbF3 - 1;
+        }
+        if (tempSprite.key == 'block'){
+            nbF4 = nbF4 - 1;
         }
         tempSprite.destroy();
     }
@@ -232,9 +260,10 @@ function render() {
     game.debug.text('Forme1 : ' + nbF1, 16, 48);
     game.debug.text('Forme2 : ' + nbF2, 16, 60);
     game.debug.text('Forme3 : ' + nbF3, 16, 72);
-    game.debug.text('Fonction : ' + test, 16, 84);
-    game.debug.text('Fin : ' + fin, 16, 96);
-    game.debug.inputInfo(16, 108);
+    game.debug.text('Forme4 : ' + nbF4, 16, 84);
+    game.debug.text('Fonction : ' + test, 16, 96);
+    game.debug.text('Fin : ' + fin, 16, 108);
+    //game.debug.inputInfo(16, 108);
     //game.debug.text('testFin1 : ' + testFin1, 16, 96);
     //game.debug.text('testFin2 : ' + testFin2, 16, 108);
     //game.debug.text('testFin3 : ' + testFin3, 16, 120);
