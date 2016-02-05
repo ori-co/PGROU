@@ -21,17 +21,20 @@ function preload() {
     game.load.image('patron1', 'images/patron1.png');
     game.load.image('patron2', 'images/patron2.png');
     game.load.image('patron3', 'images/patron3.png');
-    game.load.image('patronblock', 'images/patronblock.png');
+    game.load.image('patron4', 'images/patronblock.png');
 
     game.load.image('tetris1', 'images/tetrisblock1.png');
     game.load.image('tetris2', 'images/tetrisblock2.png');
     game.load.image('tetris3', 'images/tetrisblock3.png');
-    game.load.image('block', 'images/block.png');
+    game.load.image('tetris4', 'images/block.png');
     
     game.load.image('rotation', 'images/rotation.png');
     game.load.image('poubelle', 'images/poubelle.png');
 
 }
+
+var I=0;
+var J=0;
 
 var nbF1 = 0;
 var nbF2 = 0;
@@ -59,6 +62,47 @@ var fin = 0;
 var nbAlert = 0;
 
 var selectedForm;
+
+var mat2 = new Array(10);
+for (var i = 0; i < 10; i++) {
+    mat2[i] = new Array(20);
+}
+for (var i = 0; i < 10; i++) {
+    for (var j = 0; j < 20; j++) {
+        mat2[i][j] = 1;
+    }
+}
+
+var mat4 = new Array(20);
+for (var i = 0; i < 20; i++) {
+    mat4[i] = new Array(20);
+}
+for (var i = 0; i < 20; i++) {
+    for (var j = 0; j < 20; j++) {
+        mat4[i][j] = 1;
+    }
+}
+
+var matPatron = new Array(240);
+for (var i = 0; i < 240; i++) {
+    matPatron[i] = new Array(80);
+}
+for (var i = 0; i < 240; i++) {
+    for (var j = 0; j < 80; j++) {
+        matPatron[i][j] = 0;
+    }
+}
+
+var matProblem = new Array(240);
+
+for (var i = 0; i < 240; i++) {
+    matProblem[i] = new Array(80);
+}
+for (var i = 0; i < 240; i++) {
+    for (var j = 0; j < 80; j++) {
+        matProblem[i][j] = 0;
+    }
+}
 
 function create() {
     
@@ -89,7 +133,7 @@ function create() {
     var forme1 = game.add.sprite(100, 100, 'tetris1');
     var forme2 = game.add.sprite(100, 280, 'tetris2');
     var forme3 = game.add.sprite(100, 460, 'tetris3');
-    var forme4 = game.add.sprite(100, 640, 'block');
+    var forme4 = game.add.sprite(100, 640, 'tetris4');
     
     forme1.inputEnabled = true;
     forme2.inputEnabled = true;
@@ -97,7 +141,7 @@ function create() {
     forme4.inputEnabled = true;
     
     var patron1 = P1.create(600, 200, 'patron1');
-    var patron2 = P2.create(600, 110, 'patron2');
+    var patron2 = P2.create(1000, 110, 'patron2');
     var patron3 = P3.create(600, 290, 'patron3');
     var patron4 = P4.create(900, 110, 'patron4');
     
@@ -105,6 +149,30 @@ function create() {
     patron2.inputEnabled = true;
     patron3.inputEnabled = true;
     patron4.inputEnabled = true;
+    
+    P2.forEach(function(itemPatron) {
+        
+        for (var i = 0; i < 10; i++) {
+            for (var j = 0; j < 20; j++) {
+                if(mat2[i][j]==1){
+                    matPatron[((itemPatron.x)/5)+i][((itemPatron.y)/5)+j] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    P4.forEach(function(itemPatron) {
+        
+        for (var i = 0; i < 20; i++) {
+            for (var j = 0; j < 20; j++) {
+                if(mat4[i][j]==1){
+                    matPatron[((itemPatron.x)/5)+i][((itemPatron.y)/5)+j] = 1;
+                }
+            }
+        }
+            
+    }, this);
     
     forme1.events.onInputDown.add(addForme1, this);
     forme2.events.onInputDown.add(addForme2, this);
@@ -153,7 +221,7 @@ function addForme3(forme3, pointer) {
 
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
-    var tempSprite = F4.create(180*nbF4+100, 640, 'block');
+    var tempSprite = F4.create(180*nbF4+100, 640, 'tetris4');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(5, 5, false, true);
@@ -190,7 +258,7 @@ function finDrag(tempSprite, pointer) {
         if (tempSprite.key == 'tetris3'){
             nbF3 = nbF3 - 1;
         }
-        if (tempSprite.key == 'block'){
+        if (tempSprite.key == 'tetris4'){
             nbF4 = nbF4 - 1;
         }
         tempSprite.destroy();
@@ -199,6 +267,37 @@ function finDrag(tempSprite, pointer) {
     if((game.input.y>450) && (game.input.y < 570) && (game.input.x > 700) && (game.input.x < 810)){
         tempSprite.angle += 45;
     }
+    
+    for (var i = 0; i < 240; i++) {
+        for (var j = 0; j < 80; j++) {
+            matProblem[i][j] = 0;
+        }
+    }
+    
+    F2.forEach(function(itemForme) {
+        
+        for (var i = 0; i < 10; i++) {
+            for (var j = 0; j < 20; j++) {
+                if(mat2[i][j]==1){
+                    matProblem[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    F4.forEach(function(itemForme) {
+        
+        for (var i = 0; i < 20; i++) {
+            for (var j = 0; j < 20; j++) {
+                if(mat4[i][j]==1){
+                    matProblem[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
 }
 
 function update() {
@@ -241,6 +340,29 @@ function update() {
             
     }, this);
     
+    valide = 1;
+    
+    for (var i = 0; i < 240; i++) {
+        for (var j = 0; j < 80; j++) {
+            if(matProblem[i][j]!=matPatron[i][j]){
+                valide = 0;
+                I=i;
+                J=j;
+            }
+        }
+    }
+    
+    if(valide==1){
+        fin = 1;
+        if (nbAlert == 0){
+            nbAlert = 1;
+            var delay=500;
+            setTimeout(function(){
+                alert("Bravo! Vous avez réussi ce niveau!");
+            }, delay); 
+        }
+    }
+    
     if ((testFin1 == 1)&&(testFin2 == 1)&&(testFin3 == 1)) {
         fin = 1;
         if (nbAlert == 0){
@@ -263,7 +385,9 @@ function render() {
     game.debug.text('Forme4 : ' + nbF4, 16, 84);
     game.debug.text('Fonction : ' + test, 16, 96);
     game.debug.text('Fin : ' + fin, 16, 108);
-    //game.debug.inputInfo(16, 108);
+    //game.debug.text('MatPatron : ' + matPatron[180][22], 16, 120);
+    //game.debug.text('MatSolution : ' + matProblem[180][22], 16, 132);
+    //game.debug.inputInfo(16, 144);
     //game.debug.text('testFin1 : ' + testFin1, 16, 96);
     //game.debug.text('testFin2 : ' + testFin2, 16, 108);
     //game.debug.text('testFin3 : ' + testFin3, 16, 120);
