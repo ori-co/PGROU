@@ -410,7 +410,7 @@ function finDrag(tempSprite, pointer) {
         for (var i = 0; i < 100; i++) {
             for (var j = 0; j < 100; j++) {
                 if(mat1[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -422,7 +422,7 @@ function finDrag(tempSprite, pointer) {
         for (var i = 0; i < 200; i++) {
             for (var j = 0; j < 100; j++) {
                 if(mat2[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -434,7 +434,7 @@ function finDrag(tempSprite, pointer) {
         for (var i = 0; i < 200; i++) {
             for (var j = 0; j < 200; j++) {
                 if(mat3[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -446,7 +446,7 @@ function finDrag(tempSprite, pointer) {
         for (var i = 0; i < 100; i++) {
             for (var j = 0; j < 100; j++) {
                 if(mat4[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -462,17 +462,17 @@ function update() {
     game.world.bringToTop(formes);
     game.world.bringToTop(poubelle);
     
-    valide = 1;
+    valide = 0;
     
     for (var i = 0; i < 1200; i++) {
         for (var j = 0; j < 400; j++) {
             if(matSolution[i][j]!=matPatron[i][j]){
-                valide = 0;
+                valide ++;
             }
         }
     }
     
-    if(valide==1){
+    if(valide<500){
         fin = 1;
         if (nbAlert == 0){
             nbAlert = 1;
@@ -489,10 +489,10 @@ function update() {
 function render() {
     game.debug.style = '#fff';
     game.debug.text('Cliquez sur un élément pour créer des nouvelles formes', 16, 24);
-    game.debug.text('Forme1 : ' + nbF1, 16, 48);
-    game.debug.text('Forme2 : ' + nbF2, 16, 60);
-    game.debug.text('Forme3 : ' + nbF3, 16, 72);
-    game.debug.text('Forme4 : ' + nbF4, 16, 84);
+    game.debug.text('Carrés : ' + nbF1, 16, 48);
+    game.debug.text('Hexagones : ' + nbF2, 16, 60);
+    game.debug.text('Trapèzes : ' + nbF3, 16, 72);
+    game.debug.text('Triangles : ' + nbF4, 16, 84);
     game.debug.text('Fonction : ' + test, 16, 96);
     game.debug.text('Fin : ' + fin, 16, 108);
     //game.debug.text('MatPatron : ' + matPatron[180][22], 16, 120);
