@@ -14,8 +14,10 @@
 
 <script type="text/javascript">
 
+//Création d'un nouveau jeu Phaser JS
 var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
 
+//Charger en mémoire les images nécessaires avant le démarrage du jeu
 function preload() {
 
     game.load.image('patron1', 'images/patron1.png');
@@ -33,16 +35,17 @@ function preload() {
 
 }
 
-var I=0;
-var J=0;
-
+//Compteurs de formes crées
 var nbF1 = 0;
 var nbF2 = 0;
 var nbF3 = 0;
 var nbF4 = 0;
 
+//Test du mode d'édition dans une partie
 var test = 0;
 
+
+//Variables de groupes de formes et patrons
 var F1;
 var F2;
 var F3;
@@ -53,15 +56,18 @@ var P2;
 var P3;
 var P4;
 
+
+//Tester la fin de la partie
 var testFin1 = 0;
 var testFin2 = 0;
 var testFin3 = 0;
 var testFin4 = 0;
-
 var fin = 0;
+
+//Ne pas recevoir un message de fin doublé
 var nbAlert = 0;
 
-var selectedForm;
+//Initialisation des matrices de quantisation pour les formes élémentaires
 
 var mat2 = new Array(10);
 for (var i = 0; i < 10; i++) {
@@ -83,6 +89,8 @@ for (var i = 0; i < 20; i++) {
     }
 }
 
+//Initialisation des matrices de quantisation des positions du problème (patron) et la solution proposée
+
 var matPatron = new Array(240);
 for (var i = 0; i < 240; i++) {
     matPatron[i] = new Array(80);
@@ -93,19 +101,20 @@ for (var i = 0; i < 240; i++) {
     }
 }
 
-var matProblem = new Array(240);
-
+var matSolution = new Array(240);
 for (var i = 0; i < 240; i++) {
-    matProblem[i] = new Array(80);
+    matSolution[i] = new Array(80);
 }
 for (var i = 0; i < 240; i++) {
     for (var j = 0; j < 80; j++) {
-        matProblem[i][j] = 0;
+        matSolution[i][j] = 0;
     }
 }
 
+//Fonction Create principale du jeu
 function create() {
     
+    //Gestion des relations d'héritage du jeu
     F1 = game.add.group();
     F2 = game.add.group();
     F3 = game.add.group();
@@ -130,6 +139,8 @@ function create() {
     patrons.add(P3);
     patrons.add(P4);
     
+    //Création des Formes du Panier
+    
     var forme1 = game.add.sprite(100, 100, 'tetris1');
     var forme2 = game.add.sprite(100, 280, 'tetris2');
     var forme3 = game.add.sprite(100, 460, 'tetris3');
@@ -140,6 +151,7 @@ function create() {
     forme3.inputEnabled = true;
     forme4.inputEnabled = true;
     
+    //Création du patron souhaité
     var patron1 = P1.create(600, 200, 'patron1');
     var patron2 = P2.create(1000, 110, 'patron2');
     var patron3 = P3.create(600, 290, 'patron3');
@@ -150,6 +162,7 @@ function create() {
     patron3.inputEnabled = true;
     patron4.inputEnabled = true;
     
+    //Donner valeur à la matrice de quantisation du patron donné
     P2.forEach(function(itemPatron) {
         
         for (var i = 0; i < 10; i++) {
@@ -174,11 +187,13 @@ function create() {
             
     }, this);
     
+    //Évenements de clic sur les formes du panier
     forme1.events.onInputDown.add(addForme1, this);
     forme2.events.onInputDown.add(addForme2, this);
     forme3.events.onInputDown.add(addForme3, this);
     forme4.events.onInputDown.add(addForme4, this);
     
+    //Ajouter les boutons de rotation et de poubelle
     var rot = game.add.sprite(700, 450, 'rotation');
     rot.inputEnabled = true;
     rot.events.onInputDown.add(boutonRotation, this);
@@ -189,24 +204,25 @@ function create() {
     
 }
 
+//Fonctions pour ajouter les formes à partir du panier
 function addForme1(forme1, pointer) {
     nbF1 = nbF1 + 1;
     var tempSprite = F1.create(180*nbF1+100, 100, 'tetris1');
-    tempSprite.inputEnabled = true;
-    tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(5, 5, false, true);
-    tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(finDrag, this);
+    tempSprite.inputEnabled = true; //Pointeur activé
+    tempSprite.input.enableDrag(false, true); //Mobile (drag)
+    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
+    tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
+    tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
 }
 
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
     var tempSprite = F2.create(180*nbF2+100, 280, 'tetris2');
-    tempSprite.inputEnabled = true;
-    tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(5, 5, false, true);
-    tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(finDrag, this);
+    tempSprite.inputEnabled = true; //Pointeur activé
+    tempSprite.input.enableDrag(false, true); //Mobile (drag)
+    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
+    tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
+    tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
 }
 
 function addForme3(forme3, pointer) {
@@ -214,7 +230,7 @@ function addForme3(forme3, pointer) {
     var tempSprite = F3.create(180*nbF3+100, 460, 'tetris3');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(5, 5, false, true);
+    tempSprite.input.enableSnap(10, 10, false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
     tempSprite.events.onDragStop.add(finDrag, this);
 }
@@ -224,11 +240,12 @@ function addForme4(forme4, pointer) {
     var tempSprite = F4.create(180*nbF4+100, 640, 'tetris4');
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(5, 5, false, true);
+    tempSprite.input.enableSnap(10, 10, false, true);
     tempSprite.events.onInputDown.add(interactionForme, this);
     tempSprite.events.onDragStop.add(finDrag, this);
 }
 
+//Modes d'édition (couleurs et rotation)
 function interactionForme(tempSprite, pointer) {
     
     if (test == 1){
@@ -237,6 +254,7 @@ function interactionForme(tempSprite, pointer) {
     
 }
 
+//Activation ou pas du bouton de rotation
 function boutonRotation(rot, pointer) {
     if (test == 0){
         test = 1;
@@ -246,6 +264,7 @@ function boutonRotation(rot, pointer) {
     }
 }
 
+//Fonction de fin de drag d'une forme (poubelle, rotation et mise à jour de la matrice quantisée de la solution) 
 function finDrag(tempSprite, pointer) {
 
     if((game.input.y>450) && (game.input.y < 570) && (game.input.x > 570) && (game.input.x < 680)){
@@ -270,7 +289,7 @@ function finDrag(tempSprite, pointer) {
     
     for (var i = 0; i < 240; i++) {
         for (var j = 0; j < 80; j++) {
-            matProblem[i][j] = 0;
+            matSolution[i][j] = 0;
         }
     }
     
@@ -279,7 +298,7 @@ function finDrag(tempSprite, pointer) {
         for (var i = 0; i < 10; i++) {
             for (var j = 0; j < 20; j++) {
                 if(mat2[i][j]==1){
-                    matProblem[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
+                    matSolution[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
                 }
             }
         }
@@ -291,7 +310,7 @@ function finDrag(tempSprite, pointer) {
         for (var i = 0; i < 20; i++) {
             for (var j = 0; j < 20; j++) {
                 if(mat4[i][j]==1){
-                    matProblem[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
+                    matSolution[((itemForme.x)/5)+i][((itemForme.y)/5)+j] = 1;
                 }
             }
         }
@@ -300,6 +319,9 @@ function finDrag(tempSprite, pointer) {
     
 }
 
+//Fonction Update qui tourne chaque instant dans le programme au fond
+//Mettre les formes souhaitées en évidence
+//Validation de la solution
 function update() {
     game.world.bringToTop(formes);
     game.world.bringToTop(poubelle);
@@ -344,10 +366,8 @@ function update() {
     
     for (var i = 0; i < 240; i++) {
         for (var j = 0; j < 80; j++) {
-            if(matProblem[i][j]!=matPatron[i][j]){
+            if(matSolution[i][j]!=matPatron[i][j]){
                 valide = 0;
-                I=i;
-                J=j;
             }
         }
     }
@@ -375,7 +395,7 @@ function update() {
     }
 }
 
-
+//Mode de débougage
 function render() {
     game.debug.style = '#fff';
     game.debug.text('Cliquez sur un élément pour créer des nouvelles formes', 16, 24);
@@ -386,7 +406,7 @@ function render() {
     game.debug.text('Fonction : ' + test, 16, 96);
     game.debug.text('Fin : ' + fin, 16, 108);
     //game.debug.text('MatPatron : ' + matPatron[180][22], 16, 120);
-    //game.debug.text('MatSolution : ' + matProblem[180][22], 16, 132);
+    //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
     //game.debug.inputInfo(16, 144);
     //game.debug.text('testFin1 : ' + testFin1, 16, 96);
     //game.debug.text('testFin2 : ' + testFin2, 16, 108);
