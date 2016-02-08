@@ -25,8 +25,16 @@ function preload() {
     game.load.image('trapeze', 'sprites/trapeze.png');
     game.load.image('triangle', 'sprites/triangle.png');
     
-    game.load.image('rotation', 'images/rotation.png');
-    game.load.image('poubelle', 'images/poubelle.png');
+    game.load.image('rotation', 'images/buttons/option-rotate_normal.png');
+    game.load.image('poubelle', 'images/buttons/trashbin_normal.png');
+    
+    game.load.image('store', 'images/store.png');
+    game.load.image('button-square', 'images/buttons/shape-square_normal.png');
+    game.load.image('button-trapezoid', 'images/buttons/shape-trapezoid_normal.png');
+    game.load.image('button-triangle-equi', 'images/buttons/shape-t-equi_normal.png');
+    game.load.image('button-hexagon', 'images/buttons/shape-hexagon_normal.png');
+    game.load.image('button-triangle-rect', 'images/buttons/shape-t-rect_normal.png');
+    game.load.image('button-lozenge', 'images/buttons/shape-lozenge_normal.png');
 
 }
 
@@ -198,14 +206,11 @@ function create() {
     //Fond d'écran
     myBitmap = game.make.bitmapData(game.width,game.height);
     myBitmap.addToWorld();
-    //var myBitmap = game.add.bitmapData(game.width(), game.height());
     var grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
     grd.addColorStop(0,"#66d1f9");
     grd.addColorStop(1,"#bce3f0");
-    
     myBitmap.context.fillStyle = grd;
     myBitmap.context.fillRect(0,0,game.width,game.height);
-    //game.add.sprite(0, 0, myBitmap
     //game.stage.backgroundColor = "#4488AA";
     
     //Gestion des relations d'héritage du jeu
@@ -233,23 +238,27 @@ function create() {
     patrons.add(P3);
     patrons.add(P4);
     
-    //Création des Formes du Panier
+    // Création du magasin
+    var store = game.add.sprite(5,5,'store');
+    var buttonSquare = game.add.sprite(20,110, 'button-square');
+    var buttonTrapezoid = game.add.sprite(100,110, 'button-trapezoid');
+    var buttonTriangleEqui = game.add.sprite(20,200, 'button-triangle-equi');
+    var buttonHexagon = game.add.sprite(100,200, 'button-hexagon');
+    var buttonTriangleRect = game.add.sprite(20,290, 'button-triangle-rect');
+    var buttonLozenge = game.add.sprite(100,290,'button-lozenge');
     
-    var forme1 = game.add.sprite(100, 100, 'carre');
-    var forme2 = game.add.sprite(100, 250, 'trapeze');
-    var forme3 = game.add.sprite(100, 550, 'hexagone');
-    var forme4 = game.add.sprite(100, 400, 'triangle');
-    
-    forme1.inputEnabled = true;
-    forme2.inputEnabled = true;
-    forme3.inputEnabled = true;
-    forme4.inputEnabled = true;
+    buttonSquare.inputEnabled = true;
+    buttonTrapezoid.inputEnabled = true;
+    buttonTriangleEqui.inputEnabled = true;
+    buttonHexagon.inputEnabled = true;
+    buttonTriangleRect.inputEnabled = true;
+    buttonLozenge.inputEnabled = true;
     
     //Coloration aléatoire
-    forme1.tint = Math.random() * 0xffffff;
-    forme2.tint = Math.random() * 0xffffff;
-    forme3.tint = Math.random() * 0xffffff;
-    forme4.tint = Math.random() * 0xffffff;
+    //forme1.tint = Math.random() * 0xffffff;
+    //forme2.tint = Math.random() * 0xffffff;
+    //forme3.tint = Math.random() * 0xffffff;
+    //forme4.tint = Math.random() * 0xffffff;
     
     //Création du patron souhaité
     var patron1 = P1.create(900, 210, 'carre');
@@ -317,17 +326,19 @@ function create() {
     }, this);
     
     //Évenements de clic sur les formes du panier
-    forme1.events.onInputDown.add(addForme1, this);
-    forme2.events.onInputDown.add(addForme2, this);
-    forme3.events.onInputDown.add(addForme3, this);
-    forme4.events.onInputDown.add(addForme4, this);
+    buttonSquare.events.onInputDown.add(addForme1, this);
+    buttonTrapezoid.events.onInputDown.add(addForme2, this);
+    buttonTriangleEqui.events.onInputDown.add(addForme4, this);
+    buttonHexagon.events.onInputDown.add(addForme3, this);
+    buttonTriangleRect.events.onInputDown.add(addForme5, this);
+    buttonLozenge.events.onInputDown.add(addForme6, this);
     
     //Ajouter les boutons de rotation et de poubelle
     var rot = game.add.sprite(900, 550, 'rotation');
     rot.inputEnabled = true;
     rot.events.onInputDown.add(boutonRotation, this);
     
-    var poub = game.add.sprite(770, 550, 'poubelle');
+    var poub = game.add.sprite(60, 20, 'poubelle');
     poub.inputEnabled = true;
     poubelle.add(poub);
     
@@ -378,6 +389,13 @@ function addForme4(forme4, pointer) {
     tempSprite.events.onDragStop.add(finDrag, this);
 }
 
+function addForme5(forme1, pointer) {
+    
+}
+function addForme6(forme1, pointer) {
+    
+}
+
 //Modes d'édition (couleurs et rotation)
 function interactionForme(tempSprite, pointer) {
     
@@ -400,7 +418,7 @@ function boutonRotation(rot, pointer) {
 //Fonction de fin de drag d'une forme (poubelle, rotation et mise à jour de la matrice quantisée de la solution) 
 function finDrag(tempSprite, pointer) {
 
-    if((game.input.y>550) && (game.input.y < 670) && (game.input.x > 770) && (game.input.x < 880)){
+    if((game.input.y>20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)){
         if (tempSprite.key == 'carre'){
             nbF1 = nbF1 - 1;
         }
