@@ -190,10 +190,23 @@ for (var i = 0; i < 1200; i++) {
     }
 }
 
+// grandient background
+var myBitmap;
+
 //Fonction Create principale du jeu
 function create() {
     //Fond d'écran
-    game.stage.backgroundColor = "#4488AA";
+    myBitmap = game.make.bitmapData(game.width,game.height);
+    myBitmap.addToWorld();
+    //var myBitmap = game.add.bitmapData(game.width(), game.height());
+    var grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
+    grd.addColorStop(0,"#66d1f9");
+    grd.addColorStop(1,"#bce3f0");
+    
+    myBitmap.context.fillStyle = grd;
+    myBitmap.context.fillRect(0,0,game.width,game.height);
+    //game.add.sprite(0, 0, myBitmap
+    //game.stage.backgroundColor = "#4488AA";
     
     //Gestion des relations d'héritage du jeu
     F1 = game.add.group();
