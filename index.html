@@ -209,6 +209,7 @@ for (var i = 0; i < 1200; i++) {
 var myBitmap;
 var rot;
 var col;
+var palette;
 
 //Fonction Create principale du jeu
 function create() {
@@ -221,6 +222,8 @@ function create() {
     myBitmap.context.fillStyle = grd;
     myBitmap.context.fillRect(0,0,game.width,game.height);
     //game.stage.backgroundColor = "#4488AA";
+    
+    palette = ["0x83EE00","0xFBFE00","0x058AB6","0xE4005C","0x8007BE","0xFF8300"];
     
     //Gestion des relations d'héritage du jeu
     F1 = game.add.group();
@@ -345,10 +348,11 @@ function create() {
 //Fonctions pour ajouter les formes à partir du panier
 function addForme1(forme1, pointer) {
     nbF1 = nbF1 + 1;
-    var tempSprite = F1.create(180*nbF1+100, 100, 'carre');
+    var tempSprite = F1.create(180*nbF1+100, 100, 'carre');    
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
-    tempSprite.tint = Math.random() * 0xffffff;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -361,7 +365,8 @@ function addForme2(forme2, pointer) {
     var tempSprite = F2.create(250*nbF2+100, 250, 'trapeze');
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
-    tempSprite.tint = Math.random() * 0xffffff;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -374,7 +379,8 @@ function addForme3(forme3, pointer) {
     var tempSprite = F3.create(250*nbF3+100, 550, 'hexagone');
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
-    tempSprite.tint = Math.random() * 0xffffff;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(10, 10, false, true);
@@ -387,7 +393,8 @@ function addForme4(forme4, pointer) {
     var tempSprite = F4.create(180*nbF4+100, 400, 'triangle');
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
-    tempSprite.tint = Math.random() * 0xffffff;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(10, 10, false, true);
@@ -412,8 +419,9 @@ function interactionForme(tempSprite, pointer) {
         tempSprite.angle += 45;
         break;
         case 2: 
-        tempSprite.tint = Math.random() * 0xffffff;
-        break;           
+        var rand = Math.floor((Math.random() * 5));
+        tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+        break;
         }
     
 }
