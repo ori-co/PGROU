@@ -1,0 +1,48 @@
+{
+"probleme" :
+	{
+	"patron":[ 
+				{
+				"nature":"carre",
+				"couleur":"bleu",
+				"rotation":"0",
+				"pointDeReference": {
+					"x":"900",
+					"y":"210"}
+				},
+				{
+				"nature":"trapeze",
+				"couleur":"bleu",
+				"rotation":"0",
+				"pointDeReference": {
+					"x":"850",
+					"y":"310"}
+				},
+				{
+				"nature":"hexagone",
+				"couleur":"bleu",
+				"rotation":"0",
+				"pointDeReference": {
+					"x":"700",
+					"y":"210"}
+				},
+				{
+				"nature":"triangle",
+				"couleur":"bleu",
+				"rotation":"0",
+				"pointDeReference": {
+					"x":"900",
+					"y":"110"}
+				}
+			],
+	
+	"distributeur":{
+		"carre":"1",
+		"triangle":"1",
+		"triangleRectangle":"1",
+		"losange":"1",
+		"hexagone":"1",
+		"trapeze":"1"
+	}
+}
+}
