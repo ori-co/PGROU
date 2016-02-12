@@ -24,6 +24,13 @@ function preload() {
     game.load.image('hexagone', 'sprites/hexagone.png');
     game.load.image('trapeze', 'sprites/trapeze.png');
     game.load.image('triangle', 'sprites/triangle.png');
+
+    game.load.image('square','images/shapes/square.png');
+    game.load.image('hexagon','images/shapes/hexagon.png');
+    game.load.image('lozenge','images/shapes/lozenge.png');
+    game.load.image('trapezoid','images/shapes/trapezoid.png');
+    game.load.image('triangle-equi','images/shapes/triangle-equi.png');
+    game.load.image('triangle-rect','images/shapes/triangle-rect.png');
     
     game.load.image('store', 'images/store.png');
     game.load.spritesheet('poubelle', 'images/buttons/trashbin.png',83,76);
@@ -74,6 +81,8 @@ var F1;
 var F2;
 var F3;
 var F4;
+var F5;
+var F6;
 
 var P1;
 var P2;
@@ -215,6 +224,7 @@ for (var i = 0; i < 1200; i++) {
 var myBitmap;
 var rot;
 var col;
+var mute
 var palette;
 
 //Fonction Create principale du jeu
@@ -236,6 +246,8 @@ function create() {
     F2 = game.add.group();
     F3 = game.add.group();
     F4 = game.add.group();
+    F5 = game.add.group();
+    F6 = game.add.group();
     
     P1 = game.add.group();
     P2 = game.add.group();
@@ -250,6 +262,8 @@ function create() {
     formes.add(F2);
     formes.add(F3);
     formes.add(F4);
+    formes.add(F5);
+    formes.add(F6);
     
     patrons.add(P1);
     patrons.add(P2);
@@ -290,9 +304,9 @@ function create() {
     //Ajouter les boutons de rotation et de couleurs
     rot = game.add.button(10, game.height - 210 , 'button-rotate', boutonRotation,this,2,1,0);
     col = game.add.button(58, game.height - 210 , 'button-colors', buttonColor,this,2,1,0);
-    ret = game.add.button(game.width-(18+3*50), 10 , 'button-home', null,this,2,1,0);
+    var ret = game.add.button(game.width-(18+3*50), 10 , 'button-home', null,this,2,1,0);
     mute = game.add.button(game.width-(18+2*50), 10 , 'button-mute', null,this,2,1,0);
-    exp = game.add.button(game.width-(18+1*50), 10 , 'button-export', null,this,2,1,0);
+    var exp = game.add.button(game.width-(18+1*50), 10 , 'button-export', null,this,2,1,0);
     
     //Création du patron souhaité
     var patron1 = P1.create(900, 210, 'carre');
@@ -364,11 +378,12 @@ function create() {
 //Fonctions pour ajouter les formes à partir du panier
 function addShape(shape,F) {
     nbF = nbF+1; 
-    var tempSprite = F.create(110*nbF-5, game.height-90, shape);
+    var tempSprite = F.create(130*nbF-35, game.height-90, shape);
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+    tempSprite.tint = 0xabdcf1;
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -376,31 +391,31 @@ function addShape(shape,F) {
     tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
 }
 
-    function addForme1(forme1, pointer) {
+function addForme1(forme1, pointer) {
     nbF1 = nbF1 + 1;
-    addShape('carre',F1);
+    addShape('square',F1);
 }
 
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
-    addShape('trapeze',F2);
+    addShape('trapezoid',F2);
 }
 
 function addForme3(forme3, pointer) {
     nbF3 = nbF3 + 1;
-    addShape('hexagone',F3)
+    addShape('hexagon',F3)
 }
 
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
-    addShape('triangle',F4)
+    addShape('triangle-equi',F4)
 }
 
-function addForme5(forme1, pointer) {
-    
+function addForme5(forme5, pointer) {
+    addShape('triangle-rect',F5)
 }
-function addForme6(forme1, pointer) {
-    
+function addForme6(forme6, pointer) {
+    addShape('lozenge',F6)
 }
 
 //Modes d'édition (couleurs et rotation)
