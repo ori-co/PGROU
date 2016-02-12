@@ -43,6 +43,10 @@ function preload() {
     game.load.spritesheet('button-home','images/buttons/option-home.png',48,48);
     game.load.spritesheet('button-export','images/buttons/option-export.png',48,48);
     game.load.spritesheet('button-mute','images/buttons/option-mute.png',48,48);
+    
+    game.load.image('menu-left','images/menu-left.png');
+    game.load.image('menu-right','images/menu-right.png');
+    game.load.image('menu-middle','images/menu-middle.png');
 
 }
 
@@ -276,9 +280,19 @@ function create() {
     basketMiddle.width = game.width-2*142;
     var basketRight = game.add.sprite(game.width -142-5,game.height - 212 - 5,'basket-right');
     
+    // Construction du menu
+    var long = 100;
+    var menuLeft = game.add.sprite(game.width-5-long-2*35,5,'menu-left');
+    var menuMiddle = game.add.sprite(game.width-5-long-35,5,'menu-middle');
+    menuMiddle.width = long;
+    var menuRight = game.add.sprite(game.width-35-5,5,'menu-right');
+    
     //Ajouter les boutons de rotation et de couleurs
     rot = game.add.button(10, game.height - 210 , 'button-rotate', boutonRotation,this,2,1,0);
     col = game.add.button(58, game.height - 210 , 'button-colors', buttonColor,this,2,1,0);
+    ret = game.add.button(game.width-(18+3*50), 10 , 'button-home', null,this,2,1,0);
+    mute = game.add.button(game.width-(18+2*50), 10 , 'button-mute', null,this,2,1,0);
+    exp = game.add.button(game.width-(18+1*50), 10 , 'button-export', null,this,2,1,0);
     
     //Création du patron souhaité
     var patron1 = P1.create(900, 210, 'carre');
