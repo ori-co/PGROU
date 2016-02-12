@@ -61,12 +61,6 @@ var nbF3 = 0;
 var nbF4 = 0;
 
 //Surface des formes
-/*
-var aireCarre = 10000;
-var aireTriangle = 4330.12701892;
-var aireTrapeze = 3*4330.12701892;
-var aireHexagone = 6*4330.12701892;
-*/
 var aireCarre = 0;
 var aireTriangleEqui = 0;
 var aireTriangleRect = 0;
@@ -179,6 +173,9 @@ for (var i = 0; i < 1200; i++) {
 
 // grandient background
 var myBitmap;
+var rot;
+var col;
+var palette;
 
 //Fonction Create principale du jeu
 function create() {
@@ -191,6 +188,8 @@ function create() {
     myBitmap.context.fillStyle = grd;
     myBitmap.context.fillRect(0,0,game.width,game.height);
     //game.stage.backgroundColor = "#4488AA";
+    
+    palette = ["0x83EE00","0xFBFE00","0x058AB6","0xE4005C","0x8007BE","0xFF8300"];
     
     //Gestion des relations d'héritage du jeu
     F1 = game.add.group();
@@ -236,8 +235,8 @@ function create() {
     var basketRight = game.add.sprite(game.width -142-5,game.height - 212 - 5,'basket-right');
     
     //Ajouter les boutons de rotation et de couleurs
-    var rot = game.add.button(10, game.height - 210 , 'button-rotate', boutonRotation,this,2,1,0);
-    var col = game.add.button(58, game.height - 210 , 'button-colors', null,this,2,1,0);
+    rot = game.add.button(10, game.height - 210 , 'button-rotate', boutonRotation,this,2,1,0);
+    col = game.add.button(58, game.height - 210 , 'button-colors', buttonColor,this,2,1,0);
     
     // Remplir les matrices binaires correspondant aux formes et calcul de l'aire de chaque forme
     
@@ -372,8 +371,11 @@ function create() {
 //Fonctions pour ajouter les formes à partir du panier
 function addForme1(forme1, pointer) {
     nbF1 = nbF1 + 1;
-    var tempSprite = F1.create(180*nbF1+100, 100, 'img_square');
-    tempSprite.tint = Math.random() * 0xffffff;
+    var tempSprite = F1.create(180*nbF1+100, 100, 'img_square');    
+    tempSprite.anchor.x=0.5;
+    tempSprite.anchor.y=0.5;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -384,7 +386,10 @@ function addForme1(forme1, pointer) {
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
     var tempSprite = F2.create(250*nbF2+100, 250, 'img_trapezoid');
-    tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.anchor.x=0.5;
+    tempSprite.anchor.y=0.5;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -395,7 +400,10 @@ function addForme2(forme2, pointer) {
 function addForme3(forme3, pointer) {
     nbF3 = nbF3 + 1;
     var tempSprite = F3.create(250*nbF3+100, 550, 'img_hexagon');
-    tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.anchor.x=0.5;
+    tempSprite.anchor.y=0.5;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(10, 10, false, true);
@@ -406,7 +414,10 @@ function addForme3(forme3, pointer) {
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
     var tempSprite = F4.create(180*nbF4+100, 400, 'img_triangle_equi');
-    tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.anchor.x=0.5;
+    tempSprite.anchor.y=0.5;
+    //tempSprite.tint = Math.random() * 0xffffff;
+    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true;
     tempSprite.input.enableDrag(false, true);
     tempSprite.input.enableSnap(10, 10, false, true);
@@ -423,23 +434,57 @@ function addForme6(forme1, pointer) {
 
 //Modes d'édition (couleurs et rotation)
 function interactionForme(tempSprite, pointer) {
-    
-    if (test == 1){
+
+    switch (test){
+        case 0:
+        break;
+        case 1:
         tempSprite.angle += 45;
-    }
+        break;
+        case 2: 
+        var rand = Math.floor((Math.random() * 5));
+        tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+        break;
+        }
     
 }
 
 //Activation ou pas du bouton de rotation
 function boutonRotation(rot, pointer) {
-    if (test == 0){
-        test = 1;
-        rot.setFrames(3,0,1);
-    }
-    else if (test == 1){
-        test = 0;
-        rot.setFrames(2,1,0);
-    }
+     switch (test){
+         case 0:
+         test = 1;
+         rot.setFrames(3,0,1);
+         break;
+         case 1:
+         test=0;
+         rot.setFrames(2,1,0);
+         break;
+         case 2:
+         test = 1;
+         rot.setFrames(3,0,1);
+         col.setFrames(2,1,0);
+         break;
+     }
+}
+
+// Changement de couleur
+function buttonColor(col,pointer){
+     switch (test){
+         case 0:
+         test = 2;
+         col.setFrames(3,0,1);
+         break;
+         case 1:
+         test = 2;
+         rot.setFrames(2,1,0);
+         col.setFrames(3,0,1);
+         break;
+         case 2:
+         test = 0;
+         col.setFrames(2,1,0);
+         break;
+     }
 }
 
 //Fonction de fin de drag d'une forme (poubelle, rotation et mise à jour de la matrice quantisée de la solution) 
@@ -562,7 +607,7 @@ function render() {
     game.debug.text('Trapèzes : ' + nbF2, 16, 60);
     game.debug.text('Hexagones : ' + nbF3, 16, 72);
     game.debug.text('Triangles : ' + nbF4, 16, 84);
-    //game.debug.text('Fonction : ' + test, 16, 96);
+    game.debug.text('Fonction : ' + test, 16, 96);
     //game.debug.text('Fin : ' + fin, 16, 108);
     //game.debug.text('Aire Solution : ' + aireSolution, 16, 120);
     //game.debug.text('Aire Patron : ' + airePatron, 16, 132);
