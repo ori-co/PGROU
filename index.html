@@ -42,6 +42,7 @@ function preload() {
     game.load.spritesheet('button-colors','images/buttons/option-colors.png',48,48);
     game.load.spritesheet('button-home','images/buttons/option-home.png',48,48);
     game.load.spritesheet('button-export','images/buttons/option-export.png',48,48);
+    game.load.spritesheet('button-mute','images/buttons/option-mute.png',48,48);
 
 }
 
@@ -50,6 +51,7 @@ var nbF1 = 0;
 var nbF2 = 0;
 var nbF3 = 0;
 var nbF4 = 0;
+var nbF = 0;
 
 //Surface des formes
 var aireCarre = 10000;
@@ -346,60 +348,38 @@ function create() {
 }
 
 //Fonctions pour ajouter les formes à partir du panier
-function addForme1(forme1, pointer) {
-    nbF1 = nbF1 + 1;
-    var tempSprite = F1.create(180*nbF1+100, 100, 'carre');    
+function addShape(shape,F) {
+    nbF = nbF+1; 
+    var tempSprite = F.create(110*nbF-5, game.height-90, shape);
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
     //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+    //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
     tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
     tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
+}
+
+    function addForme1(forme1, pointer) {
+    nbF1 = nbF1 + 1;
+    addShape('carre',F1);
 }
 
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
-    var tempSprite = F2.create(250*nbF2+100, 250, 'trapeze');
-    tempSprite.anchor.x=0.5;
-    tempSprite.anchor.y=0.5;
-    //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.inputEnabled = true; //Pointeur activé
-    tempSprite.input.enableDrag(false, true); //Mobile (drag)
-    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
-    tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
-    tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
+    addShape('trapeze',F2);
 }
 
 function addForme3(forme3, pointer) {
     nbF3 = nbF3 + 1;
-    var tempSprite = F3.create(250*nbF3+100, 550, 'hexagone');
-    tempSprite.anchor.x=0.5;
-    tempSprite.anchor.y=0.5;
-    //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.inputEnabled = true;
-    tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
-    tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(finDrag, this);
+    addShape('hexagone',F3)
 }
 
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
-    var tempSprite = F4.create(180*nbF4+100, 400, 'triangle');
-    tempSprite.anchor.x=0.5;
-    tempSprite.anchor.y=0.5;
-    //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.inputEnabled = true;
-    tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
-    tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(finDrag, this);
+    addShape('triangle',F4)
 }
 
 function addForme5(forme1, pointer) {
