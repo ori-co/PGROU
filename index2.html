@@ -173,28 +173,6 @@
 
 
 
-/////////////////////////////////////////////////////////////
-            //Chargement du fichier json
-
-            window.onload = function () {
-                var fileInput = document.getElementById('fileInput');
-                var fileCache = document.getElementById('cache');
-
-                fileInput.addEventListener('change', function (e) {
-                    var file = fileInput.files[0];
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-
-                        //On récupère le contenu du json qu'on passe en champ caché dans la div "cache"
-                        var jsonObj = reader.result;
-
-                        fileCache.innerHTML = jsonObj;
-                    };
-                    reader.readAsText(file);
-                }
-                );
-            };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -576,6 +554,50 @@
                 }
             }
 
+/////////////////////////////////////////////////////////////
+
+//Fonction de vérification de l'extension 
+            function checkExtension() {
+                var fileInput = document.getElementById('fileInput');
+                var myString = fileInput.value;
+                var myExt = myString.substring(myString.lastIndexOf(".") + 1, myString.length);
+                myExt = myExt.toLowerCase();
+
+//Message d'erreur si le fichier n'est pas un json
+                if (myExt !== "json") {
+                    alert("Votre fichier n'est pas au bon format. Veuillez choisir un fichier json");
+                }
+                else {
+//Si le fichier est bon, on lance le jeu
+                    start();
+                }
+            }
+
+
+//Chargement du fichier json
+            window.onload = function () {
+                var fileInput = document.getElementById('fileInput');
+
+                //On récupère le contenu du json qu'on passe en champ caché dans la div "cache"
+                var fileCache = document.getElementById('cache');
+                fileInput.addEventListener('change', function (e) {
+
+                    var file = fileInput.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+
+                        var jsonObj = reader.result;
+                        fileCache.innerHTML = jsonObj;
+                    };
+                    reader.readAsText(file);
+                }
+
+
+                );
+
+                ;
+            };
+
 
 
         </script>
@@ -609,13 +631,13 @@
     <body>
 
         <div id="json">
-            <input type="file" id="fileInput" >
-
+            <input type="file" id="fileInput" name = "fileInput">
             <br><br>
-            <input type="button" id="start" value="C'est parti !" onclick="start()">
+            <input type="button" id="start" value="C'est parti !" onclick="checkExtension();" >
         </div>
 
         <h3 class="cache" id="cache"> </h3>
+
 
     </body>
 </html>
