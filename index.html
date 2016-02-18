@@ -92,6 +92,7 @@ var P1;
 var P2;
 var P3;
 var P4;
+var P5;
 
 
 //Tester la fin de la partie
@@ -212,6 +213,7 @@ function create() {
     P2 = game.add.group();
     P3 = game.add.group();
     P4 = game.add.group();
+    P5 = game.add.group();
     
     formes = game.add.group();
     patrons = game.add.group();
@@ -327,15 +329,26 @@ function create() {
 	}
 	
     //Création du patron souhaité
-    var patron1 = P1.create(900, 210, 'img_square');
-    var patron2 = P2.create(850, 310, 'img_trapezoid');
-    var patron3 = P3.create(700, 210, 'img_hexagon');
-    var patron4 = P4.create(900, 110, 'img_triangle_equi');
+    var patron1 = P1.create(0,0,'img_square');
+    var patron2 = P2.create(0,0, 'img_trapezoid');
+    var patron3 = P3.create(0, 0, 'img_hexagon');
+    var patron4 = P4.create(0, 0, 'img_triangle_equi');
+    var patron5 = P5.create(0, 0, 'img_lozenge');
     
-    patron1.inputEnabled = true;
-    patron2.inputEnabled = true;
-    patron3.inputEnabled = true;
-    patron4.inputEnabled = true;
+    patronStyle(patron1,900,200,0); 
+    patronStyle(patron2,867,265,0);
+    patronStyle(patron3,770,208,0);
+    patronStyle(patron4,900,144,0);
+    patronStyle(patron5,737,154,0);
+    
+    function patronStyle(patron, x,y,angle){
+    patron.x=x;
+    patron.y=y;
+    patron.angle=angle;
+    patron.inputEnabled = true;
+    patron.tint=0x020303;
+    patron.alpha = 0.4;
+    }
     
     
     //Donner valeur à la matrice de quantisation du patron donné
