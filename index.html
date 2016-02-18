@@ -20,17 +20,19 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: pr
 //Charger en mémoire les images nécessaires avant le démarrage du jeu
 function preload() {
 
-    game.load.image('carre', 'sprites/carre.png');
-    game.load.image('hexagone', 'sprites/hexagone.png');
-    game.load.image('trapeze', 'sprites/trapeze.png');
-    game.load.image('triangle', 'sprites/triangle.png');
-
-    game.load.image('square','images/shapes/square.png');
-    game.load.image('hexagon','images/shapes/hexagon.png');
-    game.load.image('lozenge','images/shapes/lozenge.png');
-    game.load.image('trapezoid','images/shapes/trapezoid.png');
-    game.load.image('triangle-equi','images/shapes/triangle-equi.png');
-    game.load.image('triangle-rect','images/shapes/triangle-rect.png');
+	game.load.text('txt_hexagon', 'sprites/hexagon.txt');
+	game.load.text('txt_lozenge', 'sprites/lozenge.txt');
+	game.load.text('txt_square', 'sprites/square.txt');
+	game.load.text('txt_trapezoid', 'sprites/trapezoid.txt');
+	game.load.text('txt_triangle_equi', 'sprites/triangle-equi.txt');
+	game.load.text('txt_triangle_rect', 'sprites/triangle-rect.txt');
+	
+	game.load.image('img_hexagon', 'sprites/hexagon.png');
+	game.load.image('img_lozenge', 'sprites/lozenge.png');
+	game.load.image('img_square', 'sprites/square.png');
+	game.load.image('img_trapezoid', 'sprites/trapezoid.png');
+	game.load.image('img_triangle_equi', 'sprites/triangle-equi.png');
+	game.load.image('img_triangle_rect', 'sprites/triangle-rect.png');
     
     game.load.image('store', 'images/store.png');
     game.load.spritesheet('poubelle', 'images/buttons/trashbin.png',83,76);
@@ -65,10 +67,12 @@ var nbF4 = 0;
 var nbF = 0;
 
 //Surface des formes
-var aireCarre = 10000;
-var aireTriangle = 4330.12701892;
-var aireTrapeze = 3*4330.12701892;
-var aireHexagone = 6*4330.12701892;
+var aireCarre = 0;
+var aireTriangleEqui = 0;
+var aireTriangleRect = 0;
+var aireLosange = 0;
+var aireTrapeze = 0;
+var aireHexagone = 0;
 var airePatron = 0;
 var aireSolution = 0;
 
@@ -96,106 +100,61 @@ var fin = 0;
 //Ne pas recevoir un message de fin doublé
 var nbAlert = 0;
 
-//Initialisation des matrices de quantisation pour les formes élémentaires
+// Initialisation des matrices binaires correspondant aux formes
 
-//Carré
-var mat1 = new Array(100);
-for (var i = 0; i < 100; i++) {
-    mat1[i] = new Array(100);
+var mat_hexagon = new Array(115);
+for (var i = 0; i < 115; i++) {
+    mat_hexagon[i] = new Array(130);
 }
-for (var i = 0; i < 100; i++) {
-    for (var j = 0; j < 100; j++) {
-        mat1[i][j] = 1;
+for (var i = 0; i < 115; i++) {
+    for (var j = 0; j < 130; j++) {
+        mat_hexagon[i][j] = 0;
     }
 }
-
-//Trapeze
-var mat2 = new Array(200);
-for (var i = 0; i < 200; i++) {
-    mat2[i] = new Array(100);
+var mat_lozenge = new Array(115);
+for (var i = 0; i < 115; i++) {
+    mat_lozenge[i] = new Array(65);
 }
-for (var i = 0; i < 200; i++) {
-    for (var j = 0; j < 100; j++) {
-        mat2[i][j] = 1;
+for (var i = 0; i < 115; i++) {
+    for (var j = 0; j < 65; j++) {
+        mat_lozenge[i][j] = 0;
     }
 }
-var J=98;
-for (var i = 0; i < 49; i++) {
-    for (var j = 0; j < J; j++) {
-        mat2[i][j] = 0;
-    }
-    J=J-2;
+var mat_square = new Array(65);
+for (var i = 0; i < 65; i++) {
+    mat_square[i] = new Array(65);
 }
-var J=98;
-for (var i = 199; i > 149; i--) {
-    for (var j = 0; j < J; j++) {
-        mat2[i][j] = 0;
-    }
-    J=J-2;
-}
-
-//Hexagone
-var mat3 = new Array(200);
-for (var i = 0; i < 200; i++) {
-    mat3[i] = new Array(200);
-}
-for (var i = 0; i < 200; i++) {
-    for (var j = 0; j < 200; j++) {
-        mat3[i][j] = 1;
+for (var i = 0; i < 65; i++) {
+    for (var j = 0; j < 65; j++) {
+        mat_square[i][j] = 0;
     }
 }
-var J=98;
-for (var i = 0; i < 49; i++) {
-    for (var j = 0; j < J; j++) {
-        mat3[i][j] = 0;
-    }
-    J=J-2;
+var mat_trapezoid = new Array(65);
+for (var i = 0; i < 65; i++) {
+    mat_trapezoid[i] = new Array(130);
 }
-var J=98;
-for (var i = 199; i > 149; i--) {
-    for (var j = 0; j < J; j++) {
-        mat3[i][j] = 0;
-    }
-    J=J-2;
-}
-var J=101;
-for (var i = 0; i < 49; i++) {
-    for (var j = J; j < 200; j++) {
-        mat3[i][j] = 0;
-    }
-    J=J+2;
-}
-var J=101;
-for (var i = 199; i > 149; i--) {
-    for (var j = J; j < 200; j++) {
-        mat3[i][j] = 0;
-    }
-    J=J+2;
-}
-
-//Triangle
-var mat4 = new Array(100);
-for (var i = 0; i < 100; i++) {
-    mat4[i] = new Array(100);
-}
-for (var i = 0; i < 100; i++) {
-    for (var j = 0; j < 100; j++) {
-        mat4[i][j] = 1;
+for (var i = 0; i < 65; i++) {
+    for (var j = 0; j < 130; j++) {
+        mat_trapezoid[i][j] = 0;
     }
 }
-var J=98;
-for (var i = 0; i < 49; i++) {
-    for (var j = 0; j < J; j++) {
-        mat4[i][j] = 0;
-    }
-    J=J-2;
+var mat_triangle_equi = new Array(65);
+for (var i = 0; i < 65; i++) {
+    mat_triangle_equi[i] = new Array(65);
 }
-var J=98;
-for (var i = 99; i > 50; i--) {
-    for (var j = 0; j < J; j++) {
-        mat4[i][j] = 0;
+for (var i = 0; i < 65; i++) {
+    for (var j = 0; j < 65; j++) {
+        mat_triangle_equi[i][j] = 0;
     }
-    J=J-2;
+}
+var mat_triangle_rect = new Array(65);
+for (var i = 0; i < 65; i++) {
+    mat_triangle_rect[i] = new Array(65);
+}
+for (var i = 0; i < 65; i++) {
+    for (var j = 0; j < 65; j++) {
+        mat_triangle_rect[i][j] = 0;
+    }
 }
 
 //Initialisation des matrices de quantisation des positions du problème (patron) et la solution proposée
@@ -273,7 +232,7 @@ function create() {
     // Création du magasin (pas besoin de variables ?)
     var poub = game.add.button(60, 20, 'poubelle',null, this,2,1,0);
     poubelle.add(poub);
-    
+
     var store = game.add.sprite(5,5,'store');
     var buttonSquare = game.add.button(20,110, 'button-square',addForme1,this,2,1,0 );
     var buttonTrapezoid = game.add.button(100,110, 'button-trapezoid',addForme2,this,2,1,0);
@@ -281,12 +240,6 @@ function create() {
     var buttonHexagon = game.add.button(100,200, 'button-hexagon',addForme3,this,2,1,0);
     var buttonTriangleRect = game.add.button(20,290, 'button-triangle-rect',addForme5,this,2,1,0);
     var buttonLozenge = game.add.button(100,290,'button-lozenge',addForme6,this,2,1,0);
-   
-    //Coloration aléatoire
-    //forme1.tint = Math.random() * 0xffffff;
-    //forme2.tint = Math.random() * 0xffffff;
-    //forme3.tint = Math.random() * 0xffffff;
-    //forme4.tint = Math.random() * 0xffffff;
     
     // Création du panier
     var basketLeft = game.add.sprite(5,game.height - 212 - 5,'basket-left');
@@ -308,29 +261,92 @@ function create() {
     mute = game.add.button(game.width-(18+2*50), 10 , 'button-mute', null,this,2,1,0);
     var exp = game.add.button(game.width-(18+1*50), 10 , 'button-export', null,this,2,1,0);
     
+    // Remplir les matrices binaires correspondant aux formes et calcul de l'aire de chaque forme
+    
+    var temp1_hexagon = game.cache.getText('txt_hexagon');
+    // temp1_hexagon est une grande chaîne de caractères (l'ensemble du fichier .txt)
+    var temp2_hexagon = temp1_hexagon.split('\n');
+    // temp2_hexagon est un tableau de chaîne de caractères (la liste des lignes)
+	for (var i = 0; i < temp2_hexagon.length-1; i++)  {
+		var temp3_hexagon = temp2_hexagon[i].split('\t');
+		// temp3_hexagon est un tableau de caractères (les caractères de la ligne i)
+		for (var j = 0; j < temp3_hexagon.length; j++) {
+			mat_hexagon[i][j] = parseInt(temp3_hexagon[j],10);
+			aireHexagone = aireHexagone + mat_hexagon[i][j];
+		}
+	}
+	
+	var temp1_lozenge = game.cache.getText('txt_lozenge');
+    var temp2_lozenge = temp1_lozenge.split('\n');
+	for (var i = 0; i < temp2_lozenge.length-1; i++)  {
+		var temp3_lozenge = temp2_lozenge[i].split('\t');
+		for (var j = 0; j < temp3_lozenge.length; j++) {
+			mat_lozenge[i][j] = parseInt(temp3_lozenge[j],10);
+			aireLosange = aireLosange + mat_lozenge[i][j];
+		}
+	}
+	
+	var temp1_square = game.cache.getText('txt_square');
+    var temp2_square = temp1_square.split('\n');
+	for (var i = 0; i < temp2_square.length-1; i++)  {
+		var temp3_square = temp2_square[i].split('\t');
+		for (var j = 0; j < temp3_square.length; j++) {
+			mat_square[i][j] = parseInt(temp3_square[j],10);
+			aireCarre = aireCarre + mat_square[i][j];
+		}
+	}
+	
+	var temp1_trapezoid = game.cache.getText('txt_trapezoid');
+    var temp2_trapezoid = temp1_trapezoid.split('\n');
+	for (var i = 0; i < temp2_trapezoid.length-1; i++)  {
+		var temp3_trapezoid = temp2_trapezoid[i].split('\t');
+		for (var j = 0; j < temp3_trapezoid.length; j++) {
+			mat_trapezoid[i][j] = parseInt(temp3_trapezoid[j],10);
+			aireTrapeze = aireTrapeze + mat_trapezoid[i][j];
+		}
+	}
+	
+	var temp1_triangle_equi = game.cache.getText('txt_triangle_equi');
+    var temp2_triangle_equi = temp1_triangle_equi.split('\n');
+	for (var i = 0; i < temp2_triangle_equi.length-1; i++)  {
+		var temp3_triangle_equi = temp2_triangle_equi[i].split('\t');
+		for (var j = 0; j < temp3_triangle_equi.length; j++) {
+			mat_triangle_equi[i][j] = parseInt(temp3_triangle_equi[j],10);
+			aireTriangleEqui = aireTriangleEqui + mat_triangle_equi[i][j];
+		}
+	}
+	
+	var temp1_triangle_rect = game.cache.getText('txt_triangle_rect');
+    var temp2_triangle_rect = temp1_triangle_rect.split('\n');
+	for (var i = 0; i < temp2_triangle_rect.length-1; i++)  {
+		var temp3_triangle_rect = temp2_triangle_rect[i].split('\t');
+		for (var j = 0; j < temp3_triangle_rect.length; j++) {
+			mat_triangle_rect[i][j] = parseInt(temp3_triangle_rect[j],10);
+			aireTriangleRect = aireTriangleRect + mat_triangle_rect[i][j];
+		}
+	}
+	
     //Création du patron souhaité
-    var patron1 = P1.create(900, 210, 'carre');
-    var patron2 = P2.create(850, 310, 'trapeze');
-    var patron3 = P3.create(700, 210, 'hexagone');
-    var patron4 = P4.create(900, 110, 'triangle');
+    var patron1 = P1.create(900, 210, 'img_square');
+    var patron2 = P2.create(850, 310, 'img_trapezoid');
+    var patron3 = P3.create(700, 210, 'img_hexagon');
+    var patron4 = P4.create(900, 110, 'img_triangle_equi');
     
     patron1.inputEnabled = true;
     patron2.inputEnabled = true;
     patron3.inputEnabled = true;
     patron4.inputEnabled = true;
     
-    patron1.tint = 0xffcc00;
-    patron2.tint = 0xffcc00;
-    patron3.tint = 0xffcc00;
-    patron4.tint = 0xffcc00;
     
     //Donner valeur à la matrice de quantisation du patron donné
     P1.forEach(function(itemPatron) {
         airePatron = airePatron + aireCarre;
-        for (var i = 0; i < 100; i++) {
-            for (var j = 0; j < 100; j++) {
-                if(mat1[i][j]==1){
-                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+        for (var i = 0; i < mat_square.length; i++) {
+            for (var j = 0; j < mat_square[0].length; j++) {
+                if(mat_square[i][j]==1){
+                    matPatron[Math.floor(itemPatron.y+i)][Math.floor(itemPatron.x+j)] = 1;
+                    // i est l'indice de ligne --> coordonnée y
+                    // j est l'indice de colonne --> coordonnée x
                 }
             }
         }
@@ -339,10 +355,10 @@ function create() {
     
     P2.forEach(function(itemPatron) {
         airePatron = airePatron + aireTrapeze;
-        for (var i = 0; i < 200; i++) {
-            for (var j = 0; j < 100; j++) {
-                if(mat2[i][j]==1){
-                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+        for (var i = 0; i < mat_trapezoid.length; i++) {
+            for (var j = 0; j < mat_trapezoid[0].length; j++) {
+                if(mat_trapezoid[i][j]==1){
+                    matPatron[Math.floor(itemPatron.y+i)][Math.floor(itemPatron.x+j)] = 1;
                 }
             }
         }
@@ -351,10 +367,10 @@ function create() {
     
     P3.forEach(function(itemPatron) {
         airePatron = airePatron + aireHexagone;
-        for (var i = 0; i < 200; i++) {
-            for (var j = 0; j < 200; j++) {
-                if(mat3[i][j]==1){
-                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+        for (var i = 0; i < mat_hexagon.length; i++) {
+            for (var j = 0; j < mat_hexagon[0].length; j++) {
+                if(mat_hexagon[i][j]==1){
+                    matPatron[Math.floor(itemPatron.y+i)][Math.floor(itemPatron.x+j)] = 1;
                 }
             }
         }
@@ -362,11 +378,11 @@ function create() {
     }, this);
     
     P4.forEach(function(itemPatron) {
-        airePatron = airePatron + aireTriangle;
-        for (var i = 0; i < 100; i++) {
-            for (var j = 0; j < 100; j++) {
-                if(mat4[i][j]==1){
-                    matPatron[Math.floor(itemPatron.x+i)][Math.floor(itemPatron.y+j)] = 1;
+        airePatron = airePatron + aireTriangleEqui;
+        for (var i = 0; i < mat_triangle_equi.length; i++) {
+            for (var j = 0; j < mat_triangle_equi[0].length; j++) {
+                if(mat_triangle_equi[i][j]==1){
+                    matPatron[Math.floor(itemPatron.y+i)][Math.floor(itemPatron.x+j)] = 1;
                 }
             }
         }
@@ -378,7 +394,7 @@ function create() {
 //Fonctions pour ajouter les formes à partir du panier
 function addShape(shape,F) {
     nbF = nbF+1; 
-    var tempSprite = F.create(130*nbF-35, game.height-90, shape);
+    var tempSprite = F.create(130*nbF-35, game.height-90, 'img_'+shape);
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
     //tempSprite.tint = Math.random() * 0xffffff;
@@ -408,11 +424,11 @@ function addForme3(forme3, pointer) {
 
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
-    addShape('triangle-equi',F4)
+    addShape('triangle_equi',F4)
 }
 
 function addForme5(forme5, pointer) {
-    addShape('triangle-rect',F5)
+    addShape('triangle_rect',F5)
 }
 function addForme6(forme6, pointer) {
     addShape('lozenge',F6)
@@ -477,16 +493,16 @@ function buttonColor(col,pointer){
 function finDrag(tempSprite, pointer) {
 
     if((game.input.y>20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)){
-        if (tempSprite.key == 'carre'){
+        if (tempSprite.key == 'img_square'){
             nbF1 = nbF1 - 1;
         }
-        if (tempSprite.key == 'trapeze'){
+        if (tempSprite.key == 'img_trapezoid'){
             nbF2 = nbF2 - 1;
         }
-        if (tempSprite.key == 'hexagone'){
+        if (tempSprite.key == 'img_hexagon'){
             nbF3 = nbF3 - 1;
         }
-        if (tempSprite.key == 'triangle'){
+        if (tempSprite.key == 'img_triangle_equi'){
             nbF4 = nbF4 - 1;
         }
         tempSprite.destroy();
@@ -506,10 +522,10 @@ function finDrag(tempSprite, pointer) {
     
     F1.forEach(function(itemPatron) {
         aireSolution = aireSolution + aireCarre;
-        for (var i = 0; i < 100; i++) {
-            for (var j = 0; j < 100; j++) {
-                if(mat1[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+        for (var i = 0; i < mat_square.length; i++) {
+            for (var j = 0; j < mat_square[0].length; j++) {
+                if(mat_square[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -518,10 +534,10 @@ function finDrag(tempSprite, pointer) {
     
     F2.forEach(function(itemPatron) {
         aireSolution = aireSolution + aireTrapeze;
-        for (var i = 0; i < 200; i++) {
-            for (var j = 0; j < 100; j++) {
-                if(mat2[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+        for (var i = 0; i < mat_trapezoid.length; i++) {
+            for (var j = 0; j < mat_trapezoid[0].length; j++) {
+                if(mat_trapezoid[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -530,10 +546,10 @@ function finDrag(tempSprite, pointer) {
     
     F3.forEach(function(itemPatron) {
         aireSolution = aireSolution + aireHexagone;
-        for (var i = 0; i < 200; i++) {
-            for (var j = 0; j < 200; j++) {
-                if(mat3[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+        for (var i = 0; i < mat_hexagon.length; i++) {
+            for (var j = 0; j < mat_hexagon[0].length; j++) {
+                if(mat_hexagon[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -541,11 +557,11 @@ function finDrag(tempSprite, pointer) {
     }, this);
     
     F4.forEach(function(itemPatron) {
-        aireSolution = aireSolution + aireTriangle;
-        for (var i = 0; i < 100; i++) {
-            for (var j = 0; j < 100; j++) {
-                if(mat4[i][j]==1){
-                    matSolution[Math.floor(itemPatron.x+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.y+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+        aireSolution = aireSolution + aireTriangleEqui;
+        for (var i = 0; i < mat_triangle_equi.length; i++) {
+            for (var j = 0; j < mat_triangle_equi[0].length; j++) {
+                if(mat_triangle_equi[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
                 }
             }
         }
@@ -554,6 +570,7 @@ function finDrag(tempSprite, pointer) {
     
 }
 
+var valide = 0;
 //Fonction Update qui tourne chaque instant dans le programme au fond
 //Mettre les formes souhaitées en évidence
 //Validation de la solution
