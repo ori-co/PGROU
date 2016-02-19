@@ -100,7 +100,7 @@ var P1;
 var P2;
 var P3;
 var P4;
-var P5;
+var P6;
 
 
 //Tester la fin de la partie
@@ -232,7 +232,7 @@ function create() {
     P2 = game.add.group();
     P3 = game.add.group();
     P4 = game.add.group();
-    P5 = game.add.group();
+    P6 = game.add.group();
     
     formes = game.add.group();
     patrons = game.add.group();
@@ -356,13 +356,13 @@ function create() {
     var patron2 = P2.create(0,0, 'img_trapezoid');
     var patron3 = P3.create(0, 0, 'img_hexagon');
     var patron4 = P4.create(0, 0, 'img_triangle_equi');
-    var patron5 = P5.create(0, 0, 'img_lozenge');
+    var patron5 = P6.create(0, 0, 'img_lozenge');
     
-    patronStyle(patron1,900,200,0); 
-    patronStyle(patron2,867,265,0);
-    patronStyle(patron3,770,208,0);
-    patronStyle(patron4,900,144,0);
-    patronStyle(patron5,737,154,0);
+    patronStyle(patron1,700,200,0); 
+    patronStyle(patron2,667,265,0);
+    patronStyle(patron3,570,208,0);
+    patronStyle(patron4,700,144,0);
+    patronStyle(patron5,537,154,0);
     
     function patronStyle(patron, x,y,angle){
     patron.x=x;
@@ -544,10 +544,6 @@ function finDrag(tempSprite, pointer) {
         tempSprite.destroy();
     }
     
-    if((game.input.y>550) && (game.input.y < 670) && (game.input.x > 900) && (game.input.x < 1010)){
-        tempSprite.angle += 45;
-    }
-    
     for (var i = 0; i < 1200; i++) {
         for (var j = 0; j < 800; j++) {
             matSolution[i][j] = 0;
@@ -604,6 +600,30 @@ function finDrag(tempSprite, pointer) {
             
     }, this);
     
+    F5.forEach(function(itemPatron) {
+        aireSolution = aireSolution + aireTriangleRect;
+        for (var i = 0; i < mat_triangle_rect.length; i++) {
+            for (var j = 0; j < mat_triangle_rect[0].length; j++) {
+                if(mat_triangle_rect[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    F6.forEach(function(itemPatron) {
+        aireSolution = aireSolution + aireLosange;
+        for (var i = 0; i < mat_lozenge.length; i++) {
+            for (var j = 0; j < mat_lozenge[0].length; j++) {
+                if(mat_lozenge[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
 }
 
 var valide = 0;
@@ -614,6 +634,7 @@ function update() {
     game.world.bringToTop(formes);
     game.world.bringToTop(poubelle);
 
+// Adaptation de l'interface à la taille de la fenetre
     pipe.height = window.innerHeight - (390+212);
     basketLeft.y = window.innerHeight - 212 - 5;
     basketMiddle.y = window.innerHeight - 212 - 5;
@@ -633,7 +654,8 @@ function update() {
     mute.x = window.innerWidth-(18+2*50);
     exp.x = window.innerWidth-(18+1*50);
     
-     
+    
+    // Vérification de la solution    
     valide = 0;
     
     for (var i = 0; i < 1200; i++) {
