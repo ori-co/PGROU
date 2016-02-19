@@ -15,7 +15,14 @@
 <script type="text/javascript">
 
 //Création d'un nouveau jeu Phaser JS
-var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { 
+//var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 
+//var game = new Phaser.Game(2000, 1000, Phaser.CANVAS, 'pgrou', { 
+    preload: preload, 
+    create: create, 
+    update: update, 
+    render: render });
+
 
 //Charger en mémoire les images nécessaires avant le démarrage du jeu
 function preload() {
@@ -35,6 +42,7 @@ function preload() {
 	game.load.image('img_triangle_rect', 'sprites/triangle-rect.png');
     
     game.load.image('store', 'images/store.png');
+    game.load.image('pipe','images/store-pipe.png');
     game.load.spritesheet('poubelle', 'images/buttons/trashbin.png',83,76);
     game.load.spritesheet('button-square', 'images/buttons/shape-square.png',78,77);
     game.load.spritesheet('button-trapezoid', 'images/buttons/shape-trapezoid.png',78,77);
@@ -182,21 +190,32 @@ for (var i = 0; i < 1200; i++) {
 
 // grandient background
 var myBitmap;
+var grd;
 var rot;
 var col;
 var mute
+var ret;
+var exp;
 var palette;
+var pipe;
+var basketLeft;
+var basketMiddle;
+var basketRight;
+var menuRight;
+var menuMiddle;
+var menuLeft;
 
 //Fonction Create principale du jeu
 function create() {
+    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     //Fond d'écran
-    myBitmap = game.make.bitmapData(game.width,game.height);
+    myBitmap = game.make.bitmapData(2000,2000);
     myBitmap.addToWorld();
-    var grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
+    grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
     grd.addColorStop(0,"#66d1f9");
     grd.addColorStop(1,"#bce3f0");
     myBitmap.context.fillStyle = grd;
-    myBitmap.context.fillRect(0,0,game.width,game.height);
+    myBitmap.context.fillRect(0,0,2000,2000);
     //game.stage.backgroundColor = "#4488AA";
     
     palette = ["0x83EE00","0xFBFE00","0x058AB6","0xE4005C","0x8007BE","0xFF8300"];
@@ -231,37 +250,41 @@ function create() {
     patrons.add(P3);
     patrons.add(P4);
     
-    // Création du magasin (pas besoin de variables ?)
-    var poub = game.add.button(60, 20, 'poubelle',null, this,2,1,0);
+    // Création du magasin
+    var poub = game.add.button(60, 20, 'poubelle',null, this,2,1,0,1);
     poubelle.add(poub);
 
     var store = game.add.sprite(5,5,'store');
-    var buttonSquare = game.add.button(20,110, 'button-square',addForme1,this,2,1,0 );
-    var buttonTrapezoid = game.add.button(100,110, 'button-trapezoid',addForme2,this,2,1,0);
-    var buttonTriangleEqui = game.add.button(20,200, 'button-triangle-equi',addForme4,this,2,1,0);
-    var buttonHexagon = game.add.button(100,200, 'button-hexagon',addForme3,this,2,1,0);
-    var buttonTriangleRect = game.add.button(20,290, 'button-triangle-rect',addForme5,this,2,1,0);
-    var buttonLozenge = game.add.button(100,290,'button-lozenge',addForme6,this,2,1,0);
+    store.scaleMax = 1;
+    store.scaleMin = 1;
+    pipe = game.add.sprite(5,395,'pipe');
+    pipe.height = window.innerHeight - (390+212);
+    var buttonSquare = game.add.button(20,110, 'button-square',addForme1,this,2,1,0,1 );
+    var buttonTrapezoid = game.add.button(100,110, 'button-trapezoid',addForme2,this,2,1,0,1);
+    var buttonTriangleEqui = game.add.button(20,200, 'button-triangle-equi',addForme4,this,2,1,0,1);
+    var buttonHexagon = game.add.button(100,200, 'button-hexagon',addForme3,this,2,1,0,1);
+    var buttonTriangleRect = game.add.button(20,290, 'button-triangle-rect',addForme5,this,2,1,0,1);
+    var buttonLozenge = game.add.button(100,290,'button-lozenge',addForme6,this,2,1,0,1);
     
     // Création du panier
-    var basketLeft = game.add.sprite(5,game.height - 212 - 5,'basket-left');
-    var basketMiddle = game.add.sprite(142,game.height - 212 - 5, 'basket-middle');
-    basketMiddle.width = game.width-2*142;
-    var basketRight = game.add.sprite(game.width -142-5,game.height - 212 - 5,'basket-right');
+    basketLeft = game.add.sprite(5,window.innerHeight - 212 - 5,'basket-left');
+    basketMiddle = game.add.sprite(142,window.innerHeight - 212 - 5, 'basket-middle');
+    basketMiddle.width = window.innerWidth-2*142;
+    basketRight = game.add.sprite(window.innerWidth -142-5,window.innerHeight - 212 - 5,'basket-right');
     
     // Construction du menu
     var long = 100;
-    var menuLeft = game.add.sprite(game.width-5-long-2*35,5,'menu-left');
-    var menuMiddle = game.add.sprite(game.width-5-long-35,5,'menu-middle');
+    menuLeft = game.add.sprite(window.innerWidth-5-long-2*35,5,'menu-left');
+    menuMiddle = game.add.sprite(window.innerWidth-5-long-35,5,'menu-middle');
     menuMiddle.width = long;
-    var menuRight = game.add.sprite(game.width-35-5,5,'menu-right');
+    menuRight = game.add.sprite(window.innerWidth-35-5,5,'menu-right');
     
     //Ajouter les boutons de rotation et de couleurs
-    rot = game.add.button(10, game.height - 210 , 'button-rotate', boutonRotation,this,2,1,0);
-    col = game.add.button(58, game.height - 210 , 'button-colors', buttonColor,this,2,1,0);
-    var ret = game.add.button(game.width-(18+3*50), 10 , 'button-home', null,this,2,1,0);
-    mute = game.add.button(game.width-(18+2*50), 10 , 'button-mute', null,this,2,1,0);
-    var exp = game.add.button(game.width-(18+1*50), 10 , 'button-export', null,this,2,1,0);
+    rot = game.add.button(10, window.innerHeight - 210 , 'button-rotate', boutonRotation,this,2,1,0,1);
+    col = game.add.button(58, window.innerHeight - 210 , 'button-colors', buttonColor,this,2,1,0,1);
+    ret = game.add.button(window.innerWidth-(18+3*50), 10 , 'button-home', null,this,2,1,0,1);
+    mute = game.add.button(window.innerWidth-(18+2*50), 10 , 'button-mute', null,this,2,1,0,1);
+    exp = game.add.button(window.innerWidth-(18+1*50), 10 , 'button-export', null,this,2,1,0,1);
     
     // Remplir les matrices binaires correspondant aux formes et calcul de l'aire de chaque forme
     
@@ -412,7 +435,7 @@ function addShape(shape,F) {
     tempSprite.anchor.y=0.5;
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.tint = 0xabdcf1;
+    //tempSprite.tint = 0xabdcf1;
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
@@ -469,16 +492,16 @@ function boutonRotation(rot, pointer) {
      switch (test){
          case 0:
          test = 1;
-         rot.setFrames(3,0,1);
+         rot.setFrames(3,0,1,0);
          break;
          case 1:
          test=0;
-         rot.setFrames(2,1,0);
+         rot.setFrames(2,1,0,1);
          break;
          case 2:
          test = 1;
-         rot.setFrames(3,0,1);
-         col.setFrames(2,1,0);
+         rot.setFrames(3,0,1,0);
+         col.setFrames(2,1,0,1);
          break;
      }
 }
@@ -488,16 +511,16 @@ function buttonColor(col,pointer){
      switch (test){
          case 0:
          test = 2;
-         col.setFrames(3,0,1);
+         col.setFrames(3,0,1,0);
          break;
          case 1:
          test = 2;
-         rot.setFrames(2,1,0);
-         col.setFrames(3,0,1);
+         rot.setFrames(2,1,0,1);
+         col.setFrames(3,0,1,0);
          break;
          case 2:
          test = 0;
-         col.setFrames(2,1,0);
+         col.setFrames(2,1,0,1);
          break;
      }
 }
@@ -590,7 +613,27 @@ var valide = 0;
 function update() {
     game.world.bringToTop(formes);
     game.world.bringToTop(poubelle);
+
+    pipe.height = window.innerHeight - (390+212);
+    basketLeft.y = window.innerHeight - 212 - 5;
+    basketMiddle.y = window.innerHeight - 212 - 5;
+    basketMiddle.width = window.innerWidth-2*142;
+    basketRight.x = window.innerWidth -142-5;
+    basketRight.y = window.innerHeight - 212 - 5;
     
+    var long = 100;
+    menuLeft.x=window.innerWidth-5-long-2*35;
+    menuMiddle.x = window.innerWidth-5-long-35;
+    menuMiddle.width = long;
+    menuRight.x = window.innerWidth-35-5;
+    
+    rot.y = window.innerHeight - 210;
+    col.y = window.innerHeight - 210;
+    ret.x = window.innerWidth-(18+3*50);
+    mute.x = window.innerWidth-(18+2*50);
+    exp.x = window.innerWidth-(18+1*50);
+    
+     
     valide = 0;
     
     for (var i = 0; i < 1200; i++) {
