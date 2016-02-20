@@ -15,7 +15,14 @@
 <script type="text/javascript">
 
 //Création d'un nouveau jeu Phaser JS
-var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { 
+//var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 
+//var game = new Phaser.Game(2000, 1000, Phaser.CANVAS, 'pgrou', { 
+    preload: preload, 
+    create: create, 
+    update: update, 
+    render: render });
+
 
 //Charger en mémoire les images nécessaires avant le démarrage du jeu
 function preload() {
@@ -35,6 +42,7 @@ function preload() {
 	game.load.image('img_triangle_rect', 'sprites/triangle-rect.png');
     
     game.load.image('store', 'images/store.png');
+    game.load.image('pipe','images/store-pipe.png');
     game.load.spritesheet('poubelle', 'images/buttons/trashbin.png',83,76);
     game.load.spritesheet('button-square', 'images/buttons/shape-square.png',78,77);
     game.load.spritesheet('button-trapezoid', 'images/buttons/shape-trapezoid.png',78,77);
@@ -51,6 +59,11 @@ function preload() {
     game.load.spritesheet('button-colors','images/buttons/option-colors.png',48,48);
     game.load.spritesheet('button-home','images/buttons/option-home.png',48,48);
     game.load.spritesheet('button-export','images/buttons/option-export.png',48,48);
+    game.load.spritesheet('button-mute','images/buttons/option-mute.png',48,48);
+    
+    game.load.image('menu-left','images/menu-left.png');
+    game.load.image('menu-right','images/menu-right.png');
+    game.load.image('menu-middle','images/menu-middle.png');
 
 }
 
@@ -59,6 +72,7 @@ var nbF1 = 0;
 var nbF2 = 0;
 var nbF3 = 0;
 var nbF4 = 0;
+var nbF = 0;
 
 //Surface des formes
 var aireCarre = 0;
@@ -79,11 +93,14 @@ var F1;
 var F2;
 var F3;
 var F4;
+var F5;
+var F6;
 
 var P1;
 var P2;
 var P3;
 var P4;
+var P6;
 
 
 //Tester la fin de la partie
@@ -173,20 +190,32 @@ for (var i = 0; i < 1200; i++) {
 
 // grandient background
 var myBitmap;
+var grd;
 var rot;
 var col;
+var mute
+var ret;
+var exp;
 var palette;
+var pipe;
+var basketLeft;
+var basketMiddle;
+var basketRight;
+var menuRight;
+var menuMiddle;
+var menuLeft;
 
 //Fonction Create principale du jeu
 function create() {
+    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     //Fond d'écran
-    myBitmap = game.make.bitmapData(game.width,game.height);
+    myBitmap = game.make.bitmapData(2000,2000);
     myBitmap.addToWorld();
-    var grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
+    grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
     grd.addColorStop(0,"#66d1f9");
     grd.addColorStop(1,"#bce3f0");
     myBitmap.context.fillStyle = grd;
-    myBitmap.context.fillRect(0,0,game.width,game.height);
+    myBitmap.context.fillRect(0,0,2000,2000);
     //game.stage.backgroundColor = "#4488AA";
     
     palette = ["0x83EE00","0xFBFE00","0x058AB6","0xE4005C","0x8007BE","0xFF8300"];
@@ -196,11 +225,14 @@ function create() {
     F2 = game.add.group();
     F3 = game.add.group();
     F4 = game.add.group();
+    F5 = game.add.group();
+    F6 = game.add.group();
     
     P1 = game.add.group();
     P2 = game.add.group();
     P3 = game.add.group();
     P4 = game.add.group();
+    P6 = game.add.group();
     
     formes = game.add.group();
     patrons = game.add.group();
@@ -210,33 +242,49 @@ function create() {
     formes.add(F2);
     formes.add(F3);
     formes.add(F4);
+    formes.add(F5);
+    formes.add(F6);
     
     patrons.add(P1);
     patrons.add(P2);
     patrons.add(P3);
     patrons.add(P4);
     
-    // Création du magasin (pas besoin de variables ?)
-    var poub = game.add.button(60, 20, 'poubelle',null, this,2,1,0);
+    // Création du magasin
+    var poub = game.add.button(60, 20, 'poubelle',null, this,2,1,0,1);
     poubelle.add(poub);
 
     var store = game.add.sprite(5,5,'store');
-    var buttonSquare = game.add.button(20,110, 'button-square',addForme1,this,2,1,0 );
-    var buttonTrapezoid = game.add.button(100,110, 'button-trapezoid',addForme2,this,2,1,0);
-    var buttonTriangleEqui = game.add.button(20,200, 'button-triangle-equi',addForme4,this,2,1,0);
-    var buttonHexagon = game.add.button(100,200, 'button-hexagon',addForme3,this,2,1,0);
-    var buttonTriangleRect = game.add.button(20,290, 'button-triangle-rect',addForme5,this,2,1,0);
-    var buttonLozenge = game.add.button(100,290,'button-lozenge',addForme6,this,2,1,0);
+    store.scaleMax = 1;
+    store.scaleMin = 1;
+    pipe = game.add.sprite(5,395,'pipe');
+    pipe.height = window.innerHeight - (390+212);
+    var buttonSquare = game.add.button(20,110, 'button-square',addForme1,this,2,1,0,1 );
+    var buttonTrapezoid = game.add.button(100,110, 'button-trapezoid',addForme2,this,2,1,0,1);
+    var buttonTriangleEqui = game.add.button(20,200, 'button-triangle-equi',addForme4,this,2,1,0,1);
+    var buttonHexagon = game.add.button(100,200, 'button-hexagon',addForme3,this,2,1,0,1);
+    var buttonTriangleRect = game.add.button(20,290, 'button-triangle-rect',addForme5,this,2,1,0,1);
+    var buttonLozenge = game.add.button(100,290,'button-lozenge',addForme6,this,2,1,0,1);
     
     // Création du panier
-    var basketLeft = game.add.sprite(5,game.height - 212 - 5,'basket-left');
-    var basketMiddle = game.add.sprite(142,game.height - 212 - 5, 'basket-middle');
-    basketMiddle.width = game.width-2*142;
-    var basketRight = game.add.sprite(game.width -142-5,game.height - 212 - 5,'basket-right');
+    basketLeft = game.add.sprite(5,window.innerHeight - 212 - 5,'basket-left');
+    basketMiddle = game.add.sprite(142,window.innerHeight - 212 - 5, 'basket-middle');
+    basketMiddle.width = window.innerWidth-2*142;
+    basketRight = game.add.sprite(window.innerWidth -142-5,window.innerHeight - 212 - 5,'basket-right');
+    
+    // Construction du menu
+    var long = 100;
+    menuLeft = game.add.sprite(window.innerWidth-5-long-2*35,5,'menu-left');
+    menuMiddle = game.add.sprite(window.innerWidth-5-long-35,5,'menu-middle');
+    menuMiddle.width = long;
+    menuRight = game.add.sprite(window.innerWidth-35-5,5,'menu-right');
     
     //Ajouter les boutons de rotation et de couleurs
-    rot = game.add.button(10, game.height - 210 , 'button-rotate', boutonRotation,this,2,1,0);
-    col = game.add.button(58, game.height - 210 , 'button-colors', buttonColor,this,2,1,0);
+    rot = game.add.button(10, window.innerHeight - 210 , 'button-rotate', boutonRotation,this,2,1,0,1);
+    col = game.add.button(58, window.innerHeight - 210 , 'button-colors', buttonColor,this,2,1,0,1);
+    ret = game.add.button(window.innerWidth-(18+3*50), 10 , 'button-home', null,this,2,1,0,1);
+    mute = game.add.button(window.innerWidth-(18+2*50), 10 , 'button-mute', null,this,2,1,0,1);
+    exp = game.add.button(window.innerWidth-(18+1*50), 10 , 'button-export', null,this,2,1,0,1);
     
     // Remplir les matrices binaires correspondant aux formes et calcul de l'aire de chaque forme
     
@@ -304,15 +352,26 @@ function create() {
 	}
 	
     //Création du patron souhaité
-    var patron1 = P1.create(900, 210, 'img_square');
-    var patron2 = P2.create(850, 310, 'img_trapezoid');
-    var patron3 = P3.create(700, 210, 'img_hexagon');
-    var patron4 = P4.create(900, 110, 'img_triangle_equi');
+    var patron1 = P1.create(0,0,'img_square');
+    var patron2 = P2.create(0,0, 'img_trapezoid');
+    var patron3 = P3.create(0, 0, 'img_hexagon');
+    var patron4 = P4.create(0, 0, 'img_triangle_equi');
+    var patron5 = P6.create(0, 0, 'img_lozenge');
     
-    patron1.inputEnabled = true;
-    patron2.inputEnabled = true;
-    patron3.inputEnabled = true;
-    patron4.inputEnabled = true;
+    patronStyle(patron1,700,200,0); 
+    patronStyle(patron2,667,265,0);
+    patronStyle(patron3,570,208,0);
+    patronStyle(patron4,700,144,0);
+    patronStyle(patron5,537,154,0);
+    
+    function patronStyle(patron, x,y,angle){
+    patron.x=x;
+    patron.y=y;
+    patron.angle=angle;
+    patron.inputEnabled = true;
+    patron.tint=0x020303;
+    patron.alpha = 0.4;
+    }
     
     
     //Donner valeur à la matrice de quantisation du patron donné
@@ -369,67 +428,46 @@ function create() {
 }
 
 //Fonctions pour ajouter les formes à partir du panier
-function addForme1(forme1, pointer) {
-    nbF1 = nbF1 + 1;
-    var tempSprite = F1.create(180*nbF1+100, 100, 'img_square');    
+function addShape(shape,F) {
+    nbF = nbF+1; 
+    var tempSprite = F.create(130*nbF-35, game.height-90, 'img_'+shape);
     tempSprite.anchor.x=0.5;
     tempSprite.anchor.y=0.5;
     //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+    //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+    //tempSprite.tint = 0xabdcf1;
     tempSprite.inputEnabled = true; //Pointeur activé
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
     tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
     tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
+}
+
+function addForme1(forme1, pointer) {
+    nbF1 = nbF1 + 1;
+    addShape('square',F1);
 }
 
 function addForme2(forme2, pointer) {
     nbF2 = nbF2 + 1;
-    var tempSprite = F2.create(250*nbF2+100, 250, 'img_trapezoid');
-    tempSprite.anchor.x=0.5;
-    tempSprite.anchor.y=0.5;
-    //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.inputEnabled = true; //Pointeur activé
-    tempSprite.input.enableDrag(false, true); //Mobile (drag)
-    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
-    tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
-    tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
+    addShape('trapezoid',F2);
 }
 
 function addForme3(forme3, pointer) {
     nbF3 = nbF3 + 1;
-    var tempSprite = F3.create(250*nbF3+100, 550, 'img_hexagon');
-    tempSprite.anchor.x=0.5;
-    tempSprite.anchor.y=0.5;
-    //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.inputEnabled = true;
-    tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
-    tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(finDrag, this);
+    addShape('hexagon',F3)
 }
 
 function addForme4(forme4, pointer) {
     nbF4 = nbF4 + 1;
-    var tempSprite = F4.create(180*nbF4+100, 400, 'img_triangle_equi');
-    tempSprite.anchor.x=0.5;
-    tempSprite.anchor.y=0.5;
-    //tempSprite.tint = Math.random() * 0xffffff;
-    tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.inputEnabled = true;
-    tempSprite.input.enableDrag(false, true);
-    tempSprite.input.enableSnap(10, 10, false, true);
-    tempSprite.events.onInputDown.add(interactionForme, this);
-    tempSprite.events.onDragStop.add(finDrag, this);
+    addShape('triangle_equi',F4)
 }
 
-function addForme5(forme1, pointer) {
-    
+function addForme5(forme5, pointer) {
+    addShape('triangle_rect',F5)
 }
-function addForme6(forme1, pointer) {
-    
+function addForme6(forme6, pointer) {
+    addShape('lozenge',F6)
 }
 
 //Modes d'édition (couleurs et rotation)
@@ -454,16 +492,16 @@ function boutonRotation(rot, pointer) {
      switch (test){
          case 0:
          test = 1;
-         rot.setFrames(3,0,1);
+         rot.setFrames(3,0,1,0);
          break;
          case 1:
          test=0;
-         rot.setFrames(2,1,0);
+         rot.setFrames(2,1,0,1);
          break;
          case 2:
          test = 1;
-         rot.setFrames(3,0,1);
-         col.setFrames(2,1,0);
+         rot.setFrames(3,0,1,0);
+         col.setFrames(2,1,0,1);
          break;
      }
 }
@@ -473,16 +511,16 @@ function buttonColor(col,pointer){
      switch (test){
          case 0:
          test = 2;
-         col.setFrames(3,0,1);
+         col.setFrames(3,0,1,0);
          break;
          case 1:
          test = 2;
-         rot.setFrames(2,1,0);
-         col.setFrames(3,0,1);
+         rot.setFrames(2,1,0,1);
+         col.setFrames(3,0,1,0);
          break;
          case 2:
          test = 0;
-         col.setFrames(2,1,0);
+         col.setFrames(2,1,0,1);
          break;
      }
 }
@@ -504,10 +542,6 @@ function finDrag(tempSprite, pointer) {
             nbF4 = nbF4 - 1;
         }
         tempSprite.destroy();
-    }
-    
-    if((game.input.y>550) && (game.input.y < 670) && (game.input.x > 900) && (game.input.x < 1010)){
-        tempSprite.angle += 45;
     }
     
     for (var i = 0; i < 1200; i++) {
@@ -566,6 +600,30 @@ function finDrag(tempSprite, pointer) {
             
     }, this);
     
+    F5.forEach(function(itemPatron) {
+        aireSolution = aireSolution + aireTriangleRect;
+        for (var i = 0; i < mat_triangle_rect.length; i++) {
+            for (var j = 0; j < mat_triangle_rect[0].length; j++) {
+                if(mat_triangle_rect[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
+    F6.forEach(function(itemPatron) {
+        aireSolution = aireSolution + aireLosange;
+        for (var i = 0; i < mat_lozenge.length; i++) {
+            for (var j = 0; j < mat_lozenge[0].length; j++) {
+                if(mat_lozenge[i][j]==1){
+                    matSolution[Math.floor(itemPatron.y+i*Math.cos(itemPatron.angle*2*3.14159/360)-j*Math.sin(itemPatron.angle*2*3.14159/360))][Math.floor(itemPatron.x+i*Math.sin(itemPatron.angle*2*3.14159/360)+j*Math.cos(itemPatron.angle*2*3.14159/360))] = 1;
+                }
+            }
+        }
+            
+    }, this);
+    
 }
 
 var valide = 0;
@@ -575,7 +633,29 @@ var valide = 0;
 function update() {
     game.world.bringToTop(formes);
     game.world.bringToTop(poubelle);
+
+// Adaptation de l'interface à la taille de la fenetre
+    pipe.height = window.innerHeight - (390+212);
+    basketLeft.y = window.innerHeight - 212 - 5;
+    basketMiddle.y = window.innerHeight - 212 - 5;
+    basketMiddle.width = window.innerWidth-2*142;
+    basketRight.x = window.innerWidth -142-5;
+    basketRight.y = window.innerHeight - 212 - 5;
     
+    var long = 100;
+    menuLeft.x=window.innerWidth-5-long-2*35;
+    menuMiddle.x = window.innerWidth-5-long-35;
+    menuMiddle.width = long;
+    menuRight.x = window.innerWidth-35-5;
+    
+    rot.y = window.innerHeight - 210;
+    col.y = window.innerHeight - 210;
+    ret.x = window.innerWidth-(18+3*50);
+    mute.x = window.innerWidth-(18+2*50);
+    exp.x = window.innerWidth-(18+1*50);
+    
+    
+    // Vérification de la solution    
     valide = 0;
     
     for (var i = 0; i < 1200; i++) {
