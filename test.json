@@ -7,32 +7,32 @@
 				"couleur":"bleu",
 				"rotation":"0",
 				"pointDeReference": {
-					"x":"900",
-					"y":"210"}
+					"x":"700",
+					"y":"200"}
 				},
 				{
 				"nature":"trapeze",
 				"couleur":"bleu",
 				"rotation":"0",
 				"pointDeReference": {
-					"x":"850",
-					"y":"310"}
+					"x":"667",
+					"y":"265"}
 				},
 				{
 				"nature":"hexagone",
 				"couleur":"bleu",
 				"rotation":"0",
 				"pointDeReference": {
-					"x":"700",
-					"y":"210"}
+					"x":"570",
+					"y":"208"}
 				},
 				{
-				"nature":"triangle",
+				"nature":"triangleEqui",
 				"couleur":"bleu",
 				"rotation":"0",
 				"pointDeReference": {
-					"x":"900",
-					"y":"110"}
+					"x":"700",
+					"y":"144"}
 				}
 			],
 	
