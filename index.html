@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>/-> AttriMaths <-/</title>
 	<script type="text/javascript" src="phaser.js"></script>
+	<script type="text/javascript" src="script/soundmanager2.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -22,9 +23,13 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
     create: create, 
     update: update, 
     render: render });
+    
+// Définition de la langue
 
+var langue = "assets/audio/fr/";
+    
 
-//Charger en mémoire les images nécessaires avant le démarrage du jeu
+//Charger en mémoire les images et fichiers audio nécessaires avant le démarrage du jeu
 function preload() {
 
 	game.load.text('txt_hexagon', 'sprites/hexagon.txt');
@@ -64,8 +69,72 @@ function preload() {
     game.load.image('menu-left','images/menu-left.png');
     game.load.image('menu-right','images/menu-right.png');
     game.load.image('menu-middle','images/menu-middle.png');
+    
+    game.load.audio('corbeille',langue+'corbeille.mp3');
+    game.load.audio('clic',langue+'clic.mp3');
+    game.load.audio('rotation',langue+'rotation.mp3');
+    game.load.audio('accueil',langue+'accueil.mp3');
+    game.load.audio('select_class',langue+'select_class.mp3');
+    game.load.audio('verrouille',langue+'verrouille.mp3');
+    game.load.audio('importation',langue+'importation.mp3');
+    game.load.audio('classique',langue+'classique.mp3');
+    game.load.audio('firstform',langue+'firstform.mp3');
+    game.load.audio('remplissage_cla',langue+'remplissage_cla.mp3');
+    game.load.audio('patron',langue+'patron.mp3');
+    game.load.audio('distrib',langue+'distrib.mp3');
+    game.load.audio('prop_rotation',langue+'prop_rotation.mp3');
+    game.load.audio('top_validation',langue+'top_validation.mp3');
+    game.load.audio('low_validation',langue+'low_validation.mp3');
+    game.load.audio('popup',langue+'popup.mp3');
+    game.load.audio('nextlevel',langue+'nextlevel.mp3');
+    game.load.audio('square1',langue+'square1.mp3');
+    game.load.audio('triangle-eq1',langue+'triangle-eq1.mp3');
+    game.load.audio('triangle-req1',langue+'triangle-req1.mp3');
+    game.load.audio('trapez1',langue+'trapez1.mp3');
+    game.load.audio('lozenge1',langue+'lozenge1.mp3');
+    game.load.audio('selectfree',langue+'selectfree.mp3');
+    game.load.audio('remplissage-free',langue+'remplissage-free.mp3');
+    game.load.audio('crea',langue+'crea.mp3');
+    game.load.audio('save',langue+'save.mp3');
+    game.load.audio('advertise',langue+'advertise.mp3');
+    game.load.audio('print',langue+'print.mp3');
+    game.load.audio('exprt',langue+'exprt.mp3');
+    
 
 }
+	
+//  Définition des variables sons
+
+var corbeille ;
+/*var clic;
+var rotation;
+var accueil;
+var select_class;
+var verrouille;
+var importation;
+var classique;
+var firstform;
+var remplissage_cla;
+var patron;
+var distrib;
+var prop_rotation;
+var top_validation;
+var low_validation;
+var popup;
+var nextlevel;
+var square1;
+var triangle-eq1;
+var triangle-req1;
+var trapez1;
+var lozenge1;
+var selectfree;
+var remplissage-free;
+var crea;
+var save;
+var advertise;
+var print;
+var exprt; */
+
 
 //Compteurs de formes crées
 var nbF1 = 0;
@@ -189,7 +258,7 @@ for (var i = 0; i < 1200; i++) {
     }
 }
 
-// grandient background
+// gradient background
 var myBitmap;
 var grd;
 var rot;
@@ -252,9 +321,15 @@ function create() {
     patrons.add(P4);
     patrons.add(P6);
     
+    // Gestion des sons 
+    
+    corbeille = game.add.audio('corbeille');
+    
     // Création du magasin
-    var poub = game.add.button(60, 20, 'poubelle',null, this,2,1,0,1);
+    var poub = game.add.button(60, 20, 'poubelle', click1, this,2,1,0,1);
     poubelle.add(poub);
+    
+   
 
     var store = game.add.sprite(5,5,'store');
     pipe = game.add.sprite(5,395,'pipe');
@@ -282,10 +357,14 @@ function create() {
     //Ajouter les boutons de rotation et de couleurs
     rot = game.add.button(10, window.innerHeight - 210 , 'button-rotate', boutonRotation,this,2,1,0,1);
     col = game.add.button(58, window.innerHeight - 210 , 'button-colors', buttonColor,this,2,1,0,1);
-    ret = game.add.button(window.innerWidth-(18+3*50), 10 , 'button-home', null,this,2,1,0,1);
+    ret = game.add.button(window.innerWidth-(18+3*50), 10 , 'button-home', retourAccueil,this,2,1,0,1);
     mute = game.add.button(window.innerWidth-(18+2*50), 10 , 'button-mute', null,this,2,1,0,1);
     exp = game.add.button(window.innerWidth-(18+1*50), 10 , 'button-export', null,this,2,1,0,1);
-    
+   
+   //Fonction de retour à la page d'accueil
+	function retourAccueil(){
+	self.location.href = 'Accueil.html';
+	}
     // Remplir les matrices binaires correspondant aux formes et calcul de l'aire de chaque forme
     
     var temp1_hexagon = game.cache.getText('txt_hexagon');
@@ -437,6 +516,18 @@ function create() {
             
     }, this);
 }
+
+// Fonctions Click
+
+function click1(){
+	
+	corbeille.play();
+
+}
+
+
+
+
 
 //Fonctions pour ajouter les formes à partir du panier
 function addShape(shape,F) {
@@ -691,7 +782,11 @@ function update() {
     
 }
 
-//Mode de débougage
+ 
+
+
+
+//Mode de débugage
 function render() {
     game.debug.style = '#fff';
     //game.debug.text('Cliquez sur un élément pour créer des nouvelles formes', 16, 24);

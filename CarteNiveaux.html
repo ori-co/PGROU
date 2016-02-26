@@ -1,0 +1,62 @@
+<!doctype html> 
+<html lang="fr"> 
+    <head> 
+        <meta charset="UTF-8" />
+        <title>/-> AttriMaths <-/</title>
+        <link rel="stylesheet" type="text/css" href="styleNiveaux.css">
+        <script>
+            function boutonOver(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/niveaux/bouton_survole.png")';
+                document.getElementById(id).style.color = "#b3f5fb";
+            }
+            function boutonOut(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/niveaux/bouton_normal.png")';
+                document.getElementById(id).style.color = "white";
+            }
+            function boutonClic(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/niveaux/bouton_clique.png")';
+                document.getElementById(id).style.color = "#11aab8";
+            }
+            
+               function boutonOver2(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/niveaux/bouton_import_survole.png")';
+                document.getElementById(id).style.color = "#ffc2cc";
+            }
+            function boutonOut2(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/niveaux/bouton_import_normal.png")';
+                document.getElementById(id).style.color = "white";
+            }
+            function boutonClic2(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/niveaux/bouton_import_clique.png")';
+                document.getElementById(id).style.color = "#bd132f";
+            }
+            
+        </script>
+    </head>
+    <body>
+        <div id="importation">
+        <input type="button" value="Importer un problème" id="b" style="background-image : url('images/niveaux/bouton_import_normal.png')" onmouseover="boutonOver2('b')" onmouseout="boutonOut2('b')" onmousedown="boutonClic2('b')" onmouseup="boutonOutb('b')" onclick="self.location.href = 'index2.html'" /> 
+        </div>
+        
+        <div id="niveaux">
+            <input type="button" value="1" id="n1" style="background-image : url('images/niveaux/bouton_normal.png')" onmouseover="boutonOver('n1')" onmouseout="boutonOut('n1')" onmousedown="boutonClic('n1')" onmouseup="boutonOut('n1')" onclick="self.location.href = 'index.html'" />
+            <input type="button" value="" id="n2"/>
+            <input type="button" value="" id="n3"/>
+            <input type="button" value="" id="n4"/>
+            <input type="button" value="" id="n5"/>
+
+            <input type="button" value="" id="n6"/>
+            <input type="button" value="" id="n7"/>
+            <input type="button" value="" id="n8"/>
+            <input type="button" value="" id="n9"/>
+            <input type="button" value="" id="n10"/>
+
+            <input type="button" value="" id="n11"/>
+            <input type="button" value="" id="n12"/>
+            <input type="button" value="" id="n13"/>
+            <input type="button" value="" id="n14"/>
+            <input type="button" value="" id="n15"/>
+        </div>
+        
+    </body>
+</html>

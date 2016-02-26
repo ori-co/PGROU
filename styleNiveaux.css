@@ -1,0 +1,115 @@
+body{
+    background:url("images/niveaux/fond_niveaux.png");
+    width: 100%;
+    height: 100%;
+}
+#importation{
+    margin-left:100px;
+    position : absolute;
+    margin-top : 100px;
+}
+input{
+    height : 100px;
+    width : 100px;
+    border : none;
+    background-image: url('images/niveaux/cadenas.png');
+    font : ucidatypewriter, monospace;
+    color : white;
+    font-weight: 600;
+    font-size : 50px;
+    text-align: center;
+    padding-bottom : 20px;
+}
+
+#b{
+    position : absolute;
+    height : 100px;
+    width : 300px;
+    font-size : 20px;
+    padding-left:60px;
+    padding-top : 15px;
+    border : none;
+}
+
+#n1{
+    position : absolute;
+    margin-top : 100px;
+    margin-left: 500px;
+}
+
+#n2{
+    position : absolute;
+    margin-top : 100px;
+    margin-left: 650px;
+}
+
+#n3{
+    position : absolute;
+    margin-top : 100px;
+    margin-left: 800px;
+}
+#n4{
+    position : absolute;
+    margin-top : 100px;
+    margin-left: 950px;
+}
+#n5{
+    position : absolute;
+    margin-top : 100px;
+    margin-left: 1100px;
+}
+
+#n6{
+    position : absolute;
+    margin-top : 225px;
+    margin-left: 500px;
+}
+
+#n7{
+    position : absolute;
+    margin-top : 225px;
+    margin-left: 650px;
+}
+
+#n8{
+    position : absolute;
+    margin-top : 225px;
+    margin-left: 800px;
+}
+#n9{
+    position : absolute;
+    margin-top : 225px;
+    margin-left: 950px;
+}
+#n10{
+    position : absolute;
+    margin-top : 225px;
+    margin-left: 1100px;
+}
+#n11{
+    position : absolute;
+    margin-top : 350px;
+    margin-left: 500px;
+}
+
+#n12{
+    position : absolute;
+    margin-top : 350px;
+    margin-left: 650px;
+}
+
+#n13{
+    position : absolute;
+    margin-top : 350px;
+    margin-left: 800px;
+}
+#n14{
+    position : absolute;
+    margin-top : 350px;
+    margin-left: 950px;
+}
+#n15{
+    position : absolute;
+    margin-top : 350px;
+    margin-left: 1100px;
+}

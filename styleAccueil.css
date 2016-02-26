@@ -1,0 +1,35 @@
+body{
+    background:url("images/accueil/fond_accueil.png");
+    width: 100%;
+    height: 100%;
+}
+
+input{
+
+    background-image: url("images/accueil/bouton_normal.png");
+    height : 100px;
+    width : 220px;
+    border : none;
+    font : ucidatypewriter, monospace;
+    color : white;
+    font-weight: 600;
+    font-size : 18px;
+    text-align: left;
+    padding-left: 15px;
+}
+
+#b2{
+    padding-left: 40px;
+}
+
+#modeClassique{
+    position : absolute;
+    margin-top : 200px;
+    margin-left: 800px;
+}
+
+#modeLibre{
+    position : absolute;
+    margin-top : 350px;
+    margin-left: 800px;
+}

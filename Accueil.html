@@ -1,0 +1,34 @@
+<!doctype html> 
+<html lang="fr"> 
+    <head> 
+        <meta charset="UTF-8" />
+        <title>/-> AttriMaths <-/</title>
+        <link rel="stylesheet" type="text/css" href="styleAccueil.css">
+        <script>
+
+            function boutonOver(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/accueil/bouton_survole.png")';
+                  document.getElementById(id).style.color = "#b3f5fb";
+            }
+            function boutonOut(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/accueil/bouton_normal.png")';
+                 document.getElementById(id).style.color = "white";
+            }
+            function boutonClic(id) {
+                document.getElementById(id).style.backgroundImage = 'url("images/accueil/bouton_clique.png")';
+                 document.getElementById(id).style.color = "#11aab8";
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="modeClassique">
+            <input type="button" value="Mode classique" id="b1" onmouseover="boutonOver('b1')" onmouseout="boutonOut('b1')" onmousedown="boutonClic('b1')" onmouseup="boutonOut('b1')" onclick="self.location.href = 'CarteNiveaux.html'"/>
+        </div>
+
+        <div id="modeLibre">
+            <input type="button" value="Mode libre" id="b2" onmouseover="boutonOver('b2')" onmouseout="boutonOut('b2')" onmousedown="boutonClic('b2')" onmouseup="boutonOut('b2')" onclick="self.location.href = 'ModeLibre.html'"/>
+        </div>
+
+    </body>
+</html>
