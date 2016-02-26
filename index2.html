@@ -332,11 +332,14 @@
                     //Ajouter les boutons de rotation et de couleurs
                     rot = game.add.button(10, window.innerHeight - 210, 'button-rotate', boutonRotation, this, 2, 1, 0, 1);
                     col = game.add.button(58, window.innerHeight - 210, 'button-colors', buttonColor, this, 2, 1, 0, 1);
-                    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', null, this, 2, 1, 0, 1);
+                    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', retourAccueil, this, 2, 1, 0, 1);
                     mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
                     exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', null, this, 2, 1, 0, 1);
 
-
+				//Fonction de retour à la page d'accueil
+				function retourAccueil(){
+				self.location.href = 'Accueil.html';
+				}
 
                     //Création du patron souhaité
 
