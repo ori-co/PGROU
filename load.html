@@ -23,14 +23,14 @@
                 var nbF6 = 0;
                 var nbF = 0;
 
-                //Surface des formes
+                //Surface des forms
 
                 var areaSquare = 10000;
                 var areaTriangle = 4330.12701892;
                 var areaTrapeze = 3 * 4330.12701892;
                 var areaHexagon = 6 * 4330.12701892;
                 var areaPattern = 0;
-                var aireSolution = 0;
+                var areaSolution = 0;
 
                 //Edition mode testing
                 var test = 0;
@@ -161,13 +161,13 @@
 
                 //Initialisation of the problem's and the solution's matrix
 
-                var matPatron = new Array(1200);
+                var matPattern = new Array(1200);
                 for (var i = 0; i < 1200; i++) {
-                    matPatron[i] = new Array(800);
+                    matPattern[i] = new Array(800);
                 }
                 for (var i = 0; i < 1200; i++) {
                     for (var j = 0; j < 800; j++) {
-                        matPatron[i][j] = 0;
+                        matPattern[i][j] = 0;
                     }
                 }
 
@@ -326,23 +326,23 @@
                         P5 = game.add.group();
                         P6 = game.add.group();
 
-                        formes = game.add.group();
-                        patrons = game.add.group();
-                        poubelle = game.add.group();
+                        forms = game.add.group();
+                        patterns = game.add.group();
+                        trash = game.add.group();
 
-                        formes.add(F1);
-                        formes.add(F2);
-                        formes.add(F3);
-                        formes.add(F4);
-                        formes.add(F5);
-                        formes.add(F6);
+                        forms.add(F1);
+                        forms.add(F2);
+                        forms.add(F3);
+                        forms.add(F4);
+                        forms.add(F5);
+                        forms.add(F6);
 
-                        patrons.add(P1);
-                        patrons.add(P2);
-                        patrons.add(P3);
-                        patrons.add(P4);
-                        patrons.add(P5);
-                        patrons.add(P6);
+                        patterns.add(P1);
+                        patterns.add(P2);
+                        patterns.add(P3);
+                        patterns.add(P4);
+                        patterns.add(P5);
+                        patterns.add(P6);
 
                         // Store Creation
                         var bin = game.add.button(60, 20, 'trashbin', null, this, 2, 1, 0, 1);
@@ -377,7 +377,7 @@
                         col = game.add.button(58, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
                         ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', returnIndex, this, 2, 1, 0, 1);
                         mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
-                        exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
+                        exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', null, this, 2, 1, 0, 1);
 
 
                         //Funtion to return to the index
