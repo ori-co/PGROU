@@ -7,12 +7,12 @@ function buildMenu() {
     store.scaleMin = 1;
     pipe = game.add.sprite(5, 395, 'pipe');
     pipe.height = window.innerHeight - (390 + 212);
-    var buttonSquare = game.add.button(20, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
-    var buttonTrapezoid = game.add.button(100, 110, 'button-trapeze', addForm2, this, 2, 1, 0, 1);
-    var buttonTriangleEqui = game.add.button(20, 200, 'button-triangle-equi', addForm4, this, 2, 1, 0, 1);
-    var buttonHexagon = game.add.button(100, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
-    var buttonTriangleRect = game.add.button(20, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
-    var buttonDiamond = game.add.button(100, 290, 'button-diamond', addForm6, this, 2, 1, 0, 1);
+    buttonSquare = game.add.button(20, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
+    buttonTrapezoid = game.add.button(100, 110, 'button-trapeze', addForm2, this, 2, 1, 0, 1);
+    buttonTriangleEqui = game.add.button(20, 200, 'button-triangle-equi', addForm4, this, 2, 1, 0, 1);
+    buttonHexagon = game.add.button(100, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
+    buttonTriangleRect = game.add.button(20, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
+    buttonDiamond = game.add.button(100, 290, 'button-diamond', addForm6, this, 2, 1, 0, 1);
 
     // Basket creation
     basketLeft = game.add.sprite(5, window.innerHeight - 212 - 5, 'basket-left');
@@ -21,10 +21,10 @@ function buildMenu() {
     basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
 
     // Menu construction
-    var long = 100;
-    menuLeft = game.add.sprite(window.innerWidth - 5 - long - 2 * 35, 5, 'menu-left');
-    menuMiddle = game.add.sprite(window.innerWidth - 5 - long - 35, 5, 'menu-middle');
-    menuMiddle.width = long;
+    menuLenght = 100;
+    menuLeft = game.add.sprite(window.innerWidth - 5 - menuLenght - 2 * 35, 5, 'menu-left');
+    menuMiddle = game.add.sprite(window.innerWidth - 5 - menuLenght - 35, 5, 'menu-middle');
+    menuMiddle.width = menuLenght;
     menuRight = game.add.sprite(window.innerWidth - 35 - 5, 5, 'menu-right');
 
     //Add rotation and color buttons

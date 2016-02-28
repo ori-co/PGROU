@@ -82,15 +82,24 @@ var nbAlert = 0;
 //Used to check if the solution is valid or not
 var valid = 0;
 
-// Grandient background
-var myBitmap;
-var grd;
+// Interface variables
+// buttons
 var rot;
 var col;
 var mute;
 var ret;
 var exp;
+
+var buttonSquare;
+var buttonTrapezoid;
+var buttonTriangleEqui;
+var buttonHexagon;
+var buttonTriangleRect;
+var buttonDiamond;
+
 var palette;
+
+// responsive elements
 var pipe;
 var basketLeft;
 var basketMiddle;
@@ -98,6 +107,7 @@ var basketRight;
 var menuRight;
 var menuMiddle;
 var menuLeft;
+var menuLenght;
 
 //Create a new Phaser JS game
 var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {

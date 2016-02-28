@@ -12,11 +12,9 @@ function updateSize() {
     basketRight.x = window.innerWidth - 142 - 5;
     basketRight.y = window.innerHeight - 212 - 5;
     
-    var long = 100;
-    
-    menuLeft.x = window.innerWidth - 5 - long - 2 * 35;
-    menuMiddle.x = window.innerWidth - 5 - long - 35;
-    menuMiddle.width = long;
+    menuLeft.x = window.innerWidth - 5 - menuLenght - 2 * 35;
+    menuMiddle.x = window.innerWidth - 5 - menuLenght - 35;
+    menuMiddle.width = menuLenght;
     menuRight.x = window.innerWidth - 35 - 5;
     
     rot.y = window.innerHeight - 210;

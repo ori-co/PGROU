@@ -2,9 +2,9 @@ function wallpaper() {
     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 
     //Wallpaper
-    myBitmap = game.make.bitmapData(2000, 2000);
+    var myBitmap = game.make.bitmapData(2000, 2000);
     myBitmap.addToWorld();
-    grd = myBitmap.context.createLinearGradient(0, 0, 1000, 1000);
+    var grd = myBitmap.context.createLinearGradient(0, 0, 1000, 1000);
     grd.addColorStop(0, "#66d1f9");
     grd.addColorStop(1, "#bce3f0");
     myBitmap.context.fillStyle = grd;
