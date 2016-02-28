@@ -815,7 +815,7 @@
 
                     //Error message if it is not a JSON
                     if (myExt !== "json") {
-                        alert("Your file does not have the right format. Please, choose a JSON file.");
+                        alert("Votre fichier JSON n'a pas le bon format. Choisissez un fichier JSON.");
                     } else {
                         //If it is good, we launch the game
                         start();
@@ -827,7 +827,7 @@
                 window.onload = function() {
                     var fileInput = document.getElementById('fileInput');
 
-                    //On récupère le contenu du json qu'on passe en champ caché dans la div "cache"
+                    //We charge the json when we pass in hidden champ the cache div.
                     var fileCache = document.getElementById('cache');
                     fileInput.addEventListener('change', function(e) {
 
