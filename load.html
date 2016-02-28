@@ -1,45 +1,814 @@
-<!doctype html>
-<html lang="en">
+<!doctype html> 
+<html lang="fr"> 
 
-<head>
-    <meta charset="UTF-8" />
-    <title>/-> Maths Puzzle <-/</title>
 
-            <link rel="stylesheet" type="text/css" href="css/gameStyle.css">
+    <head> 
+        <meta charset="UTF-8" />
+        <title>/-> AttriMaths <-/</title>
+        <script type="text/javascript" src="phaser.js"></script>
+        <script>
 
-            <script type="text/javascript" src="script/phaser.js"></script>
-            <script type="text/javascript" src="script/soundmanager2.js"></script>
+            ///////////////////////////////////////////////////////////////////////
+            //VARIABLES
+            ///////////////////////////////////////////////////////////////////////
 
-            <script type="text/javascript" src="script/functions/preload.js"></script>
-            <script type="text/javascript" src="script/functions/debug.js"></script>
-            <script type="text/javascript" src="script/functions/create-Load.js"></script>
-            <script type="text/javascript" src="script/functions/updateSize.js"></script>
-            <script type="text/javascript" src="script/functions/update.js"></script>
-            <script type="text/javascript" src="script/functions/varInit.js"></script>
-            <script type="text/javascript" src="script/functions/buildMenu.js"></script>
-            <script type="text/javascript" src="script/functions/matrixInit.js"></script>
-            <script type="text/javascript" src="script/functions/addShapes.js"></script>
-            <script type="text/javascript" src="script/functions/gameButtons.js"></script>
-            <script type="text/javascript" src="script/functions/wallpaper.js"></script>
-            <script type="text/javascript" src="script/functions/sounds.js"></script>
-            <script type="text/javascript" src="script/functions/endDrag-Level.js"></script>
-            <script type="text/javascript" src="script/functions/exportProblem.js"></script>
-            <script type="text/javascript" src="script/functions/checkExtension.js"></script>
-            <script type="text/javascript" src="script/functions/chargeJSON.js"></script>
+            //Compteurs de formes crées
+            var nbF1 = 0;
+            var nbF2 = 0;
+            var nbF3 = 0;
+            var nbF4 = 0;
+            var nbF = 0;
 
-</head>
+//Surface des formes
 
-<body>
+            var aireCarre = 10000;
+            var aireTriangle = 4330.12701892;
+            var aireTrapeze = 3 * 4330.12701892;
+            var aireHexagone = 6 * 4330.12701892;
+            var airePatron = 0;
+            var aireSolution = 0;
 
-    <div id="json">
-        <input type="file" id="fileInput" name="fileInput">
-        <br>
-        <br>
-        <input type="button" id="start" value="C'est parti !" onclick="checkExtension();">
-    </div>
+//Test du mode d'édition dans une partie
+            var test = 0;
 
-    <h3 class="cache" id="cache"> </h3>
 
-</body>
+//Variables de groupes de formes et patrons
+            var F1;
+            var F2;
+            var F3;
+            var F4;
+            var F5;
+            var F6;
 
+            var P1;
+            var P2;
+            var P3;
+            var P4;
+            var P6;
+
+
+//Tester la fin de la partie
+            var fin = 0;
+
+//Ne pas recevoir un message de fin doublé
+            var nbAlert = 0;
+
+            //Initialisation des matrices de quantisation pour les formes �l�mentaires
+
+            //Carré
+            var mat_square = new Array(65);
+            for (var i = 0; i < 65; i++) {
+                mat_square[i] = new Array(65);
+            }
+            for (var i = 0; i < 65; i++) {
+                for (var j = 0; j < 65; j++) {
+                    mat_square[i][j] = 1;
+                }
+            }
+
+            //Trapeze
+            var mat_trapezoid = new Array(200);
+            for (var i = 0; i < 200; i++) {
+                mat_trapezoid[i] = new Array(100);
+            }
+            for (var i = 0; i < 200; i++) {
+                for (var j = 0; j < 100; j++) {
+                    mat_trapezoid[i][j] = 1;
+                }
+            }
+            var J = 98;
+            for (var i = 0; i < 49; i++) {
+                for (var j = 0; j < J; j++) {
+                    mat_trapezoid[i][j] = 0;
+                }
+                J = J - 2;
+            }
+            var J = 98;
+            for (var i = 199; i > 149; i--) {
+                for (var j = 0; j < J; j++) {
+                    mat_trapezoid[i][j] = 0;
+                }
+                J = J - 2;
+            }
+
+            //Hexagone
+            var mat_hexagon = new Array(200);
+            for (var i = 0; i < 200; i++) {
+                mat_hexagon[i] = new Array(200);
+            }
+            for (var i = 0; i < 200; i++) {
+                for (var j = 0; j < 200; j++) {
+                    mat_hexagon[i][j] = 1;
+                }
+            }
+            var J = 98;
+            for (var i = 0; i < 49; i++) {
+                for (var j = 0; j < J; j++) {
+                    mat_hexagon[i][j] = 0;
+                }
+                J = J - 2;
+            }
+            var J = 98;
+            for (var i = 199; i > 149; i--) {
+                for (var j = 0; j < J; j++) {
+                    mat_hexagon[i][j] = 0;
+                }
+                J = J - 2;
+            }
+            var J = 101;
+            for (var i = 0; i < 49; i++) {
+                for (var j = J; j < 200; j++) {
+                    mat_hexagon[i][j] = 0;
+                }
+                J = J + 2;
+            }
+            var J = 101;
+            for (var i = 199; i > 149; i--) {
+                for (var j = J; j < 200; j++) {
+                    mat_hexagon[i][j] = 0;
+                }
+                J = J + 2;
+            }
+
+            //Triangle
+            var mat_triangle_equi = new Array(100);
+            for (var i = 0; i < 100; i++) {
+                mat_triangle_equi[i] = new Array(100);
+            }
+            for (var i = 0; i < 100; i++) {
+                for (var j = 0; j < 100; j++) {
+                    mat_triangle_equi[i][j] = 1;
+                }
+            }
+            var J = 98;
+            for (var i = 0; i < 49; i++) {
+                for (var j = 0; j < J; j++) {
+                    mat_triangle_equi[i][j] = 0;
+                }
+                J = J - 2;
+            }
+            var J = 98;
+            for (var i = 99; i > 50; i--) {
+                for (var j = 0; j < J; j++) {
+                    mat_triangle_equi[i][j] = 0;
+                }
+                J = J - 2;
+            }
+
+
+//Initialisation des matrices de quantisation des positions du problème (patron) et la solution proposée
+
+            var matPatron = new Array(1200);
+            for (var i = 0; i < 1200; i++) {
+                matPatron[i] = new Array(800);
+            }
+            for (var i = 0; i < 1200; i++) {
+                for (var j = 0; j < 800; j++) {
+                    matPatron[i][j] = 0;
+                }
+            }
+
+            var matSolution = new Array(1200);
+            for (var i = 0; i < 1200; i++) {
+                matSolution[i] = new Array(800);
+            }
+            for (var i = 0; i < 1200; i++) {
+                for (var j = 0; j < 800; j++) {
+                    matSolution[i][j] = 0;
+                }
+            }
+
+// grandient background
+            var myBitmap;
+            var grd;
+            var rot;
+            var col;
+            var mute;
+            var ret;
+            var exp;
+            var palette;
+            var pipe;
+            var basketLeft;
+            var basketMiddle;
+            var basketRight;
+            var menuRight;
+            var menuMiddle;
+            var menuLeft;
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+            function start() {
+
+                //Création d'un nouveau jeu Phaser JS
+                var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
+//var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 
+//var game = new Phaser.Game(2000, 1000, Phaser.CANVAS, 'pgrou', { 
+                    preload: preload,
+                    create: create,
+                    update: update,
+                    render: render});
+                //Charger en m�moire les images n�cessaires avant le d�marrage du jeu
+                function preload() {
+                    /* game.load.text('txt_hexagon', 'sprites/hexagon.txt');
+                     game.load.text('txt_lozenge', 'sprites/lozenge.txt');
+                     game.load.text('txt_square', 'sprites/square.txt');
+                     game.load.text('txt_trapezoid', 'sprites/trapezoid.txt');
+                     game.load.text('txt_triangle_equi', 'sprites/triangle-equi.txt');
+                     game.load.text('txt_triangle_rect', 'sprites/triangle-rect.txt');*/
+
+                    game.load.image('img_hexagon', 'sprites/hexagon.png');
+                    game.load.image('img_lozenge', 'sprites/lozenge.png');
+                    game.load.image('img_square', 'sprites/square.png');
+                    game.load.image('img_trapezoid', 'sprites/trapezoid.png');
+                    game.load.image('img_triangle_equi', 'sprites/triangle-equi.png');
+                    game.load.image('img_triangle_rect', 'sprites/triangle-rect.png');
+
+                    game.load.image('store', 'images/store.png');
+                    game.load.image('pipe', 'images/store-pipe.png');
+                    game.load.spritesheet('poubelle', 'images/buttons/trashbin.png', 83, 76);
+                    game.load.spritesheet('button-square', 'images/buttons/shape-square.png', 78, 77);
+                    game.load.spritesheet('button-trapezoid', 'images/buttons/shape-trapezoid.png', 78, 77);
+                    game.load.spritesheet('button-triangle-equi', 'images/buttons/shape-t-equi.png', 78, 77);
+                    game.load.spritesheet('button-hexagon', 'images/buttons/shape-hexagon.png', 78, 77);
+                    game.load.spritesheet('button-triangle-rect', 'images/buttons/shape-t-rect.png', 78, 77);
+                    game.load.spritesheet('button-lozenge', 'images/buttons/shape-lozenge.png', 78, 77);
+
+                    game.load.image('basket-left', 'images/basket-left.png');
+                    game.load.image('basket-right', 'images/basket-right.png');
+                    game.load.image('basket-middle', 'images/basket-middle.png');
+
+                    game.load.spritesheet('button-rotate', 'images/buttons/option-rotate.png', 48, 48);
+                    game.load.spritesheet('button-colors', 'images/buttons/option-colors.png', 48, 48);
+                    game.load.spritesheet('button-home', 'images/buttons/option-home.png', 48, 48);
+                    game.load.spritesheet('button-export', 'images/buttons/option-export.png', 48, 48);
+                    game.load.spritesheet('button-mute', 'images/buttons/option-mute.png', 48, 48);
+
+                    game.load.image('menu-left', 'images/menu-left.png');
+                    game.load.image('menu-right', 'images/menu-right.png');
+                    game.load.image('menu-middle', 'images/menu-middle.png');
+                }
+
+
+
+                //Fonction Create principale du jeu
+                function create() {
+
+                    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+                    //Fond d'écran
+                    myBitmap = game.make.bitmapData(2000, 2000);
+                    myBitmap.addToWorld();
+                    grd = myBitmap.context.createLinearGradient(0, 0, 1000, 1000);
+                    grd.addColorStop(0, "#66d1f9");
+                    grd.addColorStop(1, "#bce3f0");
+                    myBitmap.context.fillStyle = grd;
+                    myBitmap.context.fillRect(0, 0, 2000, 2000);
+                    //game.stage.backgroundColor = "#4488AA";
+
+                    palette = ["0x83EE00", "0xFBFE00", "0x058AB6", "0xE4005C", "0x8007BE", "0xFF8300"];
+
+                    //Gestion des relations d'héritage du jeu
+                    F1 = game.add.group();
+                    F2 = game.add.group();
+                    F3 = game.add.group();
+                    F4 = game.add.group();
+                    F5 = game.add.group();
+                    F6 = game.add.group();
+
+                    P1 = game.add.group();
+                    P2 = game.add.group();
+                    P3 = game.add.group();
+                    P4 = game.add.group();
+                    P5 = game.add.group();
+                    P6 = game.add.group();
+
+                    formes = game.add.group();
+                    patrons = game.add.group();
+                    poubelle = game.add.group();
+
+                    formes.add(F1);
+                    formes.add(F2);
+                    formes.add(F3);
+                    formes.add(F4);
+                    formes.add(F5);
+                    formes.add(F6);
+
+                    patrons.add(P1);
+                    patrons.add(P2);
+                    patrons.add(P3);
+                    patrons.add(P4);
+                    patrons.add(P5);
+                    patrons.add(P6);
+
+                    // Création du magasin
+                    var poub = game.add.button(60, 20, 'poubelle', null, this, 2, 1, 0, 1);
+                    poubelle.add(poub);
+
+                    var store = game.add.sprite(5, 5, 'store');
+                    store.scaleMax = 1;
+                    store.scaleMin = 1;
+                    pipe = game.add.sprite(5, 395, 'pipe');
+                    pipe.height = window.innerHeight - (390 + 212);
+                    var buttonSquare = game.add.button(20, 110, 'button-square', addForme1, this, 2, 1, 0, 1);
+                    var buttonTrapezoid = game.add.button(100, 110, 'button-trapezoid', addForme2, this, 2, 1, 0, 1);
+                    var buttonTriangleEqui = game.add.button(20, 200, 'button-triangle-equi', addForme4, this, 2, 1, 0, 1);
+                    var buttonHexagon = game.add.button(100, 200, 'button-hexagon', addForme3, this, 2, 1, 0, 1);
+                    var buttonTriangleRect = game.add.button(20, 290, 'button-triangle-rect', addForme5, this, 2, 1, 0, 1);
+                    var buttonLozenge = game.add.button(100, 290, 'button-lozenge', addForme6, this, 2, 1, 0, 1);
+
+                    // Création du panier
+                    basketLeft = game.add.sprite(5, window.innerHeight - 212 - 5, 'basket-left');
+                    basketMiddle = game.add.sprite(142, window.innerHeight - 212 - 5, 'basket-middle');
+                    basketMiddle.width = window.innerWidth - 2 * 142;
+                    basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
+
+                    // Construction du menu
+                    var long = 100;
+                    menuLeft = game.add.sprite(window.innerWidth - 5 - long - 2 * 35, 5, 'menu-left');
+                    menuMiddle = game.add.sprite(window.innerWidth - 5 - long - 35, 5, 'menu-middle');
+                    menuMiddle.width = long;
+                    menuRight = game.add.sprite(window.innerWidth - 35 - 5, 5, 'menu-right');
+
+                    //Ajouter les boutons de rotation et de couleurs
+                    rot = game.add.button(10, window.innerHeight - 210, 'button-rotate', boutonRotation, this, 2, 1, 0, 1);
+                    col = game.add.button(58, window.innerHeight - 210, 'button-colors', buttonColor, this, 2, 1, 0, 1);
+                    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', retourAccueil, this, 2, 1, 0, 1);
+                    mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
+                    exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', null, this, 2, 1, 0, 1);
+
+				//Fonction de retour à la page d'accueil
+				function retourAccueil(){
+				self.location.href = 'Accueil.html';
+				}
+
+                    //Création du patron souhaité
+
+                    var patron = [];
+
+                    //On récupère le contenu du json
+                    var result = document.getElementById('cache').innerText;
+                    document.getElementById('json').style.display = 'none';
+
+                    //Analyse du json
+                    var jsonObj = JSON.parse(result);
+
+                    //Création des patrons
+                    for (var i = 0; i < jsonObj.probleme.patron.length; i++) {
+                        switch (jsonObj.probleme.patron[i].nature) {
+                            case "carre" :
+                                patron[i] = P1.create(jsonObj.probleme.patron[i].pointDeReference.x, jsonObj.probleme.patron[i].pointDeReference.y, 'img_square');
+                                patron[i].inputEnabled = true;
+                                patron[i].tint = 0x020303;
+                                patron[i].angle= jsonObj.probleme.patron[i].rotation;
+                                patron[i].alpha = 0.4;
+                                break;
+                            case "trapeze" :
+                                patron[i] = P2.create(jsonObj.probleme.patron[i].pointDeReference.x, jsonObj.probleme.patron[i].pointDeReference.y, 'img_trapezoid');
+                                patron[i].inputEnabled = true;
+                                patron[i].tint = 0x020303;
+                                patron[i].angle= jsonObj.probleme.patron[i].rotation;
+                                patron[i].alpha = 0.4;
+                                break;
+                            case "hexagone" :
+                                patron[i] = P3.create(jsonObj.probleme.patron[i].pointDeReference.x, jsonObj.probleme.patron[i].pointDeReference.y, 'img_hexagon');
+                                patron[i].inputEnabled = true;
+                                patron[i].tint = 0x020303;
+                                patron[i].angle= jsonObj.probleme.patron[i].rotation;
+                                patron[i].alpha = 0.4;
+                                break;
+                            case "triangleEqui" :
+                                patron[i] = P4.create(jsonObj.probleme.patron[i].pointDeReference.x, jsonObj.probleme.patron[i].pointDeReference.y, 'img_triangle_equi');
+                                patron[i].inputEnabled = true;
+                                patron[i].tint = 0x020303;
+                                patron[i].angle= jsonObj.probleme.patron[i].rotation;
+                                patron[i].alpha = 0.4;
+                                break;
+                            case "triangleRect" :
+                                patron[i] = P5.create(jsonObj.probleme.patron[i].pointDeReference.x, jsonObj.probleme.patron[i].pointDeReference.y, 'img_triangle_rect');
+                                patron[i].inputEnabled = true;
+                                patron[i].tint = 0x020303;
+                                patron[i].angle= jsonObj.probleme.patron[i].rotation;
+                                patron[i].alpha = 0.4;
+                                break;
+                            case "losange" :
+                                patron[i] = P6.create(jsonObj.probleme.patron[i].pointDeReference.x, jsonObj.probleme.patron[i].pointDeReference.y, 'img_lozenge');
+                                patron[i].inputEnabled = true;
+                                patron[i].tint = 0x020303;
+                                patron[i].angle= jsonObj.probleme.patron[i].rotation;
+                                patron[i].alpha = 0.4;
+                                break;
+
+                        }
+                    }
+
+
+                    //Donner valeur à la matrice de quantisation du patron donné
+                    P1.forEach(function (itemPatron) {
+                        airePatron = airePatron + aireCarre;
+                        for (var i = 0; i < mat_square.length; i++) {
+                            for (var j = 0; j < mat_square[0].length; j++) {
+                                if (mat_square[i][j] == 1) {
+                                    matPatron[Math.abs(Number(itemPatron.x) + Number(i))][Math.abs(Number(itemPatron.y) + Number(j))] = 1;
+                                    // i est l'indice de ligne --> coordonnée y
+                                    // j est l'indice de colonne --> coordonnée x
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    P2.forEach(function (itemPatron) {
+                        airePatron = airePatron + aireTrapeze;
+                        for (var i = 0; i < mat_trapezoid.length; i++) {
+                            for (var j = 0; j < mat_trapezoid[0].length; j++) {
+                                if (mat_trapezoid[i][j] == 1) {
+                                    matPatron[Math.abs(Number(itemPatron.x) + Number(i))][Math.abs(Number(itemPatron.y) + Number(j))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    P3.forEach(function (itemPatron) {
+                        airePatron = airePatron + aireHexagone;
+                        for (var i = 0; i < mat_hexagon.length; i++) {
+                            for (var j = 0; j < mat_hexagon[0].length; j++) {
+                                if (mat_hexagon[i][j] == 1) {
+                                    matPatron[Math.abs(Number(itemPatron.x) + Number(i))][Math.abs(Number(itemPatron.y) + Number(j))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    P4.forEach(function (itemPatron) {
+                        airePatron = airePatron + aireTriangleEqui;
+                        for (var i = 0; i < mat_triangle_equi.length; i++) {
+                            for (var j = 0; j < mat_triangle_equi[0].length; j++) {
+                                if (mat_triangle_equi[i][j] == 1) {
+                                    matPatron[Math.abs(Number(itemPatron.x) + Number(i))][Math.abs(Number(itemPatron.y) + Number(j))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                }
+
+//Fonctions pour ajouter les formes à partir du panier
+                function addShape(shape, F) {
+                    nbF = nbF + 1;
+                    var tempSprite = F.create(130 * nbF - 35, game.height - 90, 'img_' + shape);
+                    tempSprite.anchor.x = 0.5;
+                    tempSprite.anchor.y = 0.5;
+                    //tempSprite.tint = Math.random() * 0xffffff;
+                    //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+                    //tempSprite.tint = 0xabdcf1;
+                    tempSprite.inputEnabled = true; //Pointeur activé
+                    tempSprite.input.enableDrag(false, true); //Mobile (drag)
+                    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation de 10 pixels
+                    tempSprite.events.onInputDown.add(interactionForme, this); //mode d'édition après clic
+                    tempSprite.events.onDragStop.add(finDrag, this); //fin de drag
+                }
+
+                function addForme1(forme1, pointer) {
+                    nbF1 = nbF1 + 1;
+                    addShape('square', F1);
+                }
+
+                function addForme2(forme2, pointer) {
+                    nbF2 = nbF2 + 1;
+                    addShape('trapezoid', F2);
+                }
+
+                function addForme3(forme3, pointer) {
+                    nbF3 = nbF3 + 1;
+                    addShape('hexagon', F3);
+                }
+
+                function addForme4(forme4, pointer) {
+                    nbF4 = nbF4 + 1;
+                    addShape('triangle_equi', F4);
+                }
+
+                function addForme5(forme5, pointer) {
+                    addShape('triangle_rect', F5);
+                }
+                function addForme6(forme6, pointer) {
+                    addShape('lozenge', F6);
+                }
+
+//Modes d'édition (couleurs et rotation)
+                function interactionForme(tempSprite, pointer) {
+
+                    switch (test) {
+                        case 0:
+                            break;
+                        case 1:
+                            tempSprite.angle += 45;
+                            break;
+                        case 2:
+                            var rand = Math.floor((Math.random() * 5));
+                            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                            break;
+                    }
+
+                }
+
+//Activation ou pas du bouton de rotation
+                function boutonRotation(rot, pointer) {
+                    switch (test) {
+                        case 0:
+                            test = 1;
+                            rot.setFrames(3, 0, 1, 0);
+                            break;
+                        case 1:
+                            test = 0;
+                            rot.setFrames(2, 1, 0, 1);
+                            break;
+                        case 2:
+                            test = 1;
+                            rot.setFrames(3, 0, 1, 0);
+                            col.setFrames(2, 1, 0, 1);
+                            break;
+                    }
+                }
+
+// Changement de couleur
+                function buttonColor(col, pointer) {
+                    switch (test) {
+                        case 0:
+                            test = 2;
+                            col.setFrames(3, 0, 1, 0);
+                            break;
+                        case 1:
+                            test = 2;
+                            rot.setFrames(2, 1, 0, 1);
+                            col.setFrames(3, 0, 1, 0);
+                            break;
+                        case 2:
+                            test = 0;
+                            col.setFrames(2, 1, 0, 1);
+                            break;
+                    }
+                }
+
+//Fonction de fin de drag d'une forme (poubelle, rotation et mise à jour de la matrice quantisée de la solution) 
+                function finDrag(tempSprite, pointer) {
+
+                    if ((game.input.y > 20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)) {
+                        if (tempSprite.key === 'img_square') {
+                            nbF1 = nbF1 - 1;
+                        }
+                        if (tempSprite.key === 'img_trapezoid') {
+                            nbF2 = nbF2 - 1;
+                        }
+                        if (tempSprite.key === 'img_hexagon') {
+                            nbF3 = nbF3 - 1;
+                        }
+                        if (tempSprite.key === 'img_triangle_equi') {
+                            nbF4 = nbF4 - 1;
+                        }
+                        tempSprite.destroy();
+                    }
+
+                    for (var i = 0; i < 1200; i++) {
+                        for (var j = 0; j < 800; j++) {
+                            matSolution[i][j] = 0;
+                        }
+                    }
+
+                    aireSolution = 0;
+
+                    F1.forEach(function (itemPatron) {
+                        aireSolution = aireSolution + aireCarre;
+                        for (var i = 0; i < mat_square.length; i++) {
+                            for (var j = 0; j < mat_square[0].length; j++) {
+                                if (mat_square[i][j] == 1) {
+                                    matSolution[Math.floor(itemPatron.y + i * Math.cos(itemPatron.angle * 2 * 3.14159 / 360) - j * Math.sin(itemPatron.angle * 2 * 3.14159 / 360))][Math.floor(itemPatron.x + i * Math.sin(itemPatron.angle * 2 * 3.14159 / 360) + j * Math.cos(itemPatron.angle * 2 * 3.14159 / 360))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    F2.forEach(function (itemPatron) {
+                        aireSolution = aireSolution + aireTrapeze;
+                        for (var i = 0; i < mat_trapezoid.length; i++) {
+                            for (var j = 0; j < mat_trapezoid[0].length; j++) {
+                                if (mat_trapezoid[i][j] == 1) {
+                                    matSolution[Math.floor(itemPatron.y + i * Math.cos(itemPatron.angle * 2 * 3.14159 / 360) - j * Math.sin(itemPatron.angle * 2 * 3.14159 / 360))][Math.floor(itemPatron.x + i * Math.sin(itemPatron.angle * 2 * 3.14159 / 360) + j * Math.cos(itemPatron.angle * 2 * 3.14159 / 360))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    F3.forEach(function (itemPatron) {
+                        aireSolution = aireSolution + aireHexagone;
+                        for (var i = 0; i < mat_hexagon.length; i++) {
+                            for (var j = 0; j < mat_hexagon[0].length; j++) {
+                                if (mat_hexagon[i][j] == 1) {
+                                    matSolution[Math.floor(itemPatron.y + i * Math.cos(itemPatron.angle * 2 * 3.14159 / 360) - j * Math.sin(itemPatron.angle * 2 * 3.14159 / 360))][Math.floor(itemPatron.x + i * Math.sin(itemPatron.angle * 2 * 3.14159 / 360) + j * Math.cos(itemPatron.angle * 2 * 3.14159 / 360))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    F4.forEach(function (itemPatron) {
+                        aireSolution = aireSolution + aireTriangleEqui;
+                        for (var i = 0; i < mat_triangle_equi.length; i++) {
+                            for (var j = 0; j < mat_triangle_equi[0].length; j++) {
+                                if (mat_triangle_equi[i][j] == 1) {
+                                    matSolution[Math.floor(itemPatron.y + i * Math.cos(itemPatron.angle * 2 * 3.14159 / 360) - j * Math.sin(itemPatron.angle * 2 * 3.14159 / 360))][Math.floor(itemPatron.x + i * Math.sin(itemPatron.angle * 2 * 3.14159 / 360) + j * Math.cos(itemPatron.angle * 2 * 3.14159 / 360))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    F5.forEach(function (itemPatron) {
+                        aireSolution = aireSolution + aireTriangleRect;
+                        for (var i = 0; i < mat_triangle_rect.length; i++) {
+                            for (var j = 0; j < mat_triangle_rect[0].length; j++) {
+                                if (mat_triangle_rect[i][j] == 1) {
+                                    matSolution[Math.floor(itemPatron.y + i * Math.cos(itemPatron.angle * 2 * 3.14159 / 360) - j * Math.sin(itemPatron.angle * 2 * 3.14159 / 360))][Math.floor(itemPatron.x + i * Math.sin(itemPatron.angle * 2 * 3.14159 / 360) + j * Math.cos(itemPatron.angle * 2 * 3.14159 / 360))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                    F6.forEach(function (itemPatron) {
+                        aireSolution = aireSolution + aireLosange;
+                        for (var i = 0; i < mat_lozenge.length; i++) {
+                            for (var j = 0; j < mat_lozenge[0].length; j++) {
+                                if (mat_lozenge[i][j] == 1) {
+                                    matSolution[Math.floor(itemPatron.y + i * Math.cos(itemPatron.angle * 2 * 3.14159 / 360) - j * Math.sin(itemPatron.angle * 2 * 3.14159 / 360))][Math.floor(itemPatron.x + i * Math.sin(itemPatron.angle * 2 * 3.14159 / 360) + j * Math.cos(itemPatron.angle * 2 * 3.14159 / 360))] = 1;
+                                }
+                            }
+                        }
+
+                    }, this);
+
+                }
+
+                var valide = 0;
+//Fonction Update qui tourne chaque instant dans le programme au fond
+//Mettre les formes souhaitées en évidence
+//Validation de la solution
+                function update() {
+                    game.world.bringToTop(formes);
+                    game.world.bringToTop(poubelle);
+
+// Adaptation de l'interface à la taille de la fenetre
+                    pipe.height = window.innerHeight - (390 + 212);
+                    basketLeft.y = window.innerHeight - 212 - 5;
+                    basketMiddle.y = window.innerHeight - 212 - 5;
+                    basketMiddle.width = window.innerWidth - 2 * 142;
+                    basketRight.x = window.innerWidth - 142 - 5;
+                    basketRight.y = window.innerHeight - 212 - 5;
+
+                    var long = 100;
+                    menuLeft.x = window.innerWidth - 5 - long - 2 * 35;
+                    menuMiddle.x = window.innerWidth - 5 - long - 35;
+                    menuMiddle.width = long;
+                    menuRight.x = window.innerWidth - 35 - 5;
+
+                    rot.y = window.innerHeight - 210;
+                    col.y = window.innerHeight - 210;
+                    ret.x = window.innerWidth - (18 + 3 * 50);
+                    mute.x = window.innerWidth - (18 + 2 * 50);
+                    exp.x = window.innerWidth - (18 + 1 * 50);
+
+
+                    // Vérification de la solution    
+                    valide = 0;
+
+                    for (var i = 0; i < 1200; i++) {
+                        for (var j = 0; j < 800; j++) {
+                            if (matSolution[i][j] != matPatron[i][j]) {
+                                valide++;
+                            }
+                        }
+                    }
+
+                    if (valide < 500 && aireSolution == airePatron) {
+                        fin = 1;
+                        if (nbAlert == 0) {
+                            nbAlert = 1;
+                            var delay = 500;
+                            setTimeout(function () {
+                                alert("Bravo! Vous avez réussi ce niveau!");
+                            }, delay);
+                        }
+                    }
+
+                }
+
+//Mode de débougage
+                function render() {
+                    game.debug.style = '#fff';
+                    //game.debug.text('Cliquez sur un élément pour créer des nouvelles formes', 16, 24);
+                    game.debug.text('Carrés : ' + nbF1, 16, 48);
+                    game.debug.text('Trapèzes : ' + nbF2, 16, 60);
+                    game.debug.text('Hexagones : ' + nbF3, 16, 72);
+                    game.debug.text('Triangles : ' + nbF4, 16, 84);
+                    game.debug.text('Fonction : ' + test, 16, 96);
+                    //game.debug.text('Fin : ' + fin, 16, 108);
+                    //game.debug.text('Aire Solution : ' + aireSolution, 16, 120);
+                    //game.debug.text('Aire Patron : ' + airePatron, 16, 132);
+                    //game.debug.text('MatPatron : ' + matPatron[180][22], 16, 120);
+                    //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
+                    //game.debug.inputInfo(16, 144);
+                }
+            }
+
+/////////////////////////////////////////////////////////////
+
+//Fonction de vérification de l'extension 
+            function checkExtension() {
+                var fileInput = document.getElementById('fileInput');
+                var myString = fileInput.value;
+                var myExt = myString.substring(myString.lastIndexOf(".") + 1, myString.length);
+                myExt = myExt.toLowerCase();
+
+//Message d'erreur si le fichier n'est pas un json
+                if (myExt !== "json") {
+                    alert("Votre fichier n'est pas au bon format. Veuillez choisir un fichier json");
+                }
+                else {
+//Si le fichier est bon, on lance le jeu
+                    start();
+                }
+            }
+
+
+//Chargement du fichier json
+            window.onload = function () {
+                var fileInput = document.getElementById('fileInput');
+
+                //On récupère le contenu du json qu'on passe en champ caché dans la div "cache"
+                var fileCache = document.getElementById('cache');
+                fileInput.addEventListener('change', function (e) {
+
+                    var file = fileInput.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+
+                        var jsonObj = reader.result;
+                        fileCache.innerHTML = jsonObj;
+                    };
+                    reader.readAsText(file);
+                }
+
+
+                );
+
+                ;
+            };
+
+
+
+        </script>
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+            .cache{
+                position : absolute;
+                display : none;
+            }
+            #json{
+                margin-left : 500px;
+                margin-top : 200px;
+            }
+
+            #start{
+                padding:6px 0 6px 0;
+                font:Bold 13px Arial;
+                background:#5FB404;
+                color:white;
+                width:100px;
+                border-radius:2px;
+                border:none;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div id="json">
+            <input type="file" id="fileInput" name = "fileInput">
+            <br><br>
+            <input type="button" id="start" value="C'est parti !" onclick="checkExtension();" >
+        </div>
+
+        <h3 class="cache" id="cache"> </h3>
+
+
+    </body>
 </html>
