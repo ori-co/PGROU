@@ -3,8 +3,7 @@
 <head> 
 	<meta charset="UTF-8" />
 	<title>/-> AttriMaths <-/</title>
-	<script type="text/javascript" src="phaser.js"></script>
-        <script type="text/javascript" src="script/preload-script.js"></script>
+	<script type="text/javascript" src="script/phaser.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -17,6 +16,43 @@
 
 //Création d'un nouveau jeu Phaser JS
 var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', { preload: preload, create: create, update: update, render: render });
+
+//Charger en mémoire les images nécessaires avant le démarrage du jeu
+function preload() {
+
+	game.load.text('txt_hexagon', 'sprites/hexagon.txt');
+	game.load.text('txt_lozenge', 'sprites/lozenge.txt');
+	game.load.text('txt_square', 'sprites/square.txt');
+	game.load.text('txt_trapezoid', 'sprites/trapezoid.txt');
+	game.load.text('txt_triangle_equi', 'sprites/triangle-equi.txt');
+	game.load.text('txt_triangle_rect', 'sprites/triangle-rect.txt');
+	
+	game.load.image('img_hexagon', 'sprites/hexagon.png');
+	game.load.image('img_lozenge', 'sprites/lozenge.png');
+	game.load.image('img_square', 'sprites/square.png');
+	game.load.image('img_trapezoid', 'sprites/trapezoid.png');
+	game.load.image('img_triangle_equi', 'sprites/triangle-equi.png');
+	game.load.image('img_triangle_rect', 'sprites/triangle-rect.png');
+    
+    game.load.image('store', 'images/store.png');
+    game.load.spritesheet('poubelle', 'images/buttons/trashbin.png',83,76);
+    game.load.spritesheet('button-square', 'images/buttons/shape-square.png',78,77);
+    game.load.spritesheet('button-trapezoid', 'images/buttons/shape-trapezoid.png',78,77);
+    game.load.spritesheet('button-triangle-equi', 'images/buttons/shape-t-equi.png',78,77);
+    game.load.spritesheet('button-hexagon', 'images/buttons/shape-hexagon.png',78,77);
+    game.load.spritesheet('button-triangle-rect', 'images/buttons/shape-t-rect.png',78,77);
+    game.load.spritesheet('button-lozenge', 'images/buttons/shape-lozenge.png',78,77);
+    
+    game.load.image('basket-left','images/basket-left.png');
+    game.load.image('basket-right','images/basket-right.png');
+    game.load.image('basket-middle','images/basket-middle.png');
+    
+    game.load.spritesheet('button-rotate','images/buttons/option-rotate.png',48,48);
+    game.load.spritesheet('button-colors','images/buttons/option-colors.png',48,48);
+    game.load.spritesheet('button-home','images/buttons/option-home.png',48,48);
+    game.load.spritesheet('button-export','images/buttons/option-export.png',48,48);
+
+}
 
 //Compteurs de formes crées
 var nbF1 = 0;

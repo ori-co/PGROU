@@ -1,47 +1,47 @@
 {
-"probleme" :
+"problem" :
 	{
-	"patron":[ 
+	"pattern":[ 
 				{
-				"nature":"carre",
-				"couleur":"bleu",
+				"shape":"square",
+				"color":"blue",
 				"rotation":"0",
-				"pointDeReference": {
+				"anchorPoint": {
 					"x":"700",
 					"y":"200"}
 				},
 				{
-				"nature":"trapeze",
-				"couleur":"bleu",
+				"shape":"trapeze",
+				"color":"blue",
 				"rotation":"0",
-				"pointDeReference": {
+				"anchorPoint": {
 					"x":"667",
 					"y":"265"}
 				},
 				{
-				"nature":"hexagone",
-				"couleur":"bleu",
+				"shape":"hexagon",
+				"color":"blue",
 				"rotation":"0",
-				"pointDeReference": {
+				"anchorPoint": {
 					"x":"570",
 					"y":"208"}
 				},
 				{
-				"nature":"triangleEqui",
-				"couleur":"bleu",
+				"shape":"triangleEqui",
+				"color":"blue",
 				"rotation":"0",
-				"pointDeReference": {
+				"anchorPoint": {
 					"x":"700",
 					"y":"144"}
 				}
 			],
 	
-	"distributeur":{
-		"carre":"1",
+	"distributor":{
+		"square":"1",
 		"triangle":"1",
 		"triangleRectangle":"1",
-		"losange":"1",
-		"hexagone":"1",
+		"diamond":"1",
+		"hexagon":"1",
 		"trapeze":"1"
 	}
 }

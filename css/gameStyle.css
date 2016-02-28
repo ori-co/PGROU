@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+.cache {
+    position: absolute;
+    display: none;
+}
+
+#json {
+    margin - left: 500 px;
+    margin - top: 200 px;
+}
+
+#start {
+    padding: 6 px 0 6 px 0;
+    font: Bold 13 px Arial;
+    background: #5FB404;
+                color:white;
+                width:100px;
+                border-radius:2px;
+                border:none;
+}
