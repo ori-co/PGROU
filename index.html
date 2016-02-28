@@ -24,81 +24,80 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
     update: update, 
     render: render });
     
-// Définition de la langue
-
-var langue = "assets/audio/fr/";
-    
 
 //Charger en mémoire les images et fichiers audio nécessaires avant le démarrage du jeu
 function preload() {
+    var lang = "assets/audio/fr/";  
+    var url_img = "assets/images/game/";
+    var url_sprites = "assets/sprites/";
 
-	game.load.text('txt_hexagon', 'sprites/hexagon.txt');
-	game.load.text('txt_lozenge', 'sprites/lozenge.txt');
-	game.load.text('txt_square', 'sprites/square.txt');
-	game.load.text('txt_trapezoid', 'sprites/trapezoid.txt');
-	game.load.text('txt_triangle_equi', 'sprites/triangle-equi.txt');
-	game.load.text('txt_triangle_rect', 'sprites/triangle-rect.txt');
+	game.load.text('txt_hexagon', url_sprites+'hexagon.txt');
+	game.load.text('txt_lozenge', url_sprites+'lozenge.txt');
+	game.load.text('txt_square', url_sprites+'square.txt');
+	game.load.text('txt_trapezoid', url_sprites+'trapezoid.txt');
+	game.load.text('txt_triangle_equi', url_sprites+'triangle-equi.txt');
+	game.load.text('txt_triangle_rect', url_sprites+'triangle-rect.txt');
 	
-	game.load.image('img_hexagon', 'sprites/hexagon.png');
-	game.load.image('img_lozenge', 'sprites/lozenge.png');
-	game.load.image('img_square', 'sprites/square.png');
-	game.load.image('img_trapezoid', 'sprites/trapezoid.png');
-	game.load.image('img_triangle_equi', 'sprites/triangle-equi.png');
-	game.load.image('img_triangle_rect', 'sprites/triangle-rect.png');
+	game.load.image('img_hexagon', url_sprites+'hexagon.png');
+	game.load.image('img_lozenge', url_sprites+'lozenge.png');
+	game.load.image('img_square', url_sprites+'square.png');
+	game.load.image('img_trapezoid', url_sprites+'trapezoid.png');
+	game.load.image('img_triangle_equi', url_sprites+'triangle-equi.png');
+	game.load.image('img_triangle_rect', url_sprites+'triangle-rect.png');
     
-    game.load.image('store', 'images/store.png');
-    game.load.image('pipe','images/store-pipe.png');
-    game.load.spritesheet('poubelle', 'images/buttons/trashbin.png',83,76);
-    game.load.spritesheet('button-square', 'images/buttons/shape-square.png',78,77);
-    game.load.spritesheet('button-trapezoid', 'images/buttons/shape-trapezoid.png',78,77);
-    game.load.spritesheet('button-triangle-equi', 'images/buttons/shape-t-equi.png',78,77);
-    game.load.spritesheet('button-hexagon', 'images/buttons/shape-hexagon.png',78,77);
-    game.load.spritesheet('button-triangle-rect', 'images/buttons/shape-t-rect.png',78,77);
-    game.load.spritesheet('button-lozenge', 'images/buttons/shape-lozenge.png',78,77);
+    game.load.image('store', url_img+'store.png');
+    game.load.image('pipe',url_img+'store-pipe.png');
+    game.load.spritesheet('poubelle', url_img+'buttons/trashbin.png',83,76);
+    game.load.spritesheet('button-square', url_img+'buttons/shape-square.png',78,77);
+    game.load.spritesheet('button-trapezoid', url_img+'buttons/shape-trapezoid.png',78,77);
+    game.load.spritesheet('button-triangle-equi', url_img+'buttons/shape-t-equi.png',78,77);
+    game.load.spritesheet('button-hexagon', url_img+'buttons/shape-hexagon.png',78,77);
+    game.load.spritesheet('button-triangle-rect', url_img+'buttons/shape-t-rect.png',78,77);
+    game.load.spritesheet('button-lozenge', url_img+'buttons/shape-lozenge.png',78,77);
     
-    game.load.image('basket-left','images/basket-left.png');
-    game.load.image('basket-right','images/basket-right.png');
-    game.load.image('basket-middle','images/basket-middle.png');
+    game.load.image('basket-left',url_img+'basket-left.png');
+    game.load.image('basket-right',url_img+'basket-right.png');
+    game.load.image('basket-middle',url_img+'basket-middle.png');
     
-    game.load.spritesheet('button-rotate','images/buttons/option-rotate.png',48,48);
-    game.load.spritesheet('button-colors','images/buttons/option-colors.png',48,48);
-    game.load.spritesheet('button-home','images/buttons/option-home.png',48,48);
-    game.load.spritesheet('button-export','images/buttons/option-export.png',48,48);
-    game.load.spritesheet('button-mute','images/buttons/option-mute.png',48,48);
+    game.load.spritesheet('button-rotate',url_img+'buttons/option-rotate.png',48,48);
+    game.load.spritesheet('button-colors',url_img+'buttons/option-colors.png',48,48);
+    game.load.spritesheet('button-home',url_img+'buttons/option-home.png',48,48);
+    game.load.spritesheet('button-export',url_img+'buttons/option-export.png',48,48);
+    game.load.spritesheet('button-mute',url_img+'buttons/option-mute.png',48,48);
     
-    game.load.image('menu-left','images/menu-left.png');
-    game.load.image('menu-right','images/menu-right.png');
-    game.load.image('menu-middle','images/menu-middle.png');
+    game.load.image('menu-left',url_img+'menu-left.png');
+    game.load.image('menu-right',url_img+'menu-right.png');
+    game.load.image('menu-middle',url_img+'menu-middle.png');
     
-    game.load.audio('corbeille',langue+'corbeille.mp3');
-    game.load.audio('clic',langue+'clic.mp3');
-    game.load.audio('rotation',langue+'rotation.mp3');
-    game.load.audio('accueil',langue+'accueil.mp3');
-    game.load.audio('select_class',langue+'select_class.mp3');
-    game.load.audio('verrouille',langue+'verrouille.mp3');
-    game.load.audio('importation',langue+'importation.mp3');
-    game.load.audio('classique',langue+'classique.mp3');
-    game.load.audio('firstform',langue+'firstform.mp3');
-    game.load.audio('remplissage_cla',langue+'remplissage_cla.mp3');
-    game.load.audio('patron',langue+'patron.mp3');
-    game.load.audio('distrib',langue+'distrib.mp3');
-    game.load.audio('prop_rotation',langue+'prop_rotation.mp3');
-    game.load.audio('top_validation',langue+'top_validation.mp3');
-    game.load.audio('low_validation',langue+'low_validation.mp3');
-    game.load.audio('popup',langue+'popup.mp3');
-    game.load.audio('nextlevel',langue+'nextlevel.mp3');
-    game.load.audio('square1',langue+'square1.mp3');
-    game.load.audio('triangle-eq1',langue+'triangle-eq1.mp3');
-    game.load.audio('triangle-req1',langue+'triangle-req1.mp3');
-    game.load.audio('trapez1',langue+'trapez1.mp3');
-    game.load.audio('lozenge1',langue+'lozenge1.mp3');
-    game.load.audio('selectfree',langue+'selectfree.mp3');
-    game.load.audio('remplissage-free',langue+'remplissage-free.mp3');
-    game.load.audio('crea',langue+'crea.mp3');
-    game.load.audio('save',langue+'save.mp3');
-    game.load.audio('advertise',langue+'advertise.mp3');
-    game.load.audio('print',langue+'print.mp3');
-    game.load.audio('exprt',langue+'exprt.mp3');
+    game.load.audio('corbeille',lang+'corbeille.mp3');
+    game.load.audio('clic',lang+'clic.mp3');
+    game.load.audio('rotation',lang+'rotation.mp3');
+    game.load.audio('accueil',lang+'accueil.mp3');
+    game.load.audio('select_class',lang+'select_class.mp3');
+    game.load.audio('verrouille',lang+'verrouille.mp3');
+    game.load.audio('importation',lang+'importation.mp3');
+    game.load.audio('classique',lang+'classique.mp3');
+    game.load.audio('firstform',lang+'firstform.mp3');
+    game.load.audio('remplissage_cla',lang+'remplissage_cla.mp3');
+    game.load.audio('patron',lang+'patron.mp3');
+    game.load.audio('distrib',lang+'distrib.mp3');
+    game.load.audio('prop_rotation',lang+'prop_rotation.mp3');
+    game.load.audio('top_validation',lang+'top_validation.mp3');
+    game.load.audio('low_validation',lang+'low_validation.mp3');
+    game.load.audio('popup',lang+'popup.mp3');
+    game.load.audio('nextlevel',lang+'nextlevel.mp3');
+    game.load.audio('square1',lang+'square1.mp3');
+    game.load.audio('triangle-eq1',lang+'triangle-eq1.mp3');
+    game.load.audio('triangle-req1',lang+'triangle-req1.mp3');
+    game.load.audio('trapez1',lang+'trapez1.mp3');
+    game.load.audio('lozenge1',lang+'lozenge1.mp3');
+    game.load.audio('selectfree',lang+'selectfree.mp3');
+    game.load.audio('remplissage-free',lang+'remplissage-free.mp3');
+    game.load.audio('crea',lang+'crea.mp3');
+    game.load.audio('save',lang+'save.mp3');
+    game.load.audio('advertise',lang+'advertise.mp3');
+    game.load.audio('print',lang+'print.mp3');
+    game.load.audio('exprt',lang+'exprt.mp3');
     
 
 }
@@ -278,7 +277,6 @@ var menuLeft;
 //Fonction Create principale du jeu
 function create() {
     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    //Fond d'écran
     myBitmap = game.make.bitmapData(2000,2000);
     myBitmap.addToWorld();
     grd = myBitmap.context.createLinearGradient(0,0,1000,1000);
@@ -286,7 +284,6 @@ function create() {
     grd.addColorStop(1,"#bce3f0");
     myBitmap.context.fillStyle = grd;
     myBitmap.context.fillRect(0,0,2000,2000);
-    //game.stage.backgroundColor = "#4488AA";
     
     palette = ["0x83EE00","0xFBFE00","0x058AB6","0xE4005C","0x8007BE","0xFF8300"];
     
