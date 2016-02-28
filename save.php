@@ -25,7 +25,7 @@ $fp = fopen($fichier,'w');
 fwrite($fp, $json);
 fclose($fp);
  
-echo(" <center><br><br><div style=\"color:green\">Saving successful! ");
-echo("<br> Your problem has been successfully saved to the PRGROU folder. </div></center>");
+echo(" <center><br><br><div style=\"color:green\">Enregistrement effectué! ");
+echo("<br> Le problème a été enregistré dans le dossier PGROU. </div></center>");
 }
 ?>

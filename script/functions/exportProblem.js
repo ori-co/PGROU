@@ -174,11 +174,11 @@
                 popup = window.open('', 'popup', 'height=200, width=400,left=' + ((screen.width - 400) / 2) + ',top=' + ((screen.height - 500) / 2));
                 popup.document.write('<center><form action="save.php" method="post" >');
                 popup.document.write('<input type="hidden" id="cache" name="cache" value=""/>');
-                popup.document.write('<label>Name of your problem * : </label>');
+                popup.document.write('<label>Nom du problème créé : </label>');
                 popup.document.write('<input type="text" id="nom" name="nom" value=""/>');
                 popup.document.write('<br><br>');
                 popup.document.getElementById('cache').value = json;
-                popup.document.write('<input type="submit" style="border:none; padding:6px 0 6px 0;border-radius:8px;background:#70B144;font:bold 13px Arial;color:#fff;width:60px;" value="Submit" />');
+                popup.document.write('<input type="submit" style="border:none; padding:6px 0 6px 0;border-radius:8px;background:#70B144;font:bold 13px Arial;color:#fff;width:60px;" value="OK" />');
                 popup.document.write('</form></center>');
                
             }
