@@ -33,4 +33,6 @@ function buildMenu() {
     ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', returnIndex, this, 2, 1, 0, 1);
     mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
     exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
+    
+    shadows = game.add.group();
 }
