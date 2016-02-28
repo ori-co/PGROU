@@ -5,6 +5,7 @@
 	<title>/-> AttriMaths <-/</title>
 	<script type="text/javascript" src="phaser.js"></script>
 	<script type="text/javascript" src="script/soundmanager2.js"></script>
+        <script type="text/javascript" src="script/preload-script.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -23,86 +24,6 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
     create: create, 
     update: update, 
     render: render });
-    
-
-//Charger en mémoire les images et fichiers audio nécessaires avant le démarrage du jeu
-function preload() {
-    var lang = "assets/audio/fr/";  
-    var url_img = "assets/images/game/";
-    var url_sprites = "assets/sprites/";
-
-	game.load.text('txt_hexagon', url_sprites+'hexagon.txt');
-	game.load.text('txt_lozenge', url_sprites+'lozenge.txt');
-	game.load.text('txt_square', url_sprites+'square.txt');
-	game.load.text('txt_trapezoid', url_sprites+'trapezoid.txt');
-	game.load.text('txt_triangle_equi', url_sprites+'triangle-equi.txt');
-	game.load.text('txt_triangle_rect', url_sprites+'triangle-rect.txt');
-	
-	game.load.image('img_hexagon', url_sprites+'hexagon.png');
-	game.load.image('img_lozenge', url_sprites+'lozenge.png');
-	game.load.image('img_square', url_sprites+'square.png');
-	game.load.image('img_trapezoid', url_sprites+'trapezoid.png');
-	game.load.image('img_triangle_equi', url_sprites+'triangle-equi.png');
-	game.load.image('img_triangle_rect', url_sprites+'triangle-rect.png');
-    
-    game.load.image('store', url_img+'store.png');
-    game.load.image('pipe',url_img+'store-pipe.png');
-    game.load.spritesheet('poubelle', url_img+'buttons/trashbin.png',83,76);
-    game.load.spritesheet('button-square', url_img+'buttons/shape-square.png',78,77);
-    game.load.spritesheet('button-trapezoid', url_img+'buttons/shape-trapezoid.png',78,77);
-    game.load.spritesheet('button-triangle-equi', url_img+'buttons/shape-t-equi.png',78,77);
-    game.load.spritesheet('button-hexagon', url_img+'buttons/shape-hexagon.png',78,77);
-    game.load.spritesheet('button-triangle-rect', url_img+'buttons/shape-t-rect.png',78,77);
-    game.load.spritesheet('button-lozenge', url_img+'buttons/shape-lozenge.png',78,77);
-    
-    game.load.image('basket-left',url_img+'basket-left.png');
-    game.load.image('basket-right',url_img+'basket-right.png');
-    game.load.image('basket-middle',url_img+'basket-middle.png');
-    
-    game.load.spritesheet('button-rotate',url_img+'buttons/option-rotate.png',48,48);
-    game.load.spritesheet('button-colors',url_img+'buttons/option-colors.png',48,48);
-    game.load.spritesheet('button-home',url_img+'buttons/option-home.png',48,48);
-    game.load.spritesheet('button-export',url_img+'buttons/option-export.png',48,48);
-    game.load.spritesheet('button-mute',url_img+'buttons/option-mute.png',48,48);
-    
-    game.load.image('menu-left',url_img+'menu-left.png');
-    game.load.image('menu-right',url_img+'menu-right.png');
-    game.load.image('menu-middle',url_img+'menu-middle.png');
-    
-    game.load.audio('corbeille',lang+'corbeille.mp3');
-    game.load.audio('clic',lang+'clic.mp3');
-    game.load.audio('rotation',lang+'rotation.mp3');
-    game.load.audio('accueil',lang+'accueil.mp3');
-    game.load.audio('select_class',lang+'select_class.mp3');
-    game.load.audio('verrouille',lang+'verrouille.mp3');
-    game.load.audio('importation',lang+'importation.mp3');
-    game.load.audio('classique',lang+'classique.mp3');
-    game.load.audio('firstform',lang+'firstform.mp3');
-    game.load.audio('remplissage_cla',lang+'remplissage_cla.mp3');
-    game.load.audio('patron',lang+'patron.mp3');
-    game.load.audio('distrib',lang+'distrib.mp3');
-    game.load.audio('prop_rotation',lang+'prop_rotation.mp3');
-    game.load.audio('top_validation',lang+'top_validation.mp3');
-    game.load.audio('low_validation',lang+'low_validation.mp3');
-    game.load.audio('popup',lang+'popup.mp3');
-    game.load.audio('nextlevel',lang+'nextlevel.mp3');
-    game.load.audio('square1',lang+'square1.mp3');
-    game.load.audio('triangle-eq1',lang+'triangle-eq1.mp3');
-    game.load.audio('triangle-req1',lang+'triangle-req1.mp3');
-    game.load.audio('trapez1',lang+'trapez1.mp3');
-    game.load.audio('lozenge1',lang+'lozenge1.mp3');
-    game.load.audio('selectfree',lang+'selectfree.mp3');
-    game.load.audio('remplissage-free',lang+'remplissage-free.mp3');
-    game.load.audio('crea',lang+'crea.mp3');
-    game.load.audio('save',lang+'save.mp3');
-    game.load.audio('advertise',lang+'advertise.mp3');
-    game.load.audio('print',lang+'print.mp3');
-    game.load.audio('exprt',lang+'exprt.mp3');
-    
-
-}
-	
-//  Définition des variables sons
 
 var corbeille ;
 /*var clic;

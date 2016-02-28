@@ -6,6 +6,7 @@
         <meta charset="UTF-8" />
         <title>/-> AttriMaths <-/</title>
         <script type="text/javascript" src="phaser.js"></script>
+        <script type="text/javascript" src="script/preload-script.js"></script>
         <script>
 
             ///////////////////////////////////////////////////////////////////////
@@ -208,51 +209,6 @@
                     create: create,
                     update: update,
                     render: render});
-                //Charger en m�moire les images n�cessaires avant le d�marrage du jeu
-    function preload() {
-        var url_img = "assets/images/game/";
-        var url_sprites = "assets/sprites/";
-
-	game.load.text('txt_hexagon', url_sprites+'hexagon.txt');
-        game.load.text('txt_lozenge', url_sprites + 'lozenge.txt');
-        game.load.text('txt_square', url_sprites + 'square.txt');
-        game.load.text('txt_trapezoid', url_sprites + 'trapezoid.txt');
-        game.load.text('txt_triangle_equi', url_sprites + 'triangle-equi.txt');
-        game.load.text('txt_triangle_rect', url_sprites + 'triangle-rect.txt');
-
-        game.load.image('img_hexagon', url_sprites + 'hexagon.png');
-        game.load.image('img_lozenge', url_sprites + 'lozenge.png');
-        game.load.image('img_square', url_sprites + 'square.png');
-        game.load.image('img_trapezoid', url_sprites + 'trapezoid.png');
-        game.load.image('img_triangle_equi', url_sprites + 'triangle-equi.png');
-        game.load.image('img_triangle_rect', url_sprites + 'triangle-rect.png');
-
-        game.load.image('store', url_img + 'store.png');
-        game.load.image('pipe', url_img + 'store-pipe.png');
-        game.load.spritesheet('poubelle', url_img + 'buttons/trashbin.png', 83, 76);
-        game.load.spritesheet('button-square', url_img + 'buttons/shape-square.png', 78, 77);
-        game.load.spritesheet('button-trapezoid', url_img + 'buttons/shape-trapezoid.png', 78, 77);
-        game.load.spritesheet('button-triangle-equi', url_img + 'buttons/shape-t-equi.png', 78, 77);
-        game.load.spritesheet('button-hexagon', url_img + 'buttons/shape-hexagon.png', 78, 77);
-        game.load.spritesheet('button-triangle-rect', url_img + 'buttons/shape-t-rect.png', 78, 77);
-        game.load.spritesheet('button-lozenge', url_img + 'buttons/shape-lozenge.png', 78, 77);
-
-        game.load.image('basket-left', url_img + 'basket-left.png');
-        game.load.image('basket-right', url_img + 'basket-right.png');
-        game.load.image('basket-middle', url_img + 'basket-middle.png');
-
-        game.load.spritesheet('button-rotate', url_img + 'buttons/option-rotate.png', 48, 48);
-        game.load.spritesheet('button-colors', url_img + 'buttons/option-colors.png', 48, 48);
-        game.load.spritesheet('button-home', url_img + 'buttons/option-home.png', 48, 48);
-        game.load.spritesheet('button-export', url_img + 'buttons/option-export.png', 48, 48);
-        game.load.spritesheet('button-mute', url_img + 'buttons/option-mute.png', 48, 48);
-
-        game.load.image('menu-left', url_img + 'menu-left.png');
-        game.load.image('menu-right', url_img + 'menu-right.png');
-        game.load.image('menu-middle', url_img + 'menu-middle.png');
-    }
-
-
 
                 //Fonction Create principale du jeu
                 function create() {
