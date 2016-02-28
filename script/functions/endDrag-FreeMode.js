@@ -20,5 +20,6 @@ function endDrag(tempSprite, pointer) {
             nbF6 = nbF6 - 1;
         }
         tempSprite.destroy();
+        trashBinSound();
     }
 }
