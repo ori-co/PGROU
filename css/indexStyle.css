@@ -1,11 +1,18 @@
 body{
-    background:url("../assets/images/index/wallpaper.png");
+    background-image:url("../assets/images/index/wallpaper.png");
+    background-size: cover;
     width: 100%;
     height: 100%;
 }
 
-input{
+#buttons {
+    margin-top:20%;
+    margin-left: 50%;
+}
 
+input{
+    display:block;
+    margin : 10px;
     background-image: url("../assets/images/index/button_normal.png");
     height : 100px;
     width : 220px;
@@ -16,6 +23,16 @@ input{
     font-size : 18px;
     text-align: left;
     padding-left: 15px;
+}
+
+input:hover {
+    background-image: url("../assets/images/index/button_over.png");
+    color:#b3f5fb;
+}
+
+input:active {
+    background-image: url("../assets/images/index/button_click.png");
+    color:#11aab8;
 }
 
 #b2{

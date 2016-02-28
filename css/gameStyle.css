@@ -8,16 +8,16 @@ body {
 }
 
 #json {
-    margin - left: 500 px;
-    margin - top: 200 px;
+    margin-left: 500px;
+    margin-top: 200px;
 }
 
 #start {
-    padding: 6 px 0 6 px 0;
-    font: Bold 13 px Arial;
+    padding: 6px 0 6px 0;
+    font: Bold 13px Arial;
     background: #5FB404;
-                color:white;
-                width:100px;
-                border-radius:2px;
-                border:none;
+    color:white;
+    width:100px;
+    border-radius:2px;
+    border:none;
 }

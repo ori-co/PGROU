@@ -4,27 +4,11 @@
         <meta charset="UTF-8" />
         <title>/-> Maths Puzzle <-/</title>
         <link rel="stylesheet" type="text/css" href="css/indexStyle.css">
-        <script>
-            function buttonOver(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/index/button_over.png")';
-                  document.getElementById(id).style.color = "#b3f5fb";
-            }
-            function buttonOut(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/index/button_normal.png")';
-                 document.getElementById(id).style.color = "white";
-            }
-            function buttonClick(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/index/button_click.png")';
-                 document.getElementById(id).style.color = "#11aab8";
-            }
-        </script>
     </head>
     <body>
-        <div id="classicMode">
-            <input type="button" value="Mode Classique" id="b1" onmouseover="buttonOver('b1')" onmouseout="buttonOut('b1')" onmousedown="buttonClick('b1')" onmouseup="buttonOut('b1')" onclick="self.location.href = 'levelsmap.html'"/>
-        </div>
-        <div id="freeMode">
-            <input type="button" value="Mode Libre" id="b2" onmouseover="buttonOver('b2')" onmouseout="buttonOut('b2')" onmousedown="buttonClick('b2')" onmouseup="buttonOut('b2')" onclick="self.location.href = 'freemode.html'"/>
+        <div id="buttons">
+            <input type="button" value="Mode classique" onclick="self.location.href = 'levelsmap.html'"/>
+            <input type="button" value="Mode libre" onclick="self.location.href = 'FreeMode.html'"/>
         </div>
     </body>
 </html>

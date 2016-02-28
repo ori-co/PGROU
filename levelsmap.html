@@ -4,55 +4,28 @@
         <meta charset="UTF-8" />
         <title>/-> Maths Puzzle <-/</title>
         <link rel="stylesheet" type="text/css" href="css/levelsMapStyle.css">
-        <script>
-            function buttonOver(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/levels/button_over.png")';
-                document.getElementById(id).style.color = "#b3f5fb";
-            }
-            function buttonOut(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/levels/button_normal.png")';
-                document.getElementById(id).style.color = "white";
-            }
-            function buttonClick(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/levels/button_click.png")';
-                document.getElementById(id).style.color = "#11aab8";
-            }
-    
-            function buttonOver2(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/levels/button_import_over.png")';
-                document.getElementById(id).style.color = "#ffc2cc";
-            }
-            function buttonOut2(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/levels/button_import_normal.png")';
-                document.getElementById(id).style.color = "white";
-            }
-            function buttonClick2(id) {
-                document.getElementById(id).style.backgroundImage = 'url("assets/images/levels/button_import_click.png")';
-                document.getElementById(id).style.color = "#bd132f";
-            }
-            
-        </script>
     </head>
     <body>
-        <div id="import">
-            <input type="button" value="Charger un problème" id="b" style="background-image : url('assets/images/levels/button_import_normal.png')" onmouseover="buttonOver2('b')" onmouseout="buttonOut2('b')" onmousedown="buttonClick2('b')" onmouseup="buttonOutb('b')" onclick="self.location.href = 'load.html'" /> 
+        <div id="importation">
+        <input type="button" id="importButton" value="Importer un problème" onclick="self.location.href = 'load.html'" /> 
         </div>
+        
         <div id="levels">
-            <input type="button" value="1" id="n1" style="background-image : url('assets/images/levels/button_normal.png')" onmouseover="buttonOver('n1')" onmouseout="buttonOut('n1')" onmousedown="buttonClick('n1')" onmouseup="buttonOut('n1')" onclick="self.location.href = 'level1.html'" />
-            <input type="button" value="" id="n2"/>
-            <input type="button" value="" id="n3"/>
-            <input type="button" value="" id="n4"/>
-            <input type="button" value="" id="n5"/>
-            <input type="button" value="" id="n6"/>
-            <input type="button" value="" id="n7"/>
-            <input type="button" value="" id="n8"/>
-            <input type="button" value="" id="n9"/>
-            <input type="button" value="" id="n10"/>
-            <input type="button" value="" id="n11"/>
-            <input type="button" value="" id="n12"/>
-            <input type="button" value="" id="n13"/>
-            <input type="button" value="" id="n14"/>
-            <input type="button" value="" id="n15"/>
+            <input type="button" class = "levelButton" value="1" onclick="self.location.href = 'level1.html'" />
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>          
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>           
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="inactivelevelButton" value=" "/>
         </div>
     </body>
 </html>

@@ -1,28 +1,17 @@
 body{
     background:url("../assets/images/levels/wallpaper.png");
+    background-size: cover;
     width: 100%;
     height: 100%;
 }
-#import{
-    margin-left:100px;
-    position : absolute;
-    margin-top : 100px;
-}
-input{
-    height : 100px;
-    width : 100px;
-    border : none;
-    background-image: url('../assets/images/levels/locked.png');
-    font : ucidatypewriter, monospace;
-    color : white;
-    font-weight: 600;
-    font-size : 50px;
-    text-align: center;
-    padding-bottom : 20px;
+#importation{
+    position:absolute;
+    top:30%;
+    left:100px;
 }
 
-#b{
-    position : absolute;
+#importButton {
+    background-image : url('../assets/images/levels/button_import_normal.png');
     height : 100px;
     width : 300px;
     font-size : 20px;
@@ -31,85 +20,52 @@ input{
     border : none;
 }
 
-#n1{
-    position : absolute;
-    margin-top : 100px;
-    margin-left: 500px;
+#importButton:hover {
+    background-image : url('../assets/images/levels/button_import_over.png');
+    color : #ffc2cc;
+}
+ 
+#importButton:active {
+    background-image:url('../assets/images/levels/button_import_click.png');
+    color:#bd132f;
 }
 
-#n2{
-    position : absolute;
-    margin-top : 100px;
-    margin-left: 650px;
+#levels {
+    position:absolute;
+    top:30%;
+    margin-left:420px;
+    right:5%;
+    max-width:800px;
 }
 
-#n3{
-    position : absolute;
-    margin-top : 100px;
-    margin-left: 800px;
-}
-#n4{
-    position : absolute;
-    margin-top : 100px;
-    margin-left: 950px;
-}
-#n5{
-    position : absolute;
-    margin-top : 100px;
-    margin-left: 1100px;
+input {
+    height : 100px;
+    width : 100px;
+    border : none;
+    font : ucidatypewriter, monospace;
+    font-weight: 600;
+    font-size : 50px;
+    text-align: center;
+    padding-bottom : 20px;
+    margin-bottom : 5px;
 }
 
-#n6{
-    position : absolute;
-    margin-top : 225px;
-    margin-left: 500px;
+.levelButton{
+    background-image: url('../assets/images/levels/button_normal.png'); 
+    color:white;
 }
 
-#n7{
-    position : absolute;
-    margin-top : 225px;
-    margin-left: 650px;
+.levelButton:hover {
+    background-image: url('../assets/images/levels/button_over.png'); 
+    color:#b3f5fb;
 }
 
-#n8{
-    position : absolute;
-    margin-top : 225px;
-    margin-left: 800px;
-}
-#n9{
-    position : absolute;
-    margin-top : 225px;
-    margin-left: 950px;
-}
-#n10{
-    position : absolute;
-    margin-top : 225px;
-    margin-left: 1100px;
-}
-#n11{
-    position : absolute;
-    margin-top : 350px;
-    margin-left: 500px;
+.levelButton:active {
+    background-image: url('../assets/images/levels/button_click.png');
+    color:#11aab8;
 }
 
-#n12{
-    position : absolute;
-    margin-top : 350px;
-    margin-left: 650px;
-}
-
-#n13{
-    position : absolute;
-    margin-top : 350px;
-    margin-left: 800px;
-}
-#n14{
-    position : absolute;
-    margin-top : 350px;
-    margin-left: 950px;
-}
-#n15{
-    position : absolute;
-    margin-top : 350px;
-    margin-left: 1100px;
+.inactivelevelButton {
+    background-image: url('../assets/images/levels/locked.png'); 
+    color:white;
 }
