@@ -6,15 +6,30 @@ $name =$_POST['nom'];
 //Check if the name is valid. If it is empty, print the form with a error message
 if(strcmp($name,"")==0){
 	
-echo"   <center><div style=\"color:red\"> Invalid name! </div>
-					<br>
+echo"  
+	<html>
+		<head>
+		<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
+		<title></title>
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\">
+		</head>
+		
+		<body>
+			<br>
+			<center>
+				<div class=\"error\" > Nom invalide! </div>
+					
 				<form action=\"save.php\" method=\"post\" >
 					<input type=\"hidden\" id=\"cache\" name=\"cache\" value=\"$json\"/>
-					<label>Name of your problem * : </label>
+						<br><br>
+					<label>Nom de votre problème * : </label>
 					<input type=\"text\" id=\"nom\" name=\"nom\" value=\"\"/>
-					<br><br>
-					<input type=\"submit\" style=\"border:none; padding:6px 0 6px 0;border-radius:8px;background:#70B144;font:bold 13px Arial;color:#fff;width:60px;\" value=\"Submit\" />
-              </form></center>
+						<br><br>
+					<input type=\"submit\" id=\"save\"  value=\"Enregistrer\" />
+				</form>
+			</center>
+		</body>
+	</html>
        ";
 	
 	
@@ -50,10 +65,23 @@ header('Last-Modified: '.gmdate(DATE_RFC1123, filemtime($full_path)));
 readfile($full_path);
 exit;
 */ 
- 
- 
- 
-echo(" <center><br><br><div style=\"color:green\">Enregistrement effectu&eacute;! ");
 
+ echo"
+<html>
+		<head>
+		<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
+		<title></title>
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\">
+		</head>
+		
+		<body>
+			<center>
+				<br><br><br>
+				<div class=\"ok\"> Enregistrement effectué </div>
+			</center>
+		</body>
+	</html>
+
+";
 }
 ?>
