@@ -1,7 +1,8 @@
 //Function to add shapes from the basket
-function addShape(shape, F) {
+function addShape(shape, F) { 
     nbF = nbF + 1;
-    var tempSprite = F.create(130 * nbF - 35, game.height - 90, 'img_' + shape);
+    var position = Math.random()*(game.width-2*90)+90;
+    var tempSprite = F.create(position, game.height - 90, 'img_' + shape);
     tempSprite.anchor.x = 0.5;
     tempSprite.anchor.y = 0.5;
     
