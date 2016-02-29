@@ -171,14 +171,15 @@
                         }';
             
                 //Open a pop-up to save the json file
-                popup = window.open('', 'popup', 'height=200, width=400,left=' + ((screen.width - 400) / 2) + ',top=' + ((screen.height - 500) / 2));
-                popup.document.write('<center><form action="save.php" method="post" >');
+                popup = window.open('', 'popup', 'height=300, width=600,left=' + ((screen.width - 400) / 2) + ',top=' + ((screen.height - 500) / 2));
+                popup.document.write('<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\"></head><body><br>');
+				popup.document.write('<center><form action="save.php" method="post" >');
                 popup.document.write('<input type="hidden" id="cache" name="cache" value=""/>');
-                popup.document.write('<label>Nom du problème créé : </label>');
+                popup.document.write('<label>Nom de votre problème * : </label>');
                 popup.document.write('<input type="text" id="nom" name="nom" value=""/>');
                 popup.document.write('<br><br>');
                 popup.document.getElementById('cache').value = json;
-                popup.document.write('<input type="submit" style="border:none; padding:6px 0 6px 0;border-radius:8px;background:#70B144;font:bold 13px Arial;color:#fff;width:60px;" value="OK" />');
-                popup.document.write('</form></center>');
+                popup.document.write('<input type="submit" id="save" value="Enregistrer" />');
+                popup.document.write('</form></center></body></html>');
                
             }
