@@ -1,0 +1,90 @@
+#start{
+    display:block;
+    margin : 0px;
+    background-image: url("../assets/images/load/button_normal.png");
+    height : 100px;
+    width : 300px;
+    border : none;
+    font : ucidatypewriter, monospace;
+    color : white;
+    font-weight: 600;
+    font-size : 25px;
+    text-align: left;
+    padding-left: 60px;
+}
+
+#start:hover {
+    background-image: url("../assets/images/load/button_over.png");
+    color:#ecff92;
+}
+
+#start:active {
+    background-image: url("../assets/images/load/button_click.png");
+    color:#9bdb10;
+}
+
+ body {
+    background-image:url("../assets/images/load/wallpaper.png");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+	margin:0px;
+}
+
+.cache {
+    position: absolute;
+    display: none;
+}
+
+#json {
+    margin-top: 200px;
+	width : 50%;
+}
+
+
+.inputBtnSection{
+    display:inline-block;
+    vertical-align:top;
+    font-size:0;
+    font-family:verdana;
+}
+.disableInputField{
+    display:inline-block;
+    vertical-align:top;
+    height: 35px;
+    margin: 0;
+    font-size:20px;
+    padding:0 3px;
+}
+
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+    border:solid 1px gray;
+    display:inline-block;
+    vertical-align:top;
+}
+.uploadBtn{
+    display:inline-block;
+    vertical-align:top;
+    background:rgba(0,0,0,0.5);
+    font-size:20px;
+    padding:0 10px;
+    height:36.5px;
+    line-height:22px;
+    color:#fff;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+
