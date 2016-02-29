@@ -34,15 +34,8 @@
 					"x":"700",
 					"y":"144"}
 				}
-			],
+			]
 	
-	"distributor":{
-		"square":"1",
-		"triangle":"1",
-		"triangleRectangle":"1",
-		"diamond":"1",
-		"hexagon":"1",
-		"trapeze":"1"
-	}
+	
 }
 }

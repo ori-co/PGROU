@@ -18,6 +18,7 @@ body{
     padding-left:60px;
     padding-top : 15px;
     border : none;
+	color:white;
 }
 
 #importButton:hover {

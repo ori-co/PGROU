@@ -387,7 +387,7 @@
 
                         //Create the wished pattern
 
-                        var pattern = [];
+                        var patterns = [];
 
                         //Get the JSON content
                         var result = document.getElementById('cache').innerText;
@@ -398,48 +398,48 @@
 
                         //Pattern creation
                         for (var i = 0; i < jsonObj.problem.pattern.length; i++) {
-                            switch (jsonObj.problem.pattern[i].kind) {
+                            switch (jsonObj.problem.pattern[i].shape) {
                                 case "square":
-                                    pattern[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_square');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_square');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "trapeze":
-                                    pattern[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_trapeze');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_trapeze');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "hexagon":
-                                    pattern[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_hexagon');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_hexagon');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "triangleEqui":
-                                    pattern[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_equi');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_equi');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "triangleRect":
-                                    pattern[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_rect');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_rect');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "diamond":
-                                    pattern[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_diamond');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_diamond');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
 
                             }
