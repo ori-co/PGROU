@@ -33,6 +33,22 @@
 				"anchorPoint": {
 					"x":"700",
 					"y":"144"}
+				},
+				{
+				"shape":"triangleRect",
+				"color":"blue",
+				"rotation":"0",
+				"anchorPoint": {
+					"x":"603",
+					"y":"175"}
+				},
+				{
+				"shape":"diamond",
+				"color":"blue",
+				"rotation":"0",
+				"anchorPoint": {
+					"x":"537",
+					"y":"154"}
 				}
 			]
 	
