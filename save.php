@@ -61,7 +61,7 @@ fclose($fp);
 ";
 
 //We open a window for download
-$path = 'C:\Users\Laura\Documents\xampp\htdocs\PGROU\\'; // local path of the json file
+$path = 'C:\Users\Laura\Documents\xampp\htdocs\PGROU\library\\'; // local path of the json file
 $full_path=$path.$file; 
 
 $file_name = basename($full_path);
