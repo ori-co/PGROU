@@ -6,14 +6,20 @@
         <link rel="stylesheet" type="text/css" href="css/levelsMapStyle.css">
     </head>
     <body>
+        <img id="wallpaper" src="assets/images/levels/wallpaper.png" alt="wallpaper"/>
+        <div id="menu">
+            <input type="button" class="menuButton" id="home" value=" " onclick="self.location.href = 'index.html'"/>
+            <input type="button" class="menuButton" id="mute" value=" "/>
+        </div>
+        
         <div id="importation">
         <input type="button" id="importButton" value="Importer un problème" onclick="self.location.href = 'load.html'" /> 
         </div>
         
         <div id="levels">
             <input type="button" class = "levelButton" value="1" onclick="self.location.href = 'level1.html'" />
-            <input type="button" class="inactivelevelButton" value=" "/>
-            <input type="button" class="inactivelevelButton" value=" "/>
+            <input type="button" class="levelButton" value="2"/>
+            <input type="button" class="levelButton" value="3"/>
             <input type="button" class="inactivelevelButton" value=" "/>
             <input type="button" class="inactivelevelButton" value=" "/>          
             <input type="button" class="inactivelevelButton" value=" "/>

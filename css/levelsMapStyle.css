@@ -1,13 +1,60 @@
 body{
-    background:url("../assets/images/levels/wallpaper.png");
-    background-size: cover;
+    position:fixed;
     width: 100%;
-    height: 100%;
+    top:0;
+    bottom:0;
+    margin:0;
 }
+
+#wallpaper {
+    width:100%;
+    height:100%;
+}
+
+#menu {
+    background-image:url('../assets/images/levels/menu.png');
+    position:absolute;
+    right:5px;
+    top:5px;
+    width:134px;
+    height:71px;
+}
+
+.menuButton {
+    width :48px;
+    height :48px;
+    margin-top:5px;
+    margin-left:7px;
+}
+
+#home {
+    background-image: url('../assets/images/levels/option-home_normal.png');
+}
+
+#home:hover {
+    background-image: url('../assets/images/levels/option-home_over.png');
+}
+
+#home:active {
+    background-image: url('../assets/images/levels/option-home_click.png');
+}
+
+#mute {
+    background-image: url('../assets/images/levels/option-mute_normal.png');
+}
+
+#mute:hover {
+    background-image: url('../assets/images/levels/option-mute_over.png');
+}
+
+#mute:active {
+    background-image: url('../assets/images/levels/option-mute_click.png');
+}
+
 #importation{
     position:absolute;
-    top:30%;
-    left:100px;
+    bottom:10%;
+    left:15%;
 }
 
 #importButton {
@@ -15,8 +62,8 @@ body{
     height : 100px;
     width : 300px;
     font-size : 20px;
+    color:#cc4970;
     padding-left:60px;
-    padding-top : 15px;
     border : none;
 }
 
@@ -27,7 +74,7 @@ body{
  
 #importButton:active {
     background-image:url('../assets/images/levels/button_import_click.png');
-    color:#bd132f;
+    color:#dd6387;
 }
 
 #levels {
@@ -39,15 +86,19 @@ body{
 }
 
 input {
-    height : 100px;
-    width : 100px;
+    height : 77px;
+    width : 78px;
     border : none;
-    font : ucidatypewriter, monospace;
+    font-family : roboto;
     font-weight: 600;
     font-size : 50px;
     text-align: center;
-    padding-bottom : 20px;
     margin-bottom : 5px;
+    background-color: transparent;
+}
+
+input:focus {
+    outline:none;
 }
 
 .levelButton{
