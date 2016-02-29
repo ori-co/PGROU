@@ -35,14 +35,34 @@ echo"
 	
 	
 }else{ // Otherwhise, we save and print a success message
+
+//We save the file on the server
 $file=$name.'.json';
 $fp = fopen($file,'w');
 fwrite($fp, $json);
 fclose($fp);
  
-/*
+ echo"
+<html>
+		<head>
+		<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
+		<title></title>
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\">
+		</head>
+		
+		<body>
+			<center>
+				<br><br><br>
+				<div class=\"ok\"> Enregistrement effectué </div>
+			</center>
+		</body>
+	</html>
+
+";
+
+//We open a window for download
 $path = 'C:\Users\Laura\Documents\xampp\htdocs\PGROU\\'; // local path of the json file
-$full_path=$path.$fichier; 
+$full_path=$path.$file; 
 
 $file_name = basename($full_path);
  
@@ -64,24 +84,5 @@ header('Last-Modified: '.gmdate(DATE_RFC1123, filemtime($full_path)));
  
 readfile($full_path);
 exit;
-*/ 
-
- echo"
-<html>
-		<head>
-		<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
-		<title></title>
-		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\">
-		</head>
-		
-		<body>
-			<center>
-				<br><br><br>
-				<div class=\"ok\"> Enregistrement effectué </div>
-			</center>
-		</body>
-	</html>
-
-";
 }
 ?>

@@ -109,46 +109,6 @@ function create() {
     }
 
     //Create the wished pattern
-	/*
-	//We open the level file
-	var fileSystem=new ActiveXObject("Scripting.FileSystemObject");
-	var myfile=fileSystem.OpenTextFile("level/level1.json", 1 ,true);
-	var result = myfile.ReadAll()
-	
-	//JSON analysis
-	var jsonObj = JSON.parse(result);
-	
-	//Pattern creation
-	var patterns =[];
-                        
-	for (var i = 0; i < jsonObj.problem.pattern.length; i++) {
-        switch (jsonObj.problem.pattern[i].shape) {
-                 case "square":
-                    patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_square');
-					patternStyle(patterns[i], jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, jsonObj.problem.pattern[i].rotation);
-                break;
-                case "trapeze":
-                    patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_trapeze');
-                    patternStyle(patterns[i], jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, jsonObj.problem.pattern[i].rotation);
-                break;
-                case "hexagon":
-                    patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_hexagon');
-                    patternStyle(patterns[i], jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, jsonObj.problem.pattern[i].rotation);
-                break;
-                case "triangleEqui":
-                    patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_equi');
-                    patternStyle(patterns[i], jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, jsonObj.problem.pattern[i].rotation);
-                break;
-                case "triangleRect":
-                    patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_rect');
-                    patternStyle(patterns[i], jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, jsonObj.problem.pattern[i].rotation);
-                break;
-                case "diamond":
-                    patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_diamond');
-                    patternStyle(patterns[i], jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, jsonObj.problem.pattern[i].rotation);
-                break;
-                            }
-                        }*/
 	
 	var pattern1 = P1.create(0, 0, 'img_square');
     var pattern2 = P2.create(0, 0, 'img_trapeze');
