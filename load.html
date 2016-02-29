@@ -8,7 +8,7 @@
 
             <script type="text/javascript" src="script/phaser.js"></script>
             <script type="text/javascript" src="script/soundmanager2.js"></script>
-
+			
             <script>
                 ///////////////////////////////////////////////////////////////////////
                 // VARIABLES
@@ -387,7 +387,7 @@
 
                         //Create the wished pattern
 
-                        var pattern = [];
+                        var patterns = [];
 
                         //Get the JSON content
                         var result = document.getElementById('cache').innerText;
@@ -398,48 +398,48 @@
 
                         //Pattern creation
                         for (var i = 0; i < jsonObj.problem.pattern.length; i++) {
-                            switch (jsonObj.problem.pattern[i].kind) {
+                            switch (jsonObj.problem.pattern[i].shape) {
                                 case "square":
-                                    pattern[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_square');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_square');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "trapeze":
-                                    pattern[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_trapeze');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_trapeze');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "hexagon":
-                                    pattern[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_hexagon');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_hexagon');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "triangleEqui":
-                                    pattern[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_equi');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_equi');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "triangleRect":
-                                    pattern[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_rect');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_rect');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
                                 case "diamond":
-                                    pattern[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_diamond');
-                                    pattern[i].inputEnabled = true;
-                                    pattern[i].tint = 0x020303;
-                                    pattern[i].angle = jsonObj.problem.pattern[i].rotation;
-                                    pattern[i].alpha = 0.4;
+                                    patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_diamond');
+                                    patterns[i].inputEnabled = true;
+                                    patterns[i].tint = 0x020303;
+                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].alpha = 0.4;
                                     break;
 
                             }
@@ -818,6 +818,7 @@
                         alert("Votre fichier JSON n'a pas le bon format. Choisissez un fichier JSON.");
                     } else {
                         //If it is good, we launch the game
+						document.body.style.backgroundImage="none";
                         start();
                     }
                 }
@@ -830,7 +831,10 @@
                     //We charge the json when we pass in hidden champ the cache div.
                     var fileCache = document.getElementById('cache');
                     fileInput.addEventListener('change', function(e) {
-
+				
+					//We display the name of the file in the place "ulpoadFile"
+					document.getElementById("uploadFile").value = fileInput.value;
+				
                             var file = fileInput.files[0];
                             var reader = new FileReader();
                             reader.onload = function(e) {
@@ -846,43 +850,27 @@
 
                     ;
                 };
+						
             </script>
-            <style type="text/css">
-                body {
-                    margin: 0;
-                }
-                .cache {
-                    position: absolute;
-                    display: none;
-                }
-                #json {
-                    margin-left: 500px;
-                    margin-top: 200px;
-                }
-                #start {
-                    padding: 6px 0 6px 0;
-                    font: Bold 13px Arial;
-                    background: #5FB404;
-                    color: white;
-                    width: 100px;
-                    border-radius: 2px;
-                    border: none;
-                }
-            </style>
+<link rel="stylesheet" type="text/css" href="css/loadStyle.css">
 </head>
 
-<body>
-
+<body><center>
     <div id="json">
-        <input type="file" id="fileInput" name="fileInput">
-        <br>
-        <br>
+       <div class="inputBtnSection">
+			<input id="uploadFile" class="disableInputField" placeholder="Choisissez un fichier" disabled="disabled" />
+
+			<label class="fileUpload">
+				<input id="fileInput" type="file" class="upload" />
+				<span class="uploadBtn">...</span>
+			</label>
+		</div>
+		
+		<br><br><br><br>
         <input type="button" id="start" value="C'est parti !" onclick="checkExtension();">
     </div>
 
     <h3 class="cache" id="cache"> </h3>
-
-
-</body>
+</center></body>
 
 </html>

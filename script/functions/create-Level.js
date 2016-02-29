@@ -109,7 +109,8 @@ function create() {
     }
 
     //Create the wished pattern
-    var pattern1 = P1.create(0, 0, 'img_square');
+	
+	var pattern1 = P1.create(0, 0, 'img_square');
     var pattern2 = P2.create(0, 0, 'img_trapeze');
     var pattern3 = P3.create(0, 0, 'img_hexagon');
     var pattern4 = P4.create(0, 0, 'img_triangle_equi');
@@ -121,7 +122,8 @@ function create() {
     patternStyle(pattern3, 570, 208, 0);
     patternStyle(pattern4, 700, 144, 0);
     patternStyle(pattern5, 603, 175, 0);
-    patternStyle(pattern6, 537, 154, 0);
+    patternStyle(pattern6, 537, 154, 0);					
+						
 
     function patternStyle(pattern, x, y, angle) {
         pattern.x = x;

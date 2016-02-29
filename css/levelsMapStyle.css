@@ -65,6 +65,7 @@ body{
     color:#cc4970;
     padding-left:60px;
     border : none;
+	color:white;
 }
 
 #importButton:hover {
