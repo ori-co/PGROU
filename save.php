@@ -42,24 +42,6 @@ $fp = fopen($file,'w');
 fwrite($fp, $json);
 fclose($fp);
  
- echo"
-<html>
-		<head>
-		<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
-		<title></title>
-		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\">
-		</head>
-		
-		<body>
-			<center>
-				<br><br><br>
-				<div class=\"ok\"> Enregistrement effectué </div>
-			</center>
-		</body>
-	</html>
-
-";
-
 //We open a window for download
 $path = 'C:\Users\Laura\Documents\xampp\htdocs\PGROU\library\\'; // local path of the json file
 $full_path=$path.$file; 
