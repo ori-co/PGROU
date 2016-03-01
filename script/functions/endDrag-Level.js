@@ -31,13 +31,17 @@ function endDrag(tempSprite, pointer) {
     }
 
     areaSolution = 0;
+    
+    // TODO (Solène) gérer la superposition de contours et l'orientation des formes
 
     F1.forEach(function(patternItem) {
-        areaSolution = areaSolution + areaSquare;
-        for (var i = 0; i < mat_square.length; i++) {
-            for (var j = 0; j < mat_square[0].length; j++) {
-                if (mat_square[i][j] == 1) {
-                    matSolution[Math.floor(patternItem.y + i * Math.cos(patternItem.angle * 2 * 3.14159 / 360) - j * Math.sin(patternItem.angle * 2 * 3.14159 / 360))][Math.floor(patternItem.x + i * Math.sin(patternItem.angle * 2 * 3.14159 / 360) + j * Math.cos(patternItem.angle * 2 * 3.14159 / 360))] = 1;
+        areaSolution = areaSolution + shapes.square.area1;
+        for (var i = 0; i < nbPixels; i++) {
+            for (var j = 0; j < nbPixels; j++) {
+                if (shapes.square.mat1[i][j] > 0) {
+                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.square.mat1[i][j];
+                    // i is the line index --> coord y
+                    // j is the column index --> coord x
                 }
             }
         }
@@ -45,11 +49,11 @@ function endDrag(tempSprite, pointer) {
     }, this);
 
     F2.forEach(function(patternItem) {
-        areaSolution = areaSolution + areaTrapeze;
-        for (var i = 0; i < mat_trapeze.length; i++) {
-            for (var j = 0; j < mat_trapeze[0].length; j++) {
-                if (mat_trapeze[i][j] == 1) {
-                    matSolution[Math.floor(patternItem.y + i * Math.cos(patternItem.angle * 2 * 3.14159 / 360) - j * Math.sin(patternItem.angle * 2 * 3.14159 / 360))][Math.floor(patternItem.x + i * Math.sin(patternItem.angle * 2 * 3.14159 / 360) + j * Math.cos(patternItem.angle * 2 * 3.14159 / 360))] = 1;
+        areaSolution = areaSolution + shapes.trapeze.area1;
+        for (var i = 0; i < nbPixels; i++) {
+            for (var j = 0; j < nbPixels; j++) {
+                if (shapes.trapeze.mat1[i][j] > 0) {
+                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.trapeze.mat1[i][j];
                 }
             }
         }
@@ -57,11 +61,11 @@ function endDrag(tempSprite, pointer) {
     }, this);
 
     F3.forEach(function(patternItem) {
-        areaSolution = areaSolution + areaHexagon;
-        for (var i = 0; i < mat_hexagon.length; i++) {
-            for (var j = 0; j < mat_hexagon[0].length; j++) {
-                if (mat_hexagon[i][j] == 1) {
-                    matSolution[Math.floor(patternItem.y + i * Math.cos(patternItem.angle * 2 * 3.14159 / 360) - j * Math.sin(patternItem.angle * 2 * 3.14159 / 360))][Math.floor(patternItem.x + i * Math.sin(patternItem.angle * 2 * 3.14159 / 360) + j * Math.cos(patternItem.angle * 2 * 3.14159 / 360))] = 1;
+        areaSolution = areaSolution + shapes.hexagon.area1;
+        for (var i = 0; i < nbPixels; i++) {
+            for (var j = 0; j < nbPixels; j++) {
+                if (shapes.hexagon.mat1[i][j] > 0) {
+                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.hexagon.mat1[i][j];
                 }
             }
         }
@@ -69,11 +73,11 @@ function endDrag(tempSprite, pointer) {
     }, this);
 
     F4.forEach(function(patternItem) {
-        areaSolution = areaSolution + areaTriangleEqui;
-        for (var i = 0; i < mat_triangle_equi.length; i++) {
-            for (var j = 0; j < mat_triangle_equi[0].length; j++) {
-                if (mat_triangle_equi[i][j] == 1) {
-                    matSolution[Math.floor(patternItem.y + i * Math.cos(patternItem.angle * 2 * 3.14159 / 360) - j * Math.sin(patternItem.angle * 2 * 3.14159 / 360))][Math.floor(patternItem.x + i * Math.sin(patternItem.angle * 2 * 3.14159 / 360) + j * Math.cos(patternItem.angle * 2 * 3.14159 / 360))] = 1;
+        areaSolution = areaSolution + shapes.triangleEqui.area1;
+        for (var i = 0; i < nbPixels; i++) {
+            for (var j = 0; j < nbPixels; j++) {
+                if (shapes.triangleEqui.mat1[i][j] > 0) {
+                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.triangleEqui.mat1[i][j];
                 }
             }
         }
@@ -81,11 +85,11 @@ function endDrag(tempSprite, pointer) {
     }, this);
 
     F5.forEach(function(patternItem) {
-        areaSolution = areaSolution + areaTriangleRect;
-        for (var i = 0; i < mat_triangle_rect.length; i++) {
-            for (var j = 0; j < mat_triangle_rect[0].length; j++) {
-                if (mat_triangle_rect[i][j] == 1) {
-                    matSolution[Math.floor(patternItem.y + i * Math.cos(patternItem.angle * 2 * 3.14159 / 360) - j * Math.sin(patternItem.angle * 2 * 3.14159 / 360))][Math.floor(patternItem.x + i * Math.sin(patternItem.angle * 2 * 3.14159 / 360) + j * Math.cos(patternItem.angle * 2 * 3.14159 / 360))] = 1;
+        areaSolution = areaSolution + shapes.triangleRect.area1;
+        for (var i = 0; i < nbPixels; i++) {
+            for (var j = 0; j < nbPixels; j++) {
+                if (shapes.triangleRect.mat1[i][j] > 0) {
+                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.triangleRect.mat1[i][j];
                 }
             }
         }
@@ -93,15 +97,16 @@ function endDrag(tempSprite, pointer) {
     }, this);
 
     F6.forEach(function(patternItem) {
-        areaSolution = areaSolution + areaDiamond;
-        for (var i = 0; i < mat_diamond.length; i++) {
-            for (var j = 0; j < mat_diamond[0].length; j++) {
-                if (mat_diamond[i][j] == 1) {
-                    matSolution[Math.floor(patternItem.y + i * Math.cos(patternItem.angle * 2 * 3.14159 / 360) - j * Math.sin(patternItem.angle * 2 * 3.14159 / 360))][Math.floor(patternItem.x + i * Math.sin(patternItem.angle * 2 * 3.14159 / 360) + j * Math.cos(patternItem.angle * 2 * 3.14159 / 360))] = 1;
+        areaSolution = areaSolution + shapes.diamond.area1;
+        for (var i = 0; i < nbPixels; i++) {
+            for (var j = 0; j < nbPixels; j++) {
+                if (shapes.diamond.mat1[i][j] > 0) {
+                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.diamond.mat1[i][j];
                 }
             }
         }
 
     }, this);
+
 
 }

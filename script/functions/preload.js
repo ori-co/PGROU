@@ -4,13 +4,6 @@ var language = "assets/audio/fr/";
 //Load the necessary files before the beginning of the game
 function preload() {
 
-    game.load.text('txt_hexagon', 'assets/sprites/hexagon.txt');
-    game.load.text('txt_diamond', 'assets/sprites/diamond.txt');
-    game.load.text('txt_square', 'assets/sprites/square.txt');
-    game.load.text('txt_trapeze', 'assets/sprites/trapeze.txt');
-    game.load.text('txt_triangle_equi', 'assets/sprites/triangle-equi.txt');
-    game.load.text('txt_triangle_rect', 'assets/sprites/triangle-rect.txt');
-
     game.load.image('img_hexagon', 'assets/sprites/hexagon.png');
     game.load.image('img_diamond', 'assets/sprites/diamond.png');
     game.load.image('img_square', 'assets/sprites/square.png');

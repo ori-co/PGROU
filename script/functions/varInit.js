@@ -62,14 +62,7 @@ var print;
 var exprt; 
 */
 
-//Shapes' area
-var areaSquare = 0;
-var areaTriangleEqui = 0;
-var areaTriangleRect = 0;
-var areaDiamond = 0;
-var areaTrapeze = 0;
-var areaHexagon = 0;
-
+//Area of the pattern and the solution
 var areaPattern = 0;
 var areaSolution = 0;
 
