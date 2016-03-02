@@ -3,6 +3,8 @@
 Ce jeu permet de s'exercer aux opérations arithmétiques élémentaires
 via la manipulation de formes géométriques.
 
+Voir [cette vidéo](https://vimeo.com/156065434) qui présente rapidement l'interface.
+
 # Contribuez
 
 Vous pouvez contribuer à ce jeu en le testant ou en faisant des
