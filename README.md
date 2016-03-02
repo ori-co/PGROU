@@ -3,7 +3,7 @@
 Ce jeu permet de s'exercer aux opérations arithmétiques élémentaires
 via la manipulation de formes géométriques.
 
-Voir [cette vidéo](https://vimeo.com/156065434) qui présente rapidement l'interface.
+Voir [cette vidéo](https://vimeo.com/157445043) qui présente rapidement l'interface.
 
 # Contribuez
 
