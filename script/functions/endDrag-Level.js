@@ -32,80 +32,36 @@ function endDrag(tempSprite, pointer) {
 
     areaSolution = 0;
     
-    // TODO (Solène) gérer la superposition de contours et l'orientation des formes
+    // TODO gérer l'orientation des formes
 
     F1.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.square.area1;
-        for (var i = 0; i < nbPixels; i++) {
-            for (var j = 0; j < nbPixels; j++) {
-                if (shapes.square.mat1[i][j] > 0) {
-                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.square.mat1[i][j];
-                    // i is the line index --> coord y
-                    // j is the column index --> coord x
-                }
-            }
-        }
-
+        addShapeMatrix(patternItem,2);
     }, this);
 
     F2.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.trapeze.area1;
-        for (var i = 0; i < nbPixels; i++) {
-            for (var j = 0; j < nbPixels; j++) {
-                if (shapes.trapeze.mat1[i][j] > 0) {
-                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.trapeze.mat1[i][j];
-                }
-            }
-        }
-
+        addShapeMatrix(patternItem,2);
     }, this);
 
     F3.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.hexagon.area1;
-        for (var i = 0; i < nbPixels; i++) {
-            for (var j = 0; j < nbPixels; j++) {
-                if (shapes.hexagon.mat1[i][j] > 0) {
-                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.hexagon.mat1[i][j];
-                }
-            }
-        }
-
+        addShapeMatrix(patternItem,2);
     }, this);
 
     F4.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.triangleEqui.area1;
-        for (var i = 0; i < nbPixels; i++) {
-            for (var j = 0; j < nbPixels; j++) {
-                if (shapes.triangleEqui.mat1[i][j] > 0) {
-                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.triangleEqui.mat1[i][j];
-                }
-            }
-        }
-
+        addShapeMatrix(patternItem,2);
     }, this);
 
     F5.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.triangleRect.area1;
-        for (var i = 0; i < nbPixels; i++) {
-            for (var j = 0; j < nbPixels; j++) {
-                if (shapes.triangleRect.mat1[i][j] > 0) {
-                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.triangleRect.mat1[i][j];
-                }
-            }
-        }
-
+        addShapeMatrix(patternItem,2);
     }, this);
 
     F6.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.diamond.area1;
-        for (var i = 0; i < nbPixels; i++) {
-            for (var j = 0; j < nbPixels; j++) {
-                if (shapes.diamond.mat1[i][j] > 0) {
-                    matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = shapes.diamond.mat1[i][j];
-                }
-            }
-        }
-
+        addShapeMatrix(patternItem,2);
     }, this);
 
 
