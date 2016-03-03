@@ -4,12 +4,27 @@
         <meta charset="UTF-8" />
         <title>/-> Maths Puzzle <-/</title>
         <link rel="stylesheet" type="text/css" href="css/indexStyle.css">
+        <script type="text/javascript" src="script/soundmanager2.js"></script>
+        
+         
+       <script> 
+       		// Sounds 
+       		var language =  "assets/audio/fr/";
+       		soundManager.onload = function(){
+       		welcome =  soundManager.createSound({id : "welcome", url: language+"welcome.mp3"});
+       		welcome.play();
+        	son1 = soundManager.createSound({id : "click1", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
+        	son2 = soundManager.createSound({id : "click2", url: language+"click.mp3", onfinish: function(){ self.location.href='freemode.html'}});}
+    
+     </script>
+   
     </head>
     <body>
+    	
         <img id="wallpaper" src="assets/images/index/wallpaper.png" alt="wallpaper"/>
         <div id="buttons">
-            <input type="button" value="Mode classique" onclick="self.location.href = 'levelsmap.html'"/>
-            <input type="button" value="Mode libre" onclick="self.location.href = 'freemode.html'"/>
+            <input type="button" value="Mode classique"  onclick = "son1.play();"/>
+            <input type="button" value="Mode libre" onclick="son2.play();"/>
         </div>
     </body>
 </html>

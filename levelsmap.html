@@ -4,11 +4,23 @@
         <meta charset="UTF-8" />
         <title>/-> Maths Puzzle <-/</title>
         <link rel="stylesheet" type="text/css" href="css/levelsMapStyle.css">
+         <script type="text/javascript" src="script/soundmanager2.js"></script>
+       
+       
+       <script> 
+       		
+       		var language = "assets/audio/fr/";
+       		soundManager.onload = function(){
+        	sound1 = soundManager.createSound({id : "click1", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
+        	sound2 = soundManager.createSound({id : "click2", url: language+"click.mp3", onfinish: function(){ self.location.href='level1.html'}});}
+    
+     </script>
+    
     </head>
     <body>
         <img id="wallpaper" src="assets/images/levels/wallpaper.png" alt="wallpaper"/>
         <div id="menu">
-            <input type="button" class="menuButton" id="home" value=" " onclick="self.location.href = 'index.html'"/>
+            <input type="button" class="menuButton" id="home" value=" " onclick="sound1.play();"/>
             <input type="button" class="menuButton" id="mute" value=" "/>
         </div>
         
@@ -17,7 +29,7 @@
         </div>
         
         <div id="levels">
-            <input type="button" class = "levelButton" value="1" onclick="self.location.href = 'level1.html'" />
+            <input type="button" class = "levelButton" value="1"  onclick= "sound2.play();" />
             <input type="button" class="levelButton" value="2"/>
             <input type="button" class="levelButton" value="3"/>
             <input type="button" class="inactivelevelButton" value=" "/>

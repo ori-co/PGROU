@@ -39,6 +39,7 @@ function create() {
 
     // Sound Management
     binSound = game.add.audio('trashbin');
+    clickSound = game.add.audio('click');
 
     //Build the menu
     buildMenu();

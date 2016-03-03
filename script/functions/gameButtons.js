@@ -1,7 +1,3 @@
-//Funtion to return to the index
-function returnIndex(){
-    self.location.href = 'index.html';
-}
 
 //Edition Modes (colors and rotation)
 function formInteraction(tempSprite, pointer) {
@@ -35,6 +31,7 @@ function rotationButton(rot, pointer) {
             col.setFrames(2, 1, 0, 1);
             break;
     }
+    clicker();
 }
 
 // Change color
@@ -54,4 +51,5 @@ function colorButton(col, pointer) {
             col.setFrames(2, 1, 0, 1);
             break;
     }
+    clicker();
 }

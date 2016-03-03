@@ -38,9 +38,9 @@ function preload() {
     game.load.image('menu-middle', 'assets/images/menu/menu-middle.png');
     
     game.load.audio('trashbin',language+'trashbin.mp3');
-    /*
     game.load.audio('click',language+'click.mp3');
-    game.load.audio('rotation',language+'rotation.mp3');
+    /*
+    
     game.load.audio('index',language+'index.mp3');
     game.load.audio('select_class',language+'select_class.mp3');
     game.load.audio('lock',language+'lock.mp3');

@@ -31,9 +31,9 @@ var P6;
 
 //  Sound variables definition
 var trashbin ;
-/*
 var click;
-var rotation;
+/*
+
 var index;
 var select_class;
 var lock;
