@@ -6,6 +6,7 @@ function formInteraction(tempSprite, pointer) {
             break;
         case 1:
             tempSprite.frame ++;
+            tempSprite.updateCache()
             break;
         case 2:
             var rand = Math.floor((Math.random() * 5));
