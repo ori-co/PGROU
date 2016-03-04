@@ -2,19 +2,32 @@
 function addShape(shape, F) { 
     nbF = nbF + 1;
     var position = Math.random()*(game.width-2*90)+90;
-    var tempSprite = F.create(position, game.height - 90, 'img_' + shape);
+    var tempSprite = F.create(position, game.height - 155, shape);
     tempSprite.anchor.x = 0;
     tempSprite.anchor.y = 0;
     
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    //tempSprite.tint = 0xabdcf1;
+    tempSprite.tint = 0xabdcf1;
 
     tempSprite.inputEnabled = true; //Active Input
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
+    
+    tempSprite.events.onInputOver.add(function(){
+       switch (test){
+           case 1:
+               this.game.canvas.style.cursor="url('assets/images/cursors/rot.png'),default";
+               break;
+           case 2:
+               this.game.canvas.style.cursor="url('assets/images/cursors/col.png'),default";
+               break;
+           default:
+               this.game.canvas.style.cusor="default";
+       } 
+    });
 }
 
 function addForm1(form1, pointer) {

@@ -4,22 +4,22 @@
 
 function addShapeMatrix(patternItem,param) {
 	var matShape = [];
-	if (patternItem.key == 'img_square') {
+	if (patternItem.key == 'square') {
         matShape = shapes.square.mat1;
     }
-    if (patternItem.key == 'img_trapeze') {
+    if (patternItem.key == 'trapeze') {
         matShape = shapes.trapeze.mat1;
     }
-    if (patternItem.key == 'img_hexagon') {
+    if (patternItem.key == 'hexagon') {
         matShape = shapes.hexagon.mat1;
     }
-    if (patternItem.key == 'img_triangle_equi') {
+    if (patternItem.key == 'triangle_equi') {
         matShape = shapes.triangleEqui.mat1;
     }
-    if (patternItem.key === 'img_triangle_rect') {
+    if (patternItem.key === 'triangle_rect') {
         matShape = shapes.triangleRect.mat1;
     }
-    if (patternItem.key === 'img_diamond') {
+    if (patternItem.key === 'diamond') {
         matShape = shapes.diamond.mat1;
     }
 	var pixelShape = 0;
@@ -68,22 +68,22 @@ function addShapeMatrix(patternItem,param) {
 function calculateCommonContours(tempSprite, i, j) {
 
 	var matShape = [];
-	if (tempSprite.key == 'img_square') {
+	if (tempSprite.key == 'square') {
         matShape = shapes.square.mat1;
     }
-    if (tempSprite.key == 'img_trapeze') {
+    if (tempSprite.key == 'trapeze') {
         matShape = shapes.trapeze.mat1;
     }
-    if (tempSprite.key == 'img_hexagon') {
+    if (tempSprite.key == 'hexagon') {
         matShape = shapes.hexagon.mat1;
     }
-    if (tempSprite.key == 'img_triangle_equi') {
+    if (tempSprite.key == 'triangle_equi') {
         matShape = shapes.triangleEqui.mat1;
     }
-    if (tempSprite.key === 'img_triangle_rect') {
+    if (tempSprite.key === 'triangle_rect') {
         matShape = shapes.triangleRect.mat1;
     }
-    if (tempSprite.key === 'img_diamond') {
+    if (tempSprite.key === 'diamond') {
         matShape = shapes.diamond.mat1;
     }
     

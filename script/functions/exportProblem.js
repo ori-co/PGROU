@@ -20,7 +20,7 @@
                                 {\n\
                                 \"shape\":\"square\",\n\
                                 \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -29,7 +29,7 @@
                         json = json + '{\n\
                                 \"shape\":\"square\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -45,7 +45,7 @@
                                 {\n\
                                 \"shape\":\"trapeze\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -54,7 +54,7 @@
                         json = json + '{\n\
                                 \"shape\":\"trapeze\",\n\
                                 \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -71,7 +71,7 @@
                                 {\n\
                                 \"shape\":\"hexagon\",\n\
                                 \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -80,7 +80,7 @@
                         json = json + '{\n\
                                 \"shape\":\"hexagon\",\n\
                                 \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -96,7 +96,7 @@
                                 {\n\
                                 \"shape\":\"triangleEqui\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -105,7 +105,7 @@
                         json = json + '{\n\
                                 \"shape\":\"triangleEqui\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -121,7 +121,7 @@
                                 {\n\
                                 \"shape\":\"triangleRect\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -130,7 +130,7 @@
                         json = json + '{\n\
                                 \"shape\":\"triangleRect\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -147,7 +147,7 @@
                                 {\n\
                                 \"shape\":\"diamond\",\n\
                                 \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\
@@ -156,7 +156,7 @@
                         json = json + '{\n\
                                 \"shape\":\"diamond\",\n\
                                \"color\":' + formItem.tint + ',\n\
-                                \"rotation\":' + formItem.angle + ',\n\
+                                \"rotation\":' + formItem.frame + ',\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":' + formItem.x + ',\n\
                                                      \"y\":' + formItem.y + '}\n\

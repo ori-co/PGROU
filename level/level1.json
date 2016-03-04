@@ -4,51 +4,51 @@
 	"pattern":[ 
 				{
 				"shape":"square",
-				"color":"blue",
+				"color":"",
 				"rotation":"0",
 				"anchorPoint": {
-					"x":"700",
-					"y":"200"}
+					"x":"496",
+					"y":"168"}
 				},
 				{
 				"shape":"trapeze",
-				"color":"blue",
+				"color":"",
 				"rotation":"0",
 				"anchorPoint": {
-					"x":"667",
-					"y":"265"}
+					"x":"496",
+					"y":"227"}
 				},
 				{
 				"shape":"hexagon",
-				"color":"blue",
+				"color":"",
 				"rotation":"0",
 				"anchorPoint": {
-					"x":"570",
-					"y":"208"}
+					"x":"400",
+					"y":"200"}
 				},
 				{
 				"shape":"triangleEqui",
-				"color":"blue",
+				"color":"",
 				"rotation":"0",
 				"anchorPoint": {
-					"x":"700",
-					"y":"144"}
+					"x":"496",
+					"y":"108"}
 				},
 				{
 				"shape":"triangleRect",
-				"color":"blue",
+				"color":"",
 				"rotation":"0",
 				"anchorPoint": {
-					"x":"603",
-					"y":"175"}
+					"x":"400",
+					"y":"128"}
 				},
 				{
 				"shape":"diamond",
-				"color":"blue",
-				"rotation":"0",
+				"color":"",
+				"rotation":"4",
 				"anchorPoint": {
-					"x":"537",
-					"y":"154"}
+					"x":"320",
+					"y":"228"}
 				}
 			]
 	
