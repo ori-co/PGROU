@@ -15,6 +15,19 @@ function addShape(shape, F) {
     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
+    
+    tempSprite.events.onInputOver.add(function(){
+       switch (test){
+           case 1:
+               this.game.canvas.style.cursor="url('assets/images/cursors/rot.png'),default";
+               break;
+           case 2:
+               this.game.canvas.style.cursor="url('assets/images/cursors/col.png'),default";
+               break;
+           default:
+               this.game.canvas.style.cusor="default";
+       } 
+    });
 }
 
 function addForm1(form1, pointer) {
