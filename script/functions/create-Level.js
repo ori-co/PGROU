@@ -75,32 +75,32 @@ function create() {
     // TODO gérer l'orientation de la forme
     
     P1.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.square.area1;
+        areaPattern = areaPattern + shapes.square.area[0];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P2.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.trapeze.area1;
+        areaPattern = areaPattern + shapes.trapeze.area[0];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P3.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.hexagon.area1;
+        areaPattern = areaPattern + shapes.hexagon.area[0];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P4.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.triangleEqui.area1;
+        areaPattern = areaPattern + shapes.triangleEqui.area[0];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P5.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.triangleRect.area1;
+        areaPattern = areaPattern + shapes.triangleRect.area[0];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P6.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.diamond.area1;
+        areaPattern = areaPattern + shapes.diamond.area[0];
         addShapeMatrix(patternItem,1);
     }, this);
 

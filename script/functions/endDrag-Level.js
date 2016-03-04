@@ -128,32 +128,32 @@ function endDrag(tempSprite, pointer) {
     // TODO gérer l'orientation des formes
 
     F1.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.square.area1;
+        areaSolution = areaSolution + shapes.square.area[0];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F2.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.trapeze.area1;
+        areaSolution = areaSolution + shapes.trapeze.area[0];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F3.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.hexagon.area1;
+        areaSolution = areaSolution + shapes.hexagon.area[0];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F4.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.triangleEqui.area1;
+        areaSolution = areaSolution + shapes.triangleEqui.area[0];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F5.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.triangleRect.area1;
+        areaSolution = areaSolution + shapes.triangleRect.area[0];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F6.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.diamond.area1;
+        areaSolution = areaSolution + shapes.diamond.area[0];
         addShapeMatrix(patternItem,2);
     }, this);
 
