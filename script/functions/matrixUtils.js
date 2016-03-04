@@ -1,26 +1,26 @@
 // Functions useful for matrix manipulation
 
-// TODO gérer l'orientation des formes et l'interdiction de superposition
+// TODO gérer l'interdiction de superposition
 
 function addShapeMatrix(patternItem,param) {
 	var matShape = [];
 	if (patternItem.key == 'square') {
-        matShape = shapes.square.mat[0];
+        matShape = shapes.square.mat[patternItem.frame];
     }
     if (patternItem.key == 'trapeze') {
-        matShape = shapes.trapeze.mat[0];
+        matShape = shapes.trapeze.mat[patternItem.frame];
     }
     if (patternItem.key == 'hexagon') {
-        matShape = shapes.hexagon.mat[0];
+        matShape = shapes.hexagon.mat[patternItem.frame];
     }
     if (patternItem.key == 'triangle_equi') {
-        matShape = shapes.triangleEqui.mat[0];
+        matShape = shapes.triangleEqui.mat[patternItem.frame];
     }
     if (patternItem.key === 'triangle_rect') {
-        matShape = shapes.triangleRect.mat[0];
+        matShape = shapes.triangleRect.mat[patternItem.frame];
     }
     if (patternItem.key === 'diamond') {
-        matShape = shapes.diamond.mat[0];
+        matShape = shapes.diamond.mat[patternItem.frame];
     }
 	var pixelShape = 0;
     var pixelRef = 0;
@@ -69,22 +69,22 @@ function calculateCommonContours(tempSprite, i, j) {
 
 	var matShape = [];
 	if (tempSprite.key == 'square') {
-        matShape = shapes.square.mat[0];
+        matShape = shapes.square.mat[tempSprite.frame];
     }
     if (tempSprite.key == 'trapeze') {
-        matShape = shapes.trapeze.mat[0];
+        matShape = shapes.trapeze.mat[tempSprite.frame];
     }
     if (tempSprite.key == 'hexagon') {
-        matShape = shapes.hexagon.mat[0];
+        matShape = shapes.hexagon.mat[tempSprite.frame];
     }
     if (tempSprite.key == 'triangle_equi') {
-        matShape = shapes.triangleEqui.mat[0];
+        matShape = shapes.triangleEqui.mat[tempSprite.frame];
     }
     if (tempSprite.key === 'triangle_rect') {
-        matShape = shapes.triangleRect.mat[0];
+        matShape = shapes.triangleRect.mat[tempSprite.frame];
     }
     if (tempSprite.key === 'diamond') {
-        matShape = shapes.diamond.mat[0];
+        matShape = shapes.diamond.mat[tempSprite.frame];
     }
     
 	var res = 0;

@@ -72,35 +72,33 @@ function create() {
 
     //Update the pattern matrix with the shapes' matrix
     
-    // TODO gérer l'orientation de la forme
-    
     P1.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.square.area[0];
+        areaPattern = areaPattern + shapes.square.area[patternItem.frame];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P2.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.trapeze.area[0];
+        areaPattern = areaPattern + shapes.trapeze.area[patternItem.frame];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P3.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.hexagon.area[0];
+        areaPattern = areaPattern + shapes.hexagon.area[patternItem.frame];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P4.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.triangleEqui.area[0];
+        areaPattern = areaPattern + shapes.triangleEqui.area[patternItem.frame];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P5.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.triangleRect.area[0];
+        areaPattern = areaPattern + shapes.triangleRect.area[patternItem.frame];
         addShapeMatrix(patternItem,1);
     }, this);
 
     P6.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.diamond.area[0];
+        areaPattern = areaPattern + shapes.diamond.area[patternItem.frame];
         addShapeMatrix(patternItem,1);
     }, this);
 

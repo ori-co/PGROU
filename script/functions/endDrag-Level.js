@@ -29,9 +29,14 @@ function endDrag(tempSprite, pointer) {
             matSolution[i][j] = 0;
         }
     }
+    
+    for (var i = 0; i < 1200; i++) {
+        for (var j = 0; j < 800; j++) {
+            matSnap[i][j] = 0;
+        }
+    }
 
     
-    // TODO gérer l'orientation de la forme
     // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
     P1.forEach(function(patternItem) {
         addShapeMatrix(patternItem,3);
@@ -125,35 +130,33 @@ function endDrag(tempSprite, pointer) {
     // update matSolution
     areaSolution = 0;
     
-    // TODO gérer l'orientation des formes
-
     F1.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.square.area[0];
+        areaSolution = areaSolution + shapes.square.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F2.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.trapeze.area[0];
+        areaSolution = areaSolution + shapes.trapeze.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F3.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.hexagon.area[0];
+        areaSolution = areaSolution + shapes.hexagon.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F4.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.triangleEqui.area[0];
+        areaSolution = areaSolution + shapes.triangleEqui.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F5.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.triangleRect.area[0];
+        areaSolution = areaSolution + shapes.triangleRect.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
 
     F6.forEach(function(patternItem) {
-        areaSolution = areaSolution + shapes.diamond.area[0];
+        areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
 
