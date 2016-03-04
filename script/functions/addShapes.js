@@ -2,7 +2,7 @@
 function addShape(shape, F) { 
     nbF = nbF + 1;
     var position = Math.random()*(game.width-2*90)+90;
-    var tempSprite = F.create(position, game.height - 90, 'img_' + shape);
+    var tempSprite = F.create(position, game.height - 155, shape);
     tempSprite.anchor.x = 0;
     tempSprite.anchor.y = 0;
     

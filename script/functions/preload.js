@@ -3,13 +3,14 @@ var language = "assets/audio/fr/";
 
 //Load the necessary files before the beginning of the game
 function preload() {
-
-    game.load.image('img_hexagon', 'assets/sprites/hexagon.png');
-    game.load.image('img_diamond', 'assets/sprites/diamond.png');
-    game.load.image('img_square', 'assets/sprites/square.png');
-    game.load.image('img_trapeze', 'assets/sprites/trapeze.png');
-    game.load.image('img_triangle_equi', 'assets/sprites/triangle-equi.png');
-    game.load.image('img_triangle_rect', 'assets/sprites/triangle-rect.png');
+    
+    game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);
+    game.load.spritesheet('square','assets/sprites/square.png',130,130);
+    game.load.spritesheet('diamond','assets/sprites/lozenge.png',130,130);
+    game.load.spritesheet('trapeze','assets/sprites/trapezoid.png',130,130);
+    game.load.spritesheet('triangle_equi','assets/sprites/triangle-equi.png',130,130);
+    game.load.spritesheet('triangle_rect','assets/sprites/triangle-rect.png',130,130);
+    
     
     game.load.image('store', 'assets/images/menu/store.png');
     game.load.image('pipe', 'assets/images/menu/store-pipe.png');

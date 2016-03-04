@@ -225,12 +225,12 @@
                         game.load.text('txt_triangle_equi', 'assets/sprites/triangle-equi.txt');
                         game.load.text('txt_triangle_rect', 'assets/sprites/triangle-rect.txt');
 
-                        game.load.image('img_hexagon', 'assets/sprites/hexagon.png');
-                        game.load.image('img_diamond', 'assets/sprites/diamond.png');
-                        game.load.image('img_square', 'assets/sprites/square.png');
-                        game.load.image('img_trapeze', 'assets/sprites/trapeze.png');
-                        game.load.image('img_triangle_equi', 'assets/sprites/triangle-equi.png');
-                        game.load.image('img_triangle_rect', 'assets/sprites/triangle-rect.png');
+                        game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);
+                        game.load.spritesheet('square','assets/sprites/square.png',130,130);
+                        game.load.spritesheet('diamond','assets/sprites/lozenge.png',130,130);
+                        game.load.spritesheet('trapeze','assets/sprites/trapezoid.png',130,130);
+                        game.load.spritesheet('triangle_equi','assets/sprites/triangle-equi.png',130,130);
+                        game.load.spritesheet('triangle_rect','assets/sprites/triangle-rect.png',130,130);
 
                         game.load.image('store', 'assets/images/menu/store.png');
                         game.load.image('pipe', 'assets/images/menu/store-pipe.png');
@@ -400,45 +400,45 @@
                         for (var i = 0; i < jsonObj.problem.pattern.length; i++) {
                             switch (jsonObj.problem.pattern[i].shape) {
                                 case "square":
-                                    patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_square');
+                                    patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'square');
                                     patterns[i].inputEnabled = true;
                                     patterns[i].tint = 0x020303;
-                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].frame = jsonObj.problem.pattern[i].rotation;
                                     patterns[i].alpha = 0.4;
                                     break;
                                 case "trapeze":
-                                    patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_trapeze');
+                                    patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'trapeze');
                                     patterns[i].inputEnabled = true;
                                     patterns[i].tint = 0x020303;
-                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].frame = jsonObj.problem.pattern[i].rotation;
                                     patterns[i].alpha = 0.4;
                                     break;
                                 case "hexagon":
-                                    patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_hexagon');
+                                    patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'hexagon');
                                     patterns[i].inputEnabled = true;
                                     patterns[i].tint = 0x020303;
-                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].frame = jsonObj.problem.pattern[i].rotation;
                                     patterns[i].alpha = 0.4;
                                     break;
                                 case "triangleEqui":
-                                    patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_equi');
+                                    patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_equi');
                                     patterns[i].inputEnabled = true;
                                     patterns[i].tint = 0x020303;
-                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].frame = jsonObj.problem.pattern[i].rotation;
                                     patterns[i].alpha = 0.4;
                                     break;
                                 case "triangleRect":
-                                    patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_triangle_rect');
+                                    patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_rect');
                                     patterns[i].inputEnabled = true;
                                     patterns[i].tint = 0x020303;
-                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].frame = jsonObj.problem.pattern[i].rotation;
                                     patterns[i].alpha = 0.4;
                                     break;
                                 case "diamond":
-                                    patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'img_diamond');
+                                    patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'diamond');
                                     patterns[i].inputEnabled = true;
                                     patterns[i].tint = 0x020303;
-                                    patterns[i].angle = jsonObj.problem.pattern[i].rotation;
+                                    patterns[i].frame = jsonObj.problem.pattern[i].rotation;
                                     patterns[i].alpha = 0.4;
                                     break;
 
@@ -526,7 +526,7 @@
                     //Function to add shapes from the basket
                     function addShape(shape, F) {
                         nbF = nbF + 1;
-                        var tempSprite = F.create(130 * nbF - 35, game.height - 90, 'img_' + shape);
+                        var tempSprite = F.create(130 * nbF - 35, game.height - 90,shape);
                         tempSprite.anchor.x = 0.5;
                         tempSprite.anchor.y = 0.5;
 
@@ -577,7 +577,7 @@
                             case 0:
                                 break;
                             case 1:
-                                tempSprite.angle += 45;
+                                tempSprite.frame ++;
                                 break;
                             case 2:
                                 var rand = Math.floor((Math.random() * 5));
@@ -628,22 +628,22 @@
                     function endDrag(tempSprite, pointer) {
 
                         if ((game.input.y > 20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)) {
-                            if (tempSprite.key == 'img_square') {
+                            if (tempSprite.key == 'square') {
                                 nbF1 = nbF1 - 1;
                             }
-                            if (tempSprite.key == 'img_trapeze') {
+                            if (tempSprite.key == 'trapeze') {
                                 nbF2 = nbF2 - 1;
                             }
-                            if (tempSprite.key == 'img_hexagon') {
+                            if (tempSprite.key == 'hexagon') {
                                 nbF3 = nbF3 - 1;
                             }
-                            if (tempSprite.key == 'img_triangle_equi') {
+                            if (tempSprite.key == 'triangle_equi') {
                                 nbF4 = nbF4 - 1;
                             }
-                            if (tempSprite.key === 'img_triangle_rect') {
+                            if (tempSprite.key === 'triangle_rect') {
                                 nbF5 = nbF5 - 1;
                             }
-                            if (tempSprite.key === 'img_diamond') {
+                            if (tempSprite.key === 'diamond') {
                                 nbF6 = nbF6 - 1;
                             }
                             tempSprite.destroy();

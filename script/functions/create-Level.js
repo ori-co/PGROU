@@ -46,12 +46,12 @@ function create() {
 
     //Create the wished pattern
 	
-	var pattern1 = P1.create(0, 0, 'img_square');
-    var pattern2 = P2.create(0, 0, 'img_trapeze');
-    var pattern3 = P3.create(0, 0, 'img_hexagon');
-    var pattern4 = P4.create(0, 0, 'img_triangle_equi');
-    var pattern5 = P5.create(0, 0, 'img_triangle_rect');
-    var pattern6 = P6.create(0, 0, 'img_diamond');
+    var pattern1 = P1.create(0, 0, 'square');
+    var pattern2 = P2.create(0, 0, 'trapeze');
+    var pattern3 = P3.create(0, 0, 'hexagon');
+    var pattern4 = P4.create(0, 0, 'triangle_equi');
+    var pattern5 = P5.create(0, 0, 'triangle_rect');
+    var pattern6 = P6.create(0, 0, 'diamond');
 
     patternStyle(pattern1, 700, 200, 0);
     patternStyle(pattern2, 667, 265, 0);

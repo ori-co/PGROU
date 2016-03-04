@@ -5,7 +5,7 @@ function formInteraction(tempSprite, pointer) {
         case 0:
             break;
         case 1:
-            tempSprite.angle += 45;
+            tempSprite.frame ++;
             break;
         case 2:
             var rand = Math.floor((Math.random() * 5));
