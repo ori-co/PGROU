@@ -6,12 +6,16 @@ function update() {
     // Vérification de la solution    
     valid = 0;
 
-    for (var i = 0; i < 1200; i++) {
-        for (var j = 0; j < 800; j++) {
-            if (matSolution[i][j] != matPattern[i][j]) {
+	var i = 0;
+	var j = 0;
+	while (i < 1200 && valid < 500) {
+		while (j < 800 && valid < 500) {
+			if (matSolution[i][j] != matPattern[i][j]) {
                 valid++;
             }
+            j++;
         }
+        i++;
     }
 
     if (valid < 500 && areaSolution == areaPattern) {
