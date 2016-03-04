@@ -53,18 +53,18 @@ function create() {
     var pattern5 = P5.create(0, 0, 'triangle_rect');
     var pattern6 = P6.create(0, 0, 'diamond');
 
-    patternStyle(pattern1, 700, 200, 0);
-    patternStyle(pattern2, 667, 265, 0);
-    patternStyle(pattern3, 570, 208, 0);
-    patternStyle(pattern4, 700, 144, 0);
-    patternStyle(pattern5, 603, 175, 0);
-    patternStyle(pattern6, 537, 154, 0);					
+    patternStyle(pattern1, 496, 168, 0);
+    patternStyle(pattern2, 496, 227, 0);
+    patternStyle(pattern3, 400, 200, 0);
+    patternStyle(pattern4, 496, 108, 0);
+    patternStyle(pattern5, 400, 128, 0);
+    patternStyle(pattern6, 320, 228, 4);					
 						
 
     function patternStyle(pattern, x, y, angle) {
         pattern.x = x;
         pattern.y = y;
-        pattern.angle = angle;
+        pattern.frame = angle;
         pattern.inputEnabled = true;
         pattern.tint = 0x020303;
         pattern.alpha = 0.4;
