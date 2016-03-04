@@ -10,8 +10,8 @@ function updateSize() {
         F.forEach(function(sprite){
             var aShadow = game.add.sprite(sprite.x+3,sprite.y+3,sprite.generateTexture());
             shadows.add(aShadow);
-            aShadow.anchor.x=0.5;
-            aShadow.anchor.y=0.5;
+            aShadow.anchor.x=0;
+            aShadow.anchor.y=0;
             aShadow.tint=0x000000;
             aShadow.alpha=0.3;           
         });
