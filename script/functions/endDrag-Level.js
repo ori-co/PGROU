@@ -30,6 +30,99 @@ function endDrag(tempSprite, pointer) {
         }
     }
 
+    
+    // TODO gérer l'orientation de la forme
+    // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
+    P1.forEach(function(patternItem) {
+        addShapeMatrix(patternItem,3);
+    }, this);
+
+    P2.forEach(function(patternItem) {
+        addShapeMatrix(patternItem,3);
+    }, this);
+
+    P3.forEach(function(patternItem) {
+        addShapeMatrix(patternItem,3);
+    }, this);
+
+    P4.forEach(function(patternItem) {
+        addShapeMatrix(patternItem,3);
+    }, this);
+
+    P5.forEach(function(patternItem) {
+        addShapeMatrix(patternItem,3);
+    }, this);
+
+    P6.forEach(function(patternItem) {
+        addShapeMatrix(patternItem,3);
+    }, this);
+    
+    // add the shapes already in the game (except the shape that has just been dragged)
+    // in order to update the contours to which we want to snap
+    F1.forEach(function(patternItem) {
+    	if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+	        addShapeMatrix(patternItem,3);
+        }
+    }, this);
+
+    F2.forEach(function(patternItem) {
+    	if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+	        addShapeMatrix(patternItem,3);
+        }
+    }, this);
+
+    F3.forEach(function(patternItem) {
+    	if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+	        addShapeMatrix(patternItem,3);
+        }
+    }, this);
+
+    F4.forEach(function(patternItem) {
+    	if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+	        addShapeMatrix(patternItem,3);
+        }
+    }, this);
+
+    F5.forEach(function(patternItem) {
+    	if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+	        addShapeMatrix(patternItem,3);
+        }
+    }, this);
+
+    F6.forEach(function(patternItem) {
+    	if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+	        addShapeMatrix(patternItem,3);
+        }
+    }, this);
+    
+    // calculate the best position for tempSprite (snap effect)
+    
+    var criteria = 0;
+    var criteriaTemp = 0;
+    var range_i = 30; // must be an even number
+    var range_j = 30; // must be an even number
+    var i_init = tempSprite.y;
+    var j_init = tempSprite.x;
+    var i_opt = tempSprite.y; // to store the best position we have found for tempSprite
+    var j_opt = tempSprite.x;
+    
+    for (var i=0; i<range_i; i++) {
+    	for (var j=0; j<range_j; j++) {
+    		criteriaTemp = calculateCommonContours(tempSprite, i_init + (i-range_i/2), j_init + (j-range_j/2));
+    		if ((i==0) && (j==0)) { // 1st iteration
+    			criteria = criteriaTemp;
+    		}
+    		if (criteriaTemp > criteria) {
+    			criteria = criteriaTemp;
+    			i_opt = i_init + (i-range_i/2);
+    			j_opt = j_init + (j-range_j/2);
+    		}
+    	}
+    }
+    tempSprite.x = j_opt;
+    tempSprite.y = i_opt; 
+    
+    // update matSolution
     areaSolution = 0;
     
     // TODO gérer l'orientation des formes

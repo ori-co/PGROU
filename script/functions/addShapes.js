@@ -3,8 +3,8 @@ function addShape(shape, F) {
     nbF = nbF + 1;
     var position = Math.random()*(game.width-2*90)+90;
     var tempSprite = F.create(position, game.height - 90, 'img_' + shape);
-    tempSprite.anchor.x = 0.5;
-    tempSprite.anchor.y = 0.5;
+    tempSprite.anchor.x = 0;
+    tempSprite.anchor.y = 0;
     
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];

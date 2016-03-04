@@ -1,5 +1,7 @@
 //Initialisation of the problem's and the solution's matrix
 
+// TODO mettre des variables globales pour la taille du patron
+
 var matPattern = new Array(1200);
 for (var i = 0; i < 1200; i++) {
     matPattern[i] = new Array(800);
@@ -16,6 +18,15 @@ for (var i = 0; i < 1200; i++) {
 for (var i = 0; i < 1200; i++) {
     for (var j = 0; j < 800; j++) {
         matSolution[i][j] = 0;
+    }
+}
+var matSnap = new Array(1200);
+for (var i = 0; i < 1200; i++) {
+    matSnap[i] = new Array(800);
+}
+for (var i = 0; i < 1200; i++) {
+    for (var j = 0; j < 800; j++) {
+        matSnap[i][j] = 0;
     }
 }
 
