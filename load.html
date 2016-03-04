@@ -4456,42 +4456,42 @@ function clicker(){
                                 patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'square');
                                 patterns[i].inputEnabled = true;
                                 patterns[i].tint = 0x020303;
-                                patterns[i].frame = jsonObj.problem.pattern[i].rotation;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                                 patterns[i].alpha = 0.4;
                                 break;
                             case "trapeze":
                                 patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'trapeze');
                                 patterns[i].inputEnabled = true;
                                 patterns[i].tint = 0x020303;
-                                patterns[i].frame = jsonObj.problem.pattern[i].rotation;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                                 patterns[i].alpha = 0.4;
                                 break;
                             case "hexagon":
                                 patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'hexagon');
                                 patterns[i].inputEnabled = true;
                                 patterns[i].tint = 0x020303;
-                                patterns[i].frame = jsonObj.problem.pattern[i].rotation;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                                 patterns[i].alpha = 0.4;
                                 break;
                             case "triangleEqui":
                                 patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_equi');
                                 patterns[i].inputEnabled = true;
                                 patterns[i].tint = 0x020303;
-                                patterns[i].frame = jsonObj.problem.pattern[i].rotation;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                                 patterns[i].alpha = 0.4;
                                 break;
                             case "triangleRect":
                                 patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_rect');
                                 patterns[i].inputEnabled = true;
                                 patterns[i].tint = 0x020303;
-                                patterns[i].frame = jsonObj.problem.pattern[i].rotation;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                                 patterns[i].alpha = 0.4;
                                 break;
                             case "diamond":
                                 patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'diamond');
                                 patterns[i].inputEnabled = true;
                                 patterns[i].tint = 0x020303;
-                                patterns[i].frame = jsonObj.problem.pattern[i].rotation;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                                 patterns[i].alpha = 0.4;
                                 break;
 
@@ -4543,10 +4543,7 @@ function clicker(){
                     tempSprite.anchor.x = 0;
                     tempSprite.anchor.y = 0;
 
-//tempSprite.tint = Math.random() * 0xffffff;
-//tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-//tempSprite.tint = 0xabdcf1;
-
+					tempSprite.tint = 0xabdcf1;
                     tempSprite.inputEnabled = true; //Active Input
                     tempSprite.input.enableDrag(false, true); //Mobile (drag)
                     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
@@ -4589,7 +4586,7 @@ function clicker(){
                         case 0:
                             break;
                         case 1:
-                            tempSprite.frame += 45;
+                            tempSprite.frame ++;
                             break;
                         case 2:
                             var rand = Math.floor((Math.random() * 5));
@@ -4812,8 +4809,8 @@ function clicker(){
                         F.forEach(function (sprite) {
                             var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
                             shadows.add(aShadow);
-                            aShadow.anchor.x = 0.5;
-                            aShadow.anchor.y = 0.5;
+                            aShadow.anchor.x = 0;
+                            aShadow.anchor.y = 0;
                             aShadow.tint = 0x000000;
                             aShadow.alpha = 0.3;
                         });
