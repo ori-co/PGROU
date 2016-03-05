@@ -9,8 +9,8 @@ function render() {
     game.debug.text('Diamonds : ' + nbF6, 16, 108);
     game.debug.text('Function : ' + test, 16, 120);
     //game.debug.text('End : ' + end, 16, 108);
-    //game.debug.text('Solution Area: ' + areaSolution, 16, 120);
-    //game.debug.text('Problem Area: ' + areaPattern, 16, 132);
+    game.debug.text('Solution Area: ' + areaSolution, 16, 132);
+    game.debug.text('Problem Area: ' + areaPattern, 16, 144);
     //game.debug.text('matProblem : ' + matPattern[180][22], 16, 120);
     //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
     //game.debug.inputInfo(16, 144);
