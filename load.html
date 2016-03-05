@@ -4110,8 +4110,11 @@ var shapes = { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , tria
 // TODO gérer l'interdiction de superposition
 
 function addShapeMatrix(patternItem,param) {
+
 	var matShape = [];
+	
 	if (patternItem.key == 'square') {
+
         matShape = shapes.square.mat[patternItem.frame];
     }
     if (patternItem.key == 'trapeze') {
@@ -4135,8 +4138,8 @@ function addShapeMatrix(patternItem,param) {
    		for (var i = 0; i < nbPixels; i++) {
     	    for (var j = 0; j < nbPixels; j++) {
 		        pixelShape = matShape[i][j];
-    	        pixelRef = matPattern[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)];
-    	        matPattern[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = Math.max(pixelShape,pixelRef);
+    	        pixelRef = matPattern[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)];
+    	        matPattern[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = Math.max(pixelShape,pixelRef);
     	        // i is the line index --> coord y
     	        // j is the column index --> coord x
     	    }
@@ -4146,8 +4149,8 @@ function addShapeMatrix(patternItem,param) {
    		for (var i = 0; i < nbPixels; i++) {
         	for (var j = 0; j < nbPixels; j++) {
 	     		pixelShape = matShape[i][j];
-          		pixelRef = matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)];
-          		matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = Math.max(pixelShape,pixelRef);
+          		pixelRef = matSolution[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)];
+          		matSolution[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = Math.max(pixelShape,pixelRef);
 	            // i is the line index --> coord y
 	            // j is the column index --> coord x
 	        }
@@ -4157,12 +4160,12 @@ function addShapeMatrix(patternItem,param) {
    		for (var i = 0; i < nbPixels; i++) {
         	for (var j = 0; j < nbPixels; j++) {
 	     		pixelShape = matShape[i][j];
-          		pixelRef = matSnap[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)];
+          		pixelRef = matSnap[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)];
           		if (pixelShape == 2 && pixelRef == 2) {
-          			matSnap[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = 1;
+          			matSnap[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = 1;
           			// superposition of 2 contours, so it is no more a contour (pixel = 1)
       			} else {
-      				matSnap[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = Math.max(pixelShape,pixelRef);
+      				matSnap[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = Math.max(pixelShape,pixelRef);
   				}
 	            // i is the line index --> coord y
 	            // j is the column index --> coord x
@@ -4535,6 +4538,7 @@ function create() {
                     patterns[i].tint = 0x020303;
                     patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                     patterns[i].alpha = 0.4;
+					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
                     case "trapeze":
                     patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'trapeze');
@@ -4542,6 +4546,7 @@ function create() {
                     patterns[i].tint = 0x020303;
                     patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                     patterns[i].alpha = 0.4;
+					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
                     case "hexagon":
                     patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'hexagon');
@@ -4549,6 +4554,7 @@ function create() {
                     patterns[i].tint = 0x020303;
                     patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                     patterns[i].alpha = 0.4;
+					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
                     case "triangleEqui":
                     patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_equi');
@@ -4556,6 +4562,7 @@ function create() {
                     patterns[i].tint = 0x020303;
                     patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                     patterns[i].alpha = 0.4;
+					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
                     case "triangleRect":
                     patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_rect');
@@ -4563,6 +4570,7 @@ function create() {
                     patterns[i].tint = 0x020303;
                     patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                     patterns[i].alpha = 0.4;
+					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
                     case "diamond":
                     patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'diamond');
@@ -4570,6 +4578,7 @@ function create() {
                     patterns[i].tint = 0x020303;
                     patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
                     patterns[i].alpha = 0.4;
+					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
             }
             }
@@ -4672,7 +4681,7 @@ function addForm6(form6, pointer) {
 }
 var affichage = "";
 //Edition Modes (colors and rotation)
-test=1;
+
 function formInteraction(tempSprite, pointer) {
     switch (test) {
         case 0:
@@ -4766,10 +4775,10 @@ function endDrag(tempSprite, pointer) {
             matSnap[i][j] = 0;
         }
     }
-
+ 
     
     // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
-    P1.forEach(function(patternItem) {
+   P1.forEach(function(patternItem) {
         addShapeMatrix(patternItem,3);
     }, this);
 
@@ -4778,15 +4787,15 @@ function endDrag(tempSprite, pointer) {
     }, this);
 
     P3.forEach(function(patternItem) {
-        addShapeMatrix(patternItem,3);
+       addShapeMatrix(patternItem,3);
     }, this);
 
     P4.forEach(function(patternItem) {
-        addShapeMatrix(patternItem,3);
+       addShapeMatrix(patternItem,3);
     }, this);
 
     P5.forEach(function(patternItem) {
-        addShapeMatrix(patternItem,3);
+       addShapeMatrix(patternItem,3);
     }, this);
 
     P6.forEach(function(patternItem) {
@@ -4832,7 +4841,7 @@ function endDrag(tempSprite, pointer) {
     }, this);
     
     // calculate the best position for tempSprite (snap effect)
-    
+   
     var criteria = 0;
     var criteriaTemp = 0;
     var range_i = 30; // must be an even number
@@ -4860,7 +4869,7 @@ function endDrag(tempSprite, pointer) {
     
     // update matSolution
     areaSolution = 0;
-    
+    	
     F1.forEach(function(patternItem) {
         areaSolution = areaSolution + shapes.square.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
@@ -4891,7 +4900,71 @@ function endDrag(tempSprite, pointer) {
         addShapeMatrix(patternItem,2);
     }, this);
 
+	//Coloration
 
+	if (tempSprite.key == 'square') {
+	P1.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+   if (tempSprite.key == 'trapeze') {
+	P2.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+if (tempSprite.key == 'hexagon') {
+
+	P3.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+		
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+		
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+if (tempSprite.key == 'triangle_equi') {
+	P4.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+
+   if (tempSprite.key == 'triangle_rect') {
+	P5.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+
+   if (tempSprite.key == 'diamond') {
+	P6.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
 }
 
 //Update function that is always running on the background to resize

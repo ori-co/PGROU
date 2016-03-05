@@ -4,7 +4,7 @@
 	"pattern":[ 
 				{
 				"shape":"square",
-				"color":"",
+				"color":"0x83EE00",
 				"rotation":"0",
 				"anchorPoint": {
 					"x":"496",
@@ -12,7 +12,7 @@
 				},
 				{
 				"shape":"trapeze",
-				"color":"",
+				"color":"0x83EE00",
 				"rotation":"0",
 				"anchorPoint": {
 					"x":"496",
@@ -20,7 +20,7 @@
 				},
 				{
 				"shape":"hexagon",
-				"color":"",
+				"color":"0x83EE00",
 				"rotation":"0",
 				"anchorPoint": {
 					"x":"400",
@@ -28,7 +28,7 @@
 				},
 				{
 				"shape":"triangleEqui",
-				"color":"",
+				"color":"0x83EE00",
 				"rotation":"0",
 				"anchorPoint": {
 					"x":"496",
@@ -36,7 +36,7 @@
 				},
 				{
 				"shape":"triangleRect",
-				"color":"",
+				"color":"0x83EE00",
 				"rotation":"0",
 				"anchorPoint": {
 					"x":"400",
@@ -44,7 +44,7 @@
 				},
 				{
 				"shape":"diamond",
-				"color":"",
+				"color":"0x83EE00",
 				"rotation":"4",
 				"anchorPoint": {
 					"x":"320",

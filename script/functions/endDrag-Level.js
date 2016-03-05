@@ -161,7 +161,6 @@ function endDrag(tempSprite, pointer) {
     }, this);
 	
 	//Coloration
-	
 	if (tempSprite.key == 'square') {
 	P1.forEach(function(pattern) {
         if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
@@ -203,7 +202,7 @@ if (tempSprite.key == 'triangle_equi') {
 	}
 	
 
-   if (tempSprite.key == 'trinagle_rect') {
+   if (tempSprite.key == 'triangle_rect') {
 	P5.forEach(function(pattern) {
         if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
 			tempSprite.tint = pattern.wantedColor;
