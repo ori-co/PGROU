@@ -104,22 +104,37 @@ function snapEffect(tempSprite, gameMode) {
     var j_init = tempSprite.x;
     var i_opt = tempSprite.y; // to store the best position we have found for tempSprite
     var j_opt = tempSprite.x;
+    var i_temp;
+    var j_temp;
 
     for (var i = 0; i < range_i; i++) {
         for (var j = 0; j < range_j; j++) {
-            criteriaTemp = calculateCommonContours(tempSprite, i_init + (i - range_i / 2), j_init + (j - range_j / 2));
+            i_temp = i_init + (i - range_i / 2);
+            j_temp = j_init + (j - range_j / 2);
+            criteriaTemp = calculateCommonContours(tempSprite, i_temp, j_temp);
             if ((i == 0) && (j == 0)) { // 1st iteration
                 criteria = criteriaTemp;
             }
             if (criteriaTemp > criteria) {
                 criteria = criteriaTemp;
-                i_opt = i_init + (i - range_i / 2);
-                j_opt = j_init + (j - range_j / 2);
+                i_opt = i_temp;
+                j_opt = j_temp;
+            } else {
+                if (criteriaTemp == criteria) {
+                    if (distance(i_init, j_init, i_temp, j_temp) < distance(i_init, j_init, i_opt, j_opt)) {
+                        i_opt = i_temp;
+                        j_opt = j_temp;
+                    }
+                }
             }
         }
     }
     tempSprite.x = j_opt;
     tempSprite.y = i_opt;
+}
+
+function distance(i1, j1, i2, j2) {
+    return Math.sqrt((i1 - i2) * (i1 - i2) + (j1 - j2) * (j1 - j2))
 }
 
 function calculateCommonContours(tempSprite, i, j) {
@@ -377,43 +392,44 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
         }
     }
+}
 
-    function updateSolution() {
-        for (var i = 0; i < 1200; i++) {
-            for (var j = 0; j < 800; j++) {
-                matSolution[i][j] = 0;
-            }
+function updateSolution() {
+    for (var i = 0; i < 1200; i++) {
+        for (var j = 0; j < 800; j++) {
+            matSolution[i][j] = 0;
         }
-        // update matSolution
-        areaSolution = 0;
+    }
+    // update matSolution
+    areaSolution = 0;
 
-        F1.forEach(function (patternItem) {
-            areaSolution = areaSolution + shapes.square.area[patternItem.frame];
-            addShapeMatrix(patternItem, 2);
-        }, this);
+    F1.forEach(function (patternItem) {
+        areaSolution = areaSolution + shapes.square.area[patternItem.frame];
+        addShapeMatrix(patternItem, 2);
+    }, this);
 
-        F2.forEach(function (patternItem) {
-            areaSolution = areaSolution + shapes.trapeze.area[patternItem.frame];
-            addShapeMatrix(patternItem, 2);
-        }, this);
+    F2.forEach(function (patternItem) {
+        areaSolution = areaSolution + shapes.trapeze.area[patternItem.frame];
+        addShapeMatrix(patternItem, 2);
+    }, this);
 
-        F3.forEach(function (patternItem) {
-            areaSolution = areaSolution + shapes.hexagon.area[patternItem.frame];
-            addShapeMatrix(patternItem, 2);
-        }, this);
+    F3.forEach(function (patternItem) {
+        areaSolution = areaSolution + shapes.hexagon.area[patternItem.frame];
+        addShapeMatrix(patternItem, 2);
+    }, this);
 
-        F4.forEach(function (patternItem) {
-            areaSolution = areaSolution + shapes.triangleEqui.area[patternItem.frame];
-            addShapeMatrix(patternItem, 2);
-        }, this);
+    F4.forEach(function (patternItem) {
+        areaSolution = areaSolution + shapes.triangleEqui.area[patternItem.frame];
+        addShapeMatrix(patternItem, 2);
+    }, this);
 
-        F5.forEach(function (patternItem) {
-            areaSolution = areaSolution + shapes.triangleRect.area[patternItem.frame];
-            addShapeMatrix(patternItem, 2);
-        }, this);
+    F5.forEach(function (patternItem) {
+        areaSolution = areaSolution + shapes.triangleRect.area[patternItem.frame];
+        addShapeMatrix(patternItem, 2);
+    }, this);
 
-        F6.forEach(function (patternItem) {
-            areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
-            addShapeMatrix(patternItem, 2);
-        }, this);
+    F6.forEach(function (patternItem) {
+        areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
+        addShapeMatrix(patternItem, 2);
+    }, this);
 }
