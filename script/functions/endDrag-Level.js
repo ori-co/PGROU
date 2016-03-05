@@ -159,6 +159,70 @@ function endDrag(tempSprite, pointer) {
         areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
         addShapeMatrix(patternItem,2);
     }, this);
+	
+	//Coloration
+	
+	if (tempSprite.key == 'square') {
+	P1.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+   if (tempSprite.key == 'trapeze') {
+	P2.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+if (tempSprite.key == 'hexagon') {
+	P3.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+if (tempSprite.key == 'triangle_equi') {
+	P4.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
 
+   if (tempSprite.key == 'trinagle_rect') {
+	P5.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
+
+   if (tempSprite.key == 'diamond') {
+	P6.forEach(function(pattern) {
+        if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape){
+			tempSprite.tint = pattern.wantedColor;
+		}else{
+			tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+		}
+    }, this);
+	}
+	
 
 }

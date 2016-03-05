@@ -53,21 +53,22 @@ function create() {
     var pattern5 = P5.create(0, 0, 'triangle_rect');
     var pattern6 = P6.create(0, 0, 'diamond');
 
-    patternStyle(pattern1, 496, 168, 0);
-    patternStyle(pattern2, 496, 227, 0);
-    patternStyle(pattern3, 400, 200, 0);
-    patternStyle(pattern4, 496, 108, 0);
-    patternStyle(pattern5, 400, 128, 0);
-    patternStyle(pattern6, 320, 228, 4);					
+    patternStyle(pattern1, 496, 168, 0, "0x83EE00");
+    patternStyle(pattern2, 496, 227, 0, "0x83EE00");
+    patternStyle(pattern3, 400, 200, 0, "0x83EE00");
+    patternStyle(pattern4, 496, 108, 0, "0x83EE00");
+    patternStyle(pattern5, 400, 128, 0, "0x83EE00");
+    patternStyle(pattern6, 320, 228, 4, "0x83EE00");					
 						
 
-    function patternStyle(pattern, x, y, angle) {
+    function patternStyle(pattern, x, y, angle, color) {
         pattern.x = x;
         pattern.y = y;
         pattern.frame = angle;
         pattern.inputEnabled = true;
         pattern.tint = 0x020303;
         pattern.alpha = 0.4;
+		pattern.wantedColor = color;
     }
 
     //Update the pattern matrix with the shapes' matrix
