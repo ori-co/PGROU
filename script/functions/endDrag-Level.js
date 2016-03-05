@@ -8,5 +8,5 @@ function endDrag(tempSprite, pointer) {
 		colorSprite(tempSprite,'levelMode');
 	}
 	updateSolution();
-	
+
 }
