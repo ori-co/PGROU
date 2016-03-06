@@ -182,7 +182,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                 matTemp[i][j] = 0;
             }
         }
-
+			
 //***SQUARE***	
         if (tempSprite.key == 'square') {
             var M = shapes.square.mat[tempSprite.frame];
@@ -319,8 +319,11 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }, this);
-            //***TRIANGLE RECT***	
+		}
+		
+//***TRIANGLE RECT***	
             if (tempSprite.key == 'triangle_rect') {
+				
                 var M = shapes.triangleRect.mat[tempSprite.frame];
 
                 for (var i = 0; i < 128; i++) {
@@ -356,6 +359,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
 
             //***DIAMOND***	
+
             if (tempSprite.key == 'diamond') {
                 var M = shapes.diamond.mat[tempSprite.frame];
 
@@ -392,7 +396,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
         }
     }
-}
+
 
 function updateSolution() {
     for (var i = 0; i < 1200; i++) {
