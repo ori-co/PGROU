@@ -1,7 +1,5 @@
 // Functions useful for matrix manipulation
 
-// TODO gérer l'interdiction de superposition
-
 function addShapeMatrix(patternItem,param) {
 	var matShape = [];
 	if (patternItem.key == 'square') {

@@ -394,6 +394,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
     }
 }
 
+
 function updateSolution() {
     for (var i = 0; i < 1200; i++) {
         for (var j = 0; j < 800; j++) {
@@ -432,4 +433,41 @@ function updateSolution() {
         areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
         addShapeMatrix(patternItem, 2);
     }, this);
+    
+    
+    // Vérification de la solution    
+    valid = 0;
+    
+    for (var i = 0; i < 1200; i++) {
+    	for (var j = 0; j < 800; j++) {
+    		if (matSolution[i][j] != matPattern[i][j]) {
+                valid++;
+            }
+    	}
+    }
+	
+	/*
+	var i = 0;
+	var j = 0;
+	while (i < 1200 && valid < 500) {
+		while (j < 800 && valid < 500) {
+			if (matSolution[i][j] != matPattern[i][j]) {
+                valid++;
+            }
+            j++;
+        }
+        i++;
+    }
+    */
+
+    if (valid < 500 && areaSolution == areaPattern) {
+        fin = 1;
+        if (nbAlert == 0) {
+            nbAlert = 1;
+            var delay = 500;
+            setTimeout(function() {
+                alert("Bravo! Vous avez réussi ce niveau!");
+            }, delay);
+        }
+    }
 }
