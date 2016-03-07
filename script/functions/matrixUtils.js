@@ -28,8 +28,8 @@ function addShapeMatrix(patternItem,param) {
    		for (var i = 0; i < nbPixels; i++) {
     	    for (var j = 0; j < nbPixels; j++) {
 		        pixelShape = matShape[i][j];
-    	        pixelRef = matPattern[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)];
-    	        matPattern[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = Math.max(pixelShape,pixelRef);
+    	        pixelRef = matPattern[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)];
+    	        matPattern[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = Math.max(pixelShape,pixelRef);
     	        // i is the line index --> coord y
     	        // j is the column index --> coord x
     	    }
@@ -39,8 +39,8 @@ function addShapeMatrix(patternItem,param) {
    		for (var i = 0; i < nbPixels; i++) {
         	for (var j = 0; j < nbPixels; j++) {
 	     		pixelShape = matShape[i][j];
-          		pixelRef = matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)];
-          		matSolution[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = Math.max(pixelShape,pixelRef);
+          		pixelRef = matSolution[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)];
+          		matSolution[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = Math.max(pixelShape,pixelRef);
 	            // i is the line index --> coord y
 	            // j is the column index --> coord x
 	        }
@@ -50,16 +50,17 @@ function addShapeMatrix(patternItem,param) {
    		for (var i = 0; i < nbPixels; i++) {
         	for (var j = 0; j < nbPixels; j++) {
 	     		pixelShape = matShape[i][j];
-          		pixelRef = matSnap[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)];
+          		pixelRef = matSnap[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)];
           		if (pixelShape == 2 && pixelRef == 2) {
-          			matSnap[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = 1;
+          			matSnap[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = 1;
           			// superposition of 2 contours, so it is no more a contour (pixel = 1)
       			} else {
-      				matSnap[Math.floor(patternItem.y + i)][Math.floor(patternItem.x + j)] = Math.max(pixelShape,pixelRef);
+      				matSnap[Math.floor(Number(patternItem.y) + i)][Math.floor(Number(patternItem.x) + j)] = Math.max(pixelShape,pixelRef);
   				}
 	            // i is the line index --> coord y
 	            // j is the column index --> coord x
 	        }
 	    }
     }
+
 }
