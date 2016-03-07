@@ -204,16 +204,18 @@ function create() {
 
     //Build the menu
     buildMenu();
+
 //Create the wished pattern
                     var patterns = [];
                     //Get the JSON content
                     var result = document.getElementById('cache').innerText;
                     document.getElementById('json').style.display = 'none';
-                    //JSON analysis
+                    //JSON analysis				
                     var jsonObj = JSON.parse(result);
                     //Pattern creation
+					
                     for (var i = 0; i < jsonObj.problem.pattern.length; i++) {
-
+	
             switch (jsonObj.problem.pattern[i].shape) {
             case "square":
                     patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'square');
@@ -232,6 +234,7 @@ function create() {
 					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                     break;
                     case "hexagon":
+					alert("ok");
                     patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'hexagon');
                     patterns[i].inputEnabled = true;
                     patterns[i].tint = 0x020303;

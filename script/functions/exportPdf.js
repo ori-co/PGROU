@@ -174,7 +174,7 @@ function pdf() {
     }
 
 //Hexagon
-    F2.forEach(function (pattern) {
+    F3.forEach(function (pattern) {
         if (nbLigne == 6) {
             nbLigne = 0;
             nbPage++;
@@ -204,7 +204,7 @@ function pdf() {
 
 
 //Trapeze
-    F3.forEach(function (pattern) {
+    F2.forEach(function (pattern) {
         if (nbLigne == 6) {
             nbLigne = 0;
             nbPage++;

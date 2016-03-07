@@ -37,7 +37,7 @@ echo"
 }else{ // Otherwhise, we save and print a success message
 
 //We save the file on the server
-$file='library/'.$name.'.json';
+$file='library\\'.$name.'.json';
 $fp = fopen($file,'w');
 fwrite($fp, $json);
 fclose($fp);
