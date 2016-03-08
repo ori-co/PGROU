@@ -90,6 +90,13 @@ var buttonHexagon;
 var buttonTriangleRect;
 var buttonDiamond;
 
+var labelSquare;
+var labelTrapezoid;
+var labelTriangleEqui;
+var lavbelHexagon;
+var labelTriangleRect;
+var labelDiamond;
+
 var palette;
 
 var shadows;

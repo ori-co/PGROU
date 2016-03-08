@@ -32,30 +32,36 @@ function addShape(shape, F) {
 
 function addForm1(form1, pointer) {
     nbF1 = nbF1 + 1;
+    labelSquare.text = nbF1;
     addShape('square', F1);
 }
 
 function addForm2(form2, pointer) {
     nbF2 = nbF2 + 1;
+    labelTrapezoid.text = nbF2;
     addShape('trapeze', F2);
 }
 
 function addForm3(form3, pointer) {
     nbF3 = nbF3 + 1;
+    labelHexagon.text=nbF3;
     addShape('hexagon', F3);
 }
 
 function addForm4(form4, pointer) {
     nbF4 = nbF4 + 1;
+    labelTriangleEqui.text = nbF4;
     addShape('triangle_equi', F4);
 }
 
 function addForm5(form5, pointer) {
     nbF5 = nbF5 + 1;
+    labelTriangleRect.text=nbF5;
     addShape('triangle_rect', F5);
 }
 
 function addForm6(form6, pointer) {
     nbF6 = nbF6 + 1;
+    labelDiamond.text=nbF6;
     addShape('diamond', F6);
 }

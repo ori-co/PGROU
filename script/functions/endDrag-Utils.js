@@ -1,21 +1,27 @@
 function deleteSprite(tempSprite) {
     if (tempSprite.key == 'square') {
         nbF1 = nbF1 - 1;
+        labelSquare.text = nbF1;
     }
     if (tempSprite.key == 'trapeze') {
         nbF2 = nbF2 - 1;
+        labelTrapezoid.text = nbF2;
     }
     if (tempSprite.key == 'hexagon') {
         nbF3 = nbF3 - 1;
+        labelHexagon.text=nbF3;
     }
     if (tempSprite.key == 'triangle_equi') {
         nbF4 = nbF4 - 1;
+        labelTriangleEqui.text = nbF4;
     }
     if (tempSprite.key === 'triangle_rect') {
         nbF5 = nbF5 - 1;
+        labelTriangleRect.text=nbF5;
     }
     if (tempSprite.key === 'diamond') {
         nbF6 = nbF6 - 1;
+        labelDiamond.text=nbF6;
     }
     tempSprite.destroy();
     trashBinSound();
