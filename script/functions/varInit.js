@@ -92,6 +92,8 @@ var buttonDiamond;
 
 var palette;
 
+var shadows;
+
 // responsive elements
 var pipe;
 var basketLeft;

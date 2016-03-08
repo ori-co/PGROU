@@ -1,66 +1,236 @@
-function pdf() {
-var doc = new jsPDF('landscape');
+function setColor(pattern, doc) {
+    var s = pattern.tint;
+    switch (s) {
+        case "0x83EE00":
+            doc.setDrawColor(131, 238, 0);
+            doc.setFillColor(131, 238, 0);
+            break;
+        case "0xFBFE00":
+            doc.setDrawColor(253, 254, 0);
+            doc.setFillColor(253, 254, 0);
+            break;
+        case "0x058AB6":
+            doc.setDrawColor(5, 138, 182);
+            doc.setFillColor(5, 138, 182);
+            break;
+        case "0xE4005C":
+            doc.setDrawColor(228, 0, 92);
+            doc.setFillColor(228, 0, 92);
+            break;
 
-var a = 10;
-var b = 10;
+        case "0x8007BE":
+            doc.setDrawColor(128, 7, 190);
+            doc.setFillColor(128, 7, 190);
+            break;
+        case "0xFF8300":
+            doc.setDrawColor(255, 131, 0);
+            doc.setFillColor(255, 131, 0);
+            break;
+        default :
+            doc.setDrawColor(171, 220, 240);
+            doc.setFillColor(171, 220, 240);
+            break;
+    }
+}
+
+
+function pdf() {
+    var doc = new jsPDF();
 
 //Title
-doc.setFont("helvetica");
-doc.setTextColor(131,138,0);
-doc.text(75, 20, 'Nom de l\'application');
+    doc.setFont("helvetica");
+    doc.setTextColor(171, 220, 240);
+    doc.text(75, 20, 'Nom de l\'application  -  Page 1');
 
-//Carré
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.rect(a, b, 20, 20, 'F'); 
+//Initialisation
+    var a = 10;
+    var b = 40;
+    var cpt = 0;
+    var nbLigne = 0;
+    var nbPage = 1;
 
-//Carré 45
-doc.addPage();
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.triangle(a+14, b, a, b+14, a+28, b+14, 'FD');
-doc.triangle(a, b+14, a+14, b+28, a+28, b+14, 'FD');
+//Square
+    F1.forEach(function (pattern) {
+        if (nbLigne == 6) {
+            nbLigne = 0;
+            nbPage++;
+            doc.addPage();
+            doc.setFont("helvetica");
+            doc.setTextColor(171, 220, 240);
+            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            b = 40;
+        }
+        setColor(pattern, doc);
+        doc.rect(a, b, 20, 20, 'F');
+        cpt++;
+        if (cpt < 7) {
+            a = a + 26;
+        } else {
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+        }
+    }, this);
 
 //Triangle equi
-doc.addPage();
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.triangle(a+10, b, a, b+20, a+20, b+20, 'FD');
-
-//hexagone
-doc.addPage();
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.triangle(100, 100, 150, 100, 125, 57, 'FD');
-doc.triangle(100, 100,75 ,57 , 125, 57, 'FD');
-doc.triangle(150, 100, 175 ,57 , 125, 57, 'FD');
-doc.triangle(150, 100, 175 ,57 , 125, 57, 'FD');
-doc.triangle(150, 14 , 175 ,57 , 125, 57, 'FD');
-doc.triangle(100, 14 , 75 ,57 , 125, 57, 'FD');
-doc.triangle(100, 14 , 150 ,14 , 125, 57, 'FD');
-
-//Trapèze
-doc.addPage();
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.triangle(100, 100, 150, 100, 125, 57, 'FD');
-doc.triangle(100, 100,75 ,57 , 125, 57, 'FD');
-doc.triangle(150, 100, 175 ,57 , 125, 57, 'FD');
-doc.triangle(150, 100, 175 ,57 , 125, 57, 'FD');
+    F4.forEach(function (pattern) {
+        if (nbLigne == 6) {
+            nbLigne = 0;
+            nbPage++;
+            doc.addPage();
+            doc.setFont("helvetica");
+            doc.setTextColor(171, 220, 240);
+            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            b = 40;
+        }
+        setColor(pattern, doc);
+        doc.triangle(a + 10, b, a, b + 17, a + 20, b + 17, 'FD');
+        cpt++;
+        if (cpt < 7) {
+            a = a + 26;
+        } else {
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+        }
+    }, this);
 
 //Triangle rectangle
-doc.addPage();
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.triangle(100, 100, 150, 100, 125, 125, 'FD');
+    F5.forEach(function (pattern) {
+        if (nbLigne == 6) {
+            nbLigne = 0;
+            nbPage++;
+            doc.addPage();
+            doc.setFont(171, 220, 240);
+            doc.setTextColor(131, 138, 0);
+            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            b = 40;
+        }
+        setColor(pattern, doc);
+        doc.triangle(a + 10, b, a, b + 9.8, a + 20, b + 9.8, 'FD');
+        cpt++;
+        if (cpt < 7) {
+            a = a + 26;
+        } else {
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+        }
+    }, this);
 
-//Losange
-doc.addPage();
-doc.setDrawColor(0,0,255);
-doc.setFillColor(0,0,255);
-doc.triangle(150, 100, 175 ,57 , 125, 57, 'FD');
-doc.triangle(150, 14 , 175 ,57 , 125, 57, 'FD');
+//Diamond
+    F6.forEach(function (pattern) {
+        if (nbLigne == 6) {
+            nbLigne = 0;
+            nbPage++;
+            doc.addPage();
+            doc.setFont(171, 220, 240);
+            doc.setTextColor(131, 138, 0);
+            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            b = 40;
+        }
+        setColor(pattern, doc);
+        doc.triangle(a + 10, b, a, b + 17, a + 20, b + 17, 'FD');
+        doc.triangle(a, b + 17, a + 20, b + 17, a + 10, b + 34, 'FD');
+        cpt++;
+        if (cpt < 7) {
+            a = a + 26;
+        } else {
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+        }
+    }, this);
+
+    switch (cpt) {
+        case 0:
+            cpt = 0;
+            break;
+        case 1 :
+            cpt = 1;
+            break;
+        case 2 :
+            cpt = 1;
+            break;
+        case 3 :
+            cpt = 2;
+            break;
+        case 4 :
+            cpt = 2;
+            break;
+        case 5 :
+            cpt = 3;
+            break
+        case 5 :
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+            break;
+    }
+
+//Hexagon
+    F3.forEach(function (pattern) {
+        if (nbLigne == 6) {
+            nbLigne = 0;
+            nbPage++;
+            doc.addPage();
+            doc.setFont("helvetica");
+            doc.setTextColor(171, 220, 240);
+            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            b = 40;
+        }
+        setColor(pattern, doc);
+        doc.triangle(a, b + 17, a + 20, b + 17, a + 10, b, 'FD');
+        doc.triangle(a + 20, b + 17, a + 10, b, a + 30, b, 'FD');
+        doc.triangle(a + 20, b + 17, a + 40, b + 17, a + 30, b, 'FD');
+        doc.triangle(a + 20, b + 17, a + 40, b + 17, a + 30, b + 34, 'FD');
+        doc.triangle(a + 20, b + 17, a + 10, b + 34, a + 30, b + 34, 'FD');
+        doc.triangle(a + 20, b + 17, a + 10, b + 34, a, b + 17, 'FD');
+        cpt++;
+        if (cpt < 4) {
+            a = a + 46;
+        } else {
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+        }
+    }, this);
 
 
-doc.save('Test.pdf');
+//Trapeze
+    F2.forEach(function (pattern) {
+        if (nbLigne == 6) {
+            nbLigne = 0;
+            nbPage++;
+            doc.addPage();
+            doc.setFont("helvetica");
+            doc.setTextColor(171, 220, 240);
+            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            b = 40;
+        }
+        setColor(pattern, doc);
+        doc.triangle(a, b + 17, a + 20, b + 17, a + 10, b, 'FD');
+        doc.triangle(a + 20, b + 17, a + 10, b, a + 30, b, 'FD');
+        doc.triangle(a + 20, b + 17, a + 40, b + 17, a + 30, b, 'FD');
+
+        cpt++;
+        if (cpt < 4) {
+            a = a + 46;
+        } else {
+            b = b + 40;
+            a = 10;
+            cpt = 0;
+            nbLigne++;
+        }
+    }, this);
+
+
+    doc.save('Test.pdf');
 }
+
