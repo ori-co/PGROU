@@ -1,4 +1,3 @@
-var affichage = "";
 //Edition Modes (colors and rotation)
 function formInteraction(tempSprite, pointer) {
     switch (test) {
@@ -6,7 +5,6 @@ function formInteraction(tempSprite, pointer) {
             break;
         case 1:
             tempSprite.frame ++;
-            affichage = tempSprite.frame;
             tempSprite.updateCache()
             break;
         case 2:

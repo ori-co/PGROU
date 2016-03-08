@@ -12,7 +12,7 @@ function addShape(shape, F) {
 
     tempSprite.inputEnabled = true; //Active Input
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
-    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
+    tempSprite.input.enableSnap(1, 1, false, true); //Grid of 1 pixel
     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
     

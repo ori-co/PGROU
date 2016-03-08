@@ -58,8 +58,7 @@ function create() {
     patternStyle(pattern3, 400, 200, 0, "0x83EE00");
     patternStyle(pattern4, 496, 108, 0, "0x83EE00");
     patternStyle(pattern5, 400, 128, 0, "0x83EE00");
-    patternStyle(pattern6, 320, 228, 4, "0x83EE00");					
-						
+    patternStyle(pattern6, 320, 228, 4, "0x83EE00");				
 
     function patternStyle(pattern, x, y, angle, color) {
         pattern.x = x;
