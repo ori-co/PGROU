@@ -8,7 +8,7 @@ function addShape(shape, F) {
     
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.tint = 0xabdcf1;
+    tempSprite.tint = 0x93AFBD;
 
     tempSprite.inputEnabled = true; //Active Input
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
