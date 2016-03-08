@@ -21,6 +21,16 @@ function deleteSprite(tempSprite) {
     trashBinSound();
 }
 
+// to differentiate between a simple click and a real drag
+function isDrag() {
+	var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
+	if (distanceFromLastUp > 2) { // value 2 determined empiracally
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function snapEffect(tempSprite, gameMode) {
 
     for (var i = 0; i < 1200; i++) {

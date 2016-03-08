@@ -1,11 +1,11 @@
 //Edition Modes (colors and rotation)
 function formInteraction(tempSprite, pointer) {
-    switch (test) {
+   	switch (test) {
         case 0:
             break;
         case 1:
             tempSprite.frame ++;
-            tempSprite.updateCache()
+            tempSprite.updateCache();
             break;
         case 2:
             var rand = Math.floor((Math.random() * 5));
