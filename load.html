@@ -4,13 +4,13 @@
     <head>
         <meta charset="UTF-8" />
         <title>/-> Maths Puzzle<-/</title>
-      
-	  <script type="text/javascript" src="script/phaser.js"></script>
+
+        <script type="text/javascript" src="script/phaser.js"></script>
         <script type="text/javascript" src="script/soundmanager2.js"></script>
-		<script type="text/javascript" src="script/functions/matrixInit.js"></script>
-		<script type="text/javascript" src="script/functions/matrixUtils.js"></script>
-		<script type="text/javascript" src="script/functions/varInit.js"></script>
-		<script type="text/javascript" src="script/functions/sounds.js"></script>
+        <script type="text/javascript" src="script/functions/matrixInit.js"></script>
+        <script type="text/javascript" src="script/functions/matrixUtils.js"></script>
+        <script type="text/javascript" src="script/functions/varInit.js"></script>
+        <script type="text/javascript" src="script/functions/sounds.js"></script>
         <script>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,135 +18,148 @@
             function start() {
 
 //Create a new Phaser JS game
-            var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
+                var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
 //var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 
 //var game = new Phaser.Game(2000, 1000, Phaser.CANVAS, 'pgrou', { 
-            preload: preload,
+                    preload: preload,
                     create: create,
                     update: update,
                     render: render
-            });
+                });
 // Language Definition
-var language = "assets/audio/fr/";  
+                var language = "assets/audio/fr/";
 
 //Load the necessary files before the beginning of the game
-function preload() {
-    
-    game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);
-    game.load.spritesheet('square','assets/sprites/square.png',130,130);
-    game.load.spritesheet('diamond','assets/sprites/lozenge.png',130,130);
-    game.load.spritesheet('trapeze','assets/sprites/trapezoid.png',130,130);
-    game.load.spritesheet('triangle_equi','assets/sprites/triangle-equi.png',130,130);
-    game.load.spritesheet('triangle_rect','assets/sprites/triangle-rect.png',130,130);
-    
-    
-    game.load.image('store', 'assets/images/menu/store.png');
-    game.load.image('pipe', 'assets/images/menu/store-pipe.png');
-    
-    game.load.spritesheet('trashbin', 'assets/images/buttons/trashbin.png', 83, 76);
-    
-    game.load.spritesheet('button-square', 'assets/images/buttons/shape-square.png', 78, 77);
-    game.load.spritesheet('button-trapeze', 'assets/images/buttons/shape-trapeze.png', 78, 77);
-    game.load.spritesheet('button-triangle-equi', 'assets/images/buttons/shape-t-equi.png', 78, 77);
-    game.load.spritesheet('button-hexagon', 'assets/images/buttons/shape-hexagon.png', 78, 77);
-    game.load.spritesheet('button-triangle-rect', 'assets/images/buttons/shape-t-rect.png', 78, 77);
-    game.load.spritesheet('button-diamond', 'assets/images/buttons/shape-diamond.png', 78, 77);
-    
-    game.load.image('basket-left', 'assets/images/menu/basket-left.png');
-    game.load.image('basket-right', 'assets/images/menu/basket-right.png');
-    game.load.image('basket-middle', 'assets/images/menu/basket-middle.png');
-    
-    game.load.spritesheet('button-rotate', 'assets/images/buttons/option-rotate.png', 48, 48);
-    game.load.spritesheet('button-colors', 'assets/images/buttons/option-colors.png', 48, 48);
-    game.load.spritesheet('button-home', 'assets/images/buttons/option-home.png', 48, 48);
-    game.load.spritesheet('button-export', 'assets/images/buttons/option-export.png', 48, 48);
-    game.load.spritesheet('button-mute', 'assets/images/buttons/option-mute.png', 48, 48);
-    
-    game.load.image('menu-left', 'assets/images/menu/menu-left.png');
-    game.load.image('menu-right', 'assets/images/menu/menu-right.png');
-    game.load.image('menu-middle', 'assets/images/menu/menu-middle.png');
-    
-    game.load.audio('trashbin',language+'trashbin.mp3');
-    game.load.audio('click',language+'click.mp3');
-    /*
-    
-    game.load.audio('index',language+'index.mp3');
-    game.load.audio('select_class',language+'select_class.mp3');
-    game.load.audio('lock',language+'lock.mp3');
-    game.load.audio('import',language+'import.mp3');
-    game.load.audio('classic',language+'classic.mp3');
-    game.load.audio('firstform',language+'firstform.mp3');
-    game.load.audio('matching_cla',language+'matching_cla.mp3');
-    game.load.audio('problem',language+'problem.mp3');
-    game.load.audio('distrib',language+'distrib.mp3');
-    game.load.audio('prop_rotation',language+'prop_rotation.mp3');
-    game.load.audio('top_validation',language+'top_validation.mp3');
-    game.load.audio('low_validation',language+'low_validation.mp3');
-    game.load.audio('popup',language+'popup.mp3');
-    game.load.audio('nextlevel',language+'nextlevel.mp3');
-    game.load.audio('square1',language+'square1.mp3');
-    game.load.audio('triangle-eq1',language+'triangle-eq1.mp3');
-    game.load.audio('triangle-req1',language+'triangle-req1.mp3');
-    game.load.audio('trapeze1',language+'trapeze1.mp3');
-    game.load.audio('diamond1',language+'diamond1.mp3');
-    game.load.audio('selectfree',language+'selectfree.mp3');
-    game.load.audio('matching-free',language+'matching-free.mp3');
-    game.load.audio('crea',language+'crea.mp3');
-    game.load.audio('save',language+'save.mp3');
-    game.load.audio('advertise',language+'advertise.mp3');
-    game.load.audio('print',language+'print.mp3');
-    game.load.audio('exprt',language+'exprt.mp3');
-    */
-    
-}
+                function preload() {
 
-function buildMenu() {
-	
-    // Store Creation
-    var bin = game.add.button(60, 20, 'trashbin', null, this, 2, 1, 0, 1);
-    trash.add(bin);
-    var store = game.add.sprite(5, 5, 'store');
-    store.scaleMax = 1;
-    store.scaleMin = 1;
-    pipe = game.add.sprite(5, 395, 'pipe');
-    pipe.height = window.innerHeight - (390 + 212);
-    buttonSquare = game.add.button(20, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
-    buttonTrapezoid = game.add.button(100, 110, 'button-trapeze', addForm2, this, 2, 1, 0, 1);
-    buttonTriangleEqui = game.add.button(20, 200, 'button-triangle-equi', addForm4, this, 2, 1, 0, 1);
-    buttonHexagon = game.add.button(100, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
-    buttonTriangleRect = game.add.button(20, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
-    buttonDiamond = game.add.button(100, 290, 'button-diamond', addForm6, this, 2, 1, 0, 1);
+                    game.load.spritesheet('hexagon', 'assets/sprites/hexagon.png', 130, 130);
+                    game.load.spritesheet('square', 'assets/sprites/square.png', 130, 130);
+                    game.load.spritesheet('diamond', 'assets/sprites/lozenge.png', 130, 130);
+                    game.load.spritesheet('trapeze', 'assets/sprites/trapezoid.png', 130, 130);
+                    game.load.spritesheet('triangle_equi', 'assets/sprites/triangle-equi.png', 130, 130);
+                    game.load.spritesheet('triangle_rect', 'assets/sprites/triangle-rect.png', 130, 130);
 
-    // Basket creation
-    basketLeft = game.add.sprite(5, window.innerHeight - 212 - 5, 'basket-left');
-    basketMiddle = game.add.sprite(142, window.innerHeight - 212 - 5, 'basket-middle');
-    basketMiddle.width = window.innerWidth - 2 * 142;
-    basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
 
-    // Menu construction
-    menuLenght = 100;
-    menuLeft = game.add.sprite(window.innerWidth - 5 - menuLenght - 2 * 35, 5, 'menu-left');
-    menuMiddle = game.add.sprite(window.innerWidth - 5 - menuLenght - 35, 5, 'menu-middle');
-    menuMiddle.width = menuLenght;
-    menuRight = game.add.sprite(window.innerWidth - 35 - 5, 5, 'menu-right');
+                    game.load.image('store', 'assets/images/menu/store.png');
+                    game.load.image('pipe', 'assets/images/menu/store-pipe.png');
 
-    //Add rotation and color buttons
-    
-    rot = game.add.button(10, window.innerHeight - 210, 'button-rotate', rotationButton, this, 2, 1, 0, 1);
+                    game.load.spritesheet('trashbin', 'assets/images/buttons/trashbin.png', 83, 76);
 
-    col = game.add.button(58, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
+                    game.load.spritesheet('button-square', 'assets/images/buttons/shape-square.png', 78, 77);
+                    game.load.spritesheet('button-trapeze', 'assets/images/buttons/shape-trapeze.png', 78, 77);
+                    game.load.spritesheet('button-triangle-equi', 'assets/images/buttons/shape-t-equi.png', 78, 77);
+                    game.load.spritesheet('button-hexagon', 'assets/images/buttons/shape-hexagon.png', 78, 77);
+                    game.load.spritesheet('button-triangle-rect', 'assets/images/buttons/shape-t-rect.png', 78, 77);
+                    game.load.spritesheet('button-diamond', 'assets/images/buttons/shape-diamond.png', 78, 77);
 
-    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', clickerBack, this, 2, 1, 0, 1);
+                    game.load.image('basket-left', 'assets/images/menu/basket-left.png');
+                    game.load.image('basket-right', 'assets/images/menu/basket-right.png');
+                    game.load.image('basket-middle', 'assets/images/menu/basket-middle.png');
 
-    mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
+                    game.load.spritesheet('button-rotate', 'assets/images/buttons/option-rotate.png', 48, 48);
+                    game.load.spritesheet('button-colors', 'assets/images/buttons/option-colors.png', 48, 48);
+                    game.load.spritesheet('button-home', 'assets/images/buttons/option-home.png', 48, 48);
+                    game.load.spritesheet('button-export', 'assets/images/buttons/option-export.png', 48, 48);
+                    game.load.spritesheet('button-mute', 'assets/images/buttons/option-mute.png', 48, 48);
 
-    exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', null, this, 2, 1, 0, 1);
+                    game.load.image('menu-left', 'assets/images/menu/menu-left.png');
+                    game.load.image('menu-right', 'assets/images/menu/menu-right.png');
+                    game.load.image('menu-middle', 'assets/images/menu/menu-middle.png');
 
-    shadows = game.add.group();
-}
+                    game.load.audio('trashbin', language + 'trashbin.mp3');
+                    game.load.audio('click', language + 'click.mp3');
+                    /*
+                     
+                     game.load.audio('index',language+'index.mp3');
+                     game.load.audio('select_class',language+'select_class.mp3');
+                     game.load.audio('lock',language+'lock.mp3');
+                     game.load.audio('import',language+'import.mp3');
+                     game.load.audio('classic',language+'classic.mp3');
+                     game.load.audio('firstform',language+'firstform.mp3');
+                     game.load.audio('matching_cla',language+'matching_cla.mp3');
+                     game.load.audio('problem',language+'problem.mp3');
+                     game.load.audio('distrib',language+'distrib.mp3');
+                     game.load.audio('prop_rotation',language+'prop_rotation.mp3');
+                     game.load.audio('top_validation',language+'top_validation.mp3');
+                     game.load.audio('low_validation',language+'low_validation.mp3');
+                     game.load.audio('popup',language+'popup.mp3');
+                     game.load.audio('nextlevel',language+'nextlevel.mp3');
+                     game.load.audio('square1',language+'square1.mp3');
+                     game.load.audio('triangle-eq1',language+'triangle-eq1.mp3');
+                     game.load.audio('triangle-req1',language+'triangle-req1.mp3');
+                     game.load.audio('trapeze1',language+'trapeze1.mp3');
+                     game.load.audio('diamond1',language+'diamond1.mp3');
+                     game.load.audio('selectfree',language+'selectfree.mp3');
+                     game.load.audio('matching-free',language+'matching-free.mp3');
+                     game.load.audio('crea',language+'crea.mp3');
+                     game.load.audio('save',language+'save.mp3');
+                     game.load.audio('advertise',language+'advertise.mp3');
+                     game.load.audio('print',language+'print.mp3');
+                     game.load.audio('exprt',language+'exprt.mp3');
+                     */
 
-            function wallpaper() {
-            game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+                }
+
+                function buildMenu() {
+
+                    // Store Creation
+                    var bin = game.add.button(60, 20, 'trashbin', null, this, 2, 1, 0, 1);
+                    trash.add(bin);
+                    var store = game.add.sprite(5, 5, 'store');
+                    pipe = game.add.sprite(5, 395, 'pipe');
+                    pipe.height = window.innerHeight - (390 + 212);
+
+                    // Buttons in store
+                    var style = {font: "25px Arial", fontWeight: "bold", fill: "#8B7AFF"};
+
+                    buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
+                    labelSquare = game.add.text(53, 130, nbF1, style);
+                    labelSquare.anchor.x = 0.5;
+
+                    buttonTrapezoid = game.add.button(105, 110, 'button-trapeze', addForm2, this, 2, 1, 0, 1);
+                    labelTrapezoid = game.add.text(142, 130, nbF2, style);
+                    labelTrapezoid.anchor.x = 0.5;
+
+                    buttonTriangleEqui = game.add.button(15, 200, 'button-triangle-equi', addForm4, this, 2, 1, 0, 1);
+                    labelTriangleEqui = game.add.text(53, 220, nbF4, style);
+                    labelTriangleEqui.anchor.x = 0.5;
+
+                    buttonHexagon = game.add.button(105, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
+                     labelHexagon = game.add.text(142, 220, nbF3, style);
+                    labelHexagon.anchor.x = 0.5;
+
+                    buttonTriangleRect = game.add.button(15, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
+                    labelTriangleRect = game.add.text(53, 310, nbF5, style);
+                    labelTriangleRect.anchor.x = 0.5;
+
+                    buttonDiamond = game.add.button(105, 290, 'button-diamond', addForm6, this, 2, 1, 0, 1);
+                    labelDiamond = game.add.text(142, 310, nbF6, style);
+                    labelDiamond.anchor.x = 0.5;
+
+                    // Basket creation
+                    basketLeft = game.add.sprite(5, window.innerHeight - 212 - 5, 'basket-left');
+                    basketMiddle = game.add.sprite(142, window.innerHeight - 212 - 5, 'basket-middle');
+                    basketMiddle.width = window.innerWidth - 2 * 142;
+                    basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
+
+                    // Menu construction
+                    menuLenght = 100;
+                    menuLeft = game.add.sprite(window.innerWidth - 5 - menuLenght - 2 * 35, 5, 'menu-left');
+                    menuMiddle = game.add.sprite(window.innerWidth - 5 - menuLenght - 35, 5, 'menu-middle');
+                    menuMiddle.width = menuLenght;
+                    menuRight = game.add.sprite(window.innerWidth - 35 - 5, 5, 'menu-right');
+
+                    //Add rotation and color buttons
+                    rot = game.add.button(10, window.innerHeight - 210, 'button-rotate', rotationButton, this, 2, 1, 0, 1);
+                    col = game.add.button(58, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
+                    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', clickerBack, this, 2, 1, 0, 1);
+                    mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
+                    exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', null, this, 2, 1, 0, 1);
+
+                    shadows = game.add.group();
+                }
+                function wallpaper() {
+                    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 //Wallpaper
                     var myBitmap = game.make.bitmapData(2000, 2000);
                     myBitmap.addToWorld();
@@ -157,55 +170,57 @@ function buildMenu() {
                     myBitmap.context.fillRect(0, 0, 2000, 2000);
 //game.stage.backgroundColor = "#4488AA";
                     palette = ["0x83EE00", "0xFBFE00", "0x058AB6", "0xE4005C", "0x8007BE", "0xFF8300"];
-            }
+
+                    shadows = game.add.group();
+                }
 
 //Main function of the game
-function create() {
+                function create() {
 
-    //Build the wallpaper and RESIZE
-    wallpaper();
+                    //Build the wallpaper and RESIZE
+                    wallpaper();
 
-    //Heritage Relationships
-    F1 = game.add.group();
-    F2 = game.add.group();
-    F3 = game.add.group();
-    F4 = game.add.group();
-    F5 = game.add.group();
-    F6 = game.add.group();
+                    //Heritage Relationships
+                    F1 = game.add.group();
+                    F2 = game.add.group();
+                    F3 = game.add.group();
+                    F4 = game.add.group();
+                    F5 = game.add.group();
+                    F6 = game.add.group();
 
-    P1 = game.add.group();
-    P2 = game.add.group();
-    P3 = game.add.group();
-    P4 = game.add.group();
-    P5 = game.add.group();
-    P6 = game.add.group();
+                    P1 = game.add.group();
+                    P2 = game.add.group();
+                    P3 = game.add.group();
+                    P4 = game.add.group();
+                    P5 = game.add.group();
+                    P6 = game.add.group();
 
-    forms = game.add.group();
-    patterns = game.add.group();
-    trash = game.add.group();
+                    forms = game.add.group();
+                    patterns = game.add.group();
+                    trash = game.add.group();
 
-    forms.add(F1);
-    forms.add(F2);
-    forms.add(F3);
-    forms.add(F4);
-    forms.add(F5);
-    forms.add(F6);
+                    forms.add(F1);
+                    forms.add(F2);
+                    forms.add(F3);
+                    forms.add(F4);
+                    forms.add(F5);
+                    forms.add(F6);
 
-    patterns.add(P1);
-    patterns.add(P2);
-    patterns.add(P3);
-    patterns.add(P4);
-    patterns.add(P5);
-    patterns.add(P6);
+                    patterns.add(P1);
+                    patterns.add(P2);
+                    patterns.add(P3);
+                    patterns.add(P4);
+                    patterns.add(P5);
+                    patterns.add(P6);
 
-    // Sound Management
-    binSound = game.add.audio('trashbin');
-    clickSound = game.add.audio('click');
+                    // Sound Management
+                    binSound = game.add.audio('trashbin');
+                    clickSound = game.add.audio('click');
 
-    //Build the menu
-    buildMenu();
+                    //Build the menu
+                    buildMenu();
 
-//Create the wished pattern
+                    //Create the wished pattern
                     var patterns = [];
                     //Get the JSON content
                     var result = document.getElementById('cache').innerText;
@@ -213,690 +228,748 @@ function create() {
                     //JSON analysis				
                     var jsonObj = JSON.parse(result);
                     //Pattern creation
-					
+
                     for (var i = 0; i < jsonObj.problem.pattern.length; i++) {
-	
-            switch (jsonObj.problem.pattern[i].shape) {
-            case "square":
-                    patterns[i] = P1.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'square');
-                    patterns[i].inputEnabled = true;
-                    patterns[i].tint = 0x020303;
-                    patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                    patterns[i].alpha = 0.4;
-					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
-                    break;
-                    case "trapeze":
-                    patterns[i] = P2.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'trapeze');
-                    patterns[i].inputEnabled = true;
-                    patterns[i].tint = 0x020303;
-                    patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                    patterns[i].alpha = 0.4;
-					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
-                    break;
-                    case "hexagon":
-					alert("ok");
-                    patterns[i] = P3.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'hexagon');
-                    patterns[i].inputEnabled = true;
-                    patterns[i].tint = 0x020303;
-                    patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                    patterns[i].alpha = 0.4;
-					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
-                    break;
-                    case "triangleEqui":
-                    patterns[i] = P4.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_equi');
-                    patterns[i].inputEnabled = true;
-                    patterns[i].tint = 0x020303;
-                    patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                    patterns[i].alpha = 0.4;
-					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
-                    break;
-                    case "triangleRect":
-                    patterns[i] = P5.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'triangle_rect');
-                    patterns[i].inputEnabled = true;
-                    patterns[i].tint = 0x020303;
-                    patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                    patterns[i].alpha = 0.4;
-					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
-                    break;
-                    case "diamond":
-                    patterns[i] = P6.create(jsonObj.problem.pattern[i].anchorPoint.x, jsonObj.problem.pattern[i].anchorPoint.y, 'diamond');
-                    patterns[i].inputEnabled = true;
-                    patterns[i].tint = 0x020303;
-                    patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                    patterns[i].alpha = 0.4;
-					patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
-                    break;
-            }
-            }
 
- //Update the pattern matrix with the shapes' matrix
-    
-    P1.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.square.area[patternItem.frame];
-        addShapeMatrix(patternItem,1);
-    }, this);
+                        switch (jsonObj.problem.pattern[i].shape) {
+                            case "square":
+                                patterns[i] = P1.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'square');
+                                patterns[i].inputEnabled = true;
+                                patterns[i].tint = 0x020303;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns[i].alpha = 0.4;
+                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                break;
+                            case "trapeze":
+                                patterns[i] = P2.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'trapeze');
+                                patterns[i].inputEnabled = true;
+                                patterns[i].tint = 0x020303;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns[i].alpha = 0.4;
+                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                break;
+                            case "hexagon":
+                                patterns[i] = P3.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'hexagon');
+                                patterns[i].inputEnabled = true;
+                                patterns[i].tint = 0x020303;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns[i].alpha = 0.4;
+                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                break;
+                            case "triangleEqui":
+                                patterns[i] = P4.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_equi');
+                                patterns[i].inputEnabled = true;
+                                patterns[i].tint = 0x020303;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns[i].alpha = 0.4;
+                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                break;
+                            case "triangleRect":
+                                patterns[i] = P5.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_rect');
+                                patterns[i].inputEnabled = true;
+                                patterns[i].tint = 0x020303;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns[i].alpha = 0.4;
+                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                break;
+                            case "diamond":
+                                patterns[i] = P6.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'diamond');
+                                patterns[i].inputEnabled = true;
+                                patterns[i].tint = 0x020303;
+                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns[i].alpha = 0.4;
+                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                break;
+                        }
+                    }
 
-    P2.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.trapeze.area[patternItem.frame];
-        addShapeMatrix(patternItem,1);
-    }, this);
+                    //Update the pattern matrix with the shapes' matrix
 
-    P3.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.hexagon.area[patternItem.frame];
-        addShapeMatrix(patternItem,1);
-    }, this);
+                    P1.forEach(function (patternItem) {
+                        areaPattern = areaPattern + shapes.square.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 1);
+                    }, this);
 
-    P4.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.triangleEqui.area[patternItem.frame];
-        addShapeMatrix(patternItem,1);
-    }, this);
+                    P2.forEach(function (patternItem) {
+                        areaPattern = areaPattern + shapes.trapeze.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 1);
+                    }, this);
 
-    P5.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.triangleRect.area[patternItem.frame];
-        addShapeMatrix(patternItem,1);
-    }, this);
+                    P3.forEach(function (patternItem) {
+                        areaPattern = areaPattern + shapes.hexagon.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 1);
+                    }, this);
 
-    P6.forEach(function(patternItem) {
-        areaPattern = areaPattern + shapes.diamond.area[patternItem.frame];
-        addShapeMatrix(patternItem,1);
-    }, this);
-}
+                    P4.forEach(function (patternItem) {
+                        areaPattern = areaPattern + shapes.triangleEqui.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 1);
+                    }, this);
+
+                    P5.forEach(function (patternItem) {
+                        areaPattern = areaPattern + shapes.triangleRect.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 1);
+                    }, this);
+
+                    P6.forEach(function (patternItem) {
+                        areaPattern = areaPattern + shapes.diamond.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 1);
+                    }, this);
+                }
 
 //Function to add shapes from the basket
-function addShape(shape, F) { 
-    nbF = nbF + 1;
-    var position = Math.random()*(game.width-2*90)+90;
-    var tempSprite = F.create(position, game.height - 155, shape);
-    tempSprite.anchor.x = 0;
-    tempSprite.anchor.y = 0;
-    
-    //tempSprite.tint = Math.random() * 0xffffff;
-    //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
-    tempSprite.tint = 0xabdcf1;
+                function addShape(shape, F) {
+                    nbF = nbF + 1;
+                    var position = Math.random() * (game.width - 2 * 90) + 90;
+                    var tempSprite = F.create(position, game.height - 155, shape);
+                    tempSprite.anchor.x = 0;
+                    tempSprite.anchor.y = 0;
 
-    tempSprite.inputEnabled = true; //Active Input
-    tempSprite.input.enableDrag(false, true); //Mobile (drag)
-    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
-    tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
-    tempSprite.events.onDragStop.add(endDrag, this); //End of drag
-    
-    tempSprite.events.onInputOver.add(function(){
-	
-       switch (test){
-           case 1:		   
-               this.game.canvas.style.cursor="url('assets/images/cursors/rot.png'),default";
-               break;
-           case 2:
-               this.game.canvas.style.cursor="url('assets/images/cursors/col.png'),default";
-               break;
-           default:
-               this.game.canvas.style.cusor="default";
-       } 
-    });
-}
+                    //tempSprite.tint = Math.random() * 0xffffff;
+                    //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
+                    tempSprite.tint = 0x93AFBD;
 
-function addForm1(form1, pointer) {
-    nbF1 = nbF1 + 1;
-    addShape('square', F1);
-}
+                    tempSprite.inputEnabled = true; //Active Input
+                    tempSprite.input.enableDrag(false, true); //Mobile (drag)
+                    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
+                    tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
+                    tempSprite.events.onDragStop.add(endDrag, this); //End of drag
 
-function addForm2(form2, pointer) {
-    nbF2 = nbF2 + 1;
-    addShape('trapeze', F2);
-}
+                    tempSprite.events.onInputOver.add(function () {
 
-function addForm3(form3, pointer) {
-    nbF3 = nbF3 + 1;
-    addShape('hexagon', F3);
-}
+                        switch (test) {
+                            case 1:
+                                this.game.canvas.style.cursor = "url('assets/images/cursors/rot.png'),default";
+                                break;
+                            case 2:
+                                this.game.canvas.style.cursor = "url('assets/images/cursors/col.png'),default";
+                                break;
+                            default:
+                                this.game.canvas.style.cusor = "default";
+                        }
+                    });
+                }
 
-function addForm4(form4, pointer) {
-    nbF4 = nbF4 + 1;
-    addShape('triangle_equi', F4);
-}
+                function addForm1(form1, pointer) {
+                    nbF1 = nbF1 + 1;
+                    labelSquare.text = nbF1;
+                    addShape('square', F1);
+                }
 
-function addForm5(form5, pointer) {
-    nbF5 = nbF5 + 1;
-    addShape('triangle_rect', F5);
-}
+                function addForm2(form2, pointer) {
+                    nbF2 = nbF2 + 1;
+                    labelSquare.text = nbF2;
+                    addShape('trapeze', F2);
+                }
 
-function addForm6(form6, pointer) {
-    nbF6 = nbF6 + 1;
-    addShape('diamond', F6);
-}
-var affichage = "";
+                function addForm3(form3, pointer) {
+                    nbF3 = nbF3 + 1;
+                    labelSquare.text = nbF3;
+                    addShape('hexagon', F3);
+                }
+
+                function addForm4(form4, pointer) {
+                    nbF4 = nbF4 + 1;
+                    labelSquare.text = nbF4;
+                    addShape('triangle_equi', F4);
+                }
+
+                function addForm5(form5, pointer) {
+                    nbF5 = nbF5 + 1;
+                    labelSquare.text = nbF5;
+                    addShape('triangle_rect', F5);
+                }
+
+                function addForm6(form6, pointer) {
+                    nbF6 = nbF6 + 1;
+                    labelSquare.text = nbF6;
+                    addShape('diamond', F6);
+                }
+                var affichage = "";
 //Edition Modes (colors and rotation)
 
-function formInteraction(tempSprite, pointer) {
-    switch (test) {
-        case 0:
-            break;
-        case 1:
-            tempSprite.frame ++;
-            affichage = tempSprite.frame;
-            tempSprite.updateCache()
-            break;
-        case 2:
-            var rand = Math.floor((Math.random() * 5));
-            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-            break;
-    }
-}
+                function formInteraction(tempSprite, pointer) {
+                    switch (test) {
+                        case 0:
+                            break;
+                        case 1:
+                            tempSprite.frame++;
+                            affichage = tempSprite.frame;
+                            tempSprite.updateCache();
+                            break;
+                        case 2:
+                            var rand = Math.floor((Math.random() * 5));
+                            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                            break;
+                    }
+                }
 
 //Activation of the rotation button
-function rotationButton(rot, pointer) {
-    switch (test) {
-        case 0:
-            test = 1;
-            rot.setFrames(3, 0, 1, 0);
-            break;
-        case 1:
-            test = 0;
-            rot.setFrames(2, 1, 0, 1);
-            break;
-        case 2:
-            test = 1;
-            rot.setFrames(3, 0, 1, 0);
-            col.setFrames(2, 1, 0, 1);
-            break;
-    }
-    clicker();
-}
+                function rotationButton(rot, pointer) {
+                    switch (test) {
+                        case 0:
+                            test = 1;
+                            rot.setFrames(3, 0, 1, 0);
+                            break;
+                        case 1:
+                            test = 0;
+                            rot.setFrames(2, 1, 0, 1);
+                            break;
+                        case 2:
+                            test = 1;
+                            rot.setFrames(3, 0, 1, 0);
+                            col.setFrames(2, 1, 0, 1);
+                            break;
+                    }
+                    clicker();
+                }
 
 // Change color
-function colorButton(col, pointer) {
-    switch (test) {
-        case 0:
-            test = 2;
-            col.setFrames(3, 0, 1, 0);
-            break;
-        case 1:
-            test = 2;
-            rot.setFrames(2, 1, 0, 1);
-            col.setFrames(3, 0, 1, 0);
-            break;
-        case 2:
-            test = 0;
-            col.setFrames(2, 1, 0, 1);
-            break;
-    }
-    clicker();
-}
-
-function deleteSprite(tempSprite) {
-    if (tempSprite.key == 'square') {
-        nbF1 = nbF1 - 1;
-    }
-    if (tempSprite.key == 'trapeze') {
-        nbF2 = nbF2 - 1;
-    }
-    if (tempSprite.key == 'hexagon') {
-        nbF3 = nbF3 - 1;
-    }
-    if (tempSprite.key == 'triangle_equi') {
-        nbF4 = nbF4 - 1;
-    }
-    if (tempSprite.key === 'triangle_rect') {
-        nbF5 = nbF5 - 1;
-    }
-    if (tempSprite.key === 'diamond') {
-        nbF6 = nbF6 - 1;
-    }
-    tempSprite.destroy();
-    trashBinSound();
-}
-
-function snapEffect(tempSprite, gameMode) {
-
-    for (var i = 0; i < 1200; i++) {
-        for (var j = 0; j < 800; j++) {
-            matSnap[i][j] = 0;
-        }
-    }
-
-    if (gameMode == 'levelMode') {
-        // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
-		
-        P1.forEach(function (patternItem) {
-            addShapeMatrix(patternItem, 3);
-        }, this);
-
-        P2.forEach(function (patternItem) {
-            addShapeMatrix(patternItem, 3);
-        }, this);
-
-        P3.forEach(function (patternItem) {
-            addShapeMatrix(patternItem, 3);
-        }, this);
-
-        P4.forEach(function (patternItem) {
-            addShapeMatrix(patternItem, 3);
-        }, this);
-
-        P5.forEach(function (patternItem) {
-            addShapeMatrix(patternItem, 3);
-        }, this);
-
-        P6.forEach(function (patternItem) {
-            addShapeMatrix(patternItem, 3);
-        }, this);
-    }
-    // add the shapes already in the game (except the shape that has just been dragged)
-    // in order to update the contours to which we want to snap
-
-    F1.forEach(function (patternItem) { 
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
-            addShapeMatrix(patternItem, 3);
-        }
-    }, this);
-
-    F2.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
-            addShapeMatrix(patternItem, 3);
-        }
-    }, this);
-
-    F3.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
-            addShapeMatrix(patternItem, 3);
-        }
-    }, this);
-
-    F4.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
-            addShapeMatrix(patternItem, 3);
-        }
-    }, this);
-
-    F5.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
-            addShapeMatrix(patternItem, 3);
-        }
-    }, this);
-
-    F6.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
-            addShapeMatrix(patternItem, 3);
-        }
-    }, this);
-
-
-    // calculate the best position for tempSprite (snap effect)
-
-    var criteria = 0;
-    var criteriaTemp = 0;
-    var range_i = 30; // must be an even number
-    var range_j = 30; // must be an even number
-    var i_init = tempSprite.y;
-    var j_init = tempSprite.x;
-    var i_opt = tempSprite.y; // to store the best position we have found for tempSprite
-    var j_opt = tempSprite.x;
-    var i_temp;
-    var j_temp;
-
-    for (var i = 0; i < range_i; i++) {
-        for (var j = 0; j < range_j; j++) {
-            i_temp = i_init + (i - range_i / 2);
-            j_temp = j_init + (j - range_j / 2);
-            criteriaTemp = calculateCommonContours(tempSprite, i_temp, j_temp);
-            if ((i == 0) && (j == 0)) { // 1st iteration
-                criteria = criteriaTemp;
-            }
-            if (criteriaTemp > criteria) {
-                criteria = criteriaTemp;
-                i_opt = i_temp;
-                j_opt = j_temp;
-            } else {
-                if (criteriaTemp == criteria) {
-                    if (distance(i_init, j_init, i_temp, j_temp) < distance(i_init, j_init, i_opt, j_opt)) {
-                        i_opt = i_temp;
-                        j_opt = j_temp;
+                function colorButton(col, pointer) {
+                    switch (test) {
+                        case 0:
+                            test = 2;
+                            col.setFrames(3, 0, 1, 0);
+                            break;
+                        case 1:
+                            test = 2;
+                            rot.setFrames(2, 1, 0, 1);
+                            col.setFrames(3, 0, 1, 0);
+                            break;
+                        case 2:
+                            test = 0;
+                            col.setFrames(2, 1, 0, 1);
+                            break;
                     }
+                    clicker();
                 }
-            }
-        }
-    }
-    tempSprite.x = j_opt;
-    tempSprite.y = i_opt;
-}
 
-function distance(i1, j1, i2, j2) {
-    return Math.sqrt((i1 - i2) * (i1 - i2) + (j1 - j2) * (j1 - j2))
-}
-
-function calculateCommonContours(tempSprite, i, j) {
-
-    var matShape = [];
-    if (tempSprite.key == 'square') {
-        matShape = shapes.square.mat[tempSprite.frame];
-    }
-    if (tempSprite.key == 'trapeze') {
-        matShape = shapes.trapeze.mat[tempSprite.frame];
-    }
-    if (tempSprite.key == 'hexagon') {
-        matShape = shapes.hexagon.mat[tempSprite.frame];
-    }
-    if (tempSprite.key == 'triangle_equi') {
-        matShape = shapes.triangleEqui.mat[tempSprite.frame];
-    }
-    if (tempSprite.key === 'triangle_rect') {
-        matShape = shapes.triangleRect.mat[tempSprite.frame];
-    }
-    if (tempSprite.key === 'diamond') {
-        matShape = shapes.diamond.mat[tempSprite.frame];
-    }
-
-    var res = 0;
-    for (var ii = 0; ii < nbPixels; ii++) {
-        for (var jj = 0; jj < nbPixels; jj++) {
-            if (matShape[ii][jj] == 2 && matSnap[i + ii][j + jj] == 2) {
-                res++;
-            }
-        }
-    }
-    return res;
-}
-
-function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeMode'
-    if (gameMode == 'levelMode') {
-//This matrix is useful in order to check if the tempSprite is in the pattern or not	
-        var matTemp = new Array(1200);
-        for (var i = 0; i < 1200; i++) {
-            matTemp[i] = new Array(800);
-        }
-        for (var i = 0; i < 1200; i++) {
-            for (var j = 0; j < 800; j++) {
-                matTemp[i][j] = 0;
-            }
-        }
-			
-//***SQUARE***	
-        if (tempSprite.key == 'square') {
-            var M = shapes.square.mat[tempSprite.frame];
-
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
-
-                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                }
-            }
-
-            var isIN = 1;
-
-            for (var i = 0; i < 1200; i++) {
-                for (var j = 0; j < 800; j++) {
-                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                        isIN = 0;
+                function deleteSprite(tempSprite) {
+                    if (tempSprite.key == 'square') {
+                        nbF1 = nbF1 - 1;
+                        labelSquare.text = nbF1;
                     }
+                    if (tempSprite.key == 'trapeze') {
+                        nbF2 = nbF2 - 1;
+                        labelTrapezoid.text = nbF2;
+                    }
+                    if (tempSprite.key == 'hexagon') {
+                        nbF3 = nbF3 - 1;
+                        labelHexagon.text = nbF3;
+                    }
+                    if (tempSprite.key == 'triangle_equi') {
+                        nbF4 = nbF4 - 1;
+                        labelTriangleEqui.text = nbF4;
+                    }
+                    if (tempSprite.key === 'triangle_rect') {
+                        nbF5 = nbF5 - 1;
+                        labelTriangleRect.text = nbF5;
+                    }
+                    if (tempSprite.key === 'diamond') {
+                        nbF6 = nbF6 - 1;
+                        labelDiamond.text = nbF6;
+                    }
+                    tempSprite.destroy();
+                    trashBinSound();
                 }
-            }
 
-
-            P1.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                    tempSprite.tint = pattern.wantedColor;
-                } else {
-                    if (isIN == 1) {
-                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+// to differentiate between a simple click and a real drag
+                function isDrag() {
+                    var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
+                    if (distanceFromLastUp > 2) { // value 2 determined empiracally
+                        return true;
                     } else {
-                        tempSprite.tint = 0xabdcf1;
+                        return false;
                     }
                 }
-            }, this);
-        }
+
+                function snapEffect(tempSprite, gameMode) {
+
+                    for (var i = 0; i < 1200; i++) {
+                        for (var j = 0; j < 800; j++) {
+                            matSnap[i][j] = 0;
+                        }
+                    }
+
+                    if (gameMode == 'levelMode') {
+                        // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
+                        P1.forEach(function (patternItem) {
+                            addShapeMatrix(patternItem, 3);
+                        }, this);
+
+                        P2.forEach(function (patternItem) {
+                            addShapeMatrix(patternItem, 3);
+                        }, this);
+
+                        P3.forEach(function (patternItem) {
+                            addShapeMatrix(patternItem, 3);
+                        }, this);
+
+                        P4.forEach(function (patternItem) {
+                            addShapeMatrix(patternItem, 3);
+                        }, this);
+
+                        P5.forEach(function (patternItem) {
+                            addShapeMatrix(patternItem, 3);
+                        }, this);
+
+                        P6.forEach(function (patternItem) {
+                            addShapeMatrix(patternItem, 3);
+                        }, this);
+                    }
+                    // add the shapes already in the game (except the shape that has just been dragged)
+                    // in order to update the contours to which we want to snap
+                    F1.forEach(function (patternItem) {
+                        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+                            addShapeMatrix(patternItem, 3);
+                        }
+                    }, this);
+
+                    F2.forEach(function (patternItem) {
+                        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+                            addShapeMatrix(patternItem, 3);
+                        }
+                    }, this);
+
+                    F3.forEach(function (patternItem) {
+                        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+                            addShapeMatrix(patternItem, 3);
+                        }
+                    }, this);
+
+                    F4.forEach(function (patternItem) {
+                        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+                            addShapeMatrix(patternItem, 3);
+                        }
+                    }, this);
+
+                    F5.forEach(function (patternItem) {
+                        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+                            addShapeMatrix(patternItem, 3);
+                        }
+                    }, this);
+
+                    F6.forEach(function (patternItem) {
+                        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+                            addShapeMatrix(patternItem, 3);
+                        }
+                    }, this);
+
+
+                    // calculate the best position for tempSprite (snap effect)
+
+                    var criteria = 0;
+                    var criteriaTemp = 0;
+                    var range_i = 30; // must be an even number
+                    var range_j = 30; // must be an even number
+                    var i_init = tempSprite.y;
+                    var j_init = tempSprite.x;
+                    var i_opt = tempSprite.y; // to store the best position we have found for tempSprite
+                    var j_opt = tempSprite.x;
+                    var i_temp;
+                    var j_temp;
+
+                    for (var i = 0; i < range_i; i++) {
+                        for (var j = 0; j < range_j; j++) {
+                            i_temp = i_init + (i - range_i / 2);
+                            j_temp = j_init + (j - range_j / 2);
+                            criteriaTemp = calculateCommonContours(tempSprite, i_temp, j_temp);
+                            if ((i == 0) && (j == 0)) { // 1st iteration
+                                criteria = criteriaTemp;
+                            }
+                            if (criteriaTemp > criteria) {
+                                criteria = criteriaTemp;
+                                i_opt = i_temp;
+                                j_opt = j_temp;
+                            } else {
+                                if (criteriaTemp == criteria) {
+                                    if (distance(i_init, j_init, i_temp, j_temp) < distance(i_init, j_init, i_opt, j_opt)) {
+                                        i_opt = i_temp;
+                                        j_opt = j_temp;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    tempSprite.x = j_opt;
+                    tempSprite.y = i_opt;
+                }
+
+                function distance(i1, j1, i2, j2) {
+                    return Math.sqrt((i1 - i2) * (i1 - i2) + (j1 - j2) * (j1 - j2))
+                }
+
+                function calculateCommonContours(tempSprite, i, j) {
+
+                    var matShape = [];
+                    if (tempSprite.key == 'square') {
+                        matShape = shapes.square.mat[tempSprite.frame];
+                    }
+                    if (tempSprite.key == 'trapeze') {
+                        matShape = shapes.trapeze.mat[tempSprite.frame];
+                    }
+                    if (tempSprite.key == 'hexagon') {
+                        matShape = shapes.hexagon.mat[tempSprite.frame];
+                    }
+                    if (tempSprite.key == 'triangle_equi') {
+                        matShape = shapes.triangleEqui.mat[tempSprite.frame];
+                    }
+                    if (tempSprite.key === 'triangle_rect') {
+                        matShape = shapes.triangleRect.mat[tempSprite.frame];
+                    }
+                    if (tempSprite.key === 'diamond') {
+                        matShape = shapes.diamond.mat[tempSprite.frame];
+                    }
+
+                    var res = 0;
+                    for (var ii = 0; ii < nbPixels; ii++) {
+                        for (var jj = 0; jj < nbPixels; jj++) {
+                            if (matShape[ii][jj] == 2 && matSnap[i + ii][j + jj] == 2) {
+                                res++;
+                            }
+                        }
+                    }
+                    return res;
+                }
+
+                function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeMode'
+                    if (gameMode == 'levelMode') {
+//This matrix is useful in order to check if the tempSprite is in the pattern or not	
+                        var matTemp = new Array(1200);
+                        for (var i = 0; i < 1200; i++) {
+                            matTemp[i] = new Array(800);
+                        }
+                        for (var i = 0; i < 1200; i++) {
+                            for (var j = 0; j < 800; j++) {
+                                matTemp[i][j] = 0;
+                            }
+                        }
+
+//***SQUARE***	
+                        if (tempSprite.key == 'square') {
+                            var M = shapes.square.mat[tempSprite.frame];
+
+                            for (var i = 0; i < 128; i++) {
+                                for (var j = 0; j < 128; j++) {
+
+                                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                                }
+                            }
+
+                            var isIN = 1;
+
+                            for (var i = 0; i < 1200; i++) {
+                                for (var j = 0; j < 800; j++) {
+                                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                                        isIN = 0;
+                                    }
+                                }
+                            }
+
+
+                            P1.forEach(function (pattern) {
+                                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                                    tempSprite.tint = pattern.wantedColor;
+                                } else {
+                                    if (isIN == 1) {
+                                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                                    } else {
+                                        tempSprite.tint = 0x93AFBD;
+                                    }
+                                }
+                            }, this);
+                        }
 
 //***TRAPEZE***	
-        if (tempSprite.key == 'trapeze') {
-            var M = shapes.trapeze.mat[tempSprite.frame];
+                        if (tempSprite.key == 'trapeze') {
+                            var M = shapes.trapeze.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+                            for (var i = 0; i < 128; i++) {
+                                for (var j = 0; j < 128; j++) {
 
-                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                }
-            }
+                                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                                }
+                            }
 
-            var isIN = 1;
+                            var isIN = 1;
 
-            for (var i = 0; i < 1200; i++) {
-                for (var j = 0; j < 800; j++) {
-                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                        isIN = 0;
-                    }
-                }
-            }
+                            for (var i = 0; i < 1200; i++) {
+                                for (var j = 0; j < 800; j++) {
+                                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                                        isIN = 0;
+                                    }
+                                }
+                            }
 
 
-            P2.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                    tempSprite.tint = pattern.wantedColor;
-                } else {
-                    if (isIN == 1) {
-                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                    } else {
-                        tempSprite.tint = 0xabdcf1;
-                    }
-                }
-            }, this);
-        }
+                            P2.forEach(function (pattern) {
+                                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                                    tempSprite.tint = pattern.wantedColor;
+                                } else {
+                                    if (isIN == 1) {
+                                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                                    } else {
+                                        tempSprite.tint = 0x93AFBD;
+                                    }
+                                }
+                            }, this);
+                        }
 
 //***HEXAGON***	
-        if (tempSprite.key == 'hexagon') {
-            var M = shapes.hexagon.mat[tempSprite.frame];
+                        if (tempSprite.key == 'hexagon') {
+                            var M = shapes.hexagon.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+                            for (var i = 0; i < 128; i++) {
+                                for (var j = 0; j < 128; j++) {
 
-                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                }
-            }
+                                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                                }
+                            }
 
-            var isIN = 1;
+                            var isIN = 1;
 
-            for (var i = 0; i < 1200; i++) {
-                for (var j = 0; j < 800; j++) {
-                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                        isIN = 0;
-                    }
-                }
-            }
-            P3.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                    tempSprite.tint = pattern.wantedColor;
-                } else {
-                    if (isIN == 1) {
-                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                    } else {
-                        tempSprite.tint = 0xabdcf1;
-                    }
-                }
-            }, this);
-        }
+                            for (var i = 0; i < 1200; i++) {
+                                for (var j = 0; j < 800; j++) {
+                                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                                        isIN = 0;
+                                    }
+                                }
+                            }
+                            P3.forEach(function (pattern) {
+                                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                                    tempSprite.tint = pattern.wantedColor;
+                                } else {
+                                    if (isIN == 1) {
+                                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                                    } else {
+                                        tempSprite.tint = 0x93AFBD;
+                                    }
+                                }
+                            }, this);
+                        }
 
 //***TRIANGLE EQUI***	
-        if (tempSprite.key == 'triangle_equi') {
-            var M = shapes.triangleEqui.mat[tempSprite.frame];
+                        if (tempSprite.key == 'triangle_equi') {
+                            var M = shapes.triangleEqui.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+                            for (var i = 0; i < 128; i++) {
+                                for (var j = 0; j < 128; j++) {
 
-                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                }
-            }
+                                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                                }
+                            }
 
-            var isIN = 1;
+                            var isIN = 1;
 
-            for (var i = 0; i < 1200; i++) {
-                for (var j = 0; j < 800; j++) {
-                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                        isIN = 0;
-                    }
-                }
-            }
+                            for (var i = 0; i < 1200; i++) {
+                                for (var j = 0; j < 800; j++) {
+                                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                                        isIN = 0;
+                                    }
+                                }
+                            }
 
 
-            P4.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                    tempSprite.tint = pattern.wantedColor;
-                } else {
-                    if (isIN == 1) {
-                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                    } else {
-                        tempSprite.tint = 0xabdcf1;
-                    }
-                }
-            }, this);
-		}
-		
+                            P4.forEach(function (pattern) {
+                                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                                    tempSprite.tint = pattern.wantedColor;
+                                } else {
+                                    if (isIN == 1) {
+                                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                                    } else {
+                                        tempSprite.tint = 0x93AFBD;
+                                    }
+                                }
+                            }, this);
+                        }
+
 //***TRIANGLE RECT***	
-            if (tempSprite.key == 'triangle_rect') {
-				
-                var M = shapes.triangleRect.mat[tempSprite.frame];
+                        if (tempSprite.key == 'triangle_rect') {
 
-                for (var i = 0; i < 128; i++) {
-                    for (var j = 0; j < 128; j++) {
+                            var M = shapes.triangleRect.mat[tempSprite.frame];
 
-                        matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                            for (var i = 0; i < 128; i++) {
+                                for (var j = 0; j < 128; j++) {
+
+                                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                                }
+                            }
+
+                            var isIN = 1;
+
+                            for (var i = 0; i < 1200; i++) {
+                                for (var j = 0; j < 800; j++) {
+                                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                                        isIN = 0;
+                                    }
+                                }
+                            }
+
+
+                            P5.forEach(function (pattern) {
+                                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                                    tempSprite.tint = pattern.wantedColor;
+                                } else {
+                                    if (isIN == 1) {
+                                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                                    } else {
+                                        tempSprite.tint = 0x93AFBD;
+                                    }
+                                }
+                            }, this);
+                        }
+
+
+                        //***DIAMOND***	
+
+                        if (tempSprite.key == 'diamond') {
+                            var M = shapes.diamond.mat[tempSprite.frame];
+
+                            for (var i = 0; i < 128; i++) {
+                                for (var j = 0; j < 128; j++) {
+
+                                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                                }
+                            }
+
+                            var isIN = 1;
+
+                            for (var i = 0; i < 1200; i++) {
+                                for (var j = 0; j < 800; j++) {
+                                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                                        isIN = 0;
+                                    }
+                                }
+                            }
+
+
+                            P6.forEach(function (pattern) {
+                                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                                    tempSprite.tint = pattern.wantedColor;
+                                } else {
+                                    if (isIN == 1) {
+                                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                                    } else {
+                                        tempSprite.tint = 0x93AFBD;
+                                    }
+                                }
+                            }, this);
+                        }
+
                     }
                 }
 
-                var isIN = 1;
 
-                for (var i = 0; i < 1200; i++) {
-                    for (var j = 0; j < 800; j++) {
-                        if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                            isIN = 0;
+
+                function updateSolution() {
+                    for (var i = 0; i < 1200; i++) {
+                        for (var j = 0; j < 800; j++) {
+                            matSolution[i][j] = 0;
+                        }
+                    }
+                    // update matSolution
+                    areaSolution = 0;
+
+                    F1.forEach(function (patternItem) {
+                        areaSolution = areaSolution + shapes.square.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 2);
+                    }, this);
+
+                    F2.forEach(function (patternItem) {
+                        areaSolution = areaSolution + shapes.trapeze.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 2);
+                    }, this);
+
+                    F3.forEach(function (patternItem) {
+                        areaSolution = areaSolution + shapes.hexagon.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 2);
+                    }, this);
+
+                    F4.forEach(function (patternItem) {
+                        areaSolution = areaSolution + shapes.triangleEqui.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 2);
+                    }, this);
+
+                    F5.forEach(function (patternItem) {
+                        areaSolution = areaSolution + shapes.triangleRect.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 2);
+                    }, this);
+
+                    F6.forEach(function (patternItem) {
+                        areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
+                        addShapeMatrix(patternItem, 2);
+                    }, this);
+
+
+                    // Vérification de la solution    
+                    valid = 0;
+
+                    for (var i = 0; i < 1200; i++) {
+                        for (var j = 0; j < 800; j++) {
+                            if (matSolution[i][j] != matPattern[i][j]) {
+                                valid++;
+                            }
+                        }
+                    }
+
+                    /*
+                     var i = 0;
+                     var j = 0;
+                     while (i < 1200 && valid < 500) {
+                     while (j < 800 && valid < 500) {
+                     if (matSolution[i][j] != matPattern[i][j]) {
+                     valid++;
+                     }
+                     j++;
+                     }
+                     i++;
+                     }
+                     */
+
+                    if (valid < 500 && areaSolution == areaPattern) {
+                        fin = 1;
+                        if (nbAlert == 0) {
+                            nbAlert = 1;
+                            var delay = 500;
+                            setTimeout(function () {
+                                alert("Bravo! Vous avez réussi ce niveau!");
+                            }, delay);
                         }
                     }
                 }
 
-
-                P5.forEach(function (pattern) {
-                    if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                        tempSprite.tint = pattern.wantedColor;
-                    } else {
-                        if (isIN == 1) {
-                            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                        } else {
-                            tempSprite.tint = 0xabdcf1;
-                        }
-                    }
-                }, this);
-            }
-
-
-            //***DIAMOND***	
-
-            if (tempSprite.key == 'diamond') {
-                var M = shapes.diamond.mat[tempSprite.frame];
-
-                for (var i = 0; i < 128; i++) {
-                    for (var j = 0; j < 128; j++) {
-
-                        matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                    }
-                }
-
-                var isIN = 1;
-
-                for (var i = 0; i < 1200; i++) {
-                    for (var j = 0; j < 800; j++) {
-                        if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                            isIN = 0;
-                        }
-                    }
-                }
-
-
-                P6.forEach(function (pattern) {
-                    if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                        tempSprite.tint = pattern.wantedColor;
-                    } else {
-                        if (isIN == 1) {
-                            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                        } else {
-                            tempSprite.tint = 0xabdcf1;
-                        }
-                    }
-                }, this);
-            }
-
-        }
-    }
-
-
-function updateSolution() {
-    for (var i = 0; i < 1200; i++) {
-        for (var j = 0; j < 800; j++) {
-            matSolution[i][j] = 0;
-        }
-    }
-    // update matSolution
-    areaSolution = 0;
-
-    F1.forEach(function (patternItem) {
-        areaSolution = areaSolution + shapes.square.area[patternItem.frame];
-        addShapeMatrix(patternItem, 2);
-    }, this);
-
-    F2.forEach(function (patternItem) {
-        areaSolution = areaSolution + shapes.trapeze.area[patternItem.frame];
-        addShapeMatrix(patternItem, 2);
-    }, this);
-
-    F3.forEach(function (patternItem) {
-        areaSolution = areaSolution + shapes.hexagon.area[patternItem.frame];
-        addShapeMatrix(patternItem, 2);
-    }, this);
-
-    F4.forEach(function (patternItem) {
-        areaSolution = areaSolution + shapes.triangleEqui.area[patternItem.frame];
-        addShapeMatrix(patternItem, 2);
-    }, this);
-
-    F5.forEach(function (patternItem) {
-        areaSolution = areaSolution + shapes.triangleRect.area[patternItem.frame];
-        addShapeMatrix(patternItem, 2);
-    }, this);
-
-    F6.forEach(function (patternItem) {
-        areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
-        addShapeMatrix(patternItem, 2);
-    }, this);
-}
 
 
 //Function at the end of the drag
-function endDrag(tempSprite, pointer) {
+                function endDrag(tempSprite, pointer) {
 
-	if ((game.input.y > 20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)) {
-		deleteSprite(tempSprite);
-	} else {
+                    if ((game.input.y > 20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)) {
+                        deleteSprite(tempSprite);
+                    } else {
 
-		snapEffect(tempSprite,'levelMode');
-	
-		colorSprite(tempSprite,'levelMode');
-	}
-	updateSolution();
+                        snapEffect(tempSprite, 'levelMode');
 
-}
+                        colorSprite(tempSprite, 'levelMode');
+                    }
+                    updateSolution();
+
+                }
 
 //Update function that is always running on the background to resize
-            function updateSize() {
+                function updateSize() {
 //Bring the forms up
-            game.world.bringToTop(forms);
+                    game.world.bringToTop(forms);
                     game.world.bringToTop(trash);
 // Update of the shadows
                     shadows.removeAll();
                     forms.forEach(function (F) {
-                    F.forEach(function (sprite) {
-                    var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
+                        F.forEach(function (sprite) {
+                            var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
                             shadows.add(aShadow);
                             aShadow.anchor.x = 0;
                             aShadow.anchor.y = 0;
                             aShadow.tint = 0x000000;
                             aShadow.alpha = 0.3;
-                    });
+                        });
                     });
 // Adapt the size of the interface to the screen
                     pipe.height = window.innerHeight - (390 + 212);
@@ -914,104 +987,104 @@ function endDrag(tempSprite, pointer) {
                     ret.x = window.innerWidth - (18 + 3 * 50);
                     mute.x = window.innerWidth - (18 + 2 * 50);
                     exp.x = window.innerWidth - (18 + 1 * 50);
-            }
+                }
 
-            var valid = 0;
+                var valid = 0;
 //Update function that is always running on the background
-function update() {
+                function update() {
 
-    updateSize();
+                    updateSize();
 
-    // Vérification de la solution    
-    valid = 0;
+                    // Vérification de la solution    
+                    valid = 0;
 
-	var i = 0;
-	var j = 0;
-	while (i < 1200 && valid < 500) {
-		while (j < 800 && valid < 500) {
-			if (matSolution[i][j] != matPattern[i][j]) {
-                valid++;
-            }
-            j++;
-        }
-        i++;
-    }
+                    var i = 0;
+                    var j = 0;
+                    while (i < 1200 && valid < 500) {
+                        while (j < 800 && valid < 500) {
+                            if (matSolution[i][j] != matPattern[i][j]) {
+                                valid++;
+                            }
+                            j++;
+                        }
+                        i++;
+                    }
 
-    if (valid < 500 && areaSolution == areaPattern) {
-        fin = 1;
-        if (nbAlert == 0) {
-            nbAlert = 1;
-            var delay = 500;
-            setTimeout(function() {
-                alert("Bravo! Vous avez réussi ce niveau!");
-            }, delay);
-        }
-    }
+                    if (valid < 500 && areaSolution == areaPattern) {
+                        fin = 1;
+                        if (nbAlert == 0) {
+                            nbAlert = 1;
+                            var delay = 500;
+                            setTimeout(function () {
+                                alert("Bravo! Vous avez réussi ce niveau!");
+                            }, delay);
+                        }
+                    }
 
-}
-                 
+                }
+
 //Debugging Mode       
-function render() {
-    game.debug.style = '#fff';
-    game.debug.text('Squares : ' + nbF1, 16, 48);
-    game.debug.text('Trapezes : ' + nbF2, 16, 60);
-    game.debug.text('Hexagons : ' + nbF3, 16, 72);
-    game.debug.text('Triangles : ' + nbF4, 16, 84);
-    game.debug.text('Rect Triangles : ' + nbF5, 16, 96);
-    game.debug.text('Diamonds : ' + nbF6, 16, 108);
-    game.debug.text('Function : ' + test, 16, 120);
-    //game.debug.text('End : ' + end, 16, 108);
-    //game.debug.text('Solution Area: ' + areaSolution, 16, 120);
-    //game.debug.text('Problem Area: ' + areaPattern, 16, 132);
-    //game.debug.text('matProblem : ' + matPattern[180][22], 16, 120);
-    //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
-    //game.debug.inputInfo(16, 144);
-}
+                function render() {
+                    game.debug.style = '#fff';
+                    game.debug.text('Squares : ' + nbF1, 16, 48);
+                    game.debug.text('Trapezes : ' + nbF2, 16, 60);
+                    game.debug.text('Hexagons : ' + nbF3, 16, 72);
+                    game.debug.text('Triangles : ' + nbF4, 16, 84);
+                    game.debug.text('Rect Triangles : ' + nbF5, 16, 96);
+                    game.debug.text('Diamonds : ' + nbF6, 16, 108);
+                    game.debug.text('Function : ' + test, 16, 120);
+                    //game.debug.text('End : ' + end, 16, 108);
+                    //game.debug.text('Solution Area: ' + areaSolution, 16, 120);
+                    //game.debug.text('Problem Area: ' + areaPattern, 16, 132);
+                    //game.debug.text('matProblem : ' + matPattern[180][22], 16, 120);
+                    //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
+                    //game.debug.inputInfo(16, 144);
+                }
 
-}
+            }
 /////////////////////////////////////////////////////////////
 
             //Function to verify the extension 
             function checkExtension() {
-            var fileInput = document.getElementById('fileInput');
-                    var myString = fileInput.value;
-                    var myExt = myString.substring(myString.lastIndexOf(".") + 1, myString.length);
-                    myExt = myExt.toLowerCase();
-                    //Error message if it is not a JSON
-                    if (myExt !== "json") {
-            alert("Votre fichier JSON n'a pas le bon format. Choisissez un fichier JSON.");
-            } else {
-            //If it is good, we launch the game
-            document.body.style.backgroundImage = "none";
+                var fileInput = document.getElementById('fileInput');
+                var myString = fileInput.value;
+                var myExt = myString.substring(myString.lastIndexOf(".") + 1, myString.length);
+                myExt = myExt.toLowerCase();
+                //Error message if it is not a JSON
+                if (myExt !== "json") {
+                    alert("Votre fichier JSON n'a pas le bon format. Choisissez un fichier JSON.");
+                } else {
+                    //If it is good, we launch the game
+                    document.body.style.backgroundImage = "none";
                     start();
-            }
+                }
             }
 
 
             //Load JSON file
             window.onload = function () {
-            var fileInput = document.getElementById('fileInput');
-                    //We charge the json when we pass in hidden champ the cache div.
-                    var fileCache = document.getElementById('cache');
-                    fileInput.addEventListener('change', function (e) {
+                var fileInput = document.getElementById('fileInput');
+                //We charge the json when we pass in hidden champ the cache div.
+                var fileCache = document.getElementById('cache');
+                fileInput.addEventListener('change', function (e) {
 
                     //We display the name of the file in the place "ulpoadFile"
                     document.getElementById("uploadFile").value = fileInput.value;
-                            var file = fileInput.files[0];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
+                    var file = fileInput.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
 
-                            var jsonObj = reader.result;
-                                    fileCache.innerHTML = jsonObj;
-                            };
-                            reader.readAsText(file);
-                    }
+                        var jsonObj = reader.result;
+                        fileCache.innerHTML = jsonObj;
+                    };
+                    reader.readAsText(file);
+                }
 
 
-                    );
-                    ;
-            };     
-                  </script>
+                );
+                ;
+            };
+        </script>
         <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
     </head>
 
