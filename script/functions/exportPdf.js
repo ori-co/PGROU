@@ -27,8 +27,8 @@ function setColor(pattern, doc) {
             doc.setFillColor(255, 131, 0);
             break;
         default :
-            doc.setDrawColor(171, 220, 240);
-            doc.setFillColor(171, 220, 240);
+            doc.setDrawColor(147, 175, 189);
+            doc.setFillColor(147, 175, 189);
             break;
     }
 }
@@ -39,7 +39,7 @@ function pdf() {
 
 //Title
     doc.setFont("helvetica");
-    doc.setTextColor(171, 220, 240);
+    doc.setTextColor(147, 175, 189);
     doc.text(75, 20, 'Nom de l\'application  -  Page 1');
 
 //Initialisation
@@ -56,7 +56,7 @@ function pdf() {
             nbPage++;
             doc.addPage();
             doc.setFont("helvetica");
-            doc.setTextColor(171, 220, 240);
+            doc.setTextColor(147, 175, 189);
             doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
             b = 40;
         }
@@ -80,7 +80,7 @@ function pdf() {
             nbPage++;
             doc.addPage();
             doc.setFont("helvetica");
-            doc.setTextColor(171, 220, 240);
+            doc.setTextColor(147, 175, 189);
             doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
             b = 40;
         }
@@ -103,8 +103,8 @@ function pdf() {
             nbLigne = 0;
             nbPage++;
             doc.addPage();
-            doc.setFont(171, 220, 240);
-            doc.setTextColor(131, 138, 0);
+            doc.setFont("helvetica");
+            doc.setTextColor(147, 175, 189);
             doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
             b = 40;
         }
@@ -127,8 +127,8 @@ function pdf() {
             nbLigne = 0;
             nbPage++;
             doc.addPage();
-            doc.setFont(171, 220, 240);
-            doc.setTextColor(131, 138, 0);
+            doc.setFont("helvetica");
+            doc.setTextColor(147, 175, 189);
             doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
             b = 40;
         }
@@ -180,7 +180,7 @@ function pdf() {
             nbPage++;
             doc.addPage();
             doc.setFont("helvetica");
-            doc.setTextColor(171, 220, 240);
+            doc.setTextColor(147, 175, 189);
             doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
             b = 40;
         }
@@ -210,7 +210,7 @@ function pdf() {
             nbPage++;
             doc.addPage();
             doc.setFont("helvetica");
-            doc.setTextColor(171, 220, 240);
+            doc.setTextColor(147, 175, 189);
             doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
             b = 40;
         }

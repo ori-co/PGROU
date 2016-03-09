@@ -228,7 +228,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                     } else {
-                        tempSprite.tint = 0xabdcf1;
+                        tempSprite.tint = 0x93AFBD;
                     }
                 }
             }, this);
@@ -263,7 +263,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                     } else {
-                        tempSprite.tint = 0xabdcf1;
+                        tempSprite.tint = 0x93AFBD;
                     }
                 }
             }, this);
@@ -296,7 +296,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                     } else {
-                        tempSprite.tint = 0xabdcf1;
+                        tempSprite.tint = 0x93AFBD;
                     }
                 }
             }, this);
@@ -331,7 +331,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                     } else {
-                        tempSprite.tint = 0xabdcf1;
+                        tempSprite.tint = 0x93AFBD;
                     }
                 }
             }, this);
@@ -367,7 +367,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                         if (isIN == 1) {
                             tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                         } else {
-                            tempSprite.tint = 0xabdcf1;
+                            tempSprite.tint = 0x93AFBD;
                         }
                     }
                 }, this);
@@ -404,7 +404,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                         if (isIN == 1) {
                             tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                         } else {
-                            tempSprite.tint = 0xabdcf1;
+                            tempSprite.tint = 0x93AFBD;
                         }
                     }
                 }, this);
