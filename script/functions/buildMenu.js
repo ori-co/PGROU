@@ -1,5 +1,5 @@
-function buildMenu() {
-	
+function buildMenu(mode) {
+
     // Store Creation
     var store = game.add.sprite(5, 5, 'store');
     pipe = game.add.sprite(5, 395, 'pipe');
@@ -40,18 +40,44 @@ function buildMenu() {
     basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
 
     // Menu construction
-    menuLenght = 100;
-    menuLeft = game.add.sprite(window.innerWidth - 5 - menuLenght - 2 * 35, 5, 'menu-left');
-    menuMiddle = game.add.sprite(window.innerWidth - 5 - menuLenght - 35, 5, 'menu-middle');
+    switch (mode) {
+        case "level":
+            menuLenght = 225;
+            break;
+        case "freemode":
+            menuLenght = 150;
+            break;
+    }
+
+    menuRight = game.add.sprite(0, 5, 'menu-right');
+    menuLeft = game.add.sprite(0, 5, 'menu-left');
+    menuMiddle = game.add.sprite(0, 5, 'menu-middle');
+
+    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
+    menuRight.x = window.innerWidth - (5 + menuRight.width);
+    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
     menuMiddle.width = menuLenght;
-    menuRight = game.add.sprite(window.innerWidth - 35 - 5, 5, 'menu-right');
 
     //Add rotation and color buttons
-    rot = game.add.button(10, window.innerHeight - 210, 'button-rotate', rotationButton, this, 2, 1, 0, 1);
-    col = game.add.button(58, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
-    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', clickerBack, this, 2, 1, 0, 1);
-    mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
-    exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
-    
+    rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2, 1, 0, 1);
+    rotL = game.add.button(15, window.innerHeight - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
+    home = game.add.button(window.innerWidth - (18 + 4 * 50), 10, 'button-home', clickerHome, this, 2, 1, 0, 1);
+    mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
+
+
+    switch (mode) {
+        case "level":
+            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
+            home.x = window.innerWidth - (18 + 2 * 50);
+            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
+            var levelName = this.game.add.text(window.innerWidth - 280, 23, "Niveau 1", levelStyle);
+            break;
+        case "freemode":
+            exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
+            print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', null, this, 2, 1, 0, 1);
+            col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
+            break;
+    }
+
     shadows = game.add.group();
 }

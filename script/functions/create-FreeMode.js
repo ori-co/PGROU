@@ -23,6 +23,6 @@ function create() {
     forms.add(F6);
     
     //Build the menu
-    buildMenu();
+    buildMenu("freemode");
     
     }

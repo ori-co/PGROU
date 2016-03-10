@@ -42,7 +42,7 @@ function create() {
     clickSound = game.add.audio('click');
 
     //Build the menu
-    buildMenu();
+    buildMenu("level");
 
     //Create the wished pattern
 	
