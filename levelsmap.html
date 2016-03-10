@@ -36,12 +36,11 @@
     	// Sounds Functions for this HTML Page
     	
     	function sound_level(i){
-    	/*var element = document.getElementById('id');
-    	i = element.getAttribute('id');*/
+     var element = document.getElementById(i);
     	if (element.className=='levelButton'){
     	switch(i){
     	
-    	case 1 :
+    	case '1' :
     		sound1.play();
     		
     	case 2 :
@@ -90,7 +89,7 @@
     		sound_locked.play();
     	}
     	}
-    		
+    }
     		
      </script>
     
@@ -107,7 +106,7 @@
         </div>
         
         <div id="levels">
-            <input id="1" type="button" class = "levelButton" value="1"  onclick= "sound_level(this.getAttribute('id'));" />
+            <input id="1" type="button" class = "levelButton" value="1"  onclick= "sound_level('1');" />
             <input id="2" type="button" class="levelButton" value="2" onclick= "sound_level(2);" />
             <input id="3" type="button" class="levelButton" value="3" onclick= "sound_level(3);"/>
             <input id="4" type="button" class="inactivelevelButton" value="4" onclick= "sound_level(4);"/>
