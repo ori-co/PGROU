@@ -72,7 +72,7 @@ function sound_trapeze_off(nbF2){
 function sound_hexagon_off(nbF3){
  	nbF3 = soundManager.createSound({id : "hexagon_off"+nbF3, url:"assets/audio/fr/hexagon_off"+nbF3+".mp3"});
 	soundManager.stopAll();
-	nbF6.play();
+	nbF3.play();
 }	
 
 
