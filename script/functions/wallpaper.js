@@ -1,5 +1,8 @@
 function wallpaper() {
-    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;    
+    game.scale.setResizeCallback(function () {
+        updateSize(this);
+    }, game);
 
     //Wallpaper
     var myBitmap = game.make.bitmapData(2000, 2000);

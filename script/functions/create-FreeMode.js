@@ -21,8 +21,9 @@ function create() {
     forms.add(F4);
     forms.add(F5);
     forms.add(F6);
-    
+
+    mode = "freeMode";
     //Build the menu
-    buildMenu("freemode");
+    buildMenu();
     
     }

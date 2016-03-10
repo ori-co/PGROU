@@ -1,23 +1,41 @@
 //Update function that is always running on the background to resize
 function updateSize() {
 
-/*
-    // Adapt the size of the interface to the screen
+    // Adapt the size of the interface to the screen    
     pipe.height = window.innerHeight - (390 + 212);
-    basketLeft.y = window.innerHeight - 212 - 5;
-    basketMiddle.y = window.innerHeight - 212 - 5;
-    basketMiddle.width = window.innerWidth - 2 * 142;
-    basketRight.x = window.innerWidth - 142 - 5;
-    basketRight.y = window.innerHeight - 212 - 5;
+    // Basket position
+    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
+    basketMiddle.x = basketLeft.x + basketLeft.width;
+    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
+    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
+    basketRight.x = window.innerWidth - (5 + basketRight.width);
+    basketRight.y = window.innerHeight - (5 + basketRight.height); 
     
-    menuLeft.x = window.innerWidth - 5 - menuLenght - 2 * 35;
-    menuMiddle.x = window.innerWidth - 5 - menuLenght - 35;
+    // Buttons on basket
+    rotL.y = window.innerHeight - 210;
+    rotR.y = window.innerHeight - 210;
+    if (mode == "freeMode"){
+        col.y =window.innerHeight - 210;
+    }
+    
+    // Menu position
+    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
+    menuRight.x = window.innerWidth - (5 + menuRight.width);
+    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
     menuMiddle.width = menuLenght;
-    menuRight.x = window.innerWidth - 35 - 5;
     
-    rot.y = window.innerHeight - 210;
-    col.y = window.innerHeight - 210;
-    ret.x = window.innerWidth - (18 + 3 * 50);
-    mute.x = window.innerWidth - (18 + 2 * 50);
-    exp.x = window.innerWidth - (18 + 1 * 50);*/
+    // Buttons on menu
+    mute.x=window.innerWidth - (18 + 1 * 50);
+    switch (mode) {
+        case "levelMode":
+            home.x = window.innerWidth - (18 + 2 * 50);
+            ret.x=window.innerWidth - (18 + 3 * 50);
+            levelName.x=window.innerWidth - 280;
+            break;
+        case "freeMode":
+            home.x=window.innerWidth - (18 + 4 * 50);
+            exp.x = window.innerWidth - (18 + 2 * 50);
+            print.x=window.innerWidth - (18 + 3 * 50);
+            break;
+    }
 }

@@ -1,4 +1,4 @@
-function buildMenu(mode) {
+function buildMenu() {
 
     // Store Creation
     var store = game.add.sprite(5, 5, 'store');
@@ -34,17 +34,23 @@ function buildMenu(mode) {
     labelDiamond.anchor.x = 0.5;
 
     // Basket creation
-    basketLeft = game.add.sprite(5, window.innerHeight - 212 - 5, 'basket-left');
-    basketMiddle = game.add.sprite(142, window.innerHeight - 212 - 5, 'basket-middle');
-    basketMiddle.width = window.innerWidth - 2 * 142;
-    basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
+    basketLeft = game.add.sprite(5, 0, 'basket-left');
+    basketMiddle = game.add.sprite(0, 0, 'basket-middle');
+    basketRight = game.add.sprite(0, 0, 'basket-right');
+    
+    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
+    basketMiddle.x = basketLeft.x + basketLeft.width;
+    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
+    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
+    basketRight.x = window.innerWidth - (5 + basketRight.width);
+    basketRight.y = window.innerHeight - (5 + basketRight.height);     
 
     // Menu construction
     switch (mode) {
-        case "level":
+        case "levelMode":
             menuLenght = 225;
             break;
-        case "freemode":
+        case "freeMode":
             menuLenght = 150;
             break;
     }
@@ -66,13 +72,13 @@ function buildMenu(mode) {
 
 
     switch (mode) {
-        case "level":
+        case "levelMode":
             ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
             home.x = window.innerWidth - (18 + 2 * 50);
             var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
-            var levelName = this.game.add.text(window.innerWidth - 280, 23, "Niveau 1", levelStyle);
+            levelName = this.game.add.text(window.innerWidth - 280, 23, "Niveau 1", levelStyle);
             break;
-        case "freemode":
+        case "freeMode":
             exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
             print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', null, this, 2, 1, 0, 1);
             col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);

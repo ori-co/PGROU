@@ -42,7 +42,8 @@ function create() {
     clickSound = game.add.audio('click');
 
     //Build the menu
-    buildMenu("level");
+    mode = "levelMode";
+    buildMenu();
 
     //Create the wished pattern
 	

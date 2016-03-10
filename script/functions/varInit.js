@@ -2,6 +2,9 @@
 // VARIABLES
 ///////////////////////////////////////////////////////////////////////
 
+// Game mode 'levelMode' or 'freeMode'
+var mode;
+
 //Count the number of shapes created
 var nbF1 = 0;
 var nbF2 = 0;
@@ -86,6 +89,7 @@ var ret;
 var home;
 var exp;
 var print;
+var levelName;
 
 var buttonSquare;
 var buttonTrapezoid;

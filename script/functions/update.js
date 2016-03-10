@@ -4,7 +4,6 @@
 function update() {
     //Bring the forms up
     game.world.bringToTop(forms);
-    //game.world.bringToTop(trash);
 
     // Update of the shadows
     shadows.removeAll();
@@ -18,8 +17,4 @@ function update() {
             aShadow.alpha=0.3;           
         });
     });
-    
-    //updateSize();
-
-
 }
