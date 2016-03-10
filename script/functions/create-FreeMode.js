@@ -21,6 +21,10 @@ function create() {
     forms.add(F4);
     forms.add(F5);
     forms.add(F6);
+    
+    // Sound Management
+    binSound = game.add.audio('trashbin');
+    clickSound = game.add.audio('click');
 
     mode = "freeMode";
     //Build the menu
