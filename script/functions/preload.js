@@ -28,10 +28,13 @@ function preload() {
     game.load.image('basket-right', 'assets/images/menu/basket-right.png');
     game.load.image('basket-middle', 'assets/images/menu/basket-middle.png');
     
-    game.load.spritesheet('button-rotate', 'assets/images/buttons/option-rotate.png', 48, 48);
+    game.load.spritesheet('button-rotate-left', 'assets/images/buttons/option-rotateL.png', 48, 48);
+    game.load.spritesheet('button-rotate-right', 'assets/images/buttons/option-rotateR.png', 48, 48);
     game.load.spritesheet('button-colors', 'assets/images/buttons/option-colors.png', 48, 48);
+    game.load.spritesheet('button-back', 'assets/images/buttons/option-map.png', 48, 48);
     game.load.spritesheet('button-home', 'assets/images/buttons/option-home.png', 48, 48);
     game.load.spritesheet('button-export', 'assets/images/buttons/option-export.png', 48, 48);
+    game.load.spritesheet('button-print', 'assets/images/buttons/option-print.png', 48, 48);
     game.load.spritesheet('button-mute', 'assets/images/buttons/option-mute.png', 48, 48);
     
     game.load.image('menu-left', 'assets/images/menu/menu-left.png');

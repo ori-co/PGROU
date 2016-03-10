@@ -77,11 +77,15 @@ var valid = 0;
 
 // Interface variables
 // buttons
-var rot;
+var bin;
+var rotL;
+var rotR;
 var col;
 var mute;
 var ret;
+var home;
 var exp;
+var print;
 
 var buttonSquare;
 var buttonTrapezoid;

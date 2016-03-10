@@ -19,9 +19,12 @@ function addShape(shape, F) {
     tempSprite.events.onInputOver.add(function(){
        switch (test){
            case 1:
-               this.game.canvas.style.cursor="url('assets/images/cursors/rot.png'),default";
+               this.game.canvas.style.cursor="url('assets/images/cursors/rotR.png'),default";
                break;
            case 2:
+               this.game.canvas.style.cursor="url('assets/images/cursors/rotL.png'),default";
+               break;
+           case 3:
                this.game.canvas.style.cursor="url('assets/images/cursors/col.png'),default";
                break;
            default:

@@ -5,6 +5,12 @@ function trashBinSound() {
 
 function clickerBack(){
 click = soundManager.createSound({id : "click", url: language+"click.mp3", 
+onfinish: function(){ self.location.href='levelsMap.html'}});
+click.play();
+}
+
+function clickerHome(){
+click = soundManager.createSound({id : "click", url: language+"click.mp3", 
 onfinish: function(){ self.location.href='index.html'}});
 click.play();
 }
