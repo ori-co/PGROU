@@ -68,7 +68,7 @@ function buildMenu() {
     rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2, 1, 0, 1);
     rotL = game.add.button(15, window.innerHeight - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
     home = game.add.button(window.innerWidth - (18 + 4 * 50), 10, 'button-home', clickerHome, this, 2, 1, 0, 1);
-    mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
+    mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', mute, this, 2, 1, 0, 1);
 
 
     switch (mode) {
@@ -84,6 +84,6 @@ function buildMenu() {
             col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
             break;
     }
-
+    
     shadows = game.add.group();
 }

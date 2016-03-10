@@ -515,11 +515,11 @@
                         nbF4 = nbF4 - 1;
                         labelTriangleEqui.text = nbF4;
                     }
-                    if (tempSprite.key === 'triangle_rect') {
+                    if (tempSprite.key == 'triangle_rect') {
                         nbF5 = nbF5 - 1;
                         labelTriangleRect.text = nbF5;
                     }
-                    if (tempSprite.key === 'diamond') {
+                    if (tempSprite.key == 'diamond') {
                         nbF6 = nbF6 - 1;
                         labelDiamond.text = nbF6;
                     }
@@ -1000,13 +1000,16 @@
                     if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
                         deleteSprite(tempSprite);
                     } else {
-
-                        snapEffect(tempSprite, 'levelMode');
-
-                        colorSprite(tempSprite, 'levelMode');
+                        if ((game.input.y > (0.7*game.height)) ||  (game.input.y < (0.12*game.height)) || (game.input.x > (0.8*game.width)) || (game.input.x < (0.2*game.width))) {
+	                        tempSprite.x = Math.random()*(game.width-2*90)+90;
+	                        tempSprite.y = game.height - 155;
+	                    }
+	                    else {
+		                    snapEffect(tempSprite,'levelMode');
+			                colorSprite(tempSprite,'levelMode');
+		                }
                     }
                     updateSolution();
-
                 }
 
 //Update function that is always running on the background to resize
@@ -1072,7 +1075,7 @@
                         i++;
                     }
 
-                    if (valid < 500 && areaSolution == areaPattern) {
+                    if (valid < 1500 && areaSolution == areaPattern) {
                         fin = 1;
                         if (nbAlert == 0) {
                             nbAlert = 1;

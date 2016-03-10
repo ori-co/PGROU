@@ -2,29 +2,37 @@ function deleteSprite(tempSprite) {
     if (tempSprite.key == 'square') {
         nbF1 = nbF1 - 1;
         labelSquare.text = nbF1;
+        sound_square_off(nbF1);
     }
     if (tempSprite.key == 'trapeze') {
         nbF2 = nbF2 - 1;
         labelTrapezoid.text = nbF2;
+        sound_trapeze_off(nbF2);
     }
     if (tempSprite.key == 'hexagon') {
         nbF3 = nbF3 - 1;
         labelHexagon.text=nbF3;
+        sound_hexagon_off(nbF3);
     }
     if (tempSprite.key == 'triangle_equi') {
         nbF4 = nbF4 - 1;
         labelTriangleEqui.text = nbF4;
+        sound_triangle_off(nbF4);
     }
-    if (tempSprite.key === 'triangle_rect') {
+    if (tempSprite.key == 'triangle_rect') {
         nbF5 = nbF5 - 1;
         labelTriangleRect.text=nbF5;
+        sound_trirec_off(nbF5);
     }
-    if (tempSprite.key === 'diamond') {
+    if (tempSprite.key == 'diamond') {
         nbF6 = nbF6 - 1;
         labelDiamond.text=nbF6;
+        sound_diamond_off(nbF6);
+        
     }
     tempSprite.destroy();
     trashBinSound();
+    
 }
 
 // to differentiate between a simple click and a real drag
@@ -74,37 +82,37 @@ function snapEffect(tempSprite, gameMode) {
     // add the shapes already in the game (except the shape that has just been dragged)
     // in order to update the contours to which we want to snap
     F1.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F2.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F3.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F4.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F5.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F6.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
@@ -480,7 +488,7 @@ function updateSolution() {
     }
     */
 
-    if (valid < 500 && areaSolution == areaPattern) {
+    if (valid < 1500 && areaSolution == areaPattern) {
         fin = 1;
         if (nbAlert == 0) {
             nbAlert = 1;
