@@ -101,6 +101,8 @@ var palette;
 
 var shadows;
 
+var forms;
+
 // responsive elements
 var pipe;
 var basketLeft;
