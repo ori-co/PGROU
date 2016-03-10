@@ -460,11 +460,11 @@
                         nbF4 = nbF4 - 1;
                         labelTriangleEqui.text = nbF4;
                     }
-                    if (tempSprite.key === 'triangle_rect') {
+                    if (tempSprite.key == 'triangle_rect') {
                         nbF5 = nbF5 - 1;
                         labelTriangleRect.text = nbF5;
                     }
-                    if (tempSprite.key === 'diamond') {
+                    if (tempSprite.key == 'diamond') {
                         nbF6 = nbF6 - 1;
                         labelDiamond.text = nbF6;
                     }
@@ -1010,7 +1010,7 @@
                         i++;
                     }
 
-                    if (valid < 500 && areaSolution == areaPattern) {
+                    if (valid < 1500 && areaSolution == areaPattern) {
                         fin = 1;
                         if (nbAlert == 0) {
                             nbAlert = 1;

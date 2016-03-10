@@ -19,12 +19,12 @@ function deleteSprite(tempSprite) {
         labelTriangleEqui.text = nbF4;
         sound_triangle_off(nbF4);
     }
-    if (tempSprite.key === 'triangle_rect') {
+    if (tempSprite.key == 'triangle_rect') {
         nbF5 = nbF5 - 1;
         labelTriangleRect.text=nbF5;
         sound_trirec_off(nbF5);
     }
-    if (tempSprite.key === 'diamond') {
+    if (tempSprite.key == 'diamond') {
         nbF6 = nbF6 - 1;
         labelDiamond.text=nbF6;
         sound_diamond_off(nbF6);
@@ -488,7 +488,7 @@ function updateSolution() {
     }
     */
 
-    if (valid < 500 && areaSolution == areaPattern) {
+    if (valid < 1500 && areaSolution == areaPattern) {
         fin = 1;
         if (nbAlert == 0) {
             nbAlert = 1;
