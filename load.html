@@ -168,6 +168,9 @@
                 
                 function wallpaper() {
                     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+                    game.scale.setResizeCallback(function () {
+                        updateSize(this);
+                    }, game);
 //Wallpaper
                     var myBitmap = game.make.bitmapData(2000, 2000);
                     myBitmap.addToWorld();
@@ -994,7 +997,7 @@
 //Function at the end of the drag
                 function endDrag(tempSprite, pointer) {
 
-                    if ((game.input.y > 20) && (game.input.y < 96) && (game.input.x > 60) && (game.input.x < 143)) {
+                    if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
                         deleteSprite(tempSprite);
                     } else {
 
@@ -1007,24 +1010,32 @@
                 }
 
 //Update function that is always running on the background to resize
-                /*function updateSize() {
+                function updateSize() {
 // Adapt the size of the interface to the screen
                     pipe.height = window.innerHeight - (390 + 212);
-                    basketLeft.y = window.innerHeight - 212 - 5;
-                    basketMiddle.y = window.innerHeight - 212 - 5;
-                    basketMiddle.width = window.innerWidth - 2 * 142;
-                    basketRight.x = window.innerWidth - 142 - 5;
-                    basketRight.y = window.innerHeight - 212 - 5;
-                    menuLeft.x = window.innerWidth - 5 - menuLenght - 2 * 35;
-                    menuMiddle.x = window.innerWidth - 5 - menuLenght - 35;
+                    // Basket position
+                    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
+                    basketMiddle.x = basketLeft.x + basketLeft.width;
+                    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
+                    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
+                    basketRight.x = window.innerWidth - (5 + basketRight.width);
+                    basketRight.y = window.innerHeight - (5 + basketRight.height); 
+
+                    // Buttons on basket
+                    rotL.y = window.innerHeight - 210;
+                    rotR.y = window.innerHeight - 210;
+
+                    // Menu position
+                    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
+                    menuRight.x = window.innerWidth - (5 + menuRight.width);
+                    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
                     menuMiddle.width = menuLenght;
-                    menuRight.x = window.innerWidth - 35 - 5;
-                    rot.y = window.innerHeight - 210;
-                    col.y = window.innerHeight - 210;
-                    ret.x = window.innerWidth - (18 + 3 * 50);
-                    mute.x = window.innerWidth - (18 + 2 * 50);
-                    exp.x = window.innerWidth - (18 + 1 * 50);
-                }*/
+
+                    // Buttons on menu
+                    mute.x=window.innerWidth - (18 + 1 * 50);
+                    home.x = window.innerWidth - (18 + 2 * 50);
+                    ret.x=window.innerWidth - (18 + 3 * 50);
+                }
 
                 var valid = 0;
 //Update function that is always running on the background
@@ -1045,7 +1056,6 @@
                             aShadow.alpha = 0.3;
                         });
                     });
-                    //updateSize();
 
                     // Vérification de la solution    
                     valid = 0;
