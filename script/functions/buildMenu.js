@@ -50,7 +50,7 @@ function buildMenu() {
     rot = game.add.button(10, window.innerHeight - 210, 'button-rotate', rotationButton, this, 2, 1, 0, 1);
     col = game.add.button(58, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
     ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-home', clickerBack, this, 2, 1, 0, 1);
-    mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
+    mute = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-mute', mute, this, 2, 1, 0, 1);
     exp = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
     
     shadows = game.add.group();

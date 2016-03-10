@@ -37,10 +37,6 @@ function create() {
     patterns.add(P5);
     patterns.add(P6);
 
-    // Sound Management
-    binSound = game.add.audio('trashbin');
-    clickSound = game.add.audio('click');
-
     //Build the menu
     buildMenu();
 

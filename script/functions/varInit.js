@@ -29,39 +29,6 @@ var P4;
 var P5;
 var P6;
 
-//  Sound variables definition
-var trashbin ;
-var click;
-/*
-
-var index;
-var select_class;
-var lock;
-var import;
-var classic;
-var firstform;
-var matching_cla;
-var problem;
-var distrib;
-var prop_rotation;
-var top_validation;
-var low_validation;
-var popup;
-var nextlevel;
-var square1;
-var triangle-eq1;
-var triangle-req1;
-var trapeze1;
-var diamond1;
-var selectfree;
-var matching-free;
-var crea;
-var save;
-var advertise;
-var print;
-var exprt; 
-*/
-
 //Area of the pattern and the solution
 var areaPattern = 0;
 var areaSolution = 0;
