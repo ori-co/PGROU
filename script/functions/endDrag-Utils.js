@@ -74,37 +74,37 @@ function snapEffect(tempSprite, gameMode) {
     // add the shapes already in the game (except the shape that has just been dragged)
     // in order to update the contours to which we want to snap
     F1.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F2.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F3.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F4.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F5.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
 
     F6.forEach(function (patternItem) {
-        if (patternItem.key != tempSprite.key && patternItem.x != tempSprite.x && patternItem.y != tempSprite.y) {
+        if (patternItem.x != tempSprite.x || patternItem.y != tempSprite.y) {
             addShapeMatrix(patternItem, 3);
         }
     }, this);
