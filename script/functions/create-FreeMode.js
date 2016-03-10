@@ -13,7 +13,7 @@ function create() {
     F6 = game.add.group();
     
     forms = game.add.group();
-    trash = game.add.group();
+    //trash = game.add.group();
     
     forms.add(F1);
     forms.add(F2);

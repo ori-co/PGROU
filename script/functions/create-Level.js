@@ -21,7 +21,7 @@ function create() {
 
     forms = game.add.group();
     patterns = game.add.group();
-    trash = game.add.group();
+    //trash = game.add.group();
 
     forms.add(F1);
     forms.add(F2);
