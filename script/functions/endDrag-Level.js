@@ -13,9 +13,10 @@ function endDrag(tempSprite, pointer) {
                     // utilisation de la variable globale "mode" possible
                     // mutualisation de code avec endDrag-LevelMode.js
                         snapEffect(tempSprite,'levelMode');
-                        colorSprite(tempSprite,'levelMode');
+                        //colorSprite(tempSprite,'levelMode');
                 }
 		}
+		colorSprite(tempSprite,'levelMode');
 	}
 	updateSolution();
 }

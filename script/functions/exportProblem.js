@@ -175,11 +175,11 @@
                 popup.document.write('<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/><link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\"></head><body><br>');
 				popup.document.write('<center><form action="save.php" method="post" >');
                 popup.document.write('<input type="hidden" id="cache" name="cache" value=""/>');
-                popup.document.write('<label>Nom de votre problème * : </label>');
+                popup.document.write('<label>'+exportInputName+' * : </label>');
                 popup.document.write('<input type="text" id="nom" name="nom" value=""/>');
                 popup.document.write('<br><br>');
                 popup.document.getElementById('cache').value = json;
-                popup.document.write('<input type="submit" id="save" value="Enregistrer" />');
+                popup.document.write('<input type="submit" id="save" value="'+saveProblem+'" />');
                 popup.document.write('</form></center></body></html>');
                
             }

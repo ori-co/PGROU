@@ -4,8 +4,8 @@
         <meta charset="UTF-8" />
         <title>/-> Maths Puzzle <-/</title>
         <link rel="stylesheet" type="text/css" href="css/levelsMapStyle.css">
-         <script type="text/javascript" src="script/soundmanager2.js"></script>
-       
+        <script type="text/javascript" src="script/soundmanager2.js"></script>
+       <script type="text/javascript" src="script/text/fr_buttons.js"></script>
        
        <script> 
        		
@@ -108,11 +108,16 @@
     	
     	}
     }
-    		
+    	
+
+		//Buttons
+		function buttons(){ 
+					document.getElementById('importButton').value=problemImport;
+		}		
      </script>
     
     </head>
-    <body>
+    <body onload="buttons();">
         <img id="wallpaper" src="assets/images/levels/wallpaper.png" alt="wallpaper"/>
         <div id="menu">
             <input type="button" class="menuButton" id="home" value=" " onclick="sound0.play();"/>
@@ -120,7 +125,7 @@
         </div>
         
         <div id="importation">
-        <input type="button" id="importButton" value="Importer un problème" onclick="self.location.href = 'load.html'" /> 
+        <input type="button" id="importButton" value="" onclick="self.location.href = 'load.html'" /> 
         </div>
         
         <div id="levels">

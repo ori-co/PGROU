@@ -11,6 +11,7 @@
         <script type="text/javascript" src="script/functions/matrixUtils.js"></script>
         <script type="text/javascript" src="script/functions/varInit.js"></script>
         <script type="text/javascript" src="script/functions/sounds.js"></script>
+		<script type="text/javascript" src="script/text/fr_buttons.js"></script>
         <script>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1117,7 +1118,7 @@
                 myExt = myExt.toLowerCase();
                 //Error message if it is not a JSON
                 if (myExt !== "json") {
-                    alert("Votre fichier JSON n'a pas le bon format. Choisissez un fichier JSON.");
+                    alert(errorLoad);
                 } else {
                     //If it is good, we launch the game
                     document.body.style.backgroundImage = "none";
@@ -1149,14 +1150,21 @@
                 );
                 ;
             };
+			
+			//Buttons
+			function buttons(){ 
+				document.getElementById('start').value=loadOk;
+				document.getElementById('uploadFile').placeholder=fileSelect;
+			}
+				
         </script>
         <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
     </head>
 
-    <body><center>
+    <body onload="buttons();"><center>
         <div id="json">
             <div class="inputBtnSection">
-                <input id="uploadFile" class="disableInputField" placeholder="Choisissez un fichier" disabled="disabled" />
+                <input id="uploadFile" class="disableInputField" placeholder="" disabled="disabled" />
 
                 <label class="fileUpload">
                     <input id="fileInput" type="file" class="upload" />
@@ -1165,7 +1173,7 @@
             </div>
 
             <br><br><br><br>
-            <input type="button" id="start" value="C'est parti !" onclick="checkExtension();">
+            <input type="button" id="start" value="" onclick="checkExtension();">
         </div>
 
         <h3 class="cache" id="cache"> </h3>

@@ -227,8 +227,10 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
-
-
+			// if (tempSprite.x< a|| tempSprite.x> a||tempSprite.y< a|| tempSprite.y>a) {
+			//	isIn=0;
+			// }
+			 
             P1.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
@@ -474,19 +476,6 @@ function updateSolution() {
     	}
     }
 	
-	/*
-	var i = 0;
-	var j = 0;
-	while (i < 1200 && valid < 500) {
-		while (j < 800 && valid < 500) {
-			if (matSolution[i][j] != matPattern[i][j]) {
-                valid++;
-            }
-            j++;
-        }
-        i++;
-    }
-    */
 
     if (valid < 1500 && areaSolution == areaPattern) {
         fin = 1;
