@@ -80,7 +80,7 @@ function buildMenu() {
             break;
         case "freeMode":
             exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
-            print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', null, this, 2, 1, 0, 1);
+            print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', pdf, this, 2, 1, 0, 1);
             col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
             break;
     }
