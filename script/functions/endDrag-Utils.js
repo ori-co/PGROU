@@ -227,8 +227,10 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
-
-
+			 if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+				isIn=0;
+			 }
+			 
             P1.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
@@ -262,6 +264,10 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
+			
+			if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+				isIn=0;
+			 }
 
 
             P2.forEach(function (pattern) {
@@ -297,6 +303,11 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
+			
+			if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+				isIn=0;
+			 }
+			 
             P3.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
@@ -331,6 +342,9 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                 }
             }
 
+			if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+				isIn=0;
+			 }
 
             P4.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
@@ -367,6 +381,9 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
 
+				if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+				isIn=0;
+			 }
 
                 P5.forEach(function (pattern) {
                     if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
@@ -404,6 +421,9 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
 
+				if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+				isIn=0;
+			 }
 
                 P6.forEach(function (pattern) {
                     if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
@@ -474,19 +494,6 @@ function updateSolution() {
     	}
     }
 	
-	/*
-	var i = 0;
-	var j = 0;
-	while (i < 1200 && valid < 500) {
-		while (j < 800 && valid < 500) {
-			if (matSolution[i][j] != matPattern[i][j]) {
-                valid++;
-            }
-            j++;
-        }
-        i++;
-    }
-    */
 
     if (valid < 1500 && areaSolution == areaPattern) {
         fin = 1;

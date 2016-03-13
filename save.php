@@ -12,20 +12,29 @@ echo"
 		<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
 		<title></title>
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saveStyle.css\">
+		<script type=\"text/javascript\" src=\"script/text/fr_buttons.js\"></script>
+		<script>
+		function buttons(){ 
+				document.getElementById('save').value=saveProblem;
+				document.getElementById('error').innerHTML=errorNameExport;
+				document.getElementById('name').innerHTML=exportInputName;
+				}
+		
+		</script>
 		</head>
 		
-		<body>
+		<body onload=\"buttons();\">
 			<br>
 			<center>
-				<div class=\"error\" > Nom invalide! </div>
+				<div class=\"error\" id=\"error\"> </div>
 					
 				<form action=\"save.php\" method=\"post\" >
 					<input type=\"hidden\" id=\"cache\" name=\"cache\" value=\"$json\"/>
 						<br><br>
-					<label>Nom de votre problème * : </label>
+					<label id=\"name\"></label>
 					<input type=\"text\" id=\"nom\" name=\"nom\" value=\"\"/>
 						<br><br>
-					<input type=\"submit\" id=\"save\"  value=\"Enregistrer\" />
+					<input type=\"submit\" id=\"save\"  value=\"\" />
 				</form>
 			</center>
 		</body>

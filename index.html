@@ -9,22 +9,27 @@
          
        <script> 
        		// Sounds 
-       		var language =  "assets/audio/fr/";
+			var language = "assets/audio/fr/";
        		soundManager.onload = function(){
        		welcome =  soundManager.createSound({id : "welcome", url: language+"welcome.mp3"});
        		welcome.play();
         	son1 = soundManager.createSound({id : "click1", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
         	son2 = soundManager.createSound({id : "click2", url: language+"click.mp3", onfinish: function(){ self.location.href='freemode.html'}});}
-    
+			
+			//Buttons
+			 function buttons(){ 
+				document.getElementById('b1').value=levelmode;
+				document.getElementById('b2').value=freemode;
+				}
      </script>
-   
+     <script type="text/javascript" src="script/text/fr_buttons.js"></script>
     </head>
-    <body>
+    <body onload="buttons();">
     	
         <img id="wallpaper" src="assets/images/index/wallpaper.png" alt="wallpaper"/>
         <div id="buttons">
-            <input type="button" value="Mode classique"  onclick = "son1.play();"/>
-            <input type="button" value="Mode libre" onclick="son2.play();"/>
+            <input id="b1" type="button" value=""  onclick = "son1.play();"/>
+            <input id="b2" type="button" value="" onclick="son2.play();"/>
         </div>
     </body>
 </html>
