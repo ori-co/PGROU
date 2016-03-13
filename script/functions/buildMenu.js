@@ -6,7 +6,7 @@ function buildMenu() {
     pipe.height = window.innerHeight - (390 + 212);
 
     // Buttons in store
-    bin = game.add.button(60, 20, 'trashbin', null, this, 2, 1, 0, 1);
+    bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
     
     var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
     buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
