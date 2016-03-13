@@ -118,7 +118,7 @@
                     // Buttons in store
                     bin = game.add.button(60, 20, 'trashbin', null, this, 2, 1, 0, 1);
                     
-                    var style = {font: "25px Arial", fontWeight: "bold", fill: "#8B7AFF"};
+                    var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
 
                     buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
                     labelSquare = game.add.text(53, 130, nbF1, style);
@@ -277,6 +277,7 @@
                     //Get the JSON content
                     var result = document.getElementById('cache').innerText;
                     document.getElementById('json').style.display = 'none';
+                    document.getElementById('menu').style.display = 'none';
                     //JSON analysis				
                     var jsonObj = JSON.parse(result);
                     //Pattern creation
@@ -386,7 +387,7 @@
                     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
                     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
 
-                    tempSprite.events.onInputOver.add(function () {
+                    /*tempSprite.events.onInputOver.add(function () {
 
                         switch (test) {
                             case 1:
@@ -398,7 +399,7 @@
                             default:
                                 this.game.canvas.style.cusor = "default";
                         }
-                    });
+                    });*/
                 }
 
                 function addForm1(form1, pointer) {
@@ -1200,6 +1201,11 @@
 				document.getElementById('start').value=loadOk;
 				document.getElementById('uploadFile').placeholder=fileSelect;
 			}
+            
+            var language = "assets/audio/fr/";
+       		soundManager.onload = function(){
+        	sound0 = soundManager.createSound({id : "click0", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
+            }
 				
         </script>
         <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
@@ -1207,8 +1213,13 @@
 
     <body onload="buttons();">
          <img src="assets/images/load/wallpaper.png"  />
+         <div id="menu">
+            <input type="button" class="menuButton" id="home" value=" " onclick="sound0.play();"/>
+            <input type="button" class="menuButton" id="mute" value=" "/>
+        </div>
 		<center><div id="json">
-		
+
+        
             <div class="inputBtnSection">
                 <input id="uploadFile" class="disableInputField" placeholder="" disabled="disabled" />
 
