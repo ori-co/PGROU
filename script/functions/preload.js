@@ -40,6 +40,10 @@ function preload() {
     game.load.image('menu-left', 'assets/images/menu/menu-left.png');
     game.load.image('menu-right', 'assets/images/menu/menu-right.png');
     game.load.image('menu-middle', 'assets/images/menu/menu-middle.png');
+    
+    game.load.image('patrick', 'assets/images/patrick/patrick.png');
+    game.load.spritesheet('patrick-mouth','assets/images/patrick/mouth.png',31,22,4);
+    game.load.spritesheet('patrick-eyes','assets/images/patrick/eyes.png',80,66,5);
 
     
     

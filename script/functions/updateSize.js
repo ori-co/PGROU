@@ -38,4 +38,8 @@ function updateSize() {
             print.x=window.innerWidth - (18 + 3 * 50);
             break;
     }
+    
+    //Patrick position
+    pat.x=basketRight.x+5;
+    pat.y=basketRight.y-135;
 }

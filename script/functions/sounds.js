@@ -28,7 +28,9 @@ function clicker(){
 function sound_square(nbF1){
  	nbF1 = soundManager.createSound({id : "square"+nbF1, url:"assets/audio/fr/square"+nbF1+".mp3"});
 	soundManager.stopAll();
-	nbF1.play();
+    patrickSpeak(nbF1); // must be before play() instruction
+    nbF1.play();
+
 }
 
 function sound_trapeze(nbF2){

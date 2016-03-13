@@ -85,5 +85,24 @@ function buildMenu() {
             break;
     }
     
+    // Add Patrick to the menu
+    pat = game.add.group();
+    // position
+    pat.x = basketRight.x+5;
+    pat.y = basketRight.y-135;
+    pat.scale.set(0.27, 0.27);
+    // independant elements
+    var patBody = game.add.sprite(0,0,'patrick');
+    pat.add(patBody);
+    patMouth = game.add.sprite(217,168,'patrick-mouth');
+    pat.add(patMouth);
+    patEyes = game.add.sprite(196,80,'patrick-eyes');
+    pat.add(patEyes);
+    //animations
+    patMouth.animations.add('talk');
+    patEyes.animations.add('blink');
+    
+    patrickBlink();
+    
     shadows = game.add.group();
 }

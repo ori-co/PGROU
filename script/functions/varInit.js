@@ -57,6 +57,9 @@ var home;
 var exp;
 var print;
 var levelName;
+var pat;
+var patMouth;
+var patEyes;
 
 var buttonSquare;
 var buttonTrapezoid;
