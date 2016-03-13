@@ -1,4 +1,5 @@
 <!doctype html>
+<!doctype html>
 <html lang="fr">
 
     <head>
@@ -1008,21 +1009,7 @@
                         }
                     }
 
-                    /*
-                     var i = 0;
-                     var j = 0;
-                     while (i < 1200 && valid < 500) {
-                     while (j < 800 && valid < 500) {
-                     if (matSolution[i][j] != matPattern[i][j]) {
-                     valid++;
-                     }
-                     j++;
-                     }
-                     i++;
-                     }
-                     */
-
-                    if (valid < 500 && areaSolution == areaPattern) {
+                    if (valid < 1500 && areaSolution == areaPattern) {
                         fin = 1;
                         if (nbAlert == 0) {
                             nbAlert = 1;
@@ -1086,12 +1073,10 @@
                     pat.y=basketRight.y-135;
                 }
 
-                var valid = 0;
 //Update function that is always running on the background
                 function update() {
                     //Bring the forms up
                     game.world.bringToTop(forms);
-                    //game.world.bringToTop(trash);
                     
                     // Update of the shadows
                     shadows.removeAll();
@@ -1106,49 +1091,25 @@
                         });
                     });
 
-                    // Vérification de la solution    
-                    valid = 0;
-
-                    var i = 0;
-                    var j = 0;
-                    while (i < 1200 && valid < 500) {
-                        while (j < 800 && valid < 500) {
-                            if (matSolution[i][j] != matPattern[i][j]) {
-                                valid++;
-                            }
-                            j++;
-                        }
-                        i++;
-                    }
-
-                    if (valid < 1500 && areaSolution == areaPattern) {
-                        fin = 1;
-                        if (nbAlert == 0) {
-                            nbAlert = 1;
-                            var delay = 500;
-                            setTimeout(function () {
-                                alert("Bravo! Vous avez réussi ce niveau!");
-                            }, delay);
-                        }
-                    }
-
                 }
 
 //Debugging Mode       
                 function render() {
                     game.debug.style = '#fff';
-                    game.debug.text('Squares : ' + nbF1, 16, 48);
-                    game.debug.text('Trapezes : ' + nbF2, 16, 60);
-                    game.debug.text('Hexagons : ' + nbF3, 16, 72);
-                    game.debug.text('Triangles : ' + nbF4, 16, 84);
-                    game.debug.text('Rect Triangles : ' + nbF5, 16, 96);
-                    game.debug.text('Diamonds : ' + nbF6, 16, 108);
-                    game.debug.text('Function : ' + test, 16, 120);
-                    //game.debug.text('End : ' + end, 16, 108);
+                    //game.debug.text('Squares : ' + nbF1, 16, 48);
+                    //game.debug.text('Trapezes : ' + nbF2, 16, 60);
+                    //game.debug.text('Hexagons : ' + nbF3, 16, 72);
+                    //game.debug.text('Triangles : ' + nbF4, 16, 84);
+                    //game.debug.text('Rect Triangles : ' + nbF5, 16, 96);
+                    //game.debug.text('Diamonds : ' + nbF6, 16, 108);
+                    //game.debug.text('Function : ' + test, 16, 120);
+                    //game.debug.text('Valid : ' + valid, 16, 108);
                     //game.debug.text('Solution Area: ' + areaSolution, 16, 120);
                     //game.debug.text('Problem Area: ' + areaPattern, 16, 132);
-                    //game.debug.text('matProblem : ' + matPattern[180][22], 16, 120);
-                    //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
+                    //game.debug.text('matProblem : ' + matPattern[350][350], 16, 144);
+                    //game.debug.text('MatSolution : ' + matSolution[350][350], 16, 156);
+                    game.debug.text('Input X : ' + game.input.x, 16, 168);
+                    game.debug.text('Input Y : ' + game.input.y, 16, 180);
                     //game.debug.inputInfo(16, 144);
                 }
 
