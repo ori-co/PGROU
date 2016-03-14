@@ -76,7 +76,7 @@ function buildMenu() {
             ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
             home.x = window.innerWidth - (18 + 2 * 50);
             var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
-            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitle+" 1", levelStyle);
+            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitle+" "+levelnum, levelStyle);
             break;
         case "freeMode":
             exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);

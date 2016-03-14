@@ -10,109 +10,27 @@
        <script> 
        		
        		// Level Sounds
-       		
        		var language = "assets/audio/fr/";
-       		soundManager.onload = function(){
-        	sound0 = soundManager.createSound({id : "click0", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
-        	sound1 = soundManager.createSound({id : "click1", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=1'}});
-    		sound2 = soundManager.createSound({id : "click2", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=2'}});
-    		sound3 = soundManager.createSound({id : "click3", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=3'}});
-    		sound4 = soundManager.createSound({id : "click4", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=4'}});
-    		sound5 = soundManager.createSound({id : "click5", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=5'}});
-    		sound6 = soundManager.createSound({id : "click6", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=6'}});
-    		sound7 = soundManager.createSound({id : "click7", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=7'}});
-    		sound8 = soundManager.createSound({id : "click8", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=8'}});
-    		sound9= soundManager.createSound({id : "click9", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=9'}});
-    		sound10= soundManager.createSound({id : "click10", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=10'}});
-    		sound11= soundManager.createSound({id : "click11", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=11'}});
-    		sound12= soundManager.createSound({id : "click12", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=12'}});
-    		sound13= soundManager.createSound({id : "click13", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=13'}});
-    		sound14= soundManager.createSound({id : "click14", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=14'}});
-    		sound15= soundManager.createSound({id : "click15", url: language+"click.mp3", onfinish: function(){ self.location.href='level.html?levelnum=15'}});
-    		sound_locked= soundManager.createSound({id : "click16", url: language+"locked.mp3"});
-    		}
-    		
-    	
-    	// Sounds Functions for this HTML Page
-    	
-    	function sound_level(i){
-     var element = document.getElementById(i);
-    	if (element.className=='levelButton'){
-    	
-    	
-    	if (i=='1') {
-    		sound1.play();
-    		}
-    	
-    	if (i=='2') {
-    		sound2.play();
-    		}
-    		
-    	if (i=='3') {
-    		sound3.play();
-    		}
-    		
-    	if (i=='4') {
-    		sound4.play();
-    		}
-    	
-    	if (i=='5') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='6') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='7') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='8') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='9') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='10') {
-    		sound1.play();
-    		}
-    	
-    	if (i=='11') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='12') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='13') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='14') {
-    		sound1.play();
-    		}
-    		
-    	if (i=='15') {
-    		sound1.play();
-    		}												
-    	
-    	}
-    	
-    	else {
-    	
-    	sound_locked.play();
-    	
-    	}
-    }
-    	
-
+    
+            soundManager.onload = function(){
+                sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
+                sound = soundManager.createSound({id : "click", url: language+"click.mp3"});
+                sound_locked= soundManager.createSound({id : "clicklock", url: language+"locked.mp3"});
+            }
+            
+            function sound_level(i){
+                var element = document.getElementById(i);
+                if (element.className=='levelButton'){
+                    sound.options.onfinish= function(){self.location.href="level.html?levelnum="+i;};
+                    sound.play();
+                }else {
+                    sound_locked.play();
+                }
+            }        
+            
 		//Buttons
 		function buttons(){ 
-					document.getElementById('importButton').value=problemImport;
+			document.getElementById('importButton').value=problemImport;
 		}		
      </script>
     
@@ -120,7 +38,7 @@
     <body onload="buttons();">
         <img id="wallpaper" src="assets/images/levels/wallpaper.png" alt="wallpaper"/>
         <div id="menu">
-            <input type="button" class="menuButton" id="home" value=" " onclick="sound0.play();"/>
+            <input type="button" class="menuButton" id="home" value=" " onclick="sound_home.play();"/>
             <input type="button" class="menuButton" id="mute" value=" "/>
         </div>
         
