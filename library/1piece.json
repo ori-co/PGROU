@@ -1,0 +1,17 @@
+{
+"problem" :
+	{
+	"pattern":[ 
+				{
+				"shape":"square",
+				"color":"0x83EE00",
+				"rotation":"0",
+				"anchorPoint": {
+					"x":"496",
+					"y":"168"}
+				}
+			]
+	
+	
+}
+}
