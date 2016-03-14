@@ -75,46 +75,46 @@ function create() {
         case '1' :
             levelText = level1;
             break;
-        case 2 :
+        case '2' :
             levelText = level2;
             break;
-        case 3 :
+        case '3' :
             levelText = level3;
             break;
-        case 4 :
+        case '4' :
             levelText = level4;
             break;
-        case 5 :
+        case '5' :
             levelText = level5;
             break;
-        case 6 :
+        case '6' :
             levelText = level6;
             break;
-        case 7 :
+        case '7' :
             levelText = level7;
             break;
-        case 8 :
+        case '8' :
             levelText = level8;
             break;
-        case 9 :
+        case '9' :
             levelText = level9;
             break;
-        case 10 :
+        case '10' :
             levelText = level10;
             break;
-        case 11 :
+        case '11' :
             levelText = level11;
             break;
-        case 12 :
+        case '12' :
             levelText = level12;
             break;
-        case 13 :
+        case '13' :
             levelText = level13;
             break;
-        case 14 :
+        case '14' :
             levelText = level15;
             break;
-        case 15 :
+        case '15' :
             levelText = level15;
             break;
 

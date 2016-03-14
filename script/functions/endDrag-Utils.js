@@ -11,7 +11,7 @@ function deleteSprite(tempSprite) {
     }
     if (tempSprite.key == 'hexagon') {
         nbF3 = nbF3 - 1;
-        labelHexagon.text=nbF3;
+        labelHexagon.text = nbF3;
         sound_hexagon_off(nbF3);
     }
     if (tempSprite.key == 'triangle_equi') {
@@ -21,28 +21,28 @@ function deleteSprite(tempSprite) {
     }
     if (tempSprite.key == 'triangle_rect') {
         nbF5 = nbF5 - 1;
-        labelTriangleRect.text=nbF5;
+        labelTriangleRect.text = nbF5;
         sound_trirec_off(nbF5);
     }
     if (tempSprite.key == 'diamond') {
         nbF6 = nbF6 - 1;
-        labelDiamond.text=nbF6;
+        labelDiamond.text = nbF6;
         sound_diamond_off(nbF6);
-        
+
     }
     tempSprite.destroy();
     trashBinSound();
-    
+
 }
 
 // to differentiate between a simple click and a real drag
 function isDrag() {
-	var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
-	if (distanceFromLastUp > 2) { // value 2 determined empiracally
-		return true;
-	} else {
-		return false;
-	}
+    var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
+    if (distanceFromLastUp > 2) { // value 2 determined empiracally
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function snapEffect(tempSprite, gameMode) {
@@ -206,7 +206,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                 matTemp[i][j] = 0;
             }
         }
-			
+
 //***SQUARE***	
         if (tempSprite.key == 'square') {
             var M = shapes.square.mat[tempSprite.frame];
@@ -227,10 +227,10 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
-			 if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-				isIn=0;
-			 }
-			 
+            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                isIn = 0;
+            }
+
             P1.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
@@ -242,6 +242,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }, this);
+
         }
 
 //***TRAPEZE***	
@@ -264,10 +265,10 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
-			
-			if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-				isIn=0;
-			 }
+
+            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                isIn = 0;
+            }
 
 
             P2.forEach(function (pattern) {
@@ -285,6 +286,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
 //***HEXAGON***	
         if (tempSprite.key == 'hexagon') {
+
             var M = shapes.hexagon.mat[tempSprite.frame];
 
             for (var i = 0; i < 128; i++) {
@@ -303,13 +305,14 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }
-			
-			if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-				isIn=0;
-			 }
-			 
+
+            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                isIn = 0;
+            }
+
             P3.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+
+                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.frame == tempSprite.frame) {
                     tempSprite.tint = pattern.wantedColor;
                 } else {
                     if (isIN == 1) {
@@ -342,9 +345,9 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                 }
             }
 
-			if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-				isIn=0;
-			 }
+            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                isIn = 0;
+            }
 
             P4.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
@@ -357,89 +360,89 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                     }
                 }
             }, this);
-		}
-		
-//***TRIANGLE RECT***	
-            if (tempSprite.key == 'triangle_rect') {
-				
-                var M = shapes.triangleRect.mat[tempSprite.frame];
-
-                for (var i = 0; i < 128; i++) {
-                    for (var j = 0; j < 128; j++) {
-
-                        matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                    }
-                }
-
-                var isIN = 1;
-
-                for (var i = 0; i < 1200; i++) {
-                    for (var j = 0; j < 800; j++) {
-                        if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                            isIN = 0;
-                        }
-                    }
-                }
-
-				if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-				isIn=0;
-			 }
-
-                P5.forEach(function (pattern) {
-                    if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                        tempSprite.tint = pattern.wantedColor;
-                    } else {
-                        if (isIN == 1) {
-                            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                        } else {
-                            tempSprite.tint = 0x93AFBD;
-                        }
-                    }
-                }, this);
-            }
-
-
-            //***DIAMOND***	
-
-            if (tempSprite.key == 'diamond') {
-                var M = shapes.diamond.mat[tempSprite.frame];
-
-                for (var i = 0; i < 128; i++) {
-                    for (var j = 0; j < 128; j++) {
-
-                        matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
-                    }
-                }
-
-                var isIN = 1;
-
-                for (var i = 0; i < 1200; i++) {
-                    for (var j = 0; j < 800; j++) {
-                        if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
-                            isIN = 0;
-                        }
-                    }
-                }
-
-				if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-				isIn=0;
-			 }
-
-                P6.forEach(function (pattern) {
-                    if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
-                        tempSprite.tint = pattern.wantedColor;
-                    } else {
-                        if (isIN == 1) {
-                            tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                        } else {
-                            tempSprite.tint = 0x93AFBD;
-                        }
-                    }
-                }, this);
-            }
-
         }
+
+//***TRIANGLE RECT***	
+        if (tempSprite.key == 'triangle_rect') {
+
+            var M = shapes.triangleRect.mat[tempSprite.frame];
+
+            for (var i = 0; i < 128; i++) {
+                for (var j = 0; j < 128; j++) {
+
+                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                }
+            }
+
+            var isIN = 1;
+
+            for (var i = 0; i < 1200; i++) {
+                for (var j = 0; j < 800; j++) {
+                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                        isIN = 0;
+                    }
+                }
+            }
+
+            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                isIn = 0;
+            }
+
+            P5.forEach(function (pattern) {
+                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                    tempSprite.tint = pattern.wantedColor;
+                } else {
+                    if (isIN == 1) {
+                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                    } else {
+                        tempSprite.tint = 0x93AFBD;
+                    }
+                }
+            }, this);
+        }
+
+
+        //***DIAMOND***	
+
+        if (tempSprite.key == 'diamond') {
+            var M = shapes.diamond.mat[tempSprite.frame];
+
+            for (var i = 0; i < 128; i++) {
+                for (var j = 0; j < 128; j++) {
+
+                    matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
+                }
+            }
+
+            var isIN = 1;
+
+            for (var i = 0; i < 1200; i++) {
+                for (var j = 0; j < 800; j++) {
+                    if (matTemp[i][j] == 1 && matPattern[i][j] == 0) {
+                        isIN = 0;
+                    }
+                }
+            }
+
+            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                isIn = 0;
+            }
+
+            P6.forEach(function (pattern) {
+                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+                    tempSprite.tint = pattern.wantedColor;
+                } else {
+                    if (isIN == 1) {
+                        tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+                    } else {
+                        tempSprite.tint = 0x93AFBD;
+                    }
+                }
+            }, this);
+        }
+
     }
+}
 
 
 
@@ -481,26 +484,26 @@ function updateSolution() {
         areaSolution = areaSolution + shapes.diamond.area[patternItem.frame];
         addShapeMatrix(patternItem, 2);
     }, this);
-    
-    
+
+
     // Vérification de la solution    
     valid = 0;
-    
+
     for (var i = 0; i < 1200; i++) {
-    	for (var j = 0; j < 800; j++) {
-    		if (matSolution[i][j] != matPattern[i][j]) {
+        for (var j = 0; j < 800; j++) {
+            if (matSolution[i][j] != matPattern[i][j]) {
                 valid++;
             }
-    	}
+        }
     }
-	
+
 
     if (valid < 1500 && areaSolution == areaPattern) {
         fin = 1;
         if (nbAlert == 0) {
             nbAlert = 1;
             var delay = 500;
-            setTimeout(function() {
+            setTimeout(function () {
                 alert("Bravo! Vous avez réussi ce niveau!");
             }, delay);
         }

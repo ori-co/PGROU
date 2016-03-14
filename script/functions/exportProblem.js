@@ -2,7 +2,27 @@
             // Exporting
             // The export function builds a string with all the problem's inforation.
             // This string needs to follow a specific syntax to enable the loading of this problem afterwards.
-            
+			
+			function convertColor (c){
+				var col ="";
+				switch (c){
+					case 8646144 : col= "0x83EE00";
+					break;
+					case 16514560 : col= "0xFBFE00";
+					break;
+					case 363190 : col= "0x058AB6";
+					break;
+					case 14942300 : col= "0xE4005C";
+					break;
+					case 8390590 : col= "0x8007BE";
+					break;
+					case 16745216 : col= "0xFF8300";
+					break;
+					default : col = "0x93AFBD";
+					break;	
+				}
+				return col;
+			}
             
             function exportProblem() {
             
@@ -19,7 +39,7 @@
                         json = json + ',\n\
                                 {\n\
                                 \"shape\":\"square\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
+                                \"color\":\"' + convertColor(formItem.tint) + '\",\n\
                                 \"rotation\":\"' + formItem.frame + '\",\n\
                                 \"anchorPoint\": {\n\
                                                      \"x\":\"' + formItem.x + '\",\n\
