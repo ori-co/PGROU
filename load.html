@@ -1013,13 +1013,13 @@
 
                     if (valid < 1500 && areaSolution == areaPattern) {
                         fin = 1;
-                        if (nbAlert == 0) {
-                            nbAlert = 1;
                             var delay = 500;
                             setTimeout(function () {
-                                alert("Bravo! Vous avez réussi ce niveau!");
+                                //alert("Bravo! Vous avez réussi ce niveau!");
+                                document.getElementById("final").style.display = "block";
+                                pat.visible=false;
+                
                             }, delay);
-                        }
                     }
                 }
 
@@ -1175,8 +1175,8 @@
     </head>
 
     <body onload="buttons();">
-         <img src="assets/images/load/wallpaper.png"  />
-         <div id="menu">
+        <img src="assets/images/load/wallpaper.png"  />
+        <div id="menu">
             <input type="button" class="menuButton" id="home" value=" " onclick="sound0.play();"/>
             <input type="button" class="menuButton" id="mute" value=" "/>
         </div>
@@ -1197,6 +1197,18 @@
         </div>
 
         <h3 class="cache" id="cache"> </h3>
-    </center></body>
+    </center>
+    <div id="final">
+    
+        <img id="patrick" src="assets/images/final/patrick.png" alt="patrick"/>
+        <div id="buttons">
+            <input type="button" class="menuButton" id="home" value=" " onclick="clickerHome()"/>
+            <input type="button" class="menuButton" id="mute" value=" "/>
+            <br/>
+            <input id="importButton" type="button" value="" onclick="self.location.href = 'load.html'"/>
+        </div>
+        
+    </div>
+    </body>
 
 </html>

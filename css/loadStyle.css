@@ -51,27 +51,27 @@
 }
 
 #home {
-    background-image: url('../assets/images/levels/option-home_normal.png');
+    background-image: url('../assets/images/final/option-home_normal.png');
 }
 
 #home:hover {
-    background-image: url('../assets/images/levels/option-home_over.png');
+    background-image: url('../assets/images/final/option-home_over.png');
 }
 
 #home:active {
-    background-image: url('../assets/images/levels/option-home_click.png');
+    background-image: url('../assets/images/final/option-home_click.png');
 }
 
 #mute {
-    background-image: url('../assets/images/levels/option-mute_normal.png');
+    background-image: url('../assets/images/final/option-mute_normal.png');
 }
 
 #mute:hover {
-    background-image: url('../assets/images/levels/option-mute_over.png');
+    background-image: url('../assets/images/final/option-mute_over.png');
 }
 
 #mute:active {
-    background-image: url('../assets/images/levels/option-mute_click.png');
+    background-image: url('../assets/images/final/option-mute_click.png');
 }
 
  body {
@@ -86,7 +86,7 @@
     position: absolute;
     display: none;
 }
-img{
+body> img{
 	position:absolute;
 	margin-top : 0px;
 	width: 100%;
@@ -144,4 +144,71 @@ img{
 	filter: alpha(opacity=0);
 }
 
+#final {
+    display:none;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1;
+    padding-left:20%;
+    padding-right:20%;
+    padding-top:15%;
+    background-color:rgba(0, 0, 0, 0.6);
+    text-align:center;
+}
 
+#patrick{
+    z-index:2;
+    max-width:300px;
+    min-width:150px;
+    vertical-align:middle;
+}
+
+#buttons {
+    display:inline-block;
+    width:194px;
+    height:179px;
+    z-index:2;
+    text-align:center;
+    background-image: url('../assets/images/final/menu.png');
+    background-repeat:no-repeat;
+    vertical-align:middle;
+}
+
+#importButton {
+    background-image : url('../assets/images/final/button_import_normal.png');
+    height : 100px !important;
+    width : 87px !important;
+    position:relative;
+    top:-10px;
+}
+
+#importButton:hover {
+    background-image : url('../assets/images/final/button_import_over.png');
+    color : #ffc2cc;
+}
+ 
+#importButton:active {
+    background-image:url('../assets/images/final/button_import_click.png');
+    color:#dd6387;
+}
+
+
+#buttons>input {
+    height : 48px;
+    width : 48px;
+    border : none;
+    font-family : roboto;
+    font-weight: 600;
+    font-size : 50px;
+    text-align: center;
+    background-color: transparent;
+    background-repeat:no-repeat;
+    margin:2px 2px 0px 1px;
+}
+
+#buttons>input:focus {
+    outline:none;
+}

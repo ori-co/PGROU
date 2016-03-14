@@ -36,9 +36,39 @@
 			<script type="text/javascript" src="script/functions/patternCreation.js"></script>
 			 <script type="text/javascript" src="script/functions/levels.js"></script>
 
+             
+             <script> 
+        var language = "assets/audio/fr/";
+    
+        soundManager.onload = function(){
+            sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
+            sound_ret = soundManager.createSound({id : "clickret", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
+        	sound = soundManager.createSound({id : "clicklevel", url: language+"click.mp3"});
+            }
+            
+        function sound_level(i){
+     var element = document.getElementById(i.id);
+    	if (element.className=='levelButton'){
+            sound.options.onfinish= function(){self.location.href="level.html?levelnum="+element.value;};
+            sound.play();
+    	}
+        }   
+             </script>
 </head>
 
 <body>
+    <div id="final">
+    
+        <img id="patrick" src="assets/images/final/patrick.png" alt="patrick"/>
+        <div id="buttons">
+            <input type="button" class="menuButton" id="ret" value=" " onclick="clickerBack()"/>
+            <input type="button" class="menuButton" id="home" value=" " onclick="clickerHome()"/>
+            <input type="button" class="menuButton" id="mute" value=" "/>
+            <br/>
+            <input id="again" type="button" class = "levelButton" value=""  onclick= "sound_level(this)" />
+            <input id="next" type="button" class="levelButton" value="" onclick= "sound_level(this)" />
+        </div>
+    </div>
 </body>
 
 </html>

@@ -500,12 +500,15 @@ function updateSolution() {
 
     if (valid < 1500 && areaSolution == areaPattern) {
         fin = 1;
-        if (nbAlert == 0) {
-            nbAlert = 1;
             var delay = 500;
             setTimeout(function () {
-                alert("Bravo! Vous avez réussi ce niveau!");
+                //alert("Bravo! Vous avez réussi ce niveau!");
+                document.getElementById("final").style.display = "block";
+                document.getElementById("next").value = parseInt(levelnum)+1;
+                document.getElementById("again").value = parseInt(levelnum);
+                pat.visible=false;
+                
+                
             }, delay);
-        }
     }
 }
