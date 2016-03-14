@@ -9,9 +9,11 @@ function endDrag(tempSprite, pointer) {
 	        tempSprite.y = game.height - 155;
 	    }
 	    else {
-            // utilisation de la variable globale "mode" possible
-            // mutualisation de code avec endDrag-LevelMode.js
-		    snapEffect(tempSprite,'freeMode');
+	    	if (isDrag()) {
+            	// utilisation de la variable globale "mode" possible
+	            // mutualisation de code avec endDrag-LevelMode.js
+			    snapEffect(tempSprite,'freeMode');
+			}
 		}
 		//colorSprite(tempSprite,'levelMode');
 		colorSprite(tempSprite,'freeMode')
