@@ -206,13 +206,13 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
                 matTemp[i][j] = 0;
             }
         }
-
+var isColored = 0;
 //***SQUARE***	
         if (tempSprite.key == 'square') {
             var M = shapes.square.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < 130; i++) {
+                for (var j = 0; j < 130; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -234,14 +234,25 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             P1.forEach(function (pattern) {
                 if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
+					isColored=1;
                 } else {
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+						isColored=1;
                     } else {
                         tempSprite.tint = 0x93AFBD;
+						isColored=1;
                     }
                 }
             }, this);
+			
+			if (isColored==0 && isIN==1){
+				tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+			}else{
+				if (isColored==0){
+					tempSprite.tint = 0x93AFBD;
+				}
+			}
 
         }
 
@@ -249,8 +260,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         if (tempSprite.key == 'trapeze') {
             var M = shapes.trapeze.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < 130; i++) {
+                for (var j = 0; j < 130; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -268,20 +279,29 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
             if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
                 isIn = 0;
-            }
-
-
+            } 
             P2.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+               if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
+					isColored=1;
                 } else {
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+						isColored=1;
                     } else {
                         tempSprite.tint = 0x93AFBD;
+						isColored=1;
                     }
                 }
             }, this);
+			
+			if (isColored==0 && isIN==1){
+				tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+			}else{
+				if (isColored==0){
+					tempSprite.tint = 0x93AFBD;
+				}
+			}
         }
 
 //***HEXAGON***	
@@ -289,8 +309,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
             var M = shapes.hexagon.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < 130; i++) {
+                for (var j = 0; j < 130; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -311,25 +331,35 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             }
 
             P3.forEach(function (pattern) {
-
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.frame == tempSprite.frame) {
+				if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
+					isColored=1;
                 } else {
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+						isColored=1;
                     } else {
                         tempSprite.tint = 0x93AFBD;
+						isColored=1;
                     }
                 }
             }, this);
+			
+			if (isColored==0 && isIN==1){
+				tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+			}else{
+				if (isColored==0){
+					tempSprite.tint = 0x93AFBD;
+				}
+			}
         }
 
 //***TRIANGLE EQUI***	
         if (tempSprite.key == 'triangle_equi') {
             var M = shapes.triangleEqui.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < 130; i++) {
+                for (var j = 0; j < 130; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -350,16 +380,27 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             }
 
             P4.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+               if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
+					isColored=1;
                 } else {
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+						isColored=1;
                     } else {
                         tempSprite.tint = 0x93AFBD;
+						isColored=1;
                     }
                 }
             }, this);
+			
+			if (isColored==0 && isIN==1){
+				tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+			}else{
+				if (isColored==0){
+					tempSprite.tint = 0x93AFBD;
+				}
+			}
         }
 
 //***TRIANGLE RECT***	
@@ -367,8 +408,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
             var M = shapes.triangleRect.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < 130; i++) {
+                for (var j = 0; j < 130; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -389,16 +430,27 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             }
 
             P5.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+              if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
+					isColored=1;
                 } else {
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+						isColored=1;
                     } else {
                         tempSprite.tint = 0x93AFBD;
+						isColored=1;
                     }
                 }
             }, this);
+			
+			if (isColored==0 && isIN==1){
+				tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+			}else{
+				if (isColored==0){
+					tempSprite.tint = 0x93AFBD;
+				}
+			}
         }
 
 
@@ -407,8 +459,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         if (tempSprite.key == 'diamond') {
             var M = shapes.diamond.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < 130; i++) {
+                for (var j = 0; j < 130; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -429,16 +481,27 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             }
 
             P6.forEach(function (pattern) {
-                if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
+               if (pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.shape == tempSprite.shape) {
                     tempSprite.tint = pattern.wantedColor;
+					isColored=1;
                 } else {
                     if (isIN == 1) {
                         tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+						isColored=1;
                     } else {
                         tempSprite.tint = 0x93AFBD;
+						isColored=1;
                     }
                 }
             }, this);
+			
+			if (isColored==0 && isIN==1){
+				tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
+			}else{
+				if (isColored==0){
+					tempSprite.tint = 0x93AFBD;
+				}
+			}
         }
 
     }
