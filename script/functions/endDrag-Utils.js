@@ -211,8 +211,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         if (tempSprite.key == 'square') {
             var M = shapes.square.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < nbPixels; i++) {
+                for (var j = 0; j < nbPixels; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -249,8 +249,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         if (tempSprite.key == 'trapeze') {
             var M = shapes.trapeze.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < nbPixels; i++) {
+                for (var j = 0; j < nbPixels; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -289,8 +289,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
             var M = shapes.hexagon.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < nbPixels; i++) {
+                for (var j = 0; j < nbPixels; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -328,8 +328,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         if (tempSprite.key == 'triangle_equi') {
             var M = shapes.triangleEqui.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < nbPixels; i++) {
+                for (var j = 0; j < nbPixels; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -367,8 +367,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
             var M = shapes.triangleRect.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < nbPixels; i++) {
+                for (var j = 0; j < nbPixels; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -407,8 +407,8 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         if (tempSprite.key == 'diamond') {
             var M = shapes.diamond.mat[tempSprite.frame];
 
-            for (var i = 0; i < 128; i++) {
-                for (var j = 0; j < 128; j++) {
+            for (var i = 0; i < nbPixels; i++) {
+                for (var j = 0; j < nbPixels; j++) {
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
