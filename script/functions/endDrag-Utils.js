@@ -211,13 +211,9 @@ var isColored = 0;
         if (tempSprite.key == 'square') {
             var M = shapes.square.mat[tempSprite.frame];
 
-<<<<<<< HEAD
-            for (var i = 0; i < 130; i++) {
-                for (var j = 0; j < 130; j++) {
-=======
             for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
->>>>>>> origin/master
+
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -265,13 +261,10 @@ var isColored = 0;
         if (tempSprite.key == 'trapeze') {
             var M = shapes.trapeze.mat[tempSprite.frame];
 
-<<<<<<< HEAD
-            for (var i = 0; i < 130; i++) {
-                for (var j = 0; j < 130; j++) {
-=======
+
             for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
->>>>>>> origin/master
+
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -319,13 +312,9 @@ var isColored = 0;
 
             var M = shapes.hexagon.mat[tempSprite.frame];
 
-<<<<<<< HEAD
-            for (var i = 0; i < 130; i++) {
-                for (var j = 0; j < 130; j++) {
-=======
             for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
->>>>>>> origin/master
+
 
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
@@ -373,14 +362,8 @@ var isColored = 0;
         if (tempSprite.key == 'triangle_equi') {
             var M = shapes.triangleEqui.mat[tempSprite.frame];
 
-<<<<<<< HEAD
-            for (var i = 0; i < 130; i++) {
-                for (var j = 0; j < 130; j++) {
-=======
             for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
->>>>>>> origin/master
-
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
             }
@@ -428,14 +411,9 @@ var isColored = 0;
 
             var M = shapes.triangleRect.mat[tempSprite.frame];
 
-<<<<<<< HEAD
-            for (var i = 0; i < 130; i++) {
-                for (var j = 0; j < 130; j++) {
-=======
+
             for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
->>>>>>> origin/master
-
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
             }
@@ -484,14 +462,8 @@ var isColored = 0;
         if (tempSprite.key == 'diamond') {
             var M = shapes.diamond.mat[tempSprite.frame];
 
-<<<<<<< HEAD
-            for (var i = 0; i < 130; i++) {
-                for (var j = 0; j < 130; j++) {
-=======
             for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
->>>>>>> origin/master
-
                     matTemp[Math.floor(Number(tempSprite.y) + i)][Math.floor(Number(tempSprite.x) + j)] = M[i][j];
                 }
             }
