@@ -81,6 +81,10 @@ var shadows;
 
 var forms;
 
+//Lock panel on the store
+var unlockButton;
+var storeLocked = false;
+
 // responsive elements
 var pipe;
 var basketLeft;
