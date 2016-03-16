@@ -41,7 +41,6 @@ input:active {
     background-image: url("../assets/images/index/button_click.png");
     color:#0d004c;
     padding-left:24px;
-    padding-top:px;
 }
 
 input:focus{
@@ -57,4 +56,12 @@ input:focus{
     position : absolute;
     margin-top : 350px;
     margin-left: 800px;
+}
+
+#patrick {
+    position:fixed;
+    bottom:0;
+    left:20%;
+    z-index:1;
+    width:200px;
 }
