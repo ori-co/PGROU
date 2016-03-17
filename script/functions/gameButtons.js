@@ -21,29 +21,21 @@ function formInteraction(tempSprite, pointer) {
 			
 			switch(tempSprite.tint){
 				case 0x93AFBD : tempSprite.tint = 0x83EE00;
-				alert(tempSprite.tint);
 				break;
 				case 0x83EE00 : tempSprite.tint = 0xFBFE00;
-				alert(tempSprite.tint);
 				break;
 				case 0xFBFE00 : tempSprite.tint = 0x058AB6;
-				alert(tempSprite.tint);
 				break;
 				case 0x058AB6 : tempSprite.tint = 0xE4005C;
-				alert(tempSprite.tint);
 				break;
 				case 0xE4005C : tempSprite.tint = 0x8007BE;
-				alert(tempSprite.tint);
 				break;
 				case 0x8007BE : tempSprite.tint = 0xFF8300;
-				alert(tempSprite.tint);
 				break;
 				case 0xFF8300 : tempSprite.tint = 0x83EE00;
-				alert(tempSprite.tint);
 				break;
 			}
-				
-			
+            //alert(tempSprite.tint);
 			
             break;
     }
