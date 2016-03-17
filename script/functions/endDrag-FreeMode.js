@@ -5,17 +5,16 @@ function endDrag(tempSprite, pointer) {
 		deleteSprite(tempSprite);
 	} else {
 	    if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-	        tempSprite.x = Math.random()*(game.width-2*90)+90;
-	        tempSprite.y = game.height - 155;
+            tempSprite.position.copyFrom(tempSprite.originalPosition); 
 	    }
 	    else {
 	    	if (isDrag()) {
             	// utilisation de la variable globale "mode" possible
 	            // mutualisation de code avec endDrag-LevelMode.js
 			    snapEffect(tempSprite,'freeMode');
+                tempSprite.originalPosition = tempSprite.position.clone();
 			}
 		}
-		//colorSprite(tempSprite,'levelMode');
-		colorSprite(tempSprite,'freeMode')
+		//colorSprite(tempSprite,'freeMode')
 	}
 }

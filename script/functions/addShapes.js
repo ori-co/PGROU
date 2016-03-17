@@ -5,6 +5,7 @@ function addShape(shape, F) {
     var tempSprite = F.create(position, game.height - 155, shape);
     tempSprite.anchor.x = 0;
     tempSprite.anchor.y = 0;
+    tempSprite.originalPosition = tempSprite.position.clone();
     
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
