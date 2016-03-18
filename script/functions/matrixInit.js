@@ -2,29 +2,29 @@
 
 // TODO mettre des variables globales pour la taille du patron
 
-var matPattern = new Array(1200);
-for (var i = 0; i < 1200; i++) {
+var matPattern = new Array(1300);
+for (var i = 0; i < 1300; i++) {
     matPattern[i] = new Array(800);
 }
-for (var i = 0; i < 1200; i++) {
+for (var i = 0; i < 1300; i++) {
     for (var j = 0; j < 800; j++) {
         matPattern[i][j] = 0;
     }
 }
-var matSolution = new Array(1200);
-for (var i = 0; i < 1200; i++) {
+var matSolution = new Array(1300);
+for (var i = 0; i < 1300; i++) {
     matSolution[i] = new Array(800);
 }
-for (var i = 0; i < 1200; i++) {
+for (var i = 0; i < 1300; i++) {
     for (var j = 0; j < 800; j++) {
         matSolution[i][j] = 0;
     }
 }
-var matSnap = new Array(1200);
-for (var i = 0; i < 1200; i++) {
+var matSnap = new Array(1300);
+for (var i = 0; i < 1300; i++) {
     matSnap[i] = new Array(800);
 }
-for (var i = 0; i < 1200; i++) {
+for (var i = 0; i < 1300; i++) {
     for (var j = 0; j < 800; j++) {
         matSnap[i][j] = 0;
     }
