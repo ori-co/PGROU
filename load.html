@@ -250,7 +250,7 @@
 
                     forms = game.add.group();
                     patterns = game.add.group();
-                    //trash = game.add.group();
+
 
                     forms.add(F1);
                     forms.add(F2);
@@ -274,7 +274,7 @@
                     buildMenu();
 
                     //Create the wished pattern
-                    var patterns = [];
+                    var patterns2 = [];
                     //Get the JSON content
                     var result = document.getElementById('cache').innerText;
                     document.getElementById('json').style.display = 'none';
@@ -287,52 +287,52 @@
 
                         switch (jsonObj.problem.pattern[i].shape) {
                             case "square":
-                                patterns[i] = P1.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'square');
-                                patterns[i].inputEnabled = true;
-                                patterns[i].tint = 0x020303;
-                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                                patterns[i].alpha = 0.4;
-                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                patterns2[i] = P1.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'square');
+                                patterns2[i].inputEnabled = true;
+                                patterns2[i].tint = 0x020303;
+                                patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns2[i].alpha = 0.4;
+                                patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                             case "trapeze":
-                                patterns[i] = P2.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'trapeze');
-                                patterns[i].inputEnabled = true;
-                                patterns[i].tint = 0x020303;
-                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                                patterns[i].alpha = 0.4;
-                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                patterns2[i] = P2.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'trapeze');
+                                patterns2[i].inputEnabled = true;
+                                patterns2[i].tint = 0x020303;
+                                patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns2[i].alpha = 0.4;
+                                patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                             case "hexagon":
-                                patterns[i] = P3.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'hexagon');
-                                patterns[i].inputEnabled = true;
-                                patterns[i].tint = 0x020303;
-                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                                patterns[i].alpha = 0.4;
-                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                patterns2[i] = P3.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'hexagon');
+                                patterns2[i].inputEnabled = true;
+                                patterns2[i].tint = 0x020303;
+                                patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns2[i].alpha = 0.4;
+                                patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                             case "triangleEqui":
-                                patterns[i] = P4.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_equi');
-                                patterns[i].inputEnabled = true;
-                                patterns[i].tint = 0x020303;
-                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                                patterns[i].alpha = 0.4;
-                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                patterns1[i] = P4.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_equi');
+                                patterns2[i].inputEnabled = true;
+                                patterns2[i].tint = 0x020303;
+                                patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns2[i].alpha = 0.4;
+                                patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                             case "triangleRect":
-                                patterns[i] = P5.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_rect');
-                                patterns[i].inputEnabled = true;
-                                patterns[i].tint = 0x020303;
-                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                                patterns[i].alpha = 0.4;
-                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                patterns2[i] = P5.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_rect');
+                                patterns2[i].inputEnabled = true;
+                                patterns2[i].tint = 0x020303;
+                                patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns2[i].alpha = 0.4;
+                                patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                             case "diamond":
-                                patterns[i] = P6.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'diamond');
-                                patterns[i].inputEnabled = true;
-                                patterns[i].tint = 0x020303;
-                                patterns[i].frame = Number(jsonObj.problem.pattern[i].rotation);
-                                patterns[i].alpha = 0.4;
-                                patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
+                                patterns2[i] = P6.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'diamond');
+                                patterns2[i].inputEnabled = true;
+                                patterns2[i].tint = 0x020303;
+                                patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
+                                patterns2[i].alpha = 0.4;
+                                patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                         }
                     }

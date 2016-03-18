@@ -80,6 +80,7 @@ var palette;
 var shadows;
 
 var forms;
+var patterns;
 
 //Lock panel on the store
 var unlockButton;
