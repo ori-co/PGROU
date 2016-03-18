@@ -6,6 +6,7 @@ function addShape(shape, F) {
     tempSprite.anchor.x = 0;
     tempSprite.anchor.y = 0;
     tempSprite.originalPosition = tempSprite.position.clone();
+    game.world.bringToTop(forms);
     
     //tempSprite.tint = Math.random() * 0xffffff;
     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];

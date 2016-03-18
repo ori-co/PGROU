@@ -1,6 +1,6 @@
 //Function at the end of the drag
 function endDrag(tempSprite, pointer) {
-
+    game.world.bringToTop(forms);
 	if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
 		deleteSprite(tempSprite);
 	} else {

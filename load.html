@@ -376,6 +376,7 @@
                     var position = Math.random() * (game.width - 310) + 90;
                     var tempSprite = F.create(position, game.height - 155, shape);
                     tempSprite.originalPosition = tempSprite.position.clone();
+                    game.world.bringToTop(forms);
                     tempSprite.anchor.x = 0;
                     tempSprite.anchor.y = 0;
 
@@ -880,6 +881,7 @@
 
 //Function at the end of the drag
                 function endDrag(tempSprite, pointer) {
+                game.world.bringToTop(forms);
 
                     if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
                         deleteSprite(tempSprite);
@@ -944,11 +946,8 @@
 
 //Update function that is always running on the background
                 function update() {
-                    //Bring the forms up
-                    game.world.bringToTop(forms);
-                    
                     // Update of the shadows
-                    shadows.removeAll();
+                    /*shadows.removeAll();
                     forms.forEach(function (F) {
                         F.forEach(function (sprite) {
                             var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
@@ -958,7 +957,7 @@
                             aShadow.tint = 0x000000;
                             aShadow.alpha = 0.3;
                         });
-                    });
+                    });*/
 
                 }
 

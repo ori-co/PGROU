@@ -11,8 +11,8 @@ function render() {
     //game.debug.text('End : ' + end, 16, 108);
     //game.debug.text('Solution Area: ' + areaSolution, 16, 132);
     //game.debug.text('Problem Area: ' + areaPattern, 16, 144);
-    game.debug.text('Input X : ' + game.input.x, 16, 156);
-    game.debug.text('Input Y : ' + game.input.y, 16, 168);
+    //game.debug.text('Input X : ' + game.input.x, 16, 156);
+    //game.debug.text('Input Y : ' + game.input.y, 16, 168);
     //game.debug.text('valid: ' + valid, 300, 50);
     //game.debug.text('matProblem : ' + matPattern[180][22], 16, 120);
     //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);

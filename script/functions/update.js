@@ -2,11 +2,8 @@
 
 
 function update() {
-    //Bring the forms up
-    game.world.bringToTop(forms);
-
     // Update of the shadows
-    shadows.removeAll();
+    /*shadows.removeAll();
     forms.forEach(function(F){
         F.forEach(function(sprite){
             var aShadow = game.add.sprite(sprite.x+3,sprite.y+3,sprite.generateTexture());
@@ -16,5 +13,5 @@ function update() {
             aShadow.tint=0x000000;
             aShadow.alpha=0.3;           
         });
-    });
+    });*/
 }
