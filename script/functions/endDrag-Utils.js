@@ -202,34 +202,34 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             var M = shapes.square.mat[tempSprite.frame];
             break;
             case 'trapeze':
-            M = shapes.square.mat[tempSprite.frame];
+            var M = shapes.trapeze.mat[tempSprite.frame];
             break;
             case 'hexagon':
-            M = shapes.square.mat[tempSprite.frame];
+            var M = shapes.hexagon.mat[tempSprite.frame];
             break;
             case 'triangle_equi':
-            M = shapes.square.mat[tempSprite.frame];
+            var M = shapes.triangleEqui.mat[tempSprite.frame];
             break;
             case 'triangle_rect':
-            M = shapes.square.mat[tempSprite.frame];
+            var M = shapes.triangleRect.mat[tempSprite.frame];
             break;
             case 'diamond':
-            M = shapes.square.mat[tempSprite.frame];
+            var M = shapes.diamond.mat[tempSprite.frame];
             break;
             
         } 
-        var isOUT = 0;
+        var isIN = 1;
         for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
                     if (M[i][j] == 1) {
                         if (matPattern[tempSprite.y+i][tempSprite.x+j] != 1 && matPattern[tempSprite.y+i][tempSprite.x+j] != 2) {
-                        isOUT ++;
+                        isIN = 0;
                         }
                     }
                 }          
         }
         
-        if (isOUT < 1700){
+        if (isIN ==1){
             patterns.forEach(function (P){
                P.forEach(function (pattern){
                    if (tempSprite.key == pattern.key && pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.frame == tempSprite.frame){
