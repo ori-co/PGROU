@@ -48,7 +48,7 @@ function isDrag() {
 function snapEffect(tempSprite, gameMode) {
 
     for (var i = 0; i < 1300; i++) {
-        for (var j = 0; j < 800; j++) {
+        for (var j = 0; j < 1300; j++) {
             matSnap[i][j] = 0;
         }
     }
@@ -253,7 +253,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
 function updateSolution() {
     for (var i = 0; i < 1300; i++) {
-        for (var j = 0; j < 800; j++) {
+        for (var j = 0; j < 1300; j++) {
             matSolution[i][j] = 0;
         }
     }
@@ -295,7 +295,7 @@ function updateSolution() {
     valid = 0;
 
     for (var i = 0; i < 1300; i++) {
-        for (var j = 0; j < 800; j++) {
+        for (var j = 0; j < 1300; j++) {
             if (matSolution[i][j] != matPattern[i][j]) {
                 valid++;
             }

@@ -4,28 +4,28 @@
 
 var matPattern = new Array(1300);
 for (var i = 0; i < 1300; i++) {
-    matPattern[i] = new Array(800);
+    matPattern[i] = new Array(1300);
 }
 for (var i = 0; i < 1300; i++) {
-    for (var j = 0; j < 800; j++) {
+    for (var j = 0; j < 1300; j++) {
         matPattern[i][j] = 0;
     }
 }
 var matSolution = new Array(1300);
 for (var i = 0; i < 1300; i++) {
-    matSolution[i] = new Array(800);
+    matSolution[i] = new Array(1300);
 }
 for (var i = 0; i < 1300; i++) {
-    for (var j = 0; j < 800; j++) {
+    for (var j = 0; j < 1300; j++) {
         matSolution[i][j] = 0;
     }
 }
 var matSnap = new Array(1300);
 for (var i = 0; i < 1300; i++) {
-    matSnap[i] = new Array(800);
+    matSnap[i] = new Array(1300);
 }
 for (var i = 0; i < 1300; i++) {
-    for (var j = 0; j < 800; j++) {
+    for (var j = 0; j < 1300; j++) {
         matSnap[i][j] = 0;
     }
 }
