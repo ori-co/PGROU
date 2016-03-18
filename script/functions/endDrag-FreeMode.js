@@ -15,6 +15,5 @@ function endDrag(tempSprite, pointer) {
                 tempSprite.originalPosition = tempSprite.position.clone();
 			}
 		}
-		//colorSprite(tempSprite,'freeMode')
 	}
 }

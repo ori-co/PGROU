@@ -13,10 +13,11 @@ function endDrag(tempSprite, pointer) {
                     // mutualisation de code avec endDrag-LevelMode.js
                     snapEffect(tempSprite,'levelMode');
                     tempSprite.originalPosition = tempSprite.position.clone();
+                    colorSprite(tempSprite,'levelMode');
                 }
 		}
-		//colorSprite(tempSprite,'levelMode');
-		colorSprite(tempSprite,'levelMode');
+		
+		
 	}
 	updateSolution();
 }
