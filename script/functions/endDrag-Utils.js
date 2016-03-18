@@ -222,7 +222,7 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
         for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
                     if (M[i][j] == 1) {
-                        if (matPattern[tempSprite.y+i][tempSprite.x+j] == 0) {
+                        if (matPattern[tempSprite.y+i][tempSprite.x+j] != 1 && matPattern[tempSprite.y+i][tempSprite.x+j] != 2) {
                         isIN = 0;
                         }
                     }

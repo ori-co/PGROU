@@ -42,4 +42,17 @@ function updateSize() {
     //Patrick position
     pat.x=basketRight.x+5;
     pat.y=basketRight.y-135;
+    
+    //positions of shapes in the basket
+    forms.forEach(function(F){
+        F.forEach(function(tempSprite){
+            if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)){
+                tempSprite.y = window.innerHeight - 155;
+                if (tempSprite.x+tempSprite.width > window.innerWidth){
+                    tempSprite.x=Math.random()*(window.innerWidth-310)+90;
+                }
+                 tempSprite.originalPosition = tempSprite.position.clone();
+            }
+        },this);
+    },this);
 }
