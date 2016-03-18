@@ -218,18 +218,18 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
             break;
             
         } 
-        var isIN = 1;
+        var isOUT = 0;
         for (var i = 0; i < nbPixels; i++) {
                 for (var j = 0; j < nbPixels; j++) {
                     if (M[i][j] == 1) {
                         if (matPattern[tempSprite.y+i][tempSprite.x+j] != 1 && matPattern[tempSprite.y+i][tempSprite.x+j] != 2) {
-                        isIN = 0;
+                        isOUT ++;
                         }
                     }
                 }          
         }
         
-        if (isIN == 1){
+        if (isOUT < 1700){
             patterns.forEach(function (P){
                P.forEach(function (pattern){
                    if (tempSprite.key == pattern.key && pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.frame == tempSprite.frame){
