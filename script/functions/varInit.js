@@ -2,6 +2,9 @@
 // VARIABLES
 ///////////////////////////////////////////////////////////////////////
 
+//Number of levels
+var nbLevels = 35;
+
 // Game mode 'levelMode' or 'freeMode'
 var mode;
 
