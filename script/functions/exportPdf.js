@@ -1,28 +1,28 @@
 function setColor(pattern, doc) {
     var s = pattern.tint;
     switch (s) {
-        case "0x83EE00":
+        case 0x83EE00:
             doc.setDrawColor(131, 238, 0);
             doc.setFillColor(131, 238, 0);
             break;
-        case "0xFBFE00":
+        case 0xFBFE00:
             doc.setDrawColor(253, 254, 0);
             doc.setFillColor(253, 254, 0);
             break;
-        case "0x058AB6":
+        case 0x058AB6:
             doc.setDrawColor(5, 138, 182);
             doc.setFillColor(5, 138, 182);
             break;
-        case "0xE4005C":
+        case 0xE4005C:
             doc.setDrawColor(228, 0, 92);
             doc.setFillColor(228, 0, 92);
             break;
 
-        case "0x8007BE":
+        case 0x8007BE:
             doc.setDrawColor(128, 7, 190);
             doc.setFillColor(128, 7, 190);
             break;
-        case "0xFF8300":
+        case 0xFF8300:
             doc.setDrawColor(255, 131, 0);
             doc.setFillColor(255, 131, 0);
             break;
