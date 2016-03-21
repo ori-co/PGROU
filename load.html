@@ -337,6 +337,103 @@
                         }
                     }
 
+					//Distributors
+					if (jsonObj.distrib=="off"){
+			
+			//We add the form into the Basket
+			P1.forEach(function (pattern) {
+				addShape('square', F1);
+			});
+			P3.forEach(function (pattern) {
+				addShape('hexagon', F3);
+			});
+			P2.forEach(function (pattern) {
+				addShape('triangle_equi', F2);
+			});
+			P4.forEach(function (pattern) {
+				addShape('triangle_rect', F4);
+			});
+			P5.forEach(function (pattern) {
+				addShape('trapezoid', F5);
+			});
+			P6.forEach(function (pattern) {
+				addShape('diamond', F6);
+			});
+			
+			//we hide the distributors 
+			buttonSquare.visible = false;
+			labelSquare.visible = false;
+			
+			buttonHexagon.visible = false;
+			labelHexagon.visible = false;
+			
+			buttonTrapezoid.visible = false;
+			labelTrapezoid.visible = false;
+			
+			buttonTriangleEqui.visible = false;
+			labelTriangleEqui.visible = false;
+			
+			buttonTriangleRect.visible = false;
+			labelTriangleRect.visible = false;
+			
+			buttonDiamond.visible = false;
+			labelDiamond.visible = false;
+			
+			
+		}else{ 
+		
+			var cptSquare = 0 ;
+			P1.forEach(function (pattern) {
+				cptSquare ++;
+			});
+			var cptTrapeze = 0 ;
+			P2.forEach(function (pattern) {
+				cptTrapeze ++;
+			});
+			var cptHexagon = 0 ;
+			P3.forEach(function (pattern) {
+				cptHexagon ++;
+			});
+			var cptTriangleEqui = 0 ;
+			P4.forEach(function (pattern) {
+				cptTriangleEqui ++;
+			});
+			var cptTriangleRect = 0 ;
+			P5.forEach(function (pattern) {
+				cptTriangleRect ++;
+			});
+			var cptDiamond = 0 ;
+			P6.forEach(function (pattern) {
+				cptDiamond ++;
+			});
+			
+			
+			if (cptSquare ==0){ 
+			buttonSquare.visible = false;
+			labelSquare.visible = false;
+			}
+			if (cptHexagon==0){
+			buttonHexagon.visible = false;
+			labelHexagon.visible = false;
+			}
+			if (cptTrapeze==0){
+			buttonTrapezoid.visible = false;
+			labelTrapezoid.visible = false;
+			}
+			if (cptTriangleEqui==0){
+			buttonTriangleEqui.visible = false;
+			labelTriangleEqui.visible = false;
+			}
+			if (cptTriangleRect==0){
+			buttonTriangleRect.visible = false;
+			labelTriangleRect.visible = false;
+			}
+			if (cptDiamond==0){
+			buttonDiamond.visible = false;
+			labelDiamond.visible = false;
+			}
+			}	
+					
                     //Update the pattern matrix with the shapes' matrix
 
                     P1.forEach(function (patternItem) {

@@ -57,5 +57,106 @@ function patternCreation(levelText) {
                 patterns[i].wantedColor = jsonObj.problem.pattern[i].color;
                 break;
         }
+	}
+		if (jsonObj.distrib=="off"){
+			
+			//We add the form into the Basket
+			P1.forEach(function (pattern) {
+				addShape('square', F1);
+			});
+			
+			P2.forEach(function (pattern) {
+				addShape('trapeze', F2);
+			});
+			P3.forEach(function (pattern) {
+				addShape('hexagon', F3);
+			});
+			P4.forEach(function (pattern) {
+				addShape('triangle_equi', F4);
+			});
+			P5.forEach(function (pattern) {
+				addShape('triangle_rect', F5);
+			});
+			P6.forEach(function (pattern) {
+				addShape('diamond', F6);
+			});
+			
+			//we hide the distributors 
+			this.buttonSquare.visible = false;
+			this.labelSquare.visible = false;
+			
+			this.buttonHexagon.visible = false;
+			this.labelHexagon.visible = false;
+			
+			this.buttonTrapezoid.visible = false;
+			this.labelTrapezoid.visible = false;
+			
+			this.buttonTriangleEqui.visible = false;
+			this.labelTriangleEqui.visible = false;
+			
+			this.buttonTriangleRect.visible = false;
+			this.labelTriangleRect.visible = false;
+			
+			this.buttonDiamond.visible = false;
+			this.labelDiamond.visible = false;
+			
+			
+		}else{ 
+		
+			var cptSquare = 0 ;
+			P1.forEach(function (pattern) {
+				cptSquare ++;
+			});
+			var cptTrapeze = 0 ;
+			P2.forEach(function (pattern) {
+				cptTrapeze ++;
+			});
+			var cptHexagon = 0 ;
+			P3.forEach(function (pattern) {
+				cptHexagon ++;
+			});
+			var cptTriangleEqui = 0 ;
+			P4.forEach(function (pattern) {
+				cptTriangleEqui ++;
+			});
+			var cptTriangleRect = 0 ;
+			P5.forEach(function (pattern) {
+				cptTriangleRect ++;
+			});
+			var cptDiamond = 0 ;
+			P6.forEach(function (pattern) {
+				cptDiamond ++;
+			});
+			
+			
+			if (cptSquare ==0){ 
+			this.buttonSquare.visible = false;
+			this.labelSquare.visible = false;
+			}
+			if (cptHexagon==0){
+			this.buttonHexagon.visible = false;
+			this.labelHexagon.visible = false;
+			}
+			if (cptTrapeze==0){
+			this.buttonTrapezoid.visible = false;
+			this.labelTrapezoid.visible = false;
+			}
+			if (cptTriangleEqui==0){
+			this.buttonTriangleEqui.visible = false;
+			this.labelTriangleEqui.visible = false;
+			}
+			if (cptTriangleRect==0){
+			this.buttonTriangleRect.visible = false;
+			this.labelTriangleRect.visible = false;
+			}
+			if (cptDiamond==0){
+			this.buttonDiamond.visible = false;
+			this.labelDiamond.visible = false;
+			}
+			
+			
+			
+		
+		
     }
 }

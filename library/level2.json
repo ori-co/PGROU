@@ -1,1 +1,79 @@
-{"problem":{ "pattern":[{ "shape":"square","color":"0x83EE00","rotation":"1", "anchorPoint": {"x":"721","y":"127"} }, { "shape":"square","color":"0xE4005C","rotation":"1", "anchorPoint": {"x":"777","y":"159"} }, { "shape":"square","color":"0x83EE00","rotation":"1", "anchorPoint": {"x":"833","y":"191"} }, { "shape":"square","color":"0x83EE00","rotation":"1", "anchorPoint": {"x":"745","y":"215"} }, { "shape":"square","color":"0xE4005C","rotation":"1", "anchorPoint": {"x":"689","y":"183"} }, { "shape":"square","color":"0xE4005C","rotation":"1", "anchorPoint": {"x":"801","y":"247"} }, { "shape":"square","color":"0x83EE00","rotation":"1", "anchorPoint": {"x":"769","y":"303"} }, { "shape":"square","color":"0xE4005C","rotation":"1", "anchorPoint": {"x":"713","y":"271"} }, { "shape":"square","color":"0x83EE00","rotation":"1", "anchorPoint": {"x":"657","y":"239"} }]}}
+{
+                             "problem":
+                                            {
+                                            "pattern":[
+                            {
+                                "shape":"square",
+                                "color":"8646144",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"613",
+                                                     "y":"133"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0xE4005C",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"669",
+                                                     "y":"165"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0x83EE00",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"725",
+                                                     "y":"197"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0xE4005C",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"581",
+                                                     "y":"189"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0x83EE00",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"637",
+                                                     "y":"221"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0xE4005C",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"693",
+                                                     "y":"253"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0x83EE00",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"661",
+                                                     "y":"309"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0xE4005C",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"605",
+                                                     "y":"277"}
+                                },
+                                {
+                                "shape":"square",
+                                "color":"0x83EE00",
+                                "rotation":"1",
+                                "anchorPoint": {
+                                                     "x":"549",
+                                                     "y":"245"}
+                                }
+                        ]
+                        }
+                        }
