@@ -1,7 +1,7 @@
 // Lock the store if we start to drag a shape
 function beginDrag(tempSprite) {
 	if (!storeLocked) {
-		unlockButton = game.add.button(90, 250, 'button-back', unlockStore, this, 2, 1, 0, 1);
+		unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
 		storeLocked = true;
 		buttonSquare.inputEnabled = false;
 		buttonTrapezoid.inputEnabled = false;

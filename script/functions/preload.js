@@ -36,6 +36,7 @@ function preload() {
     game.load.spritesheet('button-export', 'assets/images/buttons/option-export.png', 48, 48);
     game.load.spritesheet('button-print', 'assets/images/buttons/option-print.png', 48, 48);
     game.load.spritesheet('button-mute', 'assets/images/buttons/option-mute.png', 48, 48);
+    game.load.spritesheet('ribbon', 'assets/images/buttons/ribbon.png', 204, 391);
     
     game.load.image('menu-left', 'assets/images/menu/menu-left.png');
     game.load.image('menu-right', 'assets/images/menu/menu-right.png');
