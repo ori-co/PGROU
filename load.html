@@ -12,7 +12,7 @@
         <script type="text/javascript" src="script/functions/matrixUtils.js"></script>
         <script type="text/javascript" src="script/functions/varInit.js"></script>
         <script type="text/javascript" src="script/functions/sounds.js"></script>
-		<script type="text/javascript" src="script/text/fr_buttons.js"></script>
+        <script type="text/javascript" src="script/text/fr_buttons.js"></script>
         <script>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,10 +70,10 @@
                     game.load.image('menu-left', 'assets/images/menu/menu-left.png');
                     game.load.image('menu-right', 'assets/images/menu/menu-right.png');
                     game.load.image('menu-middle', 'assets/images/menu/menu-middle.png');
-                    
+
                     game.load.image('patrick', 'assets/images/patrick/patrick.png');
-                    game.load.spritesheet('patrick-mouth','assets/images/patrick/mouth.png',31,22,4);
-                    game.load.spritesheet('patrick-eyes','assets/images/patrick/eyes.png',80,66,5);
+                    game.load.spritesheet('patrick-mouth', 'assets/images/patrick/mouth.png', 31, 22, 4);
+                    game.load.spritesheet('patrick-eyes', 'assets/images/patrick/eyes.png', 80, 66, 5);
 
                     game.load.audio('trashbin', language + 'trashbin.mp3');
                     game.load.audio('click', language + 'click.mp3');
@@ -118,7 +118,7 @@
 
                     // Buttons in store
                     bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
-                    
+
                     var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
 
                     buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
@@ -134,7 +134,7 @@
                     labelTriangleEqui.anchor.x = 0.5;
 
                     buttonHexagon = game.add.button(105, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
-                     labelHexagon = game.add.text(142, 220, nbF3, style);
+                    labelHexagon = game.add.text(142, 220, nbF3, style);
                     labelHexagon.anchor.x = 0.5;
 
                     buttonTriangleRect = game.add.button(15, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
@@ -172,42 +172,42 @@
                     // Add Patrick to the menu
                     pat = game.add.group();
                     // position
-                    pat.x = basketRight.x+5;
-                    pat.y = basketRight.y-135;
+                    pat.x = basketRight.x + 5;
+                    pat.y = basketRight.y - 135;
                     pat.scale.set(0.27, 0.27);
                     // independant elements
-                    var patBody = game.add.sprite(0,0,'patrick');
+                    var patBody = game.add.sprite(0, 0, 'patrick');
                     pat.add(patBody);
-                    patMouth = game.add.sprite(217,168,'patrick-mouth');
+                    patMouth = game.add.sprite(217, 168, 'patrick-mouth');
                     pat.add(patMouth);
-                    patEyes = game.add.sprite(196,80,'patrick-eyes');
+                    patEyes = game.add.sprite(196, 80, 'patrick-eyes');
                     pat.add(patEyes);
                     //animations
                     patMouth.animations.add('talk');
                     patEyes.animations.add('blink');
-                    
+
                     patrickBlink();
-                    
+
                     shadows = game.add.group();
                 }
-                
+
                 // Animation Functions
-                function patrickSpeak(sound){
-                    sound.options.onplay = function(){
-                        patMouth.animations.play('talk',8,true);
-                    } 
-                    
-                    sound.options.onfinish = function(){
-                        patMouth.animations.stop(null,true);
+                function patrickSpeak(sound) {
+                    sound.options.onplay = function () {
+                        patMouth.animations.play('talk', 8, true);
+                    }
+
+                    sound.options.onfinish = function () {
+                        patMouth.animations.stop(null, true);
                     }
                 }
 
-                function patrickBlink(){
-                    patEyes.animations.play('blink',10,false);
-                    var delay = Math.random()*3 +2;
+                function patrickBlink() {
+                    patEyes.animations.play('blink', 10, false);
+                    var delay = Math.random() * 3 + 2;
                     game.time.events.add(Phaser.Timer.SECOND * delay, patrickBlink, this);
                 }
-                
+
                 function wallpaper() {
                     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
                     game.scale.setResizeCallback(function () {
@@ -311,7 +311,7 @@
                                 patterns2[i].wantedColor = jsonObj.problem.pattern[i].color;
                                 break;
                             case "triangleEqui":
-                                patterns1[i] = P4.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_equi');
+                                patterns2[i] = P4.create(Number(jsonObj.problem.pattern[i].anchorPoint.x), Number(jsonObj.problem.pattern[i].anchorPoint.y), 'triangle_equi');
                                 patterns2[i].inputEnabled = true;
                                 patterns2[i].tint = 0x020303;
                                 patterns2[i].frame = Number(jsonObj.problem.pattern[i].rotation);
@@ -388,22 +388,22 @@
                     tempSprite.input.enableDrag(false, true); //Mobile (drag)
                     tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
                     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
-                    tempSprite.events.onDragStart.add(beginDrag, this); 
+                    tempSprite.events.onDragStart.add(beginDrag, this);
                     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
 
                     /*tempSprite.events.onInputOver.add(function () {
-
-                        switch (test) {
-                            case 1:
-                                this.game.canvas.style.cursor = "url('assets/images/cursors/rot.png'),default";
-                                break;
-                            case 2:
-                                this.game.canvas.style.cursor = "url('assets/images/cursors/col.png'),default";
-                                break;
-                            default:
-                                this.game.canvas.style.cusor = "default";
-                        }
-                    });*/
+                     
+                     switch (test) {
+                     case 1:
+                     this.game.canvas.style.cursor = "url('assets/images/cursors/rot.png'),default";
+                     break;
+                     case 2:
+                     this.game.canvas.style.cursor = "url('assets/images/cursors/col.png'),default";
+                     break;
+                     default:
+                     this.game.canvas.style.cusor = "default";
+                     }
+                     });*/
                 }
 
                 function addForm1(form1, pointer) {
@@ -454,15 +454,15 @@
                             tempSprite.updateCache();
                             break;
                         case 2:
-                            if (tempSprite.frame == 0){
+                            if (tempSprite.frame == 0) {
                                 tempSprite.animations.add('test');
-                                tempSprite.frame=tempSprite.animations.frameTotal -1;
+                                tempSprite.frame = tempSprite.animations.frameTotal - 1;
                             } else {
                                 tempSprite.frame--;
                             }
-                                tempSprite.updateCache();
-                                break;
-                            case 3:
+                            tempSprite.updateCache();
+                            break;
+                        case 3:
                             var rand = Math.floor((Math.random() * 5));
                             tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
                             break;
@@ -734,57 +734,57 @@
 
                 function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeMode'
                     if (gameMode == 'levelMode') {
-                        var isColored = 0;	
-                        switch (tempSprite.key){
+                        var isColored = 0;
+                        switch (tempSprite.key) {
                             case 'square':
-                            var M = shapes.square.mat[tempSprite.frame];
-                            break;
+                                var M = shapes.square.mat[tempSprite.frame];
+                                break;
                             case 'trapeze':
-                            var M = shapes.trapeze.mat[tempSprite.frame];
-                            break;
+                                var M = shapes.trapeze.mat[tempSprite.frame];
+                                break;
                             case 'hexagon':
-                            var M = shapes.hexagon.mat[tempSprite.frame];
-                            break;
+                                var M = shapes.hexagon.mat[tempSprite.frame];
+                                break;
                             case 'triangle_equi':
-                            var M = shapes.triangleEqui.mat[tempSprite.frame];
-                            break;
+                                var M = shapes.triangleEqui.mat[tempSprite.frame];
+                                break;
                             case 'triangle_rect':
-                            var M = shapes.triangleRect.mat[tempSprite.frame];
-                            break;
+                                var M = shapes.triangleRect.mat[tempSprite.frame];
+                                break;
                             case 'diamond':
-                            var M = shapes.diamond.mat[tempSprite.frame];
-                            break;
-                            
-                        } 
+                                var M = shapes.diamond.mat[tempSprite.frame];
+                                break;
+
+                        }
                         var isIN = 1;
                         for (var i = 0; i < nbPixels; i++) {
-                                for (var j = 0; j < nbPixels; j++) {
-                                    if (M[i][j] == 1) {
-                                        if (matPattern[tempSprite.y+i][tempSprite.x+j] != 1 && matPattern[tempSprite.y+i][tempSprite.x+j] != 2) {
+                            for (var j = 0; j < nbPixels; j++) {
+                                if (M[i][j] == 1) {
+                                    if (matPattern[tempSprite.y + i][tempSprite.x + j] != 1 && matPattern[tempSprite.y + i][tempSprite.x + j] != 2) {
                                         isIN = 0;
-                                        }
                                     }
-                                }          
+                                }
+                            }
                         }
-                        
-                        if (isIN ==1){
-                            patterns.forEach(function (P){
-                               P.forEach(function (pattern){
-                                   if (tempSprite.key == pattern.key && pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.frame == tempSprite.frame){
+
+                        if (isIN == 1) {
+                            patterns.forEach(function (P) {
+                                P.forEach(function (pattern) {
+                                    if (tempSprite.key == pattern.key && pattern.x == tempSprite.x && pattern.y == tempSprite.y && pattern.frame == tempSprite.frame) {
                                         tempSprite.tint = pattern.wantedColor;
                                         isColored = 1;
                                     }
-                               },this);
-                            },this);
-                            if (isColored == 0){
+                                }, this);
+                            }, this);
+                            if (isColored == 0) {
                                 tempSprite.tint = palette[Math.floor(Math.random() * palette.length)];
-                                isColored=1;
+                                isColored = 1;
                             }
                         } else {
                             tempSprite.tint = 0x93AFBD;
-                            isColored=1;
+                            isColored = 1;
                         }
-                }
+                    }
                 }
 
 
@@ -842,13 +842,13 @@
 
                     if (valid < 1500 && areaSolution == areaPattern) {
                         fin = 1;
-                            var delay = 500;
-                            setTimeout(function () {
-                                //alert("Bravo! Vous avez réussi ce niveau!");
-                                document.getElementById("final").style.display = "block";
-                                pat.visible=false;
-                
-                            }, delay);
+                        var delay = 500;
+                        setTimeout(function () {
+                            //alert("Bravo! Vous avez réussi ce niveau!");
+                            document.getElementById("final").style.display = "block";
+                            pat.visible = false;
+
+                        }, delay);
                     }
                 }
 
@@ -881,19 +881,19 @@
 
 //Function at the end of the drag
                 function endDrag(tempSprite, pointer) {
-                game.world.bringToTop(forms);
+                    game.world.bringToTop(forms);
 
-                    if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
+                    if ((game.input.y > bin.y) && (game.input.y < bin.y + bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x + bin.width)) {
                         deleteSprite(tempSprite);
                     } else {
-                        if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-	                        tempSprite.position.copyFrom(tempSprite.originalPosition); 
-	                    }
-	                    else {
-		                    snapEffect(tempSprite,'levelMode');
+                        if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                            tempSprite.position.copyFrom(tempSprite.originalPosition);
+                        }
+                        else {
+                            snapEffect(tempSprite, 'levelMode');
                             tempSprite.originalPosition = tempSprite.position.clone();
-                            colorSprite(tempSprite,'levelMode');
-		                } 
+                            colorSprite(tempSprite, 'levelMode');
+                        }
                     }
                     updateSolution();
                 }
@@ -908,7 +908,7 @@
                     basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
                     basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
                     basketRight.x = window.innerWidth - (5 + basketRight.width);
-                    basketRight.y = window.innerHeight - (5 + basketRight.height); 
+                    basketRight.y = window.innerHeight - (5 + basketRight.height);
 
                     // Buttons on basket
                     rotL.y = window.innerHeight - 210;
@@ -921,43 +921,43 @@
                     menuMiddle.width = menuLenght;
 
                     // Buttons on menu
-                    mute.x=window.innerWidth - (18 + 1 * 50);
+                    mute.x = window.innerWidth - (18 + 1 * 50);
                     home.x = window.innerWidth - (18 + 2 * 50);
-                    ret.x=window.innerWidth - (18 + 3 * 50);
-                    
+                    ret.x = window.innerWidth - (18 + 3 * 50);
+
                     //Patrick position
-                    pat.x=basketRight.x+5;
-                    pat.y=basketRight.y-135;
-                    
-                        //positions of shapes in the basket
-                    forms.forEach(function(F){
-                        F.forEach(function(tempSprite){
-                            if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)){
+                    pat.x = basketRight.x + 5;
+                    pat.y = basketRight.y - 135;
+
+                    //positions of shapes in the basket
+                    forms.forEach(function (F) {
+                        F.forEach(function (tempSprite) {
+                            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
                                 tempSprite.y = window.innerHeight - 155;
-                                    if (tempSprite.x+tempSprite.width > window.innerWidth){
-                                        tempSprite.x=Math.random()*(window.innerWidth-310)+90;
-                                    }
+                                if (tempSprite.x + tempSprite.width > window.innerWidth) {
+                                    tempSprite.x = Math.random() * (window.innerWidth - 310) + 90;
+                                }
                                 tempSprite.originalPosition = tempSprite.position.clone();
                             }
-                        },this);
-                    },this);
-                    
+                        }, this);
+                    }, this);
+
                 }
 
 //Update function that is always running on the background
                 function update() {
                     // Update of the shadows
                     /*shadows.removeAll();
-                    forms.forEach(function (F) {
-                        F.forEach(function (sprite) {
-                            var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
-                            shadows.add(aShadow);
-                            aShadow.anchor.x = 0;
-                            aShadow.anchor.y = 0;
-                            aShadow.tint = 0x000000;
-                            aShadow.alpha = 0.3;
-                        });
-                    });*/
+                     forms.forEach(function (F) {
+                     F.forEach(function (sprite) {
+                     var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
+                     shadows.add(aShadow);
+                     aShadow.anchor.x = 0;
+                     aShadow.anchor.y = 0;
+                     aShadow.tint = 0x000000;
+                     aShadow.alpha = 0.3;
+                     });
+                     });*/
 
                 }
 
@@ -1024,18 +1024,20 @@
                 );
                 ;
             };
-			
-			//Buttons
-			function buttons(){ 
-				document.getElementById('start').value=loadOk;
-				document.getElementById('uploadFile').placeholder=fileSelect;
-			}
-            
-            var language = "assets/audio/fr/";
-       		soundManager.onload = function(){
-        	sound0 = soundManager.createSound({id : "click0", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
+
+            //Buttons
+            function buttons() {
+                document.getElementById('start').value = loadOk;
+                document.getElementById('uploadFile').placeholder = fileSelect;
             }
-				
+
+            var language = "assets/audio/fr/";
+            soundManager.onload = function () {
+                sound0 = soundManager.createSound({id: "click0", url: language + "click.mp3", onfinish: function () {
+                        self.location.href = 'index.html'
+                    }});
+            }
+
         </script>
         <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
     </head>
@@ -1046,9 +1048,9 @@
             <input type="button" class="menuButton" id="home" value=" " onclick="sound0.play();"/>
             <input type="button" class="menuButton" id="mute" value=" "/>
         </div>
-		<center><div id="json">
+    <center><div id="json">
 
-        
+
             <div class="inputBtnSection">
                 <input id="uploadFile" class="disableInputField" placeholder="" disabled="disabled" />
 
@@ -1065,7 +1067,7 @@
         <h3 class="cache" id="cache"> </h3>
     </center>
     <div id="final">
-    
+
         <img id="patrick" src="assets/images/final/patrick.png" alt="patrick"/>
         <div id="buttons">
             <input type="button" class="menuButton" id="home" value=" " onclick="clickerHome()"/>
@@ -1073,8 +1075,8 @@
             <br/>
             <input id="importButton" type="button" value="" onclick="self.location.href = 'load.html'"/>
         </div>
-        
+
     </div>
-    </body>
+</body>
 
 </html>

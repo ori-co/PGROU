@@ -24,5 +24,5 @@ function create() {
     mode = "freeMode";
     //Build the menu
     buildMenu();
-    
+  
     }

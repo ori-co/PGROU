@@ -5,35 +5,39 @@
         <title>/-> Maths Puzzle <-/</title>
         <link rel="stylesheet" type="text/css" href="css/levelsMapStyle.css">
         <script type="text/javascript" src="script/soundmanager2.js"></script>
-       <script type="text/javascript" src="script/text/fr_buttons.js"></script>
-       
-       <script> 
-       		
-       		// Level Sounds
-       		var language = "assets/audio/fr/";
-    
-            soundManager.onload = function(){
-                sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
-                sound = soundManager.createSound({id : "click", url: language+"click.mp3"});
-                sound_locked= soundManager.createSound({id : "clicklock", url: language+"locked.mp3"});
+        <script type="text/javascript" src="script/text/fr_buttons.js"></script>
+
+        <script>
+
+            // Level Sounds
+            var language = "assets/audio/fr/";
+
+            soundManager.onload = function () {
+                sound_home = soundManager.createSound({id: "clickhome", url: language + "click.mp3", onfinish: function () {
+                        self.location.href = 'index.html'
+                    }});
+                sound = soundManager.createSound({id: "click", url: language + "click.mp3"});
+                sound_locked = soundManager.createSound({id: "clicklock", url: language + "locked.mp3"});
             }
-            
-            function sound_level(i){
+
+            function sound_level(i) {
                 var element = document.getElementById(i);
-                if (element.className=='levelButton'){
-                    sound.options.onfinish= function(){self.location.href="level.html?levelnum="+i;};
+                if (element.className == 'levelButton') {
+                    sound.options.onfinish = function () {
+                        self.location.href = "level.html?levelnum=" + i;
+                    };
                     sound.play();
-                }else {
+                } else {
                     sound_locked.play();
                 }
-            }        
-            
-		//Buttons
-		function buttons(){ 
-			document.getElementById('importButton').value=problemImport;
-		}		
-     </script>
-    
+            }
+
+            //Buttons
+            function buttons() {
+                document.getElementById('importButton').value = problemImport;
+            }
+        </script>
+
     </head>
     <body onload="buttons();">
         <img id="wallpaper" src="assets/images/levels/wallpaper.png" alt="wallpaper"/>
@@ -41,27 +45,48 @@
             <input type="button" class="menuButton" id="home" value=" " onclick="sound_home.play();"/>
             <input type="button" class="menuButton" id="mute" value=" "/>
         </div>
-        
+
         <div id="importation">
-        <input type="button" id="importButton" value="" onclick="self.location.href = 'load.html'" /> 
+            <input type="button" id="importButton" value="" onclick="self.location.href = 'load.html'" /> 
         </div>
-        
+
         <div id="levels">
             <input id="1" type="button" class = "levelButton" value="1"  onclick= "sound_level('1');" />
             <input id="2" type="button" class="levelButton" value="2" onclick= "sound_level('2');" />
             <input id="3" type="button" class="levelButton" value="3" onclick= "sound_level('3');"/>
-            <input id="4" type="button" class="inactivelevelButton" value="4" onclick= "sound_level('4');"/>
-            <input id="5" type="button" class="inactivelevelButton" value="5" onclick= "sound_level('5');"/>          
-            <input id="6" type="button" class="inactivelevelButton" value="6" onclick= "sound_level('6');"/>
-            <input id="7" type="button" class="inactivelevelButton" value="7" onclick= "sound_level('7');"/>
-            <input id="8" type="button" class="inactivelevelButton" value="8" onclick= "sound_level('8');"/>
-            <input id="9" type="button" class="inactivelevelButton" value="9" onclick= "sound_level('9');"/>
-            <input id="10" type="button" class="inactivelevelButton" value="10" onclick= "sound_level('10');"/>           
-            <input id="11" type="button" class="inactivelevelButton" value="11" onclick= "sound_level('11');"/>
-            <input id="12" type="button" class="inactivelevelButton" value="12" onclick= "sound_level('12');"/>
-            <input id="13" type="button" class="inactivelevelButton" value="13" onclick= "sound_level('13');"/>
-            <input id="14" type="button" class="inactivelevelButton" value="14" onclick= "sound_level('14');"/>
-            <input id="15" type="button" class="inactivelevelButton" value="15" onclick= "sound_level('15');"/>
+            <input id="4" type="button" class="levelButton" value="4" onclick= "sound_level('4');"/>
+            <input id="5" type="button" class="levelButton" value="5" onclick= "sound_level('5');"/>          
+            <input id="6" type="button" class="levelButton" value="6" onclick= "sound_level('6');"/>
+            <input id="7" type="button" class="levelButton" value="7" onclick= "sound_level('7');"/>
+            <input id="8" type="button" class="levelButton" value="8" onclick= "sound_level('8');"/>
+            <input id="9" type="button" class="levelButton" value="9" onclick= "sound_level('9');"/>
+            <input id="10" type="button" class="levelButton" value="10" onclick= "sound_level('10');"/>           
+            <input id="11" type="button" class="levelButton" value="11" onclick= "sound_level('11');"/>
+            <input id="12" type="button" class="levelButton" value="12" onclick= "sound_level('12');"/>
+            <input id="13" type="button" class="levelButton" value="13" onclick= "sound_level('13');"/>
+            <input id="14" type="button" class="levelButton" value="14" onclick= "sound_level('14');"/>
+            <input id="15" type="button" class="levelButton" value="15" onclick= "sound_level('15');"/>
+            <input id="16" type="button" class="levelButton" value="16" onclick= "sound_level('16');"/>
+            <input id="17" type="button" class="levelButton" value="17" onclick= "sound_level('17');"/>
+            <input id="18" type="button" class="levelButton" value="18" onclick= "sound_level('18');"/>
+            <input id="19" type="button" class="levelButton" value="19" onclick= "sound_level('19');"/>
+            <input id="20" type="button" class="levelButton" value="20" onclick= "sound_level('20');"/>
+            <input id="21" type="button" class="levelButton" value="21" onclick= "sound_level('21');"/>
+            <input id="22" type="button" class="levelButton" value="22" onclick= "sound_level('22');"/>
+            <input id="23" type="button" class="levelButton" value="23" onclick= "sound_level('23');"/>
+            <input id="24" type="button" class="levelButton" value="24" onclick= "sound_level('24');"/>
+            <input id="25" type="button" class="levelButton" value="25" onclick= "sound_level('25');"/>
+            <input id="26" type="button" class="levelButton" value="26" onclick= "sound_level('26');"/>
+            <input id="27" type="button" class="levelButton" value="27" onclick= "sound_level('27');"/>
+            <input id="28" type="button" class="levelButton" value="28" onclick= "sound_level('28');"/>
+            <input id="29" type="button" class="levelButton" value="29" onclick= "sound_level('29');"/>
+            <input id="30" type="button" class="levelButton" value="30" onclick= "sound_level('30');"/>
+            <input id="31" type="button" class="levelButton" value="31" onclick= "sound_level('31');"/>
+            <input id="32" type="button" class="levelButton" value="32" onclick= "sound_level('32');"/>
+            <input id="33" type="button" class="levelButton" value="33" onclick= "sound_level('33');"/>
+            <input id="34" type="button" class="levelButton" value="34" onclick= "sound_level('34');"/>
+            <input id="35" type="button" class="levelButton" value="35" onclick= "sound_level('35');"/>
+
         </div>
     </body>
 </html>
