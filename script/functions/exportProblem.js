@@ -188,7 +188,7 @@
                 json = json + '\n\
                         ]\n\
                         }\n\
-                        },"distrib" :"on"';
+						,"distrib" :"on"}';
             
                 //Open a pop-up to save the json file
                 popup = window.open('', 'popup', 'height=300, width=600,left=' + ((screen.width - 400) / 2) + ',top=' + ((screen.height - 500) / 2));
