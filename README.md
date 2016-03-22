@@ -1,4 +1,4 @@
-# Jeu d'apprentissage des mathématiques
+# PatriMath - Jeu d'apprentissage des mathématiques
 
 Ce jeu permet de s'exercer aux opérations arithmétiques élémentaires
 via la manipulation de formes géométriques.
