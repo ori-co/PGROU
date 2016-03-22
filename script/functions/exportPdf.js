@@ -40,7 +40,7 @@ function pdf() {
 //Title
     doc.setFont("helvetica");
     doc.setTextColor(147, 175, 189);
-    doc.text(75, 20, 'Nom de l\'application  -  Page 1');
+    doc.text(75, 20, 'Patrimath  -  Page 1');
 
 //Initialisation
     var a = 10;
@@ -57,7 +57,7 @@ function pdf() {
             doc.addPage();
             doc.setFont("helvetica");
             doc.setTextColor(147, 175, 189);
-            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            doc.text(75, 20, 'Patrimath  -  Page ' + nbPage);
             b = 40;
         }
         setColor(pattern, doc);
@@ -81,7 +81,7 @@ function pdf() {
             doc.addPage();
             doc.setFont("helvetica");
             doc.setTextColor(147, 175, 189);
-            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            doc.text(75, 20, 'Patrimath  -  Page ' + nbPage);
             b = 40;
         }
         setColor(pattern, doc);
@@ -105,7 +105,7 @@ function pdf() {
             doc.addPage();
             doc.setFont("helvetica");
             doc.setTextColor(147, 175, 189);
-            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            doc.text(75, 20, 'Patrimath  -  Page ' + nbPage);
             b = 40;
         }
         setColor(pattern, doc);
@@ -129,7 +129,7 @@ function pdf() {
             doc.addPage();
             doc.setFont("helvetica");
             doc.setTextColor(147, 175, 189);
-            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            doc.text(75, 20, 'Patrimath  -  Page ' + nbPage);
             b = 40;
         }
         setColor(pattern, doc);
@@ -181,7 +181,7 @@ function pdf() {
             doc.addPage();
             doc.setFont("helvetica");
             doc.setTextColor(147, 175, 189);
-            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            doc.text(75, 20, 'Patrimath  -  Page ' + nbPage);
             b = 40;
         }
         setColor(pattern, doc);
@@ -211,7 +211,7 @@ function pdf() {
             doc.addPage();
             doc.setFont("helvetica");
             doc.setTextColor(147, 175, 189);
-            doc.text(75, 20, 'Nom de l\'application  -  Page ' + nbPage);
+            doc.text(75, 20, 'Patrimath  -  Page ' + nbPage);
             b = 40;
         }
         setColor(pattern, doc);
@@ -231,6 +231,6 @@ function pdf() {
     }, this);
 
 
-    doc.save('Test.pdf');
+    doc.save('JeuDeConstruction.pdf');
 }
 
