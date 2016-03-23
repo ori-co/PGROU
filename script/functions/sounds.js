@@ -8,7 +8,7 @@ function trashBinSound() {
 
 function clickerBack(){
 click = soundManager.createSound({id : "click", url: language+"click.mp3", 
-onfinish: function(){ self.location.href='levelsMap.html'}});
+onfinish: function(){ self.location.href='levelsmap.html'}});
 click.play();
 }
 
