@@ -14,6 +14,7 @@ function beginDrag(tempSprite) {
 
 // Unlock the store once the unlockButton is clicked
 function unlockStore(lockButton, pointer) {
+	if( distrib == 1){ 
 	lockButton.destroy();
 	storeLocked = false;
 	buttonSquare.inputEnabled = true;
@@ -21,5 +22,5 @@ function unlockStore(lockButton, pointer) {
    	buttonTriangleEqui.inputEnabled = true;
     buttonHexagon.inputEnabled = true;
    	buttonTriangleRect.inputEnabled = true;
-    buttonDiamond.inputEnabled = true;
+    buttonDiamond.inputEnabled = true;}
 }

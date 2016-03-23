@@ -2,7 +2,9 @@
 function endDrag(tempSprite, pointer) {
     game.world.bringToTop(forms);
 	if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
+		if (distrib==1){ 
 		deleteSprite(tempSprite);
+		}
 	} else {
 	    if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
             tempSprite.position.copyFrom(tempSprite.originalPosition); 

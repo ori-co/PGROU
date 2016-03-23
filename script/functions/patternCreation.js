@@ -1,3 +1,5 @@
+var distrib = 1;
+
 function patternCreation(levelText) {
 
 //JSON analysis				
@@ -60,6 +62,8 @@ function patternCreation(levelText) {
 	}
 		if (jsonObj.distrib=="off"){
 			
+			distrib = 0;
+			
 			//We add the form into the Basket
 			P1.forEach(function (pattern) {
 				addShape('square', F1);
@@ -100,6 +104,19 @@ function patternCreation(levelText) {
 			this.buttonDiamond.visible = false;
 			this.labelDiamond.visible = false;
 			
+			//we hide the bin
+			this.bin.visible = false;
+			
+			//We lock the distributors
+			
+			unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
+			storeLocked = true;
+			buttonSquare.inputEnabled = false;
+			buttonTrapezoid.inputEnabled = false;
+			buttonTriangleEqui.inputEnabled = false;
+			buttonHexagon.inputEnabled = false;
+			buttonTriangleRect.inputEnabled = false;
+			buttonDiamond.inputEnabled = false;
 			
 		}else{ 
 		
