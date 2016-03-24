@@ -142,7 +142,7 @@ function unlock_store(){
 	}	
 
 function  sound_begin(){
-if (begin==0){
+if (Number(levelnum)<2){
 	begin = soundManager.createSound({id : "begin", url:language+"begin.mp3" });
 	soundManager.stopAll();
 	patrickSpeak(begin);
@@ -154,7 +154,7 @@ function  sound_export(){
 if (expo==0){
 	exprt = soundManager.createSound({id : "exprt", url:language+"export.mp3" });
 	soundManager.stopAll();
-	//patrickSpeak(begin);
+	patrickSpeak(exprt);
 	exprt.play();}
 	expo ++;
 	}	
@@ -163,7 +163,7 @@ function  sound_color(){
 
 	color = soundManager.createSound({id : "color", url:language+"color.mp3" });
 	soundManager.stopAll();
-	//patrickSpeak(begin);
+	patrickSpeak(color);
 	color.play();
 
 	}		
@@ -172,7 +172,7 @@ function  sound_creation(){
 if (crea==0){
 	creation = soundManager.createSound({id : "creation", url:language+"creation.mp3", onfinish: function(){sound_color();}});
 	soundManager.stopAll();
-	//patrickSpeak(begin);
+	patrickSpeak(creation);
 	creation.play();}
 	crea ++;
 	}			
@@ -182,7 +182,7 @@ function  sound_print(){
 if (printer==0){
 	printable = soundManager.createSound({id : "printable", url:language+"print.mp3" });
 	soundManager.stopAll();
-	//patrickSpeak(begin);
+	patrickSpeak(printable);
 	printable.play();}
 	printer ++;
 	}
@@ -193,7 +193,7 @@ if (totalshape==1){
 	alert("ca marche");
 	placement = soundManager.createSound({id : "placement", url:language+"place.mp3" });
 	soundManager.stopAll();
-	//patrickSpeak(begin);
+	patrickSpeak(placement);
 	placement.play();}
 	
 	}	
