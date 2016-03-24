@@ -99,6 +99,13 @@ var menuMiddle;
 var menuLeft;
 var menuLenght;
 
+// sounds
+
+var cptrot=0;
+var cpttrash=0;
+var cptlock=0;
+var begin=0;
+
 //Create a new Phaser JS game
 var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
     //var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 

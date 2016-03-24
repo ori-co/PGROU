@@ -6,6 +6,14 @@ function trashBinSound() {
 	bintemp.play();
 }
 
+function sound_trash(){
+	if (cpttrash==0){
+	trash = soundManager.createSound({id : "trash", url:language+"trash.mp3" });
+	soundManager.stopAll();
+	trash.play();}
+	cpttrash ++;
+	}
+
 function clickerBack(){
 click = soundManager.createSound({id : "click", url: language+"click.mp3", 
 onfinish: function(){ self.location.href='levelsmap.html'}});
@@ -26,83 +34,122 @@ function clicker(){
 	// Add Shapes Sounds 
 	
 function sound_square(nbF1){
- 	nbF1 = soundManager.createSound({id : "square"+nbF1, url:"assets/audio/fr/square"+nbF1+".mp3"});
+ 	nb1 = soundManager.createSound({id : "square"+nbF1, url:language+"square"+nbF1+".mp3"});
 	soundManager.stopAll();
-    patrickSpeak(nbF1); // must be before play() instruction
-	nbF1.play();
+    patrickSpeak(nb1); // must be before play() instruction
+	nb1.play();
 }
 
 function sound_trapeze(nbF2){
- 	nbF2 = soundManager.createSound({id : "trapeze"+nbF2, url:"assets/audio/fr/trapeze"+nbF2+".mp3"});
+ 	nb2 = soundManager.createSound({id : "pentagon"+nbF2, url:language+"pentagon"+nbF2+".mp3"});
 	soundManager.stopAll();
-	nbF2.play();
+	patrickSpeak(nb2);
+	nb2.play();
 }
 
 function sound_hexagon(nbF3){
- 	nbF3 = soundManager.createSound({id : "hexagon"+nbF3, url:"assets/audio/fr/hexagon"+nbF3+".mp3"});
+ 	nb3 = soundManager.createSound({id : "hexagon"+nbF3, url:language+"hexagon"+nbF3+".mp3"});
 	soundManager.stopAll();
-	nbF3.play();
+	patrickSpeak(nb3);
+	nb3.play();
 }
 
 function sound_triangle(nbF4){
- 	nbF4 = soundManager.createSound({id : "triangle"+nbF4, url:"assets/audio/fr/triangle"+nbF4+".mp3"});
+ 	nb4 = soundManager.createSound({id : "triangle"+nbF4, url:language+"triangle"+nbF4+".mp3"});
 	soundManager.stopAll();
-	nbF4.play();
+	patrickSpeak(nb4);
+	nb4.play();
 }
 
 function sound_trirec(nbF5){
- 	nbF5 = soundManager.createSound({id : "trirec"+nbF1, url:"assets/audio/fr/trirec"+nbF5+".mp3"});
+ 	nb5 = soundManager.createSound({id : "trirec"+nbF1, url:language+"trirec"+nbF5+".mp3"});
 	soundManager.stopAll();
-	nbF5.play();
+	patrickSpeak(nb5);
+	nb5.play();
 }
 
 function sound_diamond(nbF6){
- 	nbF6 = soundManager.createSound({id : "diamond"+nbF6, url:"assets/audio/fr/diamond"+nbF6+".mp3"});
+ 	nb6 = soundManager.createSound({id : "diamond"+nbF6, url:language+"diamond"+nbF6+".mp3"});
 	soundManager.stopAll();
-	nbF6.play();
+	patrickSpeak(nb6);
+	nb6.play();
 }	
 	
 	// Remove Shapes sounds
 
 function sound_square_off(nbF1){
- 	nbF1 = soundManager.createSound({id : "square_off"+nbF1, url:"assets/audio/fr/square_off"+nbF1+".mp3"});
+ 	n1 = soundManager.createSound({id : "square_off"+nbF1, url:language+"square_off"+nbF1+".mp3"});
 	soundManager.stopAll();
-	nbF1.play();
+	patrickSpeak(n1);
+	n1.play();
 }	
 
 
 function sound_trapeze_off(nbF2){
- 	nbF2 = soundManager.createSound({id : "trapeze_off"+nbF2, url:"assets/audio/fr/trapeze_off"+nbF2+".mp3"});
+ 	n2 = soundManager.createSound({id : "pentagon_off"+nbF2, url:language+"pentagon_off"+nbF2+".mp3"});
 	soundManager.stopAll();
-	nbF2.play();
+	patrickSpeak(n2);
+	n2.play();
 }	
 
 
 function sound_hexagon_off(nbF3){
- 	nbF3 = soundManager.createSound({id : "hexagon_off"+nbF3, url:"assets/audio/fr/hexagon_off"+nbF3+".mp3"});
+ 	n3 = soundManager.createSound({id : "hexagon_off"+nbF3, url:language+"hexagon_off"+nbF3+".mp3"});
 	soundManager.stopAll();
-	nbF3.play();
+	patrickSpeak(n3);
+	n3.play();
 }	
 
 
 function sound_triangle_off(nbF4){
- 	nbF4 = soundManager.createSound({id : "triangle_off"+nbF4, url:"assets/audio/fr/triangle_off"+nbF5+".mp3"});
+ 	n4 = soundManager.createSound({id : "triangle_off"+nbF4, url:language+"triangle_off"+nbF5+".mp3"});
 	soundManager.stopAll();
-	nbF4.play();
+	patrickSpeak(n4);
+	n4.play();
 }	
 
 
 function sound_trirec_off(nbF6){
- 	nbF5 = soundManager.createSound({id : "trirec_off"+nbF5, url:"assets/audio/fr/trirec_off"+nbF5+".mp3"});
+ 	n5 = soundManager.createSound({id : "trirec_off"+nbF5, url:language+"trirec_off"+nbF5+".mp3"});
 	soundManager.stopAll();
-	nbF5.play();
+	patrickSpeak(n5);
+	n5.play();
 }	
 
 function sound_diamond_off(nbF6){
- 	nbF6 = soundManager.createSound({id : "diamond_off"+nbF6, url:"assets/audio/fr/diamond_off"+nbF6+".mp3"});
+ 	n6 = soundManager.createSound({id : "diamond_off"+nbF6, url:language+"diamond_off"+nbF6+".mp3"});
 	soundManager.stopAll();
-	nbF6.play();
-}	
+	patrickSpeak(n6);
+	n6.play();
+}
+
+function sound_rotation(){
+	if (cptrot==0){
+	rot = soundManager.createSound({id : "rot", url:language+"rot.mp3" });
+	soundManager.stopAll();
+	rot.play();}
+	cptrot ++;
+	}
+	
+
+function unlock_store(){
+	if (cptlock==0){
+	lock = soundManager.createSound({id : "lock", url:language+"lock.mp3" });
+	soundManager.stopAll();
+	patrickSpeak(lock);
+	lock.play();}
+	cptlock ++;
+	}	
+
+function  sound_begin(){
+if (begin==0){
+	begin = soundManager.createSound({id : "begin", url:language+"begin.mp3" });
+	soundManager.stopAll();
+	//patrickSpeak(begin);
+	begin.play();}
+	begin ++;
+	}		
+
 
 function mute(){
 if (!soundManager.muted){
@@ -110,6 +157,10 @@ soundManager.mute();}
 else
 soundManager.unmute();
 }	
+
+
+
+
 
 	
 

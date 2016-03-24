@@ -13,12 +13,17 @@
             var language = "assets/audio/fr/";
 
             soundManager.onload = function () {
+            	introduction = soundManager.createSound({id : "introduction", url: language+"introduction.mp3"});
+            	introduction.play();
                 sound_home = soundManager.createSound({id: "clickhome", url: language + "click.mp3", onfinish: function () {
                         self.location.href = 'index.html'
                     }});
                 sound = soundManager.createSound({id: "click", url: language + "click.mp3"});
                 sound_locked = soundManager.createSound({id: "clicklock", url: language + "locked.mp3"});
+                 imports = soundManager.createSound({id : "imports", url: language+"import.mp3"});
             }
+            
+           
 
             function sound_level(i) {
                 var element = document.getElementById(i);
@@ -43,11 +48,13 @@
         <img id="wallpaper" src="assets/images/levels/wallpaper.png" alt="wallpaper"/>
         <div id="menu">
             <input type="button" class="menuButton" id="home" value=" " onclick="sound_home.play();"/>
-            <input type="button" class="menuButton" id="mute" value=" "/>
+           
+            <input type="button" class="menuButton" id="mute" value=" " onclick="mute();"/>
         </div>
 
         <div id="importation">
-            <input type="button" id="importButton" value="" onclick="self.location.href = 'load.html'" /> 
+
+            <input type="button" id="importButton" value="" onmouseover="imports.play();" onclick="self.location.href = 'load.html';" /> 
         </div>
 
         <div id="levels">

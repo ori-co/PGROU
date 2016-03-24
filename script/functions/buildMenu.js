@@ -7,6 +7,7 @@ function buildMenu() {
 
     // Buttons in store
     bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
+    bin.events.onInputOver.add(sound_trash, this);
     
     var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
     buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
@@ -65,8 +66,10 @@ function buildMenu() {
     menuMiddle.width = menuLenght;
 
     //Add rotation and color buttons
-    rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2, 1, 0, 1);
+    rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2,1, 0, 1);
+    rotR.events.onInputOver.add(sound_rotation, this);
     rotL = game.add.button(15, window.innerHeight - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
+    rotL.events.onInputOver.add(sound_rotation, this);
     home = game.add.button(window.innerWidth - (18 + 4 * 50), 10, 'button-home', clickerHome, this, 2, 1, 0, 1);
     mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', mute, this, 2, 1, 0, 1);
 
@@ -77,6 +80,7 @@ function buildMenu() {
             home.x = window.innerWidth - (18 + 2 * 50);
             var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
             levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitle+" "+levelnum, levelStyle);
+            sound_begin();
             break;
         case "freeMode":
             exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);

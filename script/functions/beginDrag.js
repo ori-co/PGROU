@@ -2,6 +2,7 @@
 function beginDrag(tempSprite) {
 	if (!storeLocked) {
 		unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
+		unlockButton.events.onInputOver.add(unlock_store, this);
 		storeLocked = true;
 		buttonSquare.inputEnabled = false;
 		buttonTrapezoid.inputEnabled = false;
