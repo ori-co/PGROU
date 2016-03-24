@@ -1,0 +1,63 @@
+{
+                             "problem":
+                                            {
+                                            "pattern":[
+                            {
+                                "shape":"hexagon",
+                                "color":"16514560",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"721",
+                                                     "y":"245"}
+                                },
+                                {
+                                "shape":"hexagon",
+                                "color":"14942300",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"720",
+                                                     "y":"357"}
+                                },
+                                {
+                                "shape":"hexagon",
+                                "color":"14942300",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"816",
+                                                     "y":"301"}
+                                },
+                                {
+                                "shape":"hexagon",
+                                "color":"14942300",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"724",
+                                                     "y":"133"}
+                                },
+                                {
+                                "shape":"hexagon",
+                                "color":"14942300",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"817",
+                                                     "y":"189"}
+                                },
+                                {
+                                "shape":"hexagon",
+                                "color":"14942300",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"627",
+                                                     "y":"187"}
+                                },
+                                {
+                                "shape":"hexagon",
+                                "color":"14942300",
+                                "rotation":"0",
+                                "anchorPoint": {
+                                                     "x":"625",
+                                                     "y":"299"}
+                                }
+                        ]
+                        }
+						,"distrib" :"on"}
