@@ -51,10 +51,22 @@ body{
     background-image: url('../assets/images/levels/option-mute_click.png');
 }
 
+#muteon{
+    background-image: url('../assets/images/levels/option-mute_click.png');
+}
+
+#muteon:hover {
+    background-image: url('../assets/images/levels/option-mute_clickedover.png');
+}
+
+#muteon:active {
+    background-image: url('../assets/images/levels/option-mute_normal.png');
+}
+
 #importation{
     position:absolute;
     bottom:10%;
-    left:15%;
+    left:150px;
 }
 
 #importButton {
@@ -81,7 +93,7 @@ body{
 #levels {
     position:absolute;
     top:30%;
-    margin-left:420px;
+    margin-left:450px;
     right:5%;
     max-width:800px;
 }

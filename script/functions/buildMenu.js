@@ -95,9 +95,6 @@ function buildMenu() {
     
     shadows = game.add.group();
 
-
-
-
     switch (mode) {
         case "levelMode":
             ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);

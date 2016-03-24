@@ -38,6 +38,21 @@
                 }
             }
 
+            function playing(son){
+			soundManager.stopAll();
+			son.play();
+			}
+            
+            function mute(){
+            if (!soundManager.muted){
+            soundManager.mute();
+            document.getElementById("mute").id="muteon";
+            }else{
+            soundManager.unmute();
+            document.getElementById("muteon").id="mute";
+            }
+            }
+            
             //Buttons
             function buttons() {
                 document.getElementById('importButton').value = problemImport;
@@ -55,11 +70,11 @@
 
         <div id="importation">
 
-            <input type="button" id="importButton" value="" onmouseover="imports.play();" onclick="self.location.href = 'load.html';" /> 
+            <input type="button" id="importButton" value="" onmouseover="playing(imports);" onclick="self.location.href = 'load.html';" /> 
         </div>
 
         <div id="levels">
-            <input id="1" type="button" class = "levelButton" value="1"  onclick= "sound_level('1');" />
+            <input id="1" type="button" class="levelButton" value="1" onclick= "sound_level('1');" />
             <input id="2" type="button" class="levelButton" value="2" onclick= "sound_level('2');" />
             <input id="3" type="button" class="levelButton" value="3" onclick= "sound_level('3');"/>
             <input id="4" type="button" class="levelButton" value="4" onclick= "sound_level('4');"/>

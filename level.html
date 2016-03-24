@@ -55,7 +55,17 @@
             sound.options.onfinish= function(){self.location.href="level.html?levelnum="+element.value;};
             sound.play();
     	}
-        }   
+        }
+
+            function muteend(){
+            if (!soundManager.muted){
+            soundManager.mute();
+            document.getElementById("mute").id="muteon";
+            }else{
+            soundManager.unmute();
+            document.getElementById("muteon").id="mute";
+            }
+            }
              </script>
 </head>
 
@@ -66,7 +76,7 @@
         <div id="buttons">
             <input type="button" class="menuButton" id="ret" value=" " onclick="clickerBack()"/>
             <input type="button" class="menuButton" id="home" value=" " onclick="clickerHome()"/>
-            <input type="button" class="menuButton" id="mute" value=" "/>
+            <input type="button" class="menuButton" id="mute" value=" " onclick="muteend()"/>
             <br/>
             <input id="again" type="button" class = "levelButton" value=""  onclick= "sound_level(this)" />
             <input id="next" type="button" class="levelButton" value="" onclick= "sound_level(this)" />

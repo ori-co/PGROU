@@ -108,6 +108,17 @@ input:focus {
 #mute:active {
     background-image: url('../assets/images/final/option-mute_click.png');
 }
+#muteon{
+    background-image: url('../assets/images/levels/option-mute_click.png');
+}
+
+#muteon:hover {
+    background-image: url('../assets/images/levels/option-mute_clickedover.png');
+}
+
+#muteon:active {
+    background-image: url('../assets/images/levels/option-mute_normal.png');
+}
 
 .levelButton{
     background-image: url('../assets/images/final/button_normal.png'); 

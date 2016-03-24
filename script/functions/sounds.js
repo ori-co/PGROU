@@ -62,7 +62,7 @@ function sound_triangle(nbF4){
 }
 
 function sound_trirec(nbF5){
- 	nb5 = soundManager.createSound({id : "trirec"+nbF1, url:language+"trirec"+nbF5+".mp3"});
+ 	nb5 = soundManager.createSound({id : "trirec"+nbF5, url:language+"trirec"+nbF5+".mp3"});
 	soundManager.stopAll();
 	patrickSpeak(nb5);
 	nb5.play();
@@ -102,7 +102,7 @@ function sound_hexagon_off(nbF3){
 
 
 function sound_triangle_off(nbF4){
- 	n4 = soundManager.createSound({id : "triangle_off"+nbF4, url:language+"triangle_off"+nbF5+".mp3"});
+ 	n4 = soundManager.createSound({id : "triangle_off"+nbF4, url:language+"triangle_off"+nbF4+".mp3"});
 	soundManager.stopAll();
 	patrickSpeak(n4);
 	n4.play();
@@ -207,9 +207,12 @@ function  sound_sucess(){
 
 function mute(){
 if (!soundManager.muted){
-soundManager.mute();}
-else
+soundManager.mute();
+mute.setFrames(3, 0, 1, 0);
+}else{
 soundManager.unmute();
+mute.setFrames(2, 1, 0, 1);
+}
 }	
 
 

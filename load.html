@@ -291,9 +291,12 @@ function  sound_sucess(){
 
 function mute(){
 if (!soundManager.muted){
-soundManager.mute();}
-else
+soundManager.mute();
+mute.setFrames(3, 0, 1, 0);
+}else{
 soundManager.unmute();
+mute.setFrames(2, 1, 0, 1);
+}
 }	
 
 //////////////////////////////ANIMATIONS//////////////////////////////////////////////////////
@@ -680,14 +683,8 @@ function patrickBlink(){
                     basketRight.y = window.innerHeight - (5 + basketRight.height);
 
                     // Menu construction
-                    switch (mode) {
-                        case "levelMode":
-                            menuLenght = 225;
-                            break;
-                        case "freeMode":
-                            menuLenght = 150;
-                            break;
-                    }
+                            menuLenght = 100;
+
 
                     menuRight = game.add.sprite(0, 5, 'menu-right');
                     menuLeft = game.add.sprite(0, 5, 'menu-left');
@@ -1389,6 +1386,15 @@ function patrickBlink(){
                         self.location.href = 'index.html'
                     }});
             }
+            function mute(){
+                if (!soundManager.muted){
+                soundManager.mute();
+                document.getElementById("mute").id="muteon";
+                }else{
+                soundManager.unmute();
+                document.getElementById("muteon").id="mute";
+                }
+             }
 
         </script>
         <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
@@ -1398,7 +1404,7 @@ function patrickBlink(){
         <img src="assets/images/load/wallpaper.png"  />
         <div id="menu">
             <input type="button" class="menuButton" id="home" value=" " onclick="sound0.play();"/>
-            <input type="button" class="menuButton" id="mute" value=" "/>
+            <!--<input type="button" class="menuButton" id="mute" value=" " onclick="mute()"/>-->
         </div>
     <center><div id="json">
 
@@ -1423,7 +1429,7 @@ function patrickBlink(){
         <img id="patrick" src="assets/images/final/patrick.png" alt="patrick"/>
         <div id="buttons">
             <input type="button" class="menuButton" id="home" value=" " onclick="clickerHome()"/>
-            <input type="button" class="menuButton" id="mute" value=" "/>
+            <input type="button" class="menuButton" id="mute" value=" " onclick="mute()"/>
             <br/>
             <input id="importButton" type="button" value="" onclick="self.location.href = 'load.html'"/>
         </div>

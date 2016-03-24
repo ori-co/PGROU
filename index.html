@@ -27,7 +27,7 @@
 			//onmouseover
 			
 			function playing(son){
-			soundManager.pauseAll();
+			soundManager.stopAll();
 			son.play();
 			}
 			
@@ -40,7 +40,7 @@
         <img id="wallpaper" src="assets/images/index/wallpaper.png" alt="wallpaper"/>
         <img id="patrick" src="assets/images/index/patrick.gif" alt="patrick"/>
         <div id="buttons">
-            <input id="b1" type="button" value=""  onmouseover = "playing(son2);" onclick = "son1.play();"/>
+            <input id="b1" type="button" value="" onmouseover ="playing(son2);" onclick = "son1.play();"/>
             <input id="b2" type="button" value="" onmouseover ="playing(son3);" onclick="son4.play();"/>
         </div>
     </body>
