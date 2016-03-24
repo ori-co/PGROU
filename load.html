@@ -8,6 +8,7 @@
 
         <script type="text/javascript" src="script/phaser.js"></script>
         <script type="text/javascript" src="script/soundmanager2.js"></script>
+        <script type="text/javascript" src="script/functions/animations.js"></script>
         <script type="text/javascript" src="script/functions/matrixInit.js"></script>
         <script type="text/javascript" src="script/functions/matrixUtils.js"></script>
         <script type="text/javascript" src="script/functions/varInit.js"></script>
@@ -30,6 +31,11 @@
                 });
 // Language Definition
                 var language = "assets/audio/fr/";
+                
+            
+
+
+    
 
 //Load the necessary files before the beginning of the game
                 function preload() {
@@ -66,7 +72,7 @@
                     game.load.spritesheet('button-export', 'assets/images/buttons/option-export.png', 48, 48);
                     game.load.spritesheet('button-print', 'assets/images/buttons/option-print.png', 48, 48);
                     game.load.spritesheet('button-mute', 'assets/images/buttons/option-mute.png', 48, 48);
-					game.load.spritesheet('ribbon', 'assets/images/buttons/ribbon.png', 204, 391);
+                    game.load.spritesheet('ribbon', 'assets/images/buttons/ribbon.png', 204, 391);
 
                     game.load.image('menu-left', 'assets/images/menu/menu-left.png');
                     game.load.image('menu-right', 'assets/images/menu/menu-right.png');
@@ -76,159 +82,10 @@
                     game.load.spritesheet('patrick-mouth', 'assets/images/patrick/mouth.png', 31, 22, 4);
                     game.load.spritesheet('patrick-eyes', 'assets/images/patrick/eyes.png', 80, 66, 5);
 
-                    game.load.audio('trashbin', language + 'trashbin.mp3');
-                    game.load.audio('click', language + 'click.mp3');
-                    /*
-                     
-                     game.load.audio('index',language+'index.mp3');
-                     game.load.audio('select_class',language+'select_class.mp3');
-                     game.load.audio('lock',language+'lock.mp3');
-                     game.load.audio('import',language+'import.mp3');
-                     game.load.audio('classic',language+'classic.mp3');
-                     game.load.audio('firstform',language+'firstform.mp3');
-                     game.load.audio('matching_cla',language+'matching_cla.mp3');
-                     game.load.audio('problem',language+'problem.mp3');
-                     game.load.audio('distrib',language+'distrib.mp3');
-                     game.load.audio('prop_rotation',language+'prop_rotation.mp3');
-                     game.load.audio('top_validation',language+'top_validation.mp3');
-                     game.load.audio('low_validation',language+'low_validation.mp3');
-                     game.load.audio('popup',language+'popup.mp3');
-                     game.load.audio('nextlevel',language+'nextlevel.mp3');
-                     game.load.audio('square1',language+'square1.mp3');
-                     game.load.audio('triangle-eq1',language+'triangle-eq1.mp3');
-                     game.load.audio('triangle-req1',language+'triangle-req1.mp3');
-                     game.load.audio('trapeze1',language+'trapeze1.mp3');
-                     game.load.audio('diamond1',language+'diamond1.mp3');
-                     game.load.audio('selectfree',language+'selectfree.mp3');
-                     game.load.audio('matching-free',language+'matching-free.mp3');
-                     game.load.audio('crea',language+'crea.mp3');
-                     game.load.audio('save',language+'save.mp3');
-                     game.load.audio('advertise',language+'advertise.mp3');
-                     game.load.audio('print',language+'print.mp3');
-                     game.load.audio('exprt',language+'exprt.mp3');
-                     */
 
                 }
 
-                function buildMenu() {
-
-                    // Store Creation
-                    var store = game.add.sprite(5, 5, 'store');
-                    pipe = game.add.sprite(5, 395, 'pipe');
-                    pipe.height = window.innerHeight - (390 + 212);
-
-                    // Buttons in store
-                    bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
-
-                    var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
-
-                    buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
-                    labelSquare = game.add.text(53, 130, nbF1, style);
-                    labelSquare.anchor.x = 0.5;
-
-                    buttonTrapezoid = game.add.button(105, 110, 'button-trapeze', addForm2, this, 2, 1, 0, 1);
-                    labelTrapezoid = game.add.text(142, 130, nbF2, style);
-                    labelTrapezoid.anchor.x = 0.5;
-
-                    buttonTriangleEqui = game.add.button(15, 200, 'button-triangle-equi', addForm4, this, 2, 1, 0, 1);
-                    labelTriangleEqui = game.add.text(53, 220, nbF4, style);
-                    labelTriangleEqui.anchor.x = 0.5;
-
-                    buttonHexagon = game.add.button(105, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
-                    labelHexagon = game.add.text(142, 220, nbF3, style);
-                    labelHexagon.anchor.x = 0.5;
-
-                    buttonTriangleRect = game.add.button(15, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
-                    labelTriangleRect = game.add.text(53, 310, nbF5, style);
-                    labelTriangleRect.anchor.x = 0.5;
-
-                    buttonDiamond = game.add.button(105, 290, 'button-diamond', addForm6, this, 2, 1, 0, 1);
-                    labelDiamond = game.add.text(142, 310, nbF6, style);
-                    labelDiamond.anchor.x = 0.5;
-
-                    // Basket creation
-                    basketLeft = game.add.sprite(5, window.innerHeight - 212 - 5, 'basket-left');
-                    basketMiddle = game.add.sprite(142, window.innerHeight - 212 - 5, 'basket-middle');
-                    basketMiddle.width = window.innerWidth - 2 * 142;
-                    basketRight = game.add.sprite(window.innerWidth - 142 - 5, window.innerHeight - 212 - 5, 'basket-right');
-
-                    // Menu construction
-                    menuLenght = 100;
-                    menuRight = game.add.sprite(0, 5, 'menu-right');
-                    menuLeft = game.add.sprite(0, 5, 'menu-left');
-                    menuMiddle = game.add.sprite(0, 5, 'menu-middle');
-
-                    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
-                    menuRight.x = window.innerWidth - (5 + menuRight.width);
-                    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
-                    menuMiddle.width = menuLenght;
-
-                    //Add rotation and color buttons
-                    rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2, 1, 0, 1);
-                    rotL = game.add.button(15, window.innerHeight - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
-                    home = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-home', clickerHome, this, 2, 1, 0, 1);
-                    mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', null, this, 2, 1, 0, 1);
-                    ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
-
-                    // Add Patrick to the menu
-                    pat = game.add.group();
-                    // position
-                    pat.x = basketRight.x + 5;
-                    pat.y = basketRight.y - 135;
-                    pat.scale.set(0.27, 0.27);
-                    // independant elements
-                    var patBody = game.add.sprite(0, 0, 'patrick');
-                    pat.add(patBody);
-                    patMouth = game.add.sprite(217, 168, 'patrick-mouth');
-                    pat.add(patMouth);
-                    patEyes = game.add.sprite(196, 80, 'patrick-eyes');
-                    pat.add(patEyes);
-                    //animations
-                    patMouth.animations.add('talk');
-                    patEyes.animations.add('blink');
-
-                    patrickBlink();
-
-                    shadows = game.add.group();
-                }
-
-                // Animation Functions
-                function patrickSpeak(sound) {
-                    sound.options.onplay = function () {
-                        patMouth.animations.play('talk', 8, true);
-                    }
-
-                    sound.options.onfinish = function () {
-                        patMouth.animations.stop(null, true);
-                    }
-                }
-
-                function patrickBlink() {
-                    patEyes.animations.play('blink', 10, false);
-                    var delay = Math.random() * 3 + 2;
-                    game.time.events.add(Phaser.Timer.SECOND * delay, patrickBlink, this);
-                }
-
-                function wallpaper() {
-                    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-                    game.scale.setResizeCallback(function () {
-                        updateSize(this);
-                    }, game);
-//Wallpaper
-                    var myBitmap = game.make.bitmapData(2000, 2000);
-                    myBitmap.addToWorld();
-                    var grd = myBitmap.context.createLinearGradient(0, 0, 1000, 1000);
-                    grd.addColorStop(0, "#66d1f9");
-                    grd.addColorStop(1, "#bce3f0");
-                    myBitmap.context.fillStyle = grd;
-                    myBitmap.context.fillRect(0, 0, 2000, 2000);
-//game.stage.backgroundColor = "#4488AA";
-                    palette = ["0x83EE00", "0xFBFE00", "0x058AB6", "0xE4005C", "0x8007BE", "0xFF8300"];
-
-                    shadows = game.add.group();
-                }
-
-//Main function of the game
+                //Main function of the game
                 function create() {
 
                     //Build the wallpaper and RESIZE
@@ -267,9 +124,6 @@
                     patterns.add(P5);
                     patterns.add(P6);
 
-                    // Sound Management
-                    binSound = game.add.audio('trashbin');
-                    clickSound = game.add.audio('click');
 
                     //Build the menu
                     buildMenu();
@@ -338,119 +192,119 @@
                         }
                     }
 
-					//Distributors
-					if (jsonObj.distrib=="off"){
-			
-			distrib = 0;
-			
-			//We add the form into the Basket
-			P1.forEach(function (pattern) {
-				addShape('square', F1);
-			});
-			
-			P2.forEach(function (pattern) {
-				addShape('trapeze', F2);
-			});
-			P3.forEach(function (pattern) {
-				addShape('hexagon', F3);
-			});
-			P4.forEach(function (pattern) {
-				addShape('triangle_equi', F4);
-			});
-			P5.forEach(function (pattern) {
-				addShape('triangle_rect', F5);
-			});
-			P6.forEach(function (pattern) {
-				addShape('diamond', F6);
-			});
-			
-			//we hide the distributors 
-			buttonSquare.visible = false;
-			labelSquare.visible = false;
-			
-			buttonHexagon.visible = false;
-			labelHexagon.visible = false;
-			
-			buttonTrapezoid.visible = false;
-			labelTrapezoid.visible = false;
-			
-			buttonTriangleEqui.visible = false;
-			labelTriangleEqui.visible = false;
-			
-			buttonTriangleRect.visible = false;
-			labelTriangleRect.visible = false;
-			
-			buttonDiamond.visible = false;
-			labelDiamond.visible = false;
-			
-			//we hide the bin
-			bin.visible = false;
-			
-			//We lock the distributors
-			
-			unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
-			storeLocked = true;
-			buttonSquare.inputEnabled = false;
-			buttonTrapezoid.inputEnabled = false;
-			buttonTriangleEqui.inputEnabled = false;
-			buttonHexagon.inputEnabled = false;
-			buttonTriangleRect.inputEnabled = false;
-			buttonDiamond.inputEnabled = false;
-			
-		}else{ 
-		
-			var cptSquare = 0 ;
-			P1.forEach(function (pattern) {
-				cptSquare ++;
-			});
-			var cptTrapeze = 0 ;
-			P2.forEach(function (pattern) {
-				cptTrapeze ++;
-			});
-			var cptHexagon = 0 ;
-			P3.forEach(function (pattern) {
-				cptHexagon ++;
-			});
-			var cptTriangleEqui = 0 ;
-			P4.forEach(function (pattern) {
-				cptTriangleEqui ++;
-			});
-			var cptTriangleRect = 0 ;
-			P5.forEach(function (pattern) {
-				cptTriangleRect ++;
-			});
-			var cptDiamond = 0 ;
-			P6.forEach(function (pattern) {
-				cptDiamond ++;
-			});
-			
-			
-			if (cptSquare ==0){ 
-			buttonSquare.visible = false;
-			labelSquare.visible = false;
-			}
-			if (cptHexagon==0){
-			buttonHexagon.visible = false;
-			labelHexagon.visible = false;
-			}
-			if (cptTrapeze==0){
-			buttonTrapezoid.visible = false;
-			labelTrapezoid.visible = false;
-			}
-			if (cptTriangleEqui==0){
-			buttonTriangleEqui.visible = false;
-			labelTriangleEqui.visible = false;
-			}
-			if (cptTriangleRect==0){
-			buttonTriangleRect.visible = false;
-			labelTriangleRect.visible = false;
-			}
-			if (cptDiamond==0){
-			buttonDiamond.visible = false;
-			labelDiamond.visible = false;
-			}
-			}	
-					
+                    //Distributors
+                    if (jsonObj.distrib == "off") {
+
+                        distrib = 0;
+
+                        //We add the form into the Basket
+                        P1.forEach(function (pattern) {
+                            addShape('square', F1);
+                        });
+
+                        P2.forEach(function (pattern) {
+                            addShape('trapeze', F2);
+                        });
+                        P3.forEach(function (pattern) {
+                            addShape('hexagon', F3);
+                        });
+                        P4.forEach(function (pattern) {
+                            addShape('triangle_equi', F4);
+                        });
+                        P5.forEach(function (pattern) {
+                            addShape('triangle_rect', F5);
+                        });
+                        P6.forEach(function (pattern) {
+                            addShape('diamond', F6);
+                        });
+
+                        //we hide the distributors 
+                        buttonSquare.visible = false;
+                        labelSquare.visible = false;
+
+                        buttonHexagon.visible = false;
+                        labelHexagon.visible = false;
+
+                        buttonTrapezoid.visible = false;
+                        labelTrapezoid.visible = false;
+
+                        buttonTriangleEqui.visible = false;
+                        labelTriangleEqui.visible = false;
+
+                        buttonTriangleRect.visible = false;
+                        labelTriangleRect.visible = false;
+
+                        buttonDiamond.visible = false;
+                        labelDiamond.visible = false;
+
+                        //we hide the bin
+                        bin.visible = false;
+
+                        //We lock the distributors
+
+                        unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
+                        storeLocked = true;
+                        buttonSquare.inputEnabled = false;
+                        buttonTrapezoid.inputEnabled = false;
+                        buttonTriangleEqui.inputEnabled = false;
+                        buttonHexagon.inputEnabled = false;
+                        buttonTriangleRect.inputEnabled = false;
+                        buttonDiamond.inputEnabled = false;
+
+                    } else {
+
+                        var cptSquare = 0;
+                        P1.forEach(function (pattern) {
+                            cptSquare++;
+                        });
+                        var cptTrapeze = 0;
+                        P2.forEach(function (pattern) {
+                            cptTrapeze++;
+                        });
+                        var cptHexagon = 0;
+                        P3.forEach(function (pattern) {
+                            cptHexagon++;
+                        });
+                        var cptTriangleEqui = 0;
+                        P4.forEach(function (pattern) {
+                            cptTriangleEqui++;
+                        });
+                        var cptTriangleRect = 0;
+                        P5.forEach(function (pattern) {
+                            cptTriangleRect++;
+                        });
+                        var cptDiamond = 0;
+                        P6.forEach(function (pattern) {
+                            cptDiamond++;
+                        });
+
+
+                        if (cptSquare == 0) {
+                            buttonSquare.visible = false;
+                            labelSquare.visible = false;
+                        }
+                        if (cptHexagon == 0) {
+                            buttonHexagon.visible = false;
+                            labelHexagon.visible = false;
+                        }
+                        if (cptTrapeze == 0) {
+                            buttonTrapezoid.visible = false;
+                            labelTrapezoid.visible = false;
+                        }
+                        if (cptTriangleEqui == 0) {
+                            buttonTriangleEqui.visible = false;
+                            labelTriangleEqui.visible = false;
+                        }
+                        if (cptTriangleRect == 0) {
+                            buttonTriangleRect.visible = false;
+                            labelTriangleRect.visible = false;
+                        }
+                        if (cptDiamond == 0) {
+                            buttonDiamond.visible = false;
+                            labelDiamond.visible = false;
+                        }
+                    }
+
                     //Update the pattern matrix with the shapes' matrix
 
                     P1.forEach(function (patternItem) {
@@ -484,15 +338,185 @@
                     }, this);
                 }
 
-//Function to add shapes from the basket
+//Update function that is always running on the background to resize
+                function updateSize() {
+// Adapt the size of the interface to the screen
+                    pipe.height = window.innerHeight - (390 + 212);
+                    // Basket position
+                    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
+                    basketMiddle.x = basketLeft.x + basketLeft.width;
+                    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
+                    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
+                    basketRight.x = window.innerWidth - (5 + basketRight.width);
+                    basketRight.y = window.innerHeight - (5 + basketRight.height);
+
+                    // Buttons on basket
+                    rotL.y = window.innerHeight - 210;
+                    rotR.y = window.innerHeight - 210;
+
+                    // Menu position
+                    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
+                    menuRight.x = window.innerWidth - (5 + menuRight.width);
+                    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
+                    menuMiddle.width = menuLenght;
+
+                    // Buttons on menu
+                    mute.x = window.innerWidth - (18 + 1 * 50);
+                    home.x = window.innerWidth - (18 + 2 * 50);
+                    ret.x = window.innerWidth - (18 + 3 * 50);
+
+                    //Patrick position
+                    pat.x = basketRight.x + 5;
+                    pat.y = basketRight.y - 135;
+
+                    //positions of shapes in the basket
+                    forms.forEach(function (F) {
+                        F.forEach(function (tempSprite) {
+                            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
+                                tempSprite.y = window.innerHeight - 155;
+                                if (tempSprite.x + tempSprite.width > window.innerWidth) {
+                                    tempSprite.x = Math.random() * (window.innerWidth - 310) + 90;
+                                }
+                                tempSprite.originalPosition = tempSprite.position.clone();
+                            }
+                        }, this);
+                    }, this);
+
+                }
+
+//Update function that is always running on the background
+                function update() {
+                    // Update of the shadows
+                    /*shadows.removeAll();
+                     forms.forEach(function (F) {
+                     F.forEach(function (sprite) {
+                     var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
+                     shadows.add(aShadow);
+                     aShadow.anchor.x = 0;
+                     aShadow.anchor.y = 0;
+                     aShadow.tint = 0x000000;
+                     aShadow.alpha = 0.3;
+                     });
+                     });*/
+
+                }
+
+                function buildMenu() {
+
+                    // Store Creation
+                    var store = game.add.sprite(5, 5, 'store');
+                    pipe = game.add.sprite(5, 395, 'pipe');
+                    pipe.height = window.innerHeight - (390 + 212);
+
+                    // Buttons in store
+                    bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
+                    bin.events.onInputOver.add(sound_trash, this);
+
+                    var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
+                    buttonSquare = game.add.button(15, 110, 'button-square', addForm1, this, 2, 1, 0, 1);
+                    labelSquare = game.add.text(53, 130, nbF1, style);
+                    labelSquare.anchor.x = 0.5;
+
+                    buttonTrapezoid = game.add.button(105, 110, 'button-trapeze', addForm2, this, 2, 1, 0, 1);
+                    labelTrapezoid = game.add.text(142, 130, nbF2, style);
+                    labelTrapezoid.anchor.x = 0.5;
+
+                    buttonTriangleEqui = game.add.button(15, 200, 'button-triangle-equi', addForm4, this, 2, 1, 0, 1);
+                    labelTriangleEqui = game.add.text(53, 220, nbF4, style);
+                    labelTriangleEqui.anchor.x = 0.5;
+
+                    buttonHexagon = game.add.button(105, 200, 'button-hexagon', addForm3, this, 2, 1, 0, 1);
+                    labelHexagon = game.add.text(142, 220, nbF3, style);
+                    labelHexagon.anchor.x = 0.5;
+
+                    buttonTriangleRect = game.add.button(15, 290, 'button-triangle-rect', addForm5, this, 2, 1, 0, 1);
+                    labelTriangleRect = game.add.text(53, 310, nbF5, style);
+                    labelTriangleRect.anchor.x = 0.5;
+
+                    buttonDiamond = game.add.button(105, 290, 'button-diamond', addForm6, this, 2, 1, 0, 1);
+                    labelDiamond = game.add.text(142, 310, nbF6, style);
+                    labelDiamond.anchor.x = 0.5;
+
+                    // Basket creation
+                    basketLeft = game.add.sprite(5, 0, 'basket-left');
+                    basketMiddle = game.add.sprite(0, 0, 'basket-middle');
+                    basketRight = game.add.sprite(0, 0, 'basket-right');
+
+                    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
+                    basketMiddle.x = basketLeft.x + basketLeft.width;
+                    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
+                    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
+                    basketRight.x = window.innerWidth - (5 + basketRight.width);
+                    basketRight.y = window.innerHeight - (5 + basketRight.height);
+
+                    // Menu construction
+                    switch (mode) {
+                        case "levelMode":
+                            menuLenght = 225;
+                            break;
+                        case "freeMode":
+                            menuLenght = 150;
+                            break;
+                    }
+
+                    menuRight = game.add.sprite(0, 5, 'menu-right');
+                    menuLeft = game.add.sprite(0, 5, 'menu-left');
+                    menuMiddle = game.add.sprite(0, 5, 'menu-middle');
+
+                    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
+                    menuRight.x = window.innerWidth - (5 + menuRight.width);
+                    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
+                    menuMiddle.width = menuLenght;
+
+                    //Add rotation and color buttons
+                    rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2, 1, 0, 1);
+                    rotR.events.onInputOver.add(sound_rotation, this);
+                    rotL = game.add.button(15, window.innerHeight - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
+                    rotL.events.onInputOver.add(sound_rotation, this);
+                    home = game.add.button(window.innerWidth - (18 + 4 * 50), 10, 'button-home', clickerHome, this, 2, 1, 0, 1);
+                    mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', mute, this, 2, 1, 0, 1);
+
+
+                    // Add Patrick to the menu
+                    pat = game.add.group();
+                    // position
+                    pat.x = basketRight.x + 5;
+                    pat.y = basketRight.y - 135;
+                    pat.scale.set(0.27, 0.27);
+                    // independant elements
+                    var patBody = game.add.sprite(0, 0, 'patrick');
+                    pat.add(patBody);
+                    patMouth = game.add.sprite(217, 168, 'patrick-mouth');
+                    pat.add(patMouth);
+                    patEyes = game.add.sprite(196, 80, 'patrick-eyes');
+                    pat.add(patEyes);
+                    //animations
+                    patMouth.animations.add('talk');
+                    patEyes.animations.add('blink');
+
+                    patrickBlink();
+
+                    shadows = game.add.group();
+
+
+                            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
+                            home.x = window.innerWidth - (18 + 2 * 50);
+                            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
+                            levelName = game.add.text(window.innerWidth - 280, 23,"Importation", levelStyle);
+                            sound_begin();
+
+                }
+
+                //Function to add shapes from the basket
+                //Function to add shapes from the basket
                 function addShape(shape, F) {
                     nbF = nbF + 1;
                     var position = Math.random() * (game.width - 310) + 90;
                     var tempSprite = F.create(position, game.height - 155, shape);
-                    tempSprite.originalPosition = tempSprite.position.clone();
-                    game.world.bringToTop(forms);
                     tempSprite.anchor.x = 0;
                     tempSprite.anchor.y = 0;
+                    tempSprite.originalPosition = tempSprite.position.clone();
+                    game.world.bringToTop(forms);
 
                     //tempSprite.tint = Math.random() * 0xffffff;
                     //tempSprite.tint= palette[Math.floor(Math.random() * palette.length)];
@@ -500,62 +524,74 @@
 
                     tempSprite.inputEnabled = true; //Active Input
                     tempSprite.input.enableDrag(false, true); //Mobile (drag)
-                    tempSprite.input.enableSnap(10, 10, false, true); //Quantisation of 10 pixels
+                    tempSprite.input.enableSnap(1, 1, false, true); //Grid of 1 pixel
                     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
-                    tempSprite.events.onDragStart.add(beginDrag, this);
+                    if (mode == "levelMode") {
+                        tempSprite.events.onDragStart.add(beginDrag, this);
+                    }
                     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
 
-                    /*tempSprite.events.onInputOver.add(function () {
-                     
-                     switch (test) {
-                     case 1:
-                     this.game.canvas.style.cursor = "url('assets/images/cursors/rot.png'),default";
-                     break;
-                     case 2:
-                     this.game.canvas.style.cursor = "url('assets/images/cursors/col.png'),default";
-                     break;
-                     default:
-                     this.game.canvas.style.cusor = "default";
-                     }
-                     });*/
+                    tempSprite.events.onInputOver.add(function () {
+                        switch (test) {
+                            case 1:
+                                this.game.canvas.style.cursor = "url('assets/images/cursors/rotR.png'),default";
+                                break;
+                            case 2:
+                                this.game.canvas.style.cursor = "url('assets/images/cursors/rotL.png'),default";
+                                break;
+                            case 3:
+                                this.game.canvas.style.cursor = "url('assets/images/cursors/col.png'),default";
+                                break;
+                            default:
+                                this.game.canvas.style.cusor = "default";
+                        }
+                    });
+                    totalshape++;
+
                 }
 
                 function addForm1(form1, pointer) {
                     nbF1 = nbF1 + 1;
                     labelSquare.text = nbF1;
                     addShape('square', F1);
+                    sound_square(nbF1);
                 }
 
                 function addForm2(form2, pointer) {
                     nbF2 = nbF2 + 1;
                     labelTrapezoid.text = nbF2;
                     addShape('trapeze', F2);
+                    sound_trapeze(nbF2);
                 }
 
                 function addForm3(form3, pointer) {
                     nbF3 = nbF3 + 1;
                     labelHexagon.text = nbF3;
                     addShape('hexagon', F3);
+                    sound_hexagon(nbF3);
                 }
 
                 function addForm4(form4, pointer) {
                     nbF4 = nbF4 + 1;
                     labelTriangleEqui.text = nbF4;
                     addShape('triangle_equi', F4);
+                    sound_triangle(nbF4)
                 }
 
                 function addForm5(form5, pointer) {
                     nbF5 = nbF5 + 1;
                     labelTriangleRect.text = nbF5;
                     addShape('triangle_rect', F5);
+                    sound_trirec(nbF5);
                 }
 
                 function addForm6(form6, pointer) {
                     nbF6 = nbF6 + 1;
                     labelDiamond.text = nbF6;
                     addShape('diamond', F6);
+                    sound_diamond(nbF6);
                 }
-                var affichage = "";
+
 //Edition Modes (colors and rotation)
 
                 function formInteraction(tempSprite, pointer) {
@@ -686,6 +722,61 @@
                     tempSprite.destroy();
                     trashBinSound();
                 }
+
+
+                function wallpaper() {
+                    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+                    game.scale.setResizeCallback(function () {
+                        updateSize(this);
+                    }, game);
+//Wallpaper
+                    var myBitmap = game.make.bitmapData(2000, 2000);
+                    myBitmap.addToWorld();
+                    var grd = myBitmap.context.createLinearGradient(0, 0, 1000, 1000);
+                    grd.addColorStop(0, "#66d1f9");
+                    grd.addColorStop(1, "#bce3f0");
+                    myBitmap.context.fillStyle = grd;
+                    myBitmap.context.fillRect(0, 0, 2000, 2000);
+//game.stage.backgroundColor = "#4488AA";
+                    palette = ["0x83EE00", "0xFBFE00", "0x058AB6", "0xE4005C", "0x8007BE", "0xFF8300"];
+
+                    shadows = game.add.group();
+                }
+
+// Lock the store if we start to drag a shape
+                function beginDrag(tempSprite) {
+                    if (!storeLocked) {
+                        unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
+                        unlockButton.events.onInputOver.add(unlock_store, this);
+                        storeLocked = true;
+                        buttonSquare.inputEnabled = false;
+                        buttonTrapezoid.inputEnabled = false;
+                        buttonTriangleEqui.inputEnabled = false;
+                        buttonHexagon.inputEnabled = false;
+                        buttonTriangleRect.inputEnabled = false;
+                        buttonDiamond.inputEnabled = false;
+                    }
+                }
+
+// Unlock the store once the unlockButton is clicked
+                function unlockStore(lockButton, pointer) {
+                    if (distrib == 1) {
+                        lockButton.destroy();
+                        storeLocked = false;
+                        buttonSquare.inputEnabled = true;
+                        buttonTrapezoid.inputEnabled = true;
+                        buttonTriangleEqui.inputEnabled = true;
+                        buttonHexagon.inputEnabled = true;
+                        buttonTriangleRect.inputEnabled = true;
+                        buttonDiamond.inputEnabled = true;
+                    }
+                }
+
+
+
+
+                var affichage = "";
+
 
 // to differentiate between a simple click and a real drag
                 function isDrag() {
@@ -961,47 +1052,22 @@
                             //alert("Bravo! Vous avez réussi ce niveau!");
                             document.getElementById("final").style.display = "block";
                             pat.visible = false;
-
+                            sound_sucess();
                         }, delay);
                     }
                 }
 
 
-// Lock the store if we start to drag a shape
-function beginDrag(tempSprite) {
-	if (!storeLocked) {
-		unlockButton = game.add.button(5, 5, 'ribbon', unlockStore, this, 1, 0, 1, 0);
-		storeLocked = true;
-		buttonSquare.inputEnabled = false;
-		buttonTrapezoid.inputEnabled = false;
-   		buttonTriangleEqui.inputEnabled = false;
-    	buttonHexagon.inputEnabled = false;
-   		buttonTriangleRect.inputEnabled = false;
-    	buttonDiamond.inputEnabled = false;
-	}
-}
-
-// Unlock the store once the unlockButton is clicked
-function unlockStore(lockButton, pointer) {
-	if( distrib == 1){ 
-	lockButton.destroy();
-	storeLocked = false;
-	buttonSquare.inputEnabled = true;
-	buttonTrapezoid.inputEnabled = true;
-   	buttonTriangleEqui.inputEnabled = true;
-    buttonHexagon.inputEnabled = true;
-   	buttonTriangleRect.inputEnabled = true;
-    buttonDiamond.inputEnabled = true;}
-}
 
 //Function at the end of the drag
+                var distrib = 1;
                 function endDrag(tempSprite, pointer) {
                     game.world.bringToTop(forms);
 
                     if ((game.input.y > bin.y) && (game.input.y < bin.y + bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x + bin.width)) {
-                        if (distrib==1){ 
-						deleteSprite(tempSprite);
-						}
+                        if (distrib == 1) {
+                            deleteSprite(tempSprite);
+                        }
                     } else {
                         if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
                             tempSprite.position.copyFrom(tempSprite.originalPosition);
@@ -1015,68 +1081,7 @@ function unlockStore(lockButton, pointer) {
                     updateSolution();
                 }
 
-//Update function that is always running on the background to resize
-                function updateSize() {
-// Adapt the size of the interface to the screen
-                    pipe.height = window.innerHeight - (390 + 212);
-                    // Basket position
-                    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
-                    basketMiddle.x = basketLeft.x + basketLeft.width;
-                    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
-                    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
-                    basketRight.x = window.innerWidth - (5 + basketRight.width);
-                    basketRight.y = window.innerHeight - (5 + basketRight.height);
 
-                    // Buttons on basket
-                    rotL.y = window.innerHeight - 210;
-                    rotR.y = window.innerHeight - 210;
-
-                    // Menu position
-                    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
-                    menuRight.x = window.innerWidth - (5 + menuRight.width);
-                    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
-                    menuMiddle.width = menuLenght;
-
-                    // Buttons on menu
-                    mute.x = window.innerWidth - (18 + 1 * 50);
-                    home.x = window.innerWidth - (18 + 2 * 50);
-                    ret.x = window.innerWidth - (18 + 3 * 50);
-
-                    //Patrick position
-                    pat.x = basketRight.x + 5;
-                    pat.y = basketRight.y - 135;
-
-                    //positions of shapes in the basket
-                    forms.forEach(function (F) {
-                        F.forEach(function (tempSprite) {
-                            if ((tempSprite.y > 500) || (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
-                                tempSprite.y = window.innerHeight - 155;
-                                if (tempSprite.x + tempSprite.width > window.innerWidth) {
-                                    tempSprite.x = Math.random() * (window.innerWidth - 310) + 90;
-                                }
-                                tempSprite.originalPosition = tempSprite.position.clone();
-                            }
-                        }, this);
-                    }, this);
-
-                }
-
-//Update function that is always running on the background
-                function update() {
-                    // Update of the shadows
-                    /*shadows.removeAll();
-                     forms.forEach(function (F) {
-                     F.forEach(function (sprite) {
-                     var aShadow = game.add.sprite(sprite.x + 3, sprite.y + 3, sprite.generateTexture());
-                     shadows.add(aShadow);
-                     aShadow.anchor.x = 0;
-                     aShadow.anchor.y = 0;
-                     aShadow.tint = 0x000000;
-                     aShadow.alpha = 0.3;
-                     });
-                     });*/
-
-                }
 
 //Debugging Mode       
                 function render() {
