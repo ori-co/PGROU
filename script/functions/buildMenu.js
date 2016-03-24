@@ -74,21 +74,6 @@ function buildMenu() {
     mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', mute, this, 2, 1, 0, 1);
 
 
-    switch (mode) {
-        case "levelMode":
-            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
-            home.x = window.innerWidth - (18 + 2 * 50);
-            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
-            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitle+" "+levelnum, levelStyle);
-            sound_begin();
-            break;
-        case "freeMode":
-            exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
-            print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', pdf, this, 2, 1, 0, 1);
-            col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
-            break;
-    }
-    
     // Add Patrick to the menu
     pat = game.add.group();
     // position
@@ -109,4 +94,28 @@ function buildMenu() {
     patrickBlink();
     
     shadows = game.add.group();
-}
+
+
+
+
+    switch (mode) {
+        case "levelMode":
+            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
+            home.x = window.innerWidth - (18 + 2 * 50);
+            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
+            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitle+" "+levelnum, levelStyle);
+            sound_begin();
+            
+            break;
+        case "freeMode":
+        	sound_creation();
+        	
+            exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
+            exp.events.onInputOver.add(sound_export, this);
+            print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', pdf, this, 2, 1, 0, 1);
+            print.events.onInputOver.add(sound_print, this);
+            col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
+            break;
+    }
+
+}    

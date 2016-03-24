@@ -36,6 +36,8 @@ function addShape(shape, F) {
                this.game.canvas.style.cusor="default";
        } 
     });
+    totalshape++;
+
 }
 
 function addForm1(form1, pointer) {

@@ -27,7 +27,7 @@ click.play();
 }
 
 function clicker(){
-	var clicker = soundManager.createSound({id : "clicker", url: language+"click.mp3"});
+	var clicker = soundManager.createSound({id : "clicker", url: language+"click.mp3",onfinish: function(){sound_placement();}});
 	clicker.play();
 }
 	
@@ -145,9 +145,63 @@ function  sound_begin(){
 if (begin==0){
 	begin = soundManager.createSound({id : "begin", url:language+"begin.mp3" });
 	soundManager.stopAll();
-	//patrickSpeak(begin);
+	patrickSpeak(begin);
 	begin.play();}
 	begin ++;
+	}		
+	
+function  sound_export(){
+if (expo==0){
+	exprt = soundManager.createSound({id : "exprt", url:language+"export.mp3" });
+	soundManager.stopAll();
+	//patrickSpeak(begin);
+	exprt.play();}
+	expo ++;
+	}	
+	
+function  sound_color(){
+
+	color = soundManager.createSound({id : "color", url:language+"color.mp3" });
+	soundManager.stopAll();
+	//patrickSpeak(begin);
+	color.play();
+
+	}		
+	
+function  sound_creation(){
+if (crea==0){
+	creation = soundManager.createSound({id : "creation", url:language+"creation.mp3", onfinish: function(){sound_color();}});
+	soundManager.stopAll();
+	//patrickSpeak(begin);
+	creation.play();}
+	crea ++;
+	}			
+
+
+function  sound_print(){
+if (printer==0){
+	printable = soundManager.createSound({id : "printable", url:language+"print.mp3" });
+	soundManager.stopAll();
+	//patrickSpeak(begin);
+	printable.play();}
+	printer ++;
+	}
+	
+
+function  sound_placement(){
+if (totalshape==1){
+	alert("ca marche");
+	placement = soundManager.createSound({id : "placement", url:language+"place.mp3" });
+	soundManager.stopAll();
+	//patrickSpeak(begin);
+	placement.play();}
+	
+	}	
+	
+function  sound_sucess(){
+	success= soundManager.createSound({id : "success", url:language+"success.mp3" });
+	soundManager.stopAll();
+	success.play();
 	}		
 
 

@@ -15,6 +15,7 @@
             <script type="text/javascript" src="script/phaser.js"></script>
             <script type="text/javascript" src="script/soundmanager2.js"></script>
 
+			<script type="text/javascript" src="script/functions/animations.js"></script>
             <script type="text/javascript" src="script/functions/preload.js"></script>
             <script type="text/javascript" src="script/functions/debug.js"></script>
             <script type="text/javascript" src="script/functions/create-Level.js"></script>
@@ -33,7 +34,6 @@
             <script type="text/javascript" src="script/functions/endDrag-Utils.js"></script>
             <script type="text/javascript" src="script/functions/endDrag-Level.js"></script>
             <script type="text/javascript" src="script/functions/exportProblem.js"></script>
-            <script type="text/javascript" src="script/functions/animations.js"></script>
 			<script type="text/javascript" src="script/text/fr_buttons.js"></script>
 			<script type="text/javascript" src="script/functions/patternCreation.js"></script>
 			 <script type="text/javascript" src="script/functions/levels.js"></script>
@@ -41,6 +41,7 @@
              
              <script> 
         var language = "assets/audio/fr/";
+        
     
         soundManager.onload = function(){
             sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
