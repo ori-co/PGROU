@@ -308,19 +308,17 @@ function updateSolution() {
             var delay = 500;
             setTimeout(function () {
                 //alert("Bravo! Vous avez réussi ce niveau!");
-				if (parseInt(levelnum)==nbLevels){
-					document.getElementById("final").style.display = "block";
-                document.getElementById("next").style.display = "none";
-                document.getElementById("again").value = parseInt(levelnum);
-                sound_sucess();
-				}else{ 
                 document.getElementById("final").style.display = "block";
-                document.getElementById("next").value = parseInt(levelnum)+1;
-                document.getElementById("again").value = parseInt(levelnum);
                 pat.visible=false;
                 sound_sucess();
+				if (levelnum!="-"){
+                    if (parseInt(levelnum)==nbLevels){
+                        document.getElementById("next").style.display = "none";
+                    }else{ 
+                        document.getElementById("next").value = parseInt(levelnum)+1;
+                    }
+                    document.getElementById("again").value = parseInt(levelnum);
                 }
-                
             }, delay);
     }
 }

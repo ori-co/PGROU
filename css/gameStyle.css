@@ -119,6 +119,23 @@ input:focus {
 #muteon:active {
     background-image: url('../assets/images/levels/option-mute_normal.png');
 }
+#importButton {
+    background-image : url('../assets/images/final/button_import_normal.png');
+    height : 100px !important;
+    width : 87px !important;
+    position:relative;
+    top:-10px;
+}
+
+#importButton:hover {
+    background-image : url('../assets/images/final/button_import_over.png');
+    color : #ffc2cc;
+}
+ 
+#importButton:active {
+    background-image:url('../assets/images/final/button_import_click.png');
+    color:#dd6387;
+}
 
 .levelButton{
     background-image: url('../assets/images/final/button_normal.png'); 

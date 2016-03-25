@@ -8,7 +8,49 @@
         <script type="text/javascript" src="script/text/fr_buttons.js"></script>
 
         <script>
+/////////////////////////////////////////////////////////////
 
+            //Function to verify the extension 
+            function checkExtension() {
+                var fileInput = document.getElementById('fileInput');
+                var myString = fileInput.value;
+                var myExt = myString.substring(myString.lastIndexOf(".") + 1, myString.length);
+                myExt = myExt.toLowerCase();
+                //Error message if it is not a JSON
+                if (myExt !== "json") {
+                    alert(errorLoad);
+                } else {
+                    //If it is good, we launch the game
+                    //document.body.style.backgroundImage = "none";
+                    self.location.href = "load.html?leveltext=" + document.getElementById('cache').innerText;
+                }
+            }
+
+
+            //Load JSON file
+            window.onload = function () {
+                var fileInput = document.getElementById('fileInput');
+                //We charge the json when we pass in hidden champ the cache div.
+                var fileCache = document.getElementById('cache');
+                fileInput.addEventListener('change', function (e) {
+
+                    //We display the name of the file in the place "ulpoadFile"
+                    document.getElementById("uploadFile").value = fileInput.value;
+                    var file = fileInput.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+
+                        var jsonObj = reader.result;
+                        fileCache.innerHTML = jsonObj;
+                    };
+                    reader.readAsText(file);
+                }
+
+
+                );
+                ;
+            };
+            
             // Level Sounds
             var language = "assets/audio/fr/";
             
@@ -56,6 +98,8 @@
             //Buttons
             function buttons() {
                 document.getElementById('importButton').value = problemImport;
+                document.getElementById('start').value = loadOk;
+                document.getElementById('uploadFile').placeholder = fileSelect;
             }
         </script>
 
@@ -70,7 +114,20 @@
 
         <div id="importation">
 
-            <input type="button" id="importButton" value="" onmouseover="playing(imports);" onclick="self.location.href = 'load.html';" /> 
+            <input type="button" id="importButton" value="" onmouseover="playing(imports);" onclick="document.getElementById('json').style.display='block';this.style.display='none';" /> 
+            <div id="json">
+                <div class="inputBtnSection">
+                    <input id="uploadFile" class="disableInputField" placeholder="" disabled="disabled" />
+
+                    <label class="fileUpload">
+                        <input id="fileInput" type="file" class="upload" />
+                        <span class="uploadBtn">...</span>
+                    </label>
+                </div>
+                <input type="button" id="start" value="" onclick="checkExtension();">
+            </div>
+
+            <h3 class="cache" id="cache"> </h3> 
         </div>
 
         <div id="levels">
