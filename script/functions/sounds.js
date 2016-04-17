@@ -190,7 +190,7 @@ if (printer==0){
 
 function  sound_placement(){
 if (totalshape==1){
-	alert("ca marche");
+	//alert("ca marche");
 	placement = soundManager.createSound({id : "placement", url:language+"place.mp3" });
 	soundManager.stopAll();
 	patrickSpeak(placement);
