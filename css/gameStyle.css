@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family:arial;
 }
 
 .cache {
@@ -137,20 +138,42 @@ input:focus {
     color:#dd6387;
 }
 
-.levelButton{
-    background-image: url('../assets/images/final/button_normal.png'); 
+#next{
+    font-size:30px;
+    padding-right:35px;
+    background-image: url('../assets/images/final/button_normal_next.png'); 
     color:#0d004c;
     height : 77px;
     width : 78px;
     margin : 3px;
 }
 
-.levelButton:hover {
-    background-image: url('../assets/images/final/button_over.png'); 
+#next:hover {
+    background-image: url('../assets/images/final/button_over_next.png'); 
     color:#b3f5fb;
 }
 
-.levelButton:active {
-    background-image: url('../assets/images/final/button_click.png');
-    color:#11aab8;
+#next:active {
+    background-image: url('../assets/images/final/button_click_next.png');
+    color:#0d004c;
+}
+
+#again{
+    font-size:30px;
+    padding-left:20px;
+    background-image: url('../assets/images/final/button_normal_again.png'); 
+    color:#0d004c;
+    height : 77px;
+    width : 78px;
+    margin : 3px;
+}
+
+#again:hover {
+    background-image: url('../assets/images/final/button_over_again.png'); 
+    color:#b3f5fb;
+}
+
+#again:active {
+    background-image: url('../assets/images/final/button_click_again.png');
+    color:#0d004c;
 }

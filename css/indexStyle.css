@@ -4,6 +4,7 @@ body{
     top:0;
     bottom:0;
     margin:0;
+    font-family:arial;
 }
 #wallpaper {
     width:100%;
@@ -23,7 +24,6 @@ input{
     height : 100px;
     width : 300px;
     border : none;
-    font-family : roboto;
     color : #0d004c;
     font-weight: 600;
     font-size : 20px;
