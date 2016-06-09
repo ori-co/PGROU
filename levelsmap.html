@@ -20,36 +20,34 @@
                 if (myExt !== "json") {
                     alert(errorLoad);
                 } else {
-                    //If it is good, we launch the game
-                    //document.body.style.backgroundImage = "none";
-                    self.location.href = "load.html?leveltext=" + document.getElementById('cache').innerText;
+                    if(document.getElementById('cache').innerText == ""){
+                        alert(errorEmptyJson);
+                    } else {                        
+                        //If it is good, we launch the game
+                        self.location.href = "load.html?leveltext=" + document.getElementById('cache').innerText;
+                    }
                 }
             }
 
 
             //Load JSON file
-            window.onload = function () {
+            
+            function loadJsonFile() {
                 var fileInput = document.getElementById('fileInput');
-                //We charge the json when we pass in hidden champ the cache div.
                 var fileCache = document.getElementById('cache');
-                fileInput.addEventListener('change', function (e) {
-
-                    //We display the name of the file in the place "ulpoadFile"
-                    document.getElementById("uploadFile").value = fileInput.value;
-                    var file = fileInput.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-
-                        var jsonObj = reader.result;
-                        fileCache.innerHTML = jsonObj;
-                    };
-                    reader.readAsText(file);
-                }
-
-
-                );
-                ;
-            };
+                var filePlaceholder = document.getElementById('uploadFile');
+                
+                if ('files' in fileInput) {
+                    if (fileInput.files.length > 0) {
+                        filePlaceholder.value = fileInput.files[0].name
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            fileCache.innerHTML = reader.result;
+                        };
+                        reader.readAsText(fileInput.files[0]);
+                   }
+                } 
+            }
             
             // Level Sounds
             var language = "assets/audio/fr/";
@@ -167,7 +165,7 @@
                     <input id="uploadFile" class="disableInputField" placeholder="" disabled="disabled" />
 
                     <label class="fileUpload">
-                        <input id="fileInput" type="file" class="upload" />
+                        <input id="fileInput" type="file" class="upload" onchange="loadJsonFile()" />
                         <span class="uploadBtn">...</span>
                     </label>
                 </div>

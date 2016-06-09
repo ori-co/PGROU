@@ -6,6 +6,7 @@ var freemode = "Mode Libre";
 var problemImport = "Importer un probleme";
 var loadOk = "C'est parti";
 var errorLoad = "Votre fichier n'est pas au bon format. Choisissez un fichier JSON.";
+var errorEmptyJson = "Votre fichier est vide.";
 var fileSelect = "Choisissez un fichier";
 
 //Level Mode
