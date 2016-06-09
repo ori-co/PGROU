@@ -125,6 +125,7 @@ function sound_rotation(){
 	if (cptrot==0){
 	rot = soundManager.createSound({id : "rot", url:language+"rot.mp3" });
 	soundManager.stopAll();
+    patrickSpeak(rot);
 	rot.play();}
 	cptrot ++;
 	}
