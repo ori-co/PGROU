@@ -303,7 +303,7 @@ function updateSolution() {
     }
 
 
-    if (valid < 1500 && areaSolution == areaPattern) {
+    if (valid < 500 && areaSolution == areaPattern) {
         fin = 1;
             var delay = 500;
             setTimeout(function () {
