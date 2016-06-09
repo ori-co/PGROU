@@ -51,26 +51,17 @@
             
             // Level Sounds
             var language = "assets/audio/fr/";
-            
+            var canPlay = false;
 
             soundManager.onload = function () {
-            	introduction = soundManager.createSound({id : "introduction", url: language+"introduction.mp3"});
-                sound_home = soundManager.createSound({id: "clickhome", url: language + "click.mp3", onfinish: function () {
-                        self.location.href = 'index.html'
-                    }});
+            	introduction = soundManager.createSound({id : "introduction", url: language+"introduction.mp3",onfinish: function(){ canPlay=true;}});
+                sound_home = soundManager.createSound({id: "clickhome", url: language + "click.mp3", onfinish: function () {self.location.href = 'index.html';}});
                 sound_mute = soundManager.createSound({id: "clickmute", url: language + "click.mp3"});
-                sound = soundManager.createSound({
-                    id: "click", 
-                    url: language + "click.mp3",
-                    onload: function() {
-                        this.play();
-                    }});
+                sound = soundManager.createSound({id: "click", url: language + "click.mp3"});
                 sound_locked = soundManager.createSound({id: "clicklock", url: language + "locked.mp3"});
-                imports = soundManager.createSound({id : "imports", url: language+"import.mp3"});
+                imports = soundManager.createSound({id : "imports", url: language+"import.mp3",onfinish: function(){ canPlay=true;}});
                 introduction.play();
             }
-            
-           
 
             function sound_level(i) {
                 var element = document.getElementById(i);
@@ -85,19 +76,21 @@
             }
 
             function playing(son){
-			soundManager.stopAll();
-			son.play();
+                if (canPlay){
+                    canPlay = false;
+                    son.play();
+                }
 			}
             
             function mute(){
-            if (!soundManager.muted){
-            soundManager.mute();
-            document.getElementById("mute").id="muteon";
-            }else{
-            soundManager.unmute();
-            sound_mute.play();
-            document.getElementById("muteon").id="mute";
-            }
+                if (!soundManager.muted){
+                    soundManager.mute();
+                    document.getElementById("mute").id="muteon";
+                }else{
+                    soundManager.unmute();
+                    sound_mute.play();
+                    document.getElementById("muteon").id="mute";
+                }
             }
             
             //Buttons
