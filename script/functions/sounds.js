@@ -39,7 +39,7 @@ function sound_square(nbF1){
 }
 
 function sound_trapeze(nbF2){
- 	nb2 = soundManager.createSound({id : "pentagon"+nbF2, url:language+"pentagon"+nbF2+".mp3"});
+ 	nb2 = soundManager.createSound({id : "trapeze"+nbF2, url:language+"trapeze"+nbF2+".mp3"});
 	soundManager.stopAll();
 	patrickSpeak(nb2);
 	nb2.play();
@@ -84,7 +84,7 @@ function sound_square_off(nbF1){
 
 
 function sound_trapeze_off(nbF2){
- 	n2 = soundManager.createSound({id : "pentagon_off"+nbF2, url:language+"pentagon_off"+nbF2+".mp3"});
+ 	n2 = soundManager.createSound({id : "trapeze_off"+nbF2, url:language+"trapeze_off"+nbF2+".mp3"});
 	soundManager.stopAll();
 	patrickSpeak(n2);
 	n2.play();
