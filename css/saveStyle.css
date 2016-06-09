@@ -5,7 +5,7 @@
     height : 100px;
     width : 300px;
     border : none;
-    font : ucidatypewriter, monospace;
+    font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
     color : white;
     font-weight: 600;
     font-size : 25px;
@@ -43,21 +43,21 @@ body{
 }
 
 label{
-	font : ucidatypewriter, monospace;
+	font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
     color : #545454;
 	font-weight: 600;
     font-size : 25px;
 }
 
 .error{
-	font : ucidatypewriter, monospace;
+	font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
     color : #F00D3F;
 	font-weight: 600;
     font-size : 18px;
 }
 
 .ok{
-	font : ucidatypewriter, monospace;
+	font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
     color : #67920A;
 	font-weight: 600;
     font-size : 30px;
