@@ -26,34 +26,15 @@
             
             function exportProblem() {
             
-                var json = '{\n\
-                             \"problem\":\n\
-                                            {\n\
-                                            \"pattern\":[\n\
-                            ';
+                var json = '{\"problem\":{\"pattern\":[';
                 var cpt = 0;
             
                 //Square
                 F1.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ',\n\
-                                {\n\
-                                \"shape\":\"square\",\n\
-                                \"color\":\"' + convertColor(formItem.tint) + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '"shape\":\"square\",\"color\":\"' + convertColor(formItem.tint) + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
-                        json = json + '{\n\
-                                \"shape\":\"square\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '{\"shape\":\"square\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
                     }
                 }, this);
@@ -61,24 +42,9 @@
                 //Trapeze
                 F2.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ' ,\n\
-                                {\n\
-                                \"shape\":\"trapeze\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + ' ,{\"shape\":\"trapeze\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
-                        json = json + '{\n\
-                                \"shape\":\"trapeze\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '{\"shape\":\"trapeze\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
                     }
             
@@ -87,24 +53,9 @@
                 //Hexagon
                 F3.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ',\n\
-                                {\n\
-                                \"shape\":\"hexagon\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + ',{\"shape\":\"hexagon\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
-                        json = json + '{\n\
-                                \"shape\":\"hexagon\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '{\"shape\":\"hexagon\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
                     }
                 }, this);
@@ -112,24 +63,9 @@
                 //Triangle Equilatéral
                 F4.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ',\n\
-                                {\n\
-                                \"shape\":\"triangleEqui\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + ',{\"shape\":\"triangleEqui\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
-                        json = json + '{\n\
-                                \"shape\":\"triangleEqui\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '{\"shape\":\"triangleEqui\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
                     }
                 }, this);
@@ -137,24 +73,9 @@
                 //Rectangular Triangle
                 F5.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ',\n\
-                                {\n\
-                                \"shape\":\"triangleRect\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + ',{\"shape\":\"triangleRect\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
-                        json = json + '{\n\
-                                \"shape\":\"triangleRect\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '{\"shape\":\"triangleRect\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
                     }
             
@@ -163,32 +84,14 @@
                 //Diamond
                 F6.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ',\n\
-                                {\n\
-                                \"shape\":\"diamond\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + ',{\"shape\":\"diamond\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
-                        json = json + '{\n\
-                                \"shape\":\"diamond\",\n\
-                                \"color\":\"' + formItem.tint + '\",\n\
-                                \"rotation\":\"' + formItem.frame + '\",\n\
-                                \"anchorPoint\": {\n\
-                                                     \"x\":\"' + formItem.x + '\",\n\
-                                                     \"y\":\"' + formItem.y + '\"}\n\
-                                }';
+                        json = json + '{\"shape\":\"diamond\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
                     }
                 }, this);
             
-                json = json + '\n\
-                        ]\n\
-                        }\n\
-						,"distrib" :"on"}';
+                json = json + ']},"distrib" :"on"}';
             
                 //Open a pop-up to save the json file
                 popup = window.open('', 'popup', 'height=300, width=600,left=' + ((screen.width - 400) / 2) + ',top=' + ((screen.height - 500) / 2));

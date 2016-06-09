@@ -231,6 +231,6 @@ function pdf() {
     }, this);
 
 
-    doc.save('JeuDeConstruction.pdf');
+    doc.save(exportPDFname+'.pdf');
 }
 

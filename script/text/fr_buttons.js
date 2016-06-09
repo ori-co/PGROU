@@ -15,4 +15,5 @@ var levelTitle = "Niveau";
 //Problem Export
 var exportInputName = "Nom de votre probleme";
 var saveProblem = "Enregistrer";
-var errorNameExport = "Nom invalide !"
+var errorNameExport = "Nom invalide !";
+var exportPDFname = "PatriMath-a-decouper";
