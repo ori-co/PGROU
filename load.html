@@ -9,20 +9,18 @@
 
 			<script>
 			var url = window.location.search;
-			var leveltext = url.substring(url.lastIndexOf("=")).split('=')[1]; 
+			var leveltext = url.substring(url.lastIndexOf("=")+1); 
 			</script>
 			
             <script type="text/javascript" src="script/phaser.js"></script>
             <script type="text/javascript" src="script/soundmanager2.js"></script>
-
-			<script type="text/javascript" src="script/functions/animations.js"></script>
+            
             <script type="text/javascript" src="script/functions/preload.js"></script>
-            <script type="text/javascript" src="script/functions/debug.js"></script>
             <script type="text/javascript" src="script/functions/create-Load.js"></script>
-            <script type="text/javascript" src="script/functions/updateSize.js"></script>
+            <script type="text/javascript" src="script/functions/debug.js"></script>
             <script type="text/javascript" src="script/functions/update.js"></script>
+            <script type="text/javascript" src="script/functions/updateSize.js"></script>
             <script type="text/javascript" src="script/functions/varInit.js"></script>
-            <script type="text/javascript" src="script/functions/sounds.js"></script>
             <script type="text/javascript" src="script/functions/buildMenu.js"></script>
             <script type="text/javascript" src="script/functions/matrixInit.js"></script>
             <script type="text/javascript" src="script/functions/matrixUtils.js"></script>
@@ -30,39 +28,40 @@
             <script type="text/javascript" src="script/functions/gameButtons.js"></script>
             <script type="text/javascript" src="script/functions/wallpaper.js"></script>
             <script type="text/javascript" src="script/functions/beginDrag.js"></script>
-            <script type="text/javascript" src="script/functions/endDrag-Utils.js"></script>
+            <script type="text/javascript" src="script/functions/endDragUtils.js"></script>
             <script type="text/javascript" src="script/functions/endDrag-Level.js"></script>
             <script type="text/javascript" src="script/functions/exportProblem.js"></script>
-			<script type="text/javascript" src="script/text/fr_buttons.js"></script>
 			<script type="text/javascript" src="script/functions/patternCreation.js"></script>
-			 <script type="text/javascript" src="script/functions/levels.js"></script>
-
+            <script type="text/javascript" src="script/functions/sounds.js"></script>
+            <script type="text/javascript" src="script/functions/animations.js"></script>            
              
-             <script> 
-        var language = "assets/audio/fr/";
-        
-    
-        soundManager.onload = function(){
-            sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html
-            sound_mute = soundManager.createSound({id: "clickmute", url: language + "click.mp3"});
-            sound_ret = soundManager.createSound({id : "clickret", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
-        	sound = soundManager.createSound({id : "clicklevel", url: language+"click.mp3"});
-            }
+            <script type="text/javascript" src="script/text/fr_buttons.js"></script>
+
+            <script> 
+            var language = "assets/audio/fr/";
             
-        function sound_load(){
-            sound.options.onfinish= function(){self.location.href='load.html';};
-            sound.play();
-        }
+        
+            soundManager.onload = function(){
+                sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html
+                sound_mute = soundManager.createSound({id: "clickmute", url: language + "click.mp3"});
+                sound_ret = soundManager.createSound({id : "clickret", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
+                sound = soundManager.createSound({id : "clicklevel", url: language+"click.mp3"});
+            }
+                
+            function sound_load(){
+                sound.options.onfinish= function(){self.location.href='load.html';};
+                sound.play();
+            }
 
             function muteend(){
-            if (!soundManager.muted){
-            soundManager.mute();
-            document.getElementById("mute").id="muteon";
-            }else{
-            soundManager.unmute();
-            sound_mute.play();
-            document.getElementById("muteon").id="mute";
-            }
+                if (!soundManager.muted){
+                    soundManager.mute();
+                    document.getElementById("mute").id="muteon";
+                }else{
+                    soundManager.unmute();
+                    sound_mute.play();
+                    document.getElementById("muteon").id="mute";
+                }
             }
              </script>
 </head>
