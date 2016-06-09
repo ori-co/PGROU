@@ -209,6 +209,8 @@ soundManager.mute();
 mute.setFrames(3, 0, 1, 0);
 }else{
 soundManager.unmute();
+click = soundManager.createSound({id : "click", url: language+"click.mp3"});
+click.play();
 mute.setFrames(2, 1, 0, 1);
 }
 }	

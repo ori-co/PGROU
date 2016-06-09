@@ -43,7 +43,8 @@
         
     
         soundManager.onload = function(){
-            sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html'}});
+            sound_home = soundManager.createSound({id : "clickhome", url: language+"click.mp3", onfinish: function(){ self.location.href='index.html
+            sound_mute = soundManager.createSound({id: "clickmute", url: language + "click.mp3"});
             sound_ret = soundManager.createSound({id : "clickret", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
         	sound = soundManager.createSound({id : "clicklevel", url: language+"click.mp3"});
             }
@@ -59,6 +60,7 @@
             document.getElementById("mute").id="muteon";
             }else{
             soundManager.unmute();
+            sound_mute.play();
             document.getElementById("muteon").id="mute";
             }
             }
