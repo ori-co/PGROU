@@ -12,12 +12,18 @@
 			var language = "assets/audio/fr/";
        		soundManager.onload = function(){
        		welcome =  soundManager.createSound({id : "welcome", url: language+"welcome.mp3"});
-       		welcome.play();
         	son1 = soundManager.createSound({id : "click1", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
         	son2 = soundManager.createSound({id : "click2", url: language+"classic.mp3"});
         	son3 = soundManager.createSound({id : "click3", url: language+"free.mp3"});
-        	son4 = soundManager.createSound({id : "click4", url: language+"click.mp3", onfinish: function(){ self.location.href='freemode.html'}});}
+        	son4 = soundManager.createSound({id : "click4", url: language+"click.mp3", onfinish: function(){ self.location.href='freemode.html'}});
+            
+            welcome.play();
+            }
 			
+            soundManager.ontimeout = function() {
+            alert("SM2 ne fonctionne pas");
+            }
+            
 			//Buttons
 			 function buttons(){ 
 				document.getElementById('b1').value=levelmode;

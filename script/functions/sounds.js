@@ -1,7 +1,5 @@
 // Sound click functions
 function trashBinSound() {
-    // la variable bin était deja utilisée pour autre chose ! (nom du bouton)
-    // attention quand tu utlises des variables locales à ne pas ecraser des variables globales
     bintemp = soundManager.createSound({id : "bin", url: language+"trashbin.mp3"});
 	bintemp.play();
 }
