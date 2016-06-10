@@ -32,7 +32,7 @@
                 //Square
                 F1.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + '"shape\":\"square\",\"color\":\"' + convertColor(formItem.tint) + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
+                        json = json + ',{\"shape\":\"square\",\"color\":\"' + convertColor(formItem.tint) + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
                         json = json + '{\"shape\":\"square\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
