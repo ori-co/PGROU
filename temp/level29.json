@@ -1,1 +1,0 @@
-{"problem":{ "pattern":[{"shape":"diamond", "color":"0xFF8300", "rotation":"0","anchorPoint": { "x":"617", "y":"217"}},{"shape":"diamond", "color":"0x058AB6","rotation":"2", "anchorPoint": { "x":"665","y":"245"} },{ "shape":"diamond",  "color":"0xFF8300", "rotation":"4","anchorPoint": { "x":"665","y":"189"} }]},"distrib" :"on"}
