@@ -148,15 +148,19 @@ if (totalshape==1){
 
 function  sound_begin(){
 if (Number(levelnum)<2){
-	begin = soundManager.createSound({id : "begin", url:language+"help_begin.mp3",onload:function(){begin.play();patrickSpeak(begin);canPlay=false;} });
-    }
+	begin = soundManager.createSound({id : "begin", url:language+"help_begin.mp3" });
+	patrickSpeak(begin);
+    canPlay=false;
+	begin.play();}
 	cptbegin ++;
 	}			
 	
 function  sound_creation(){
 if (crea==0){
-	creation = soundManager.createSound({id : "creation", url:language+"help_creation.mp3",onload:function(){creation.play();patrickSpeak(creation);canPlay=false;}});
-    }
+	creation = soundManager.createSound({id : "creation", url:language+"help_creation.mp3"});
+	canPlay=false;
+	patrickSpeak(creation);
+	creation.play();}
 	crea ++;
 	}			
 

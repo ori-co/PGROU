@@ -54,7 +54,7 @@
             var canPlay = false;
 
             soundManager.onload = function () {
-            	introduction = soundManager.createSound({id : "introduction", url: language+"introduction.mp3",onload:function(){introduction.play();},onfinish: function(){ canPlay=true;}});
+            	introduction = soundManager.createSound({id : "introduction", url: language+"introduction.mp3",onfinish: function(){ canPlay=true;},autoPlay:true});
                 sound_home = soundManager.createSound({id: "clickhome", url: language + "click.mp3", onfinish: function () {self.location.href = 'index.html';}});
                 sound_mute = soundManager.createSound({id: "clickmute", url: language + "click.mp3"});
                 sound = soundManager.createSound({id: "click", url: language + "click.mp3"});
