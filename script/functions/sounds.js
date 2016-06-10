@@ -4,14 +4,6 @@ function trashBinSound() {
 	bintemp.play();
 }
 
-function sound_trash(){
-	if (cpttrash==0){
-	trash = soundManager.createSound({id : "trash", url:language+"trash.mp3" });
-	soundManager.stopAll();
-	trash.play();}
-	cpttrash ++;
-	}
-
 function clickerBack(){
 click = soundManager.createSound({id : "click", url: language+"click.mp3", 
 onfinish: function(){ self.location.href='levelsmap.html'}});
@@ -121,82 +113,56 @@ function sound_diamond_off(nbF6){
 	n6.play();
 }
 
-function sound_rotation(){
-	if (cptrot==0){
-	rot = soundManager.createSound({id : "rot", url:language+"rot.mp3" });
-	soundManager.stopAll();
-    patrickSpeak(rot);
-	rot.play();}
-	cptrot ++;
-	}
-	
+// Help sounds - explanations of the commands
+function playHelp(mp3Name, cpt){
+    if (cpt == 0){
+        var helpSound = soundManager.createSound({id : mp3Name, url:language+mp3Name+".mp3"});
+        if(canPlay){
+            canPlay = false;
+            patrickSpeak(helpSound);
+            helpSound.play();
+            cpt++;
+        }
+    }
+    return cpt;
+}
 
-function unlock_store(){
-	if (cptlock==0){
-	lock = soundManager.createSound({id : "lock", url:language+"lock.mp3" });
-	soundManager.stopAll();
-	patrickSpeak(lock);
-	lock.play();}
-	cptlock ++;
-	}	
+function sound_trash(){ cpttrash = playHelp("help_trash",cpttrash); }
+    
+function sound_rotation(){ cptrot= playHelp("help_rot",cptrot);}
+
+function sound_export(){expo = playHelp("help_export",expo);}
+
+function sound_color(){cptcol = playHelp("help_color",cptcol);}
+
+function sound_print(){printer = playHelp("help_print",printer);}
+	
+function unlock_store(){cptlock = playHelp("help_lock",cptlock);}
+    
+function  sound_placement(){
+if (totalshape==1){
+    cptplace = playHelp("help_placement",cptplace);
+    }
+}
 
 function  sound_begin(){
 if (Number(levelnum)<2){
-	begin = soundManager.createSound({id : "begin", url:language+"begin.mp3" });
-	soundManager.stopAll();
+	begin = soundManager.createSound({id : "begin", url:language+"help_begin.mp3" });
 	patrickSpeak(begin);
+    canPlay=false;
 	begin.play();}
-	begin ++;
-	}		
-	
-function  sound_export(){
-if (expo==0){
-	exprt = soundManager.createSound({id : "exprt", url:language+"export.mp3" });
-	soundManager.stopAll();
-	patrickSpeak(exprt);
-	exprt.play();}
-	expo ++;
-	}	
-	
-function  sound_color(){
-
-	color = soundManager.createSound({id : "color", url:language+"color.mp3" });
-	soundManager.stopAll();
-	patrickSpeak(color);
-	color.play();
-
-	}		
+	cptbegin ++;
+	}			
 	
 function  sound_creation(){
 if (crea==0){
-	creation = soundManager.createSound({id : "creation", url:language+"creation.mp3", onfinish: function(){sound_color();}});
-	soundManager.stopAll();
+	creation = soundManager.createSound({id : "creation", url:language+"help_creation.mp3"});
+	canPlay=false;
 	patrickSpeak(creation);
 	creation.play();}
 	crea ++;
 	}			
 
-
-function  sound_print(){
-if (printer==0){
-	printable = soundManager.createSound({id : "printable", url:language+"print.mp3" });
-	soundManager.stopAll();
-	patrickSpeak(printable);
-	printable.play();}
-	printer ++;
-	}
-	
-
-function  sound_placement(){
-if (totalshape==1){
-	//alert("ca marche");
-	placement = soundManager.createSound({id : "placement", url:language+"place.mp3" });
-	soundManager.stopAll();
-	patrickSpeak(placement);
-	placement.play();}
-	
-	}	
-	
 function  sound_sucess(){
 	success= soundManager.createSound({id : "success", url:language+"success.mp3" });
 	soundManager.stopAll();

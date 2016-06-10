@@ -11,6 +11,7 @@ var fileSelect = "Choisissez un fichier";
 
 //Level Mode
 var levelTitle = "Niveau";
+var levelTitleLoad = "Création";
 
 //Problem Export
 var exportInputName = "Nom de votre probleme";

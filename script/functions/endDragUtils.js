@@ -53,7 +53,7 @@ function snapEffect(tempSprite, gameMode) {
         }
     }
 
-    if (gameMode == 'levelMode') {
+    if (gameMode == 'levelMode' || gameMode == "loadMode") {
         // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
         P1.forEach(function (patternItem) {
             addShapeMatrix(patternItem, 3);

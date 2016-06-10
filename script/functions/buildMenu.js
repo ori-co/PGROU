@@ -51,6 +51,9 @@ function buildMenu() {
         case "levelMode":
             menuLenght = 225;
             break;
+        case "loadMode":
+            menuLenght = 225;
+            break;
         case "freeMode":
             menuLenght = 150;
             break;
@@ -104,6 +107,14 @@ function buildMenu() {
             sound_begin();
             
             break;
+        case "loadMode":
+            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
+            home.x = window.innerWidth - (18 + 2 * 50);
+            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
+            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitleLoad, levelStyle);
+            sound_begin();
+            
+            break;
         case "freeMode":
         	sound_creation();
         	
@@ -112,6 +123,7 @@ function buildMenu() {
             print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', pdf, this, 2, 1, 0, 1);
             print.events.onInputOver.add(sound_print, this);
             col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
+            col.events.onInputOver.add(sound_color,this);
             break;
     }
 

@@ -8,15 +8,19 @@
             <link rel="stylesheet" type="text/css" href="css/gameStyle.css">
 
 			<script>
-			var url = window.location.search;
+			// Game mode 'levelMode' or 'freeMode' or 'loadMode'
+            var mode ="levelMode";
+            
+            var url = window.location.search;
 			var levelnum = url.substring(url.lastIndexOf("=")+1); 
+            var leveltext="";
 			</script>
 			
-            <script type="text/javascript" src="script/phaser.js"></script>
-            <script type="text/javascript" src="script/soundmanager2.js"></script>
+            <script type="text/javascript" src="library/phaser.js"></script>
+            <script type="text/javascript" src="library/soundmanager2.js"></script>
             
             <script type="text/javascript" src="script/functions/preload.js"></script>
-            <script type="text/javascript" src="script/functions/create-Level.js"></script>
+            <script type="text/javascript" src="script/functions/create.js"></script>
             <script type="text/javascript" src="script/functions/debug.js"></script>
             <script type="text/javascript" src="script/functions/update.js"></script>
             <script type="text/javascript" src="script/functions/updateSize.js"></script>
@@ -29,14 +33,13 @@
             <script type="text/javascript" src="script/functions/wallpaper.js"></script>
             <script type="text/javascript" src="script/functions/beginDrag.js"></script>
             <script type="text/javascript" src="script/functions/endDragUtils.js"></script>
-            <script type="text/javascript" src="script/functions/endDrag-Level.js"></script>
-            <script type="text/javascript" src="script/functions/exportProblem.js"></script>
+            <script type="text/javascript" src="script/functions/endDrag.js"></script>
 			<script type="text/javascript" src="script/functions/patternCreation.js"></script>
             <script type="text/javascript" src="script/functions/sounds.js"></script>
             <script type="text/javascript" src="script/functions/animations.js"></script>            
              
-            <script type="text/javascript" src="script/text/fr_buttons.js"></script>
-            <script type="text/javascript" src="script/functions/levels.js"></script>
+            <script type="text/javascript" src="script/data/fr_buttons.js"></script>
+            <script type="text/javascript" src="script/data/levels.js"></script>
 
              
             <script> 

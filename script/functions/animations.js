@@ -6,6 +6,7 @@ function patrickSpeak(sound){
     
     sound.options.onfinish = function(){
         patMouth.animations.stop(null,true);
+        canPlay = true;
     }
 }
 

@@ -32,6 +32,11 @@ function updateSize() {
             ret.x=window.innerWidth - (18 + 3 * 50);
             levelName.x=window.innerWidth - 280;
             break;
+        case "loadMode":
+            home.x = window.innerWidth - (18 + 2 * 50);
+            ret.x=window.innerWidth - (18 + 3 * 50);
+            levelName.x=window.innerWidth - 280;
+            break;
         case "freeMode":
             home.x=window.innerWidth - (18 + 4 * 50);
             exp.x = window.innerWidth - (18 + 2 * 50);

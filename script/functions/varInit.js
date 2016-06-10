@@ -5,9 +5,6 @@
 //Number of levels
 var nbLevels = 35;
 
-// Game mode 'levelMode' or 'freeMode'
-var mode;
-
 //Count the number of shapes created
 var nbF1 = 0;
 var nbF2 = 0;
@@ -101,14 +98,17 @@ var menuLenght;
 
 // sounds
 
+var cptbegin=0;
 var cptrot=0;
 var cpttrash=0;
 var cptlock=0;
-var begin=0;
 var expo=0;
+var cptcol=0;
 var crea=0;
 var printer=0;
+var cptplace = 0;
 var totalshape=0;
+var canPlay=true;
 
 //Create a new Phaser JS game
 var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {

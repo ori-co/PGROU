@@ -2,12 +2,11 @@
 function endDrag(tempSprite, pointer) {
     game.world.bringToTop(forms);
 	if ((game.input.y > bin.y) && (game.input.y < bin.y+bin.height) && (game.input.x > bin.x) && (game.input.x < bin.x+bin.width)) {
-		if (mode!="freeMode"){
+		if (mode=="freeMode"){deleteSprite(tempSprite);
+        } else {
             if (distrib==1){ 
                 deleteSprite(tempSprite);
             }
-        } else {
-            deleteSprite(tempSprite);
         }
 	} else {
 	    if ((tempSprite.y > 500) ||  (tempSprite.y < 25) || (tempSprite.x > 1000) || (tempSprite.x < 225)) {
@@ -15,17 +14,13 @@ function endDrag(tempSprite, pointer) {
 	    }
 	    else {
                 if (isDrag()) {
-                    // utilisation de la variable globale "mode" possible
-                    // mutualisation de code avec endDrag-LevelMode.js
-                    snapEffect(tempSprite,'levelMode');
+                    snapEffect(tempSprite,mode);
                     tempSprite.originalPosition = tempSprite.position.clone();
-                    if (mode!="freeMode") {
-                        colorSprite(tempSprite,'levelMode');
-                    }
+                    if (mode!="freeMode") {colorSprite(tempSprite,'levelMode');}
                 }
 		}
 		
 		
 	}
-	updateSolution();
+	if (mode!="freeMode") {updateSolution();}
 }
