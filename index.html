@@ -13,11 +13,11 @@
 			var language = "assets/audio/fr/";
             var canPlay = false;
        		soundManager.onload = function(){
-       		welcome =  soundManager.createSound({id : "welcome", url: language+"welcome.mp3",onfinish: function(){ canPlay=true;}, autoPlay:true});
         	son1 = soundManager.createSound({id : "click1", url: language+"click.mp3", onfinish: function(){ self.location.href='levelsmap.html'}});
         	son2 = soundManager.createSound({id : "click2", url: language+"classic.mp3",onfinish: function(){ canPlay=true;}});
         	son3 = soundManager.createSound({id : "click3", url: language+"free.mp3",onfinish: function(){ canPlay=true;}});
         	son4 = soundManager.createSound({id : "click4", url: language+"click.mp3", onfinish: function(){ self.location.href='freemode.html'}});
+            welcome =  soundManager.createSound({id : "welcome", url: language+"welcome.mp3",onfinish: function(){ canPlay=true;}, autoPlay:true});
             }
             
 			//Buttons
@@ -44,7 +44,7 @@
         <img id="wallpaper" src="assets/images/index/wallpaper.png" alt="wallpaper"/>
         <img id="patrick" src="assets/images/index/patrick.gif" alt="patrick"/>
         <div id="buttons">
-            <input id="b1" type="button" value="" onmouseover ="playing(son2);" onclick = "son1.play();"/>
+            <input id="b1" type="button" value="" onmouseover ="playing(son2);" ontouchstart="playing(son2);" onclick = "son1.play();" ontouchend="son1.play()"/>
             <input id="b2" type="button" value="" onmouseover ="playing(son3);" onclick="son4.play();"/>
         </div>
     </body>
