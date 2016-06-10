@@ -119,6 +119,7 @@ function playHelp(mp3Name, cpt){
         var helpSound = soundManager.createSound({id : mp3Name, url:language+mp3Name+".mp3"});
         if(canPlay){
             canPlay = false;
+            soundManager.stopAll();
             patrickSpeak(helpSound);
             helpSound.play();
             cpt++;
