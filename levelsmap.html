@@ -92,6 +92,10 @@
                 }
             }
             
+            for (ii=1;ii <= 35;ii++){
+                document.getElementById(ii).addEventListener('touchend', function(e){sound_level(ii)}, false);
+            }
+            
             //Buttons
             function buttons() {
                 document.getElementById('importButton').value = problemImport;
