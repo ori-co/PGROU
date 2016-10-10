@@ -1,5 +1,7 @@
 function buildMenu() {
 
+	var mode = game.global.mode;
+	
     // Store Creation
     var store = game.add.sprite(5, 5, 'store');
     pipe = game.add.sprite(5, 395, 'pipe');
@@ -100,6 +102,7 @@ function buildMenu() {
 
     switch (mode) {
         case "levelMode":
+			var levelnum = game.global.levelnum;
             ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', clickerBack, this, 2, 1, 0, 1);
             home.x = window.innerWidth - (18 + 2 * 50);
             var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};

@@ -147,7 +147,7 @@ if (totalshape==1){
 }
 
 function  sound_begin(){
-if (Number(levelnum)<2){
+if (Number(game.global.levelnum)<2){
 	begin = soundManager.createSound({id : "begin", url:language+"help_begin.mp3" });
 	patrickSpeak(begin);
     canPlay=false;

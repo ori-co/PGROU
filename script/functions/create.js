@@ -1,6 +1,8 @@
 //Main function of the game
 function create() {
 
+	var mode = game.global.mode;
+	
     //Build the wallpaper and RESIZE
     wallpaper();
 
@@ -44,6 +46,7 @@ function create() {
 
     if (mode == "levelMode" || mode == "loadMode"){
         if (mode=="levelMode"){
+			var levelnum = game.global.levelnum;
             leveltext = levels[levelnum];
         }
         

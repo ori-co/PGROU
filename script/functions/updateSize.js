@@ -1,5 +1,7 @@
 //Update function that is always running on the background to resize
 function updateSize() {
+	
+	var mode = game.global.mode;
 
     // Adapt the size of the interface to the screen    
     pipe.height = window.innerHeight - (390 + 212);

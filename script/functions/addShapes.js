@@ -16,7 +16,7 @@ function addShape(shape, F) {
     tempSprite.input.enableDrag(false, true); //Mobile (drag)
     tempSprite.input.enableSnap(1, 1, false, true); //Grid of 1 pixel
     tempSprite.events.onInputDown.add(formInteraction, this); //Edition mode after click
-    if (mode == "levelMode") {
+    if (game.global.mode == "levelMode") {
 	    tempSprite.events.onDragStart.add(beginDrag, this); 
 	}
     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
