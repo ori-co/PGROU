@@ -17,11 +17,17 @@ var menuState = {
 	}
 }
 
+var levelsMapState = {
+	create : function(){
+		menuWallpaper();
+		levelsButtons();
+	}
+}
+
 // LevelMode
 var levelPlayState = {
     create: function (){
 		game.global.mode = 'levelMode';
-		game.global.levelnum = 5;
 		create();
 	}
 };

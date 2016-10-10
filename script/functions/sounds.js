@@ -4,18 +4,6 @@ function trashBinSound() {
 	bintemp.play();
 }
 
-function clickerBack(){
-click = soundManager.createSound({id : "click", url: language+"click.mp3", 
-onfinish: function(){ self.location.href='levelsmap.html'}});
-click.play();
-}
-
-function clickerHome(){
-click = soundManager.createSound({id : "click", url: language+"click.mp3", 
-onfinish: function(){ self.location.href='index.html'}});
-click.play();
-}
-
 function clicker(){
 	var clicker = soundManager.createSound({id : "clicker", url: language+"click.mp3",onfinish: function(){sound_placement();}});
 	clicker.play();
@@ -171,7 +159,7 @@ function  sound_sucess(){
 	}		
 
 
-function mute(){
+function toggleMute(){
 if (!soundManager.muted){
 soundManager.mute();
 mute.setFrames(3, 0, 1, 0);
