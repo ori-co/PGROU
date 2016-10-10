@@ -3,6 +3,8 @@ var language = "assets/audio/fr/";
 
 //Load the necessary files before the beginning of the game
 function preload() {
+	
+	game.load.spritesheet('homeButton','assets/images/index/home_button.png',300,100);
     
     game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);
     game.load.spritesheet('square','assets/sprites/square.png',130,130);

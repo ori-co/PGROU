@@ -4,7 +4,7 @@ var loadState = {
 	preload : preload, 
 	create : function(){
 		// Call the menu state
-		game.state.start('freePlay');
+		game.state.start('menu');
 	}
 }
 

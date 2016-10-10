@@ -1,8 +1,14 @@
 function wallpaper() {
-    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;    
+      
     game.scale.setResizeCallback(function () {
         updateSize(this);
     }, game);
+
+	menuWallpaper();
+}
+
+function menuWallpaper() {
+    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;    
 
     //Wallpaper
     var myBitmap = game.make.bitmapData(2000, 2000);
@@ -15,6 +21,4 @@ function wallpaper() {
 
     //game.stage.backgroundColor = "#4488AA";
     palette = ["0x83EE00", "0xFBFE00", "0x058AB6", "0xE4005C", "0x8007BE", "0xFF8300"];
-    
-    shadows = game.add.group();
 }

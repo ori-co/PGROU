@@ -110,7 +110,7 @@ var cptplace = 0;
 var totalshape=0;
 var canPlay=true;
 
-//Create a new Phaser JS game
+/* //Create a new Phaser JS game
 var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
     //var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 
     //var game = new Phaser.Game(2000, 1000, Phaser.CANVAS, 'pgrou', { 
@@ -118,6 +118,6 @@ var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
     create: create,
     update: update,
     render: render
-});
+}); */
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
