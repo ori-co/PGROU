@@ -75,8 +75,6 @@ var lavbelHexagon;
 var labelTriangleRect;
 var labelDiamond;
 
-var palette;
-
 var shadows;
 
 var forms;

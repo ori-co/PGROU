@@ -4,7 +4,7 @@ function create() {
 	var mode = game.global.mode;
 	
     //Build the wallpaper and RESIZE
-    wallpaper();
+    gameWallpaper();
 
     //Heritage Relationships
     F1 = game.add.group();
