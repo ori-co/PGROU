@@ -22,7 +22,7 @@ function addShape(shape, F) {
     tempSprite.events.onDragStop.add(endDrag, this); //End of drag
     
     tempSprite.events.onInputOver.add(function(){
-       switch (test){
+       switch (game.global.editingMode){
            case 1:
                this.game.canvas.style.cursor="url('assets/images/cursors/rotR.png'),default";
                break;

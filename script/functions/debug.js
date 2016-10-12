@@ -7,7 +7,7 @@ function render() {
     //game.debug.text('Triangles : ' + nbF4, 16, 84);
     //game.debug.text('Rect Triangles : ' + nbF5, 16, 96);
     //game.debug.text('Diamonds : ' + nbF6, 16, 108);
-    //game.debug.text('Function : ' + test, 16, 120);
+    //game.debug.text('Function : ' + game.global.editingMode, 16, 120);
     //game.debug.text('End : ' + end, 16, 108);
     //game.debug.text('Solution Area: ' + areaSolution, 16, 132);
     //game.debug.text('Problem Area: ' + areaPattern, 16, 144);

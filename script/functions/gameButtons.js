@@ -1,5 +1,7 @@
 //Edition Modes (colors and rotation)
 function formInteraction(tempSprite, pointer) {
+	var test = game.global.editingMode;
+	
    	switch (test) {
         case 0:
             break;
@@ -35,14 +37,15 @@ function formInteraction(tempSprite, pointer) {
 				case 0xFF8300 : tempSprite.tint = 0x83EE00;
 				break;
 			}
-            //alert(tempSprite.tint);
 			
             break;
     }
+	game.global.editingMode=test;
 }
 
 //Activation of the rotation button
 function rotationRightButton(rot, pointer) {
+	var test = game.global.editingMode;
     switch (test) {
         case 0:
             test = 1;
@@ -63,10 +66,12 @@ function rotationRightButton(rot, pointer) {
             col.setFrames(2, 1, 0, 1);
             break;
     }
+	game.global.editingMode=test;
     clicker();
 }
 
 function rotationLeftButton(rot, pointer) {
+	var test = game.global.editingMode;
     switch (test) {
         case 0:
             test = 2;
@@ -87,11 +92,13 @@ function rotationLeftButton(rot, pointer) {
             col.setFrames(2, 1, 0, 1);
             break;
     }
+	game.global.editingMode=test;
     clicker();
 }
 
 // Change color
 function colorButton(col, pointer) {
+	var test = game.global.editingMode;
     switch (test) {
         case 0:
             test = 3;
@@ -112,5 +119,6 @@ function colorButton(col, pointer) {
             col.setFrames(2, 1, 0, 1);
             break;
     }
+	game.global.editingMode=test;
     clicker();
 }

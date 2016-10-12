@@ -14,9 +14,6 @@ var nbF5 = 0;
 var nbF6 = 0;
 var nbF = 0;
 
-// Edition mode testing
-var test = 0;
-
 // Groups of shapes 
 var F1;
 var F2;
