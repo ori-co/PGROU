@@ -14,10 +14,10 @@ var nbF5 = 0;
 var nbF6 = 0;
 var nbF = 0;
 
-//Edition mode testing
+// Edition mode testing
 var test = 0;
 
-//Groups of shapes 
+// Groups of shapes 
 var F1;
 var F2;
 var F3;
@@ -32,17 +32,17 @@ var P4;
 var P5;
 var P6;
 
-//Area of the pattern and the solution
+// Area of the pattern and the solution
 var areaPattern = 0;
 var areaSolution = 0;
 
-//Test the end of the game
+// Test the end of the game
 var end = 0;
 
-//Do not receive double success message
+// Do not receive double success message
 var nbAlert = 0;
 
-//Used to check if the solution is valid or not
+// Used to check if the solution is valid or not
 var valid = 0;
 
 // Interface variables
