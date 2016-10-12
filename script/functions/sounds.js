@@ -1,3 +1,18 @@
+
+// mute the game
+function toggleMute(item){
+	if (!soundManager.muted){
+		soundManager.mute();
+		item.setFrames(3, 0, 1, 0);
+	}else{
+		soundManager.unmute();
+		click = soundManager.createSound({id : "click", url: language+"click.mp3"});
+		click.play();
+		item.setFrames(2, 1, 0, 1);
+	}
+}	
+
+
 // Sound click functions
 function trashBinSound() {
     bintemp = soundManager.createSound({id : "bin", url: language+"trashbin.mp3"});
@@ -127,6 +142,8 @@ function sound_color(){cptcol = playHelp("help_color",cptcol);}
 function sound_print(){printer = playHelp("help_print",printer);}
 	
 function unlock_store(){cptlock = playHelp("help_lock",cptlock);}
+
+function sound_empty(){}
     
 function  sound_placement(){
 if (totalshape==1){
@@ -159,17 +176,7 @@ function  sound_sucess(){
 	}		
 
 
-function toggleMute(){
-if (!soundManager.muted){
-soundManager.mute();
-mute.setFrames(3, 0, 1, 0);
-}else{
-soundManager.unmute();
-click = soundManager.createSound({id : "click", url: language+"click.mp3"});
-click.play();
-mute.setFrames(2, 1, 0, 1);
-}
-}	
+
 
 	
 	

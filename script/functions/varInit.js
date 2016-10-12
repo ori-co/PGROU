@@ -89,10 +89,7 @@ var pipe;
 var basketLeft;
 var basketMiddle;
 var basketRight;
-var menuRight;
-var menuMiddle;
-var menuLeft;
-var menuLenght;
+var menu;
 
 // sounds
 

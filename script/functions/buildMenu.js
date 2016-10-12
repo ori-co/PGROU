@@ -1,11 +1,20 @@
-function buildMenu() {
 
-	var mode = game.global.mode;
+// to create the entire game interface (basket, store and patrick)
+function buildMenu() {
 	
-    // Store Creation
+    buildGameInterface();
+	
+	buildNavigationMenu();
+	
+	buildPatrick();
+}
+
+// to build only the ui element
+function buildGameInterface() {
+	// Store Creation
     var store = game.add.sprite(5, 5, 'store');
     pipe = game.add.sprite(5, 395, 'pipe');
-    pipe.height = window.innerHeight - (390 + 212);
+    pipe.height = game.height - (390 + 212);
 
     // Buttons in store
     bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
@@ -41,45 +50,24 @@ function buildMenu() {
     basketMiddle = game.add.sprite(0, 0, 'basket-middle');
     basketRight = game.add.sprite(0, 0, 'basket-right');
     
-    basketLeft.y = window.innerHeight - (5 + basketLeft.height);
+    basketLeft.y = game.height - (5 + basketLeft.height);
     basketMiddle.x = basketLeft.x + basketLeft.width;
-    basketMiddle.y = window.innerHeight - (5 + basketLeft.height);
-    basketMiddle.width = window.innerWidth - (basketLeft.width + basketRight.width);
-    basketRight.x = window.innerWidth - (5 + basketRight.width);
-    basketRight.y = window.innerHeight - (5 + basketRight.height);     
-
-    // Menu construction
-    switch (mode) {
-        case "levelMode":
-            menuLenght = 225;
-            break;
-        case "loadMode":
-            menuLenght = 225;
-            break;
-        case "freeMode":
-            menuLenght = 150;
-            break;
-    }
-
-    menuRight = game.add.sprite(0, 5, 'menu-right');
-    menuLeft = game.add.sprite(0, 5, 'menu-left');
-    menuMiddle = game.add.sprite(0, 5, 'menu-middle');
-
-    menuLeft.x = window.innerWidth - (5 + menuLenght + menuLeft.width + menuRight.width);
-    menuRight.x = window.innerWidth - (5 + menuRight.width);
-    menuMiddle.x = window.innerWidth - (5 + menuLenght + menuRight.width);
-    menuMiddle.width = menuLenght;
+    basketMiddle.y = game.height - (5 + basketLeft.height);
+    basketMiddle.width = game.width - (basketLeft.width + basketRight.width);
+    basketRight.x = game.width - (5 + basketRight.width);
+    basketRight.y = game.height - (5 + basketRight.height);     
 
     //Add rotation and color buttons
-    rotR = game.add.button(75, window.innerHeight - 210, 'button-rotate-right', rotationRightButton, this, 2,1, 0, 1);
+    rotR = game.add.button(75, game.height - 210, 'button-rotate-right', rotationRightButton, this, 2,1, 0, 1);
     rotR.events.onInputOver.add(sound_rotation, this);
-    rotL = game.add.button(15, window.innerHeight - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
+    rotL = game.add.button(15, game.height - 210, 'button-rotate-left', rotationLeftButton, this, 2, 1, 0, 1);
     rotL.events.onInputOver.add(sound_rotation, this);
-    home = game.add.button(window.innerWidth - (18 + 4 * 50), 10, 'button-home', goToHome, this, 2, 1, 0, 1);
-    mute = game.add.button(window.innerWidth - (18 + 1 * 50), 10, 'button-mute', toggleMute, this, 2, 1, 0, 1);
+}
 
 
-    // Add Patrick to the menu
+// to create patrick and his animations
+function buildPatrick() {
+	// Add Patrick to the menu
     pat = game.add.group();
     // position
     pat.x = basketRight.x+5;
@@ -95,39 +83,116 @@ function buildMenu() {
     //animations
     patMouth.animations.add('talk');
     patEyes.animations.add('blink');
-    
-    patrickBlink();
-    
-    shadows = game.add.group();
+	
+	patrickBlink();
 
-    switch (mode) {
+	switch (game.global.mode) {
         case "levelMode":
-			var levelnum = game.global.levelnum;
-            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', goToLevelsMap, this, 2, 1, 0, 1);
-            home.x = window.innerWidth - (18 + 2 * 50);
-            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
-            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitle+" "+levelnum, levelStyle);
             sound_begin();
-            
             break;
         case "loadMode":
-            ret = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-back', goToLevelsMap, this, 2, 1, 0, 1);
-            home.x = window.innerWidth - (18 + 2 * 50);
-            var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
-            levelName = this.game.add.text(window.innerWidth - 280, 23, levelTitleLoad, levelStyle);
-            sound_begin();
-            
+            sound_begin();     
             break;
         case "freeMode":
         	sound_creation();
-        	
-            exp = game.add.button(window.innerWidth - (18 + 2 * 50), 10, 'button-export', exportProblem, this, 2, 1, 0, 1);
-            exp.events.onInputOver.add(sound_export, this);
-            print = game.add.button(window.innerWidth - (18 + 3 * 50), 10, 'button-print', pdf, this, 2, 1, 0, 1);
-            print.events.onInputOver.add(sound_print, this);
-            col = game.add.button(135, window.innerHeight - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
-            col.events.onInputOver.add(sound_color,this);
             break;
     }
+}
 
-}    
+// to create the navigation menu top - right corner
+// used to create the game interface but also the home and levels map interface
+function buildNavigationMenu() {
+	
+	var mode = game.global.mode;
+	
+	var buttonHome = new Object;
+	buttonHome['name'] = 'button-home';
+	buttonHome['action'] = goToHome;
+	buttonHome['instructions'] = sound_empty;
+	
+	var buttonLevelsMap = new Object;
+	buttonLevelsMap['name'] = 'button-back';
+	buttonLevelsMap['action'] = goToLevelsMap;
+	buttonLevelsMap['instructions'] = sound_empty;
+	
+	var buttonMute = new Object;
+	buttonMute['name'] = 'button-mute';
+	buttonMute['action'] = toggleMute;
+	buttonMute['instructions'] = sound_empty;
+	
+	var buttonPrint = new Object;
+	buttonPrint['name'] = 'button-print';
+	buttonPrint['action'] = pdf;
+	buttonPrint['instructions'] = sound_print;
+	
+	var buttonExport = new Object;
+	buttonExport['name'] = 'button-export';
+	buttonExport['action'] = exportProblem;
+	buttonExport['instructions'] = sound_export;
+
+	var buttonLang = new Object;
+	buttonLang['name'] = 'button-print';
+	buttonLang['action'] = sound_empty;
+	buttonLang['instructions'] = sound_empty;	
+	
+	
+	// Menu construction
+    switch (mode) {
+		case "home":
+			navigationMenu("Patrimath", [buttonMute, buttonLang]);
+			break;
+		case "levelsMap":
+			navigationMenu("Mode classique", [buttonHome,buttonMute, buttonLang])
+			break;
+        case "levelMode":
+            navigationMenu(levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute, buttonLang]);
+            break;
+        case "loadMode":
+            navigationMenu(levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute, buttonLang])
+            break;
+        case "freeMode":
+			navigationMenu("", [buttonHome, buttonPrint, buttonExport, buttonMute, buttonLang]);
+
+			col = game.add.button(135, game.height - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
+            col.events.onInputOver.add(sound_color,this);
+            break;
+		case "win":
+			navigationMenu(levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute, buttonLang]);
+			break;
+    }	    
+}
+
+// to create the navigation menu top right corner with the right label and buttons displayed
+// label : string
+// buttons : array of buttons to display (in the right order)
+function navigationMenu(label, buttons){
+	
+	menu = game.add.sprite(game.width,0,'');
+	
+	var menuRight = menu.addChild(game.make.sprite(0, 5, 'menu-right'));
+	var menuLeft = menu.addChild(game.make.sprite(0, 5, 'menu-left'));
+	var menuMiddle = menu.addChild(game.make.sprite(0, 5, 'menu-middle'));
+	
+	var buttonsNumber = buttons.length;
+	var labelLength = label.length;
+	var marginSize = 25;
+	var charSize = 12;
+	var menuLength = 50*buttonsNumber + charSize * labelLength - 2*marginSize;
+	
+	menuLeft.x = - (5 + menuLength + menuLeft.width + menuRight.width);
+    menuRight.x =  - (5 + menuRight.width);
+    menuMiddle.x =  - (5 + menuLength + menuRight.width);
+    menuMiddle.width = menuLength;
+	
+	// add the label
+	var levelStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
+	menu.addChild(game.make.text(- (50*buttonsNumber + charSize * labelLength +18 ), 23, label, levelStyle));
+	
+	// add the buttons
+	for (i=0; i<buttonsNumber;i++){
+		var curButton = game.make.button( - ((buttonsNumber - i)*50 + 18), 10,buttons[i].name, buttons[i].action, this, 2, 1, 0, 1);
+		curButton.events.onInputOver.add(buttons[i].instructions, this);
+		menu.addChild(curButton);
+	}
+	
+}
