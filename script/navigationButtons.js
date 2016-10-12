@@ -8,6 +8,8 @@ function homeButtons() {
 	var goToFreeModeButton = game.add.button(600,600, 'button-goTo', goToFreePlay, this,  2,1, 0, 1 );
 	goToFreeModeButton.events.onInputOver.add(sound_freeMode,this);
 	goToFreeModeButton.addChild(game.make.text(30,30,freemode,goToStyle));
+	
+	game.add.sprite(100,300,'home-patrick');
 }
 
 function levelsButtons(){
@@ -39,6 +41,8 @@ function winButtons(){
 		next.number = curLevel+1;
 		next.addChild(game.make.text(30,30,next.number,levelStyle));
 	}
+	
+	game.add.sprite(300,300,'win-patrick');
 }
 
 function goToFreePlay(){

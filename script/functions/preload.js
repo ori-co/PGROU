@@ -55,8 +55,10 @@ function preload() {
     game.load.image('patrick', 'assets/images/patrick/patrick.png');
     game.load.spritesheet('patrick-mouth','assets/images/patrick/mouth.png',31,22,4);
     game.load.spritesheet('patrick-eyes','assets/images/patrick/eyes.png',80,66,5);
+	game.load.image('home-patrick','assets/images/patrick/home-patrick.gif',531,970);
+	game.load.image('win-patrick','assets/images/patrick/win-patrick.gif',279,414);
   
-	// Winning state assets
+	// Winning state assets 
 	game.load.spritesheet('button-again', 'assets/images/buttons/again.png', 78,77);
 	game.load.spritesheet('button-next', 'assets/images/buttons/next.png',78,77);
 }
