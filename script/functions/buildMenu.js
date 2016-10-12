@@ -85,18 +85,6 @@ function buildPatrick() {
     patEyes.animations.add('blink');
 	
 	patrickBlink();
-
-	switch (game.global.mode) {
-        case "levelMode":
-            sound_begin();
-            break;
-        case "loadMode":
-            sound_begin();     
-            break;
-        case "freeMode":
-        	sound_creation();
-            break;
-    }
 }
 
 // to create the navigation menu top - right corner

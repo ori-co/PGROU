@@ -2,9 +2,12 @@ function homeButtons() {
 	var goToStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
 
 	var goToLevelsMapButton = game.add.button(600,500, 'button-goTo', goToLevelsMap, this,  2,1, 0, 1 );
+	goToLevelsMapButton.events.onInputOver.add(sound_levelMode, this);
 	goToLevelsMapButton.addChild(game.make.text(30,30,levelmode,goToStyle));
-	var goToFreeMode = game.add.button(600,600, 'button-goTo', goToFreePlay, this,  2,1, 0, 1 );
-	goToFreeMode.addChild(game.make.text(30,30,freemode,goToStyle));
+	
+	var goToFreeModeButton = game.add.button(600,600, 'button-goTo', goToFreePlay, this,  2,1, 0, 1 );
+	goToFreeModeButton.events.onInputOver.add(sound_freeMode,this);
+	goToFreeModeButton.addChild(game.make.text(30,30,freemode,goToStyle));
 }
 
 function levelsButtons(){

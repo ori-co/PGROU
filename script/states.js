@@ -16,6 +16,7 @@ var menuState = {
 		menuWallpaper('background-home');
 		buildNavigationMenu();
 		homeButtons();
+		homeAutoPlaySound();
 	}
 }
 
@@ -25,6 +26,7 @@ var levelsMapState = {
 		menuWallpaper('background-home');
 		buildNavigationMenu();
 		levelsButtons();
+		levelsMapAutoPlaySound();
 	}
 }
 
@@ -33,6 +35,7 @@ var levelPlayState = {
     create: function (){
 		game.global.mode = 'levelMode';
 		create();
+		levelModeAutoPlaySound();
 	}
 };
 
@@ -41,6 +44,7 @@ var freePlayState = {
     create: function (){
 		game.global.mode = 'freeMode';
 		create();
+		freeModeAutoPlaySound();
 	}
 };
 
@@ -51,5 +55,6 @@ var winState = {
 		menuWallpaper('background-win');
 		buildNavigationMenu();
 		winButtons();
+		winAutoPlaySound();
 	}
 }

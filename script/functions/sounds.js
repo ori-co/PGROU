@@ -1,3 +1,14 @@
+var cptbegin=0;
+var cptrot=0;
+var cpttrash=0;
+var cptlock=0;
+var expo=0;
+var cptcol=0;
+var crea=0;
+var printer=0;
+var cptplace = 0;
+var totalshape=0;
+var canPlay=true;
 
 // mute the game
 function toggleMute(item){
@@ -10,7 +21,13 @@ function toggleMute(item){
 		click.play();
 		item.setFrames(2, 1, 0, 1);
 	}
-}	
+}
+
+// stop all playing sound
+function sound_stopAll(){
+	soundManager.stopAll();
+	canPlay = true;
+}
 
 
 // Sound click functions
@@ -20,7 +37,7 @@ function trashBinSound() {
 }
 
 function clicker(){
-	var clicker = soundManager.createSound({id : "clicker", url: language+"click.mp3",onfinish: function(){sound_placement();}});
+	var clicker = soundManager.createSound({id : "clicker", url: language+"click.mp3"});
 	clicker.play();
 }
 	
@@ -117,13 +134,19 @@ function sound_diamond_off(nbF6){
 }
 
 // Help sounds - explanations of the commands
+
+// play the instruction sound - play oncly if the associated counter is null
 function playHelp(mp3Name, cpt){
     if (cpt == 0){
         var helpSound = soundManager.createSound({id : mp3Name, url:language+mp3Name+".mp3"});
         if(canPlay){
             canPlay = false;
             soundManager.stopAll();
-            patrickSpeak(helpSound);
+            if (typeof patMouth !== 'undefined'){
+				patrickSpeak(helpSound);
+			} else {
+				helpSound.options.onfinish = function(){canPlay = true;};
+			}
             helpSound.play();
             cpt++;
         }
@@ -140,40 +163,26 @@ function sound_export(){expo = playHelp("help_export",expo);}
 function sound_color(){cptcol = playHelp("help_color",cptcol);}
 
 function sound_print(){printer = playHelp("help_print",printer);}
+
+function sound_levelMode(){playHelp("classic",0);}
+
+function sound_freeMode(){playHelp("free",0);}
+
+function sound_empty(){}
 	
 function unlock_store(){cptlock = playHelp("help_lock",cptlock);}
 
-function sound_empty(){}
-    
-function  sound_placement(){
-if (totalshape==1){
-    cptplace = playHelp("help_placement",cptplace);
-    }
-}
+function homeAutoPlaySound() {sound_stopAll(); playHelp("welcome",0);}
 
-function  sound_begin(){
-if (Number(game.global.levelnum)<2){
-	begin = soundManager.createSound({id : "begin", url:language+"help_begin.mp3" });
-	patrickSpeak(begin);
-    canPlay=false;
-	begin.play();}
-	cptbegin ++;
-	}			
+function levelsMapAutoPlaySound() {sound_stopAll();playHelp("introduction",0);}
 	
-function  sound_creation(){
-if (crea==0){
-	creation = soundManager.createSound({id : "creation", url:language+"help_creation.mp3"});
-	canPlay=false;
-	patrickSpeak(creation);
-	creation.play();}
-	crea ++;
-	}			
+function levelModeAutoPlaySound(){sound_stopAll();playHelp("help_begin",cptbegin);}
 
-function  sound_sucess(){
-	success= soundManager.createSound({id : "success", url:language+"success.mp3" });
-	soundManager.stopAll();
-	success.play();
-	}		
+function freeModeAutoPlaySound(){sound_stopAll();playHelp("help_creation",crea);}
+
+function winAutoPlaySound() {sound_stopAll();playHelp("success",0);}	
+
+		
 
 
 

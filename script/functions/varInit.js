@@ -91,28 +91,5 @@ var basketMiddle;
 var basketRight;
 var menu;
 
-// sounds
-
-var cptbegin=0;
-var cptrot=0;
-var cpttrash=0;
-var cptlock=0;
-var expo=0;
-var cptcol=0;
-var crea=0;
-var printer=0;
-var cptplace = 0;
-var totalshape=0;
-var canPlay=true;
-
-/* //Create a new Phaser JS game
-var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'pgrou', {
-    //var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'pgrou', { 
-    //var game = new Phaser.Game(2000, 1000, Phaser.CANVAS, 'pgrou', { 
-    preload: preload,
-    create: create,
-    update: update,
-    render: render
-}); */
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
