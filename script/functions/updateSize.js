@@ -2,6 +2,7 @@ function updateWallpaperSize(wallpaper){
 	wallpaper.height = game.height;
 	wallpaper.width = game.width;
 	if (menu != null) menu.x = game.width;
+	if (pat != null) pat.y=game.height - 500;
 }
 
 //Update function that is always running on the background to resize
