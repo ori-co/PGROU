@@ -2,9 +2,6 @@
 // VARIABLES
 ///////////////////////////////////////////////////////////////////////
 
-//Number of levels
-var nbLevels = 35;
-
 //Count the number of shapes created
 var nbF1 = 0;
 var nbF2 = 0;
@@ -32,12 +29,6 @@ var P6;
 // Area of the pattern and the solution
 var areaPattern = 0;
 var areaSolution = 0;
-
-// Test the end of the game
-var end = 0;
-
-// Do not receive double success message
-var nbAlert = 0;
 
 // Used to check if the solution is valid or not
 var valid = 0;
