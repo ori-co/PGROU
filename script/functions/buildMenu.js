@@ -181,6 +181,9 @@ function navigationMenu(label, buttons){
 		var curButton = game.make.button( - ((buttonsNumber - i)*50 + 18), 10,buttons[i].name, buttons[i].action, this, 2, 1, 0, 1);
 		curButton.events.onInputOver.add(buttons[i].instructions, this);
 		menu.addChild(curButton);
+		
+		// Check the value of the mute function to update the mute button
+		if(buttons[i].name == "button-mute" && game.global.muteValue) curButton.setFrames(3, 0, 1, 0);
 	}
 	
 }
