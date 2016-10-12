@@ -127,19 +127,19 @@ function buildNavigationMenu() {
 	// Menu construction
     switch (mode) {
 		case "home":
-			navigationMenu("Patrimath", [buttonMute, buttonLang]);
+			navigationMenu("Patrimath", [buttonMute]);
 			break;
 		case "levelsMap":
-			navigationMenu("Mode classique", [buttonHome,buttonMute, buttonLang])
+			navigationMenu("Mode classique", [buttonHome,buttonMute])
 			break;
         case "levelMode":
-            navigationMenu(levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute, buttonLang]);
+            navigationMenu(levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute]);
             break;
         case "loadMode":
-            navigationMenu(levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute, buttonLang])
+            navigationMenu(levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute])
             break;
         case "freeMode":
-			navigationMenu("", [buttonHome, buttonPrint, buttonExport, buttonMute, buttonLang]);
+			navigationMenu("", [buttonHome, buttonPrint, buttonMute]);
 
 			col = game.add.button(135, game.height - 210, 'button-colors', colorButton, this, 2, 1, 0, 1);
             col.events.onInputOver.add(sound_color,this);

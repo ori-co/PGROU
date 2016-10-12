@@ -170,10 +170,6 @@ function patternCreation(levelText) {
 			this.buttonDiamond.visible = false;
 			this.labelDiamond.visible = false;
 			}
-			
-			
-			
-		
 		
     }
 }
