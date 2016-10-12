@@ -1,5 +1,5 @@
 //Create a new Phaser JS game
-var game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'patrimath');
+var game = new Phaser.Game("100%", "100%", Phaser.CANVAS);
 
 game.global = {
 	// var init ...

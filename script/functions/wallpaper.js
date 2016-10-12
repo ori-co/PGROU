@@ -1,9 +1,4 @@
 function gameWallpaper() {
-    game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-	 
-    game.scale.setResizeCallback(function () {
-        updateSize(this);
-    }, game);
 
 	//Wallpaper
     var myBitmap = game.make.bitmapData(3000, 2000);
@@ -13,13 +8,18 @@ function gameWallpaper() {
     grd.addColorStop(1, "#bce3f0");
     myBitmap.context.fillStyle = grd;
     myBitmap.context.fillRect(0, 0, 3000, 2000);
+	
+	game.scale.setResizeCallback(function () {
+        updateSize(this);
+    }, game);
 }
 
-function menuWallpaper() {
-     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;   
-	// game.scale.setResizeCallback(function () {
-        // updateSize(this);
-    // }, game);
-
-
+function menuWallpaper(background) {
+	var wallpaper = game.add.sprite(0,0, background);
+	 
+	updateWallpaperSize(wallpaper);
+	 
+	game.scale.setResizeCallback(function () {
+        updateWallpaperSize(wallpaper);
+     }, game);	
 }
