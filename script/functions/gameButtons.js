@@ -19,24 +19,11 @@ function formInteraction(tempSprite, pointer) {
             tempSprite.updateCache();
             break;
         case 3:
-            var rand = Math.floor((Math.random() * 5));
-			
-			switch(tempSprite.tint){
-				case 0x93AFBD : tempSprite.tint = 0x83EE00;
-				break;
-				case 0x83EE00 : tempSprite.tint = 0xFBFE00;
-				break;
-				case 0xFBFE00 : tempSprite.tint = 0x058AB6;
-				break;
-				case 0x058AB6 : tempSprite.tint = 0xE4005C;
-				break;
-				case 0xE4005C : tempSprite.tint = 0x8007BE;
-				break;
-				case 0x8007BE : tempSprite.tint = 0xFF8300;
-				break;
-				case 0xFF8300 : tempSprite.tint = 0x83EE00;
-				break;
+			var colorIndex=0;
+			for (i=0; i<palette.length-1;i++){
+				if (tempSprite.tint == palette[i]) colorIndex = i+1;
 			}
+			tempSprite.tint = palette[colorIndex];
 			
             break;
     }
