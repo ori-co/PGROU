@@ -148,6 +148,28 @@ function enableUnlockButton(value){
 	game.global.ui.unlockButton.inputEnabled = value;
 }
 
+function exportProblem() {
+
+    var json = '{\"problem\":{\"pattern\":[';
+    var game = globals.game;
+
+    for (var key in game.global.shapes){
+        var shapeArray = game.global.shapes[key].shapesInPlace;
+        
+        for (i=0; i<shapeArray.length;i++){
+            var formItem = shapeArray[i];
+            json = json + '{\"shape\":\"'+ key +'\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
+            json += ',';
+        }
+        
+    }
+    json = json.slice(0, -1);
+    json = json + ']},"distrib" :"on"}';
+
+//Open a pop-up to save the json file
+    window.open().document.write(json);
+}
+
 return {
 formInteraction:formInteraction,
 rotationRightButton : rotationRightButton,
@@ -155,7 +177,8 @@ rotationLeftButton : rotationLeftButton,
 colorButton : colorButton,
 unlockStore : unlockStore,
 setUnlockButton : setUnlockButton,
-enableUnlockButton : enableUnlockButton
+enableUnlockButton : enableUnlockButton,
+exportProblem:exportProblem
 };
 
 });

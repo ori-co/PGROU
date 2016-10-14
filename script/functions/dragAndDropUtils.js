@@ -133,6 +133,8 @@ function calculateCommonContours(tempSprite, i, j,snapMat) {
 function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeMode' ...
     var game = globals.game;
 
+    var gameMode = game.global.mode;
+
     var matPattern= game.global.solution.matPattern;
 
     if (gameMode != 'freeMode') {

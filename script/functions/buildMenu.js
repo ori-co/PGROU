@@ -130,10 +130,10 @@ function buildNavigationMenu() {
 	// buttonPrint['action'] = pdf;
 	// buttonPrint['instructions'] = sound_print;
 	
-	// var buttonExport = new Object;
-	// buttonExport['name'] = 'button-export';
-	// buttonExport['action'] = exportProblem;
-	// buttonExport['instructions'] = sound_export;
+	var buttonExport = new Object;
+	buttonExport['name'] = 'button-export';
+	buttonExport['action'] = gameButtons.exportProblem;
+	buttonExport['instructions'] = sounds.sound_export;
 
 	// var buttonLang = new Object;
 	// buttonLang['name'] = 'button-print';
@@ -155,7 +155,7 @@ function buildNavigationMenu() {
             navigationMenu(levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute])
             break;
         case "freeMode":
-			navigationMenu("", [buttonHome, buttonMute]);
+			navigationMenu("", [buttonHome, buttonMute, buttonExport]);
 
 			game.global.ui.col = game.add.button(135, game.height - 210, 'button-colors', gameButtons.colorButton, this, 2, 1, 0, 1);
             game.global.ui.col.events.onInputOver.add(sounds.sound_color,this);
