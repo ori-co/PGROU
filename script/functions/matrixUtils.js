@@ -26,13 +26,20 @@ function matrixInitialisation(maxX,maxY){
 // a , b = 0, 1, 2
 function pixelsContoursAddition(a,b){
 
-  // superposition with a shape (1,-) ou (-,1) or supperposition of 2 contours (2,2)
+  /*// superposition with a shape (1,-) ou (-,1) or supperposition of 2 contours (2,2)
   if (a==1 || b==1 || (a==2 && b==2)) return 1;
   // empty space (0,0)
   else if (a==0 && b==0) return 0;
   // only 2 cases remaining : (0,2) ou (2,0)
-  else return 2;
+  else return 2;*/
 
+var res;
+  if (a==2 || b==2){
+    res = (a==2 && b==2) ? 1 : 2;
+  } else {
+    res = (a==0 && b==0) ? 0 : 1;
+  }
+return res;
 }
 
 
