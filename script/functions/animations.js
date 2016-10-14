@@ -1,17 +1,33 @@
+define ([
+        "global"
+    ], function(
+        globals
+        ) {
 
 function patrickSpeak(sound){
+    var game = globals.game;
+
     sound.options.onplay = function(){
-        patMouth.animations.play('talk',8,true);
+        game.global.ui.patMouth.animations.play('talk',8,true);
     } 
     
     sound.options.onfinish = function(){
-        patMouth.animations.stop(null,true);
-        canPlay = true;
+        game.global.ui.patMouth.animations.stop(null,true);
+        game.global.canPlay = true;
     }
 }
 
 function patrickBlink(){
-    patEyes.animations.play('blink',10,false);
+var game =globals.game;
+
+    game.global.ui.patEyes.animations.play('blink',10,false);
     var delay = Math.random()*3 +2;
     game.time.events.add(Phaser.Timer.SECOND * delay, patrickBlink, this);
 }
+
+return { 
+patrickSpeak:patrickSpeak,
+patrickBlink:patrickBlink
+}
+
+});

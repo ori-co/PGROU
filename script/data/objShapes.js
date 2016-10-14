@@ -1,35 +1,3 @@
-//Initialisation of the problem's and the solution's matrix
-
-// TODO mettre des variables globales pour la taille du patron
-
-var matPattern = new Array(1300);
-for (var i = 0; i < 1300; i++) {
-    matPattern[i] = new Array(1300);
-}
-for (var i = 0; i < 1300; i++) {
-    for (var j = 0; j < 1300; j++) {
-        matPattern[i][j] = 0;
-    }
-}
-var matSolution = new Array(1300);
-for (var i = 0; i < 1300; i++) {
-    matSolution[i] = new Array(1300);
-}
-for (var i = 0; i < 1300; i++) {
-    for (var j = 0; j < 1300; j++) {
-        matSolution[i][j] = 0;
-    }
-}
-var matSnap = new Array(1300);
-for (var i = 0; i < 1300; i++) {
-    matSnap[i] = new Array(1300);
-}
-for (var i = 0; i < 1300; i++) {
-    for (var j = 0; j < 1300; j++) {
-        matSnap[i][j] = 0;
-    }
-}
-
 // Initialisation of the binary quantum matrix for the shapes
 
 /*
@@ -47,6 +15,9 @@ var objTrapeze = {
 
 var shapes = { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , triangleEqui:obTriangleEqui , triangleRect:objTriangleRect , diamond:objDiamond};
 */
+define ([
+	], function(
+		) {
 
 var nbPixels = 130;
 
@@ -4185,4 +4156,6 @@ var objDiamond = {
 	area: [3584,3584,3584,3584,3584,3584]
 };
 
-var shapes = { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , triangleEqui:objTriangleEqui , triangleRect:objTriangleRect , diamond:objDiamond};
+return { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , triangleEqui:objTriangleEqui , triangleRect:objTriangleRect , diamond:objDiamond};
+
+});

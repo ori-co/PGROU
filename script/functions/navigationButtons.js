@@ -1,19 +1,35 @@
+define ([
+		"global",
+		"functions/sounds",
+		"data/wording",
+		"data/levels"
+	], function(
+		globals,
+		sounds,
+		wording,
+		levels
+		) {
+
 function homeButtons() {
+	var game = globals.game;
+
 	var goToStyle = {font: "23px Arial", fontWeight: "bold", fill: "#0D004C"};
 
 	var goToLevelsMapButton = game.add.button(600,500, 'button-goTo', goToLevelsMap, this,  2,1, 0, 1 );
-	goToLevelsMapButton.events.onInputOver.add(sound_levelMode, this);
-	goToLevelsMapButton.addChild(game.make.text(30,30,levelmode,goToStyle));
+	goToLevelsMapButton.events.onInputOver.add(sounds.sound_levelMode, this);
+	goToLevelsMapButton.addChild(game.make.text(30,30,wording.levelmode,goToStyle));
 	
 	var goToFreeModeButton = game.add.button(600,600, 'button-goTo', goToFreePlay, this,  2,1, 0, 1 );
-	goToFreeModeButton.events.onInputOver.add(sound_freeMode,this);
-	goToFreeModeButton.addChild(game.make.text(30,30,freemode,goToStyle));
+	goToFreeModeButton.events.onInputOver.add(sounds.sound_freeMode,this);
+	goToFreeModeButton.addChild(game.make.text(30,30,wording.freemode,goToStyle));
 	
 	pat = game.add.sprite(100,game.height - 500,'home-patrick');
 	pat.scale.setTo(0.5,0.5);
 }
 
 function levelsButtons(){
+	var game = globals.game;
+
 	var levelStyle = {font: "30px Arial", fontWeight: "bold", fill: "#0D004C"};
 	
 	var levelsNumber = levels.length;
@@ -30,6 +46,8 @@ function levelsButtons(){
 }
 
 function winButtons(){
+	var game = globals.game;
+
 	var levelStyle = {font: "30px Arial", fontWeight: "bold", fill: "#0D004C"};
 	
 	var curLevel = game.global.levelnum;
@@ -47,36 +65,41 @@ function winButtons(){
 }
 
 function goToFreePlay(){
-	clicker();
-	game.state.start('freePlay');
+	sounds.clicker();
+	globals.game.state.start('freePlay');
 }
 
 function goToLevelsMap(){
-	clicker();
-	game.state.start('levelsMap');
+	sounds.clicker();
+	globals.game.state.start('levelsMap');
 }
 
 function goToLevelPlay(item){
-	clicker();
-	game.global.levelnum = item.number;
-	game.state.start('levelPlay');
+	sounds.clicker();
+	globals.game.global.levelnum = item.number;
+	globals.game.state.start('levelPlay');
 }
 
-function goToImportJSON(item) {
-	clicker();
-	// var input = item;
-
-    // var reader = new FileReader();
-    // reader.onload = function(){
-      // var dataURL = reader.result;
-      // var output = document.getElementById('output');
-      // output.src = dataURL;
-    // };
-    //reader.readAdArrayBuffer(input.files[0]);
-	// selection d'un json + go
-}
+// function goToImportJSON(item) {
+// 	sounds.clicker();
+// 	// selection d'un json + go
+// }
 
 function goToHome() {
-	clicker();
-	game.state.start('menu');
+	sounds.clicker();
+	globals.game.state.start('menu');
 }
+
+
+return {
+	homeButtons:homeButtons,
+	levelsButtons:levelsButtons,
+	winButtons:winButtons,
+	goToFreePlay:goToFreePlay,
+	goToLevelsMap:goToLevelsMap,
+	goToLevelPlay : goToLevelPlay,
+	// goToImportJSON:goToImportJSON,
+	goToHome:goToHome
+};
+
+});

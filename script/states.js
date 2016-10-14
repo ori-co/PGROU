@@ -1,60 +1,93 @@
+define ([
+		"global",
+		"functions/preload",
+		"functions/wallpaper",
+		"functions/buildMenu",
+		"functions/navigationButtons",
+		"functions/sounds",
+		"functions/gameCreation",
+		"functions/update"
+	], function(
+		globals,
+		preload,
+		wallpaper,
+		buildMenu,
+		navigationButtons,
+		sounds,
+		gameCreation,
+		update
+		) {
+
 // Define the states of the game
 // Preload :load all assets once
 var loadState = {
 	preload : preload, 
 	create : function(){
-		game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+		globals.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 		// Call the menu state
-		game.state.start('menu');
+		globals.game.state.start('menu');
 	}
 }
 
 // Menu
 var menuState = {
 	create : function() {
-		game.global.mode = 'home';
-		menuWallpaper('background-home');
-		buildNavigationMenu();
-		homeButtons();
-		homeAutoPlaySound();
+		globals.game.global.mode = 'home';
+		wallpaper.menuWallpaper('background-home');
+		buildMenu.buildNavigationMenu();
+		navigationButtons.homeButtons();
+		sounds.homeAutoPlaySound();
 	}
 }
 
 var levelsMapState = {
 	create : function(){
-		game.global.mode = 'levelsMap';
-		menuWallpaper('background-home');
-		buildNavigationMenu();
-		levelsButtons();
-		levelsMapAutoPlaySound();
+		globals.game.global.mode = 'levelsMap';
+		wallpaper.menuWallpaper('background-home');
+		buildMenu.buildNavigationMenu();
+		navigationButtons.levelsButtons();
+		sounds.levelsMapAutoPlaySound();
 	}
 }
 
 // LevelMode
 var levelPlayState = {
+	update : update,
     create: function (){
-		game.global.mode = 'levelMode';
-		create();
-		levelModeAutoPlaySound();
+		globals.game.global.mode = 'levelMode';
+		gameCreation.initGame();
+		gameCreation.create();
+		sounds.levelModeAutoPlaySound();
 	}
 };
 
 // FreeMode
 var freePlayState = {
     create: function (){
-		game.global.mode = 'freeMode';
-		create();
-		freeModeAutoPlaySound();
+		globals.game.global.mode = 'freeMode';
+		gameCreation.initGame();
+		gameCreation.create();
+		sounds.freeModeAutoPlaySound();
 	}
 };
 
 // Win
 var winState = {
 	create : function () {
-		game.global.mode = 'win';
-		menuWallpaper('background-win');
-		buildNavigationMenu();
-		winButtons();
-		winAutoPlaySound();
+		globals.game.global.mode = 'win';
+		wallpaper.menuWallpaper('background-win');
+		buildMenu.buildNavigationMenu();
+		navigationButtons.winButtons();
+		sounds.winAutoPlaySound();
 	}
 }
+
+return {
+	loadState:loadState, 
+	menuState:menuState, 
+	levelsMapState:levelsMapState, 
+	levelPlayState:levelPlayState, 
+	freePlayState:freePlayState, 
+	winState:winState  
+};
+});

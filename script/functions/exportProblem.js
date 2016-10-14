@@ -3,36 +3,31 @@
             // The export function builds a string with all the problem's inforation.
             // This string needs to follow a specific syntax to enable the loading of this problem afterwards.
 			
-			function convertColor (c){
-				var col ="";
-				switch (c){
-					case 8646144 : col= "0x83EE00";
-					break;
-					case 16514560 : col= "0xFBFE00";
-					break;
-					case 363190 : col= "0x058AB6";
-					break;
-					case 14942300 : col= "0xE4005C";
-					break;
-					case 8390590 : col= "0x8007BE";
-					break;
-					case 16745216 : col= "0xFF8300";
-					break;
-					default : col = "0x93AFBD";
-					break;	
-				}
-				return col;
-			}
+
             
             function exportProblem() {
             
                 var json = '{\"problem\":{\"pattern\":[';
                 var cpt = 0;
             
-                //Square
+			
+				for (var key in game.global.shapes){
+					var shapeArray = game.global.shapes[key].shapesInPlace;
+					
+					for (i=0; i<shapeArray.length;i++){
+						var formItem = shapeArray[i];
+						json = json + '{\"shape\":\"'+ key +'\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
+						if (i!= shapeArray.length -1 ) json += ',';
+					}
+					
+				}
+				
+				json = json + ']},"distrib" :"on"}';
+				
+/*                 //Square
                 F1.forEach(function (formItem) {
                     if (cpt !== 0) {
-                        json = json + ',{\"shape\":\"square\",\"color\":\"' + convertColor(formItem.tint) + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
+                        json = json + ',{\"shape\":\"square\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                     } else {
                         json = json + '{\"shape\":\"square\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
                         cpt = 1;
@@ -91,7 +86,7 @@
                     }
                 }, this);
             
-                json = json + ']},"distrib" :"on"}';
+                json = json + ']},"distrib" :"on"}'; */
             
                 //Open a pop-up to save the json file
                 popup = window.open('', 'popup', 'height=300, width=600,left=' + ((screen.width - 400) / 2) + ',top=' + ((screen.height - 500) / 2));
