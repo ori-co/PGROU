@@ -15,6 +15,8 @@ var cptcol=0;
 var crea=0;
 var printer=0;
 var cptplace = 0;
+var cptmodelevels = 0;
+var cptmodefree = 0;
 
 // mute the game
 function toggleMute(item){
@@ -89,9 +91,9 @@ function sound_color(){cptcol = playHelp("help_color",cptcol);}
 
 function sound_print(){printer = playHelp("help_print",printer);}
 
-function sound_levelMode(){playHelp("classic",0);}
+function sound_levelMode(){playHelp("classic",cptmodelevels);}
 
-function sound_freeMode(){playHelp("free",0);}
+function sound_freeMode(){playHelp("free",cptmodefree);}
 
 function sound_empty(){}
 	
