@@ -60,10 +60,10 @@ function addShapeToMatrix(tempSprite, mat){
 
   var game = globals.game;
   var shapeMat = game.global.shapes[tempSprite.key].mat[tempSprite.frame];
-  //var originX = Math.floor(Number(tempSprite.x));
-  //var originY = Math.floor(Number(tempSprite.y));
-  var originX = tempSprite.x;
-  var originY = tempSprite.y;
+  var originX = Math.floor(tempSprite.x);
+  var originY = Math.floor(tempSprite.y);
+  // var originX = tempSprite.x;
+  // var originY = tempSprite.y;
   var sizeX = shapeMat[0].length;
   var sizeY = shapeMat.length;
 
@@ -97,18 +97,22 @@ function getInfo(arrayName){
 }
 
 // f
-function getMatInPlaceExclundingCurrentShape(tempSprite){
+function getInfoInPlaceExclundingCurrentShape(tempSprite){
   var game = globals.game;
 
   var mat = matrixInitialisation(game.global.safeAreaSize.x,game.global.safeAreaSize.y);
+  var area = 0;
 
   for (var key in game.global.shapes){
     var shapeArray = game.global.shapes[key].shapesInPlace;
     for (k=0; k<shapeArray.length;k++){
-      if (tempSprite != shapeArray[k]) mat = addShapeToMatrix(shapeArray[k],mat); 
+      if (tempSprite != shapeArray[k]) {
+        mat = addShapeToMatrix(shapeArray[k],mat); 
+        area += game.global.shapes[key].area[shapeArray[k].frame] ;
+      }
     }
   }
-  return mat;
+  return {mat:mat, area : area};
 }
 
 //return {matrixInitialisation:matrixInitialisation, addShapeMatrix:addShapeMatrix}
@@ -117,6 +121,6 @@ return {
   matrixContoursAddition : matrixContoursAddition,
   addShapeToMatrix : addShapeToMatrix,
   getInfo : getInfo,
-  getMatInPlaceExclundingCurrentShape : getMatInPlaceExclundingCurrentShape
+  getInfoInPlaceExclundingCurrentShape : getInfoInPlaceExclundingCurrentShape
 }
 });

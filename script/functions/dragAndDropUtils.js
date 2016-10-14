@@ -11,6 +11,31 @@ define ([
     colors
     ) {
 
+var complete_InPlaceMat = [];
+var complete_area = 0;
+
+// to differentiate between a simple click and a real drag
+function isDrag() {
+    var game = globals.game;
+
+    var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
+    if (distanceFromLastUp > 2) { // value 2 determined empiracally
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// update complete_inPlaceMat and area
+function updateInPlaceMatrix(tempSprite){
+    var game = globals.game;
+    
+    var inPlaceInfo = matrixUtils.getInfoInPlaceExclundingCurrentShape(tempSprite);
+    complete_InPlaceMat = inPlaceInfo.mat;
+    complete_area = inPlaceInfo.area;
+
+}
+
 // to delete a shape on the game
 function deleteSprite(tempSprite) {
 	var game = globals.game;
@@ -29,30 +54,16 @@ function deleteSprite(tempSprite) {
     sounds.trashBinSound();
 }
 
-// to differentiate between a simple click and a real drag
-function isDrag() {
-    var game = globals.game;
-
-    var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
-    if (distanceFromLastUp > 2) { // value 2 determined empiracally
-        return true;
-    } else {
-        return false;
-    }
-}
-
 
 // to determine the position of the shape after the snap effect
-function snapEffect(tempSprite, gameMode) {
+function snapEffect(tempSprite) {
     var game = globals.game;
-
-    var inPlaceMat = matrixUtils.getMatInPlaceExclundingCurrentShape(tempSprite);
 
     // add the shapes from the pattern into the snap matrix, to get the global contours to which we want to snap
     if (game.global.mode == 'levelMode') {
-        var snapMat = matrixUtils.matrixContoursAddition(inPlaceMat, game.global.solution.matPattern);
+        var snapMat = matrixUtils.matrixContoursAddition(complete_InPlaceMat, game.global.solution.matPattern);
     } else {
-        var snapMat = inPlaceMat;
+        var snapMat = complete_InPlaceMat;
     }
 
     // calculate the best position for tempSprite (snap effect)
@@ -93,7 +104,12 @@ function snapEffect(tempSprite, gameMode) {
     }
     tempSprite.x = j_opt;
     tempSprite.y = i_opt;
+
+    // ajdd the optimale solution to complete_InPlaceMat to avoid to calculate again this matrix in update solution
+    complete_InPlaceMat = matrixUtils.addShapeToMatrix(tempSprite, complete_InPlaceMat);
+    complete_area = complete_area + game.global.shapes[tempSprite.key].area[tempSprite.frame] ;
 }
+
 
 function distance(i1, j1, i2, j2) {
     return Math.sqrt((i1 - i2) * (i1 - i2) + (j1 - j2) * (j1 - j2))
@@ -158,37 +174,32 @@ function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeM
 
 
 
-function updateSolution() {
+function checkSolution() {
     var game = globals.game;
-
-    var inPlaceInfo = matrixUtils.getInfo('shapesInPlace');
-    var inPlaceMat = inPlaceInfo.mat;
-    var inPlaceArea = inPlaceInfo.area;
 	
     // Vérification de la solution    
-    error = 0;
+    var error = 0;
 
     for (var i = 0; i < game.global.safeAreaSize.y; i++) {
         for (var j = 0; j < game.global.safeAreaSize.x; j++) {
-            if (inPlaceMat[i][j] != game.global.solution.matPattern[i][j]) {
+            if (complete_InPlaceMat[i][j] != game.global.solution.matPattern[i][j]) {
                 error++;
             }
         }
     }
 
-
-    if (error < 500 && inPlaceArea == game.global.solution.areaPattern) {
-        game.global.solution.ok = true;
-    }
+    var errorMargin = Math.floor(game.global.solution.areaPattern*0.05);
+    if (error < errorMargin && complete_area == game.global.solution.areaPattern) game.global.solution.ok = true;
 }
 
 
 return {
+    updateInPlaceMatrix: updateInPlaceMatrix,
     deleteSprite : deleteSprite,
     isDrag : isDrag,
     snapEffect : snapEffect,
     colorSprite : colorSprite,
-    updateSolution : updateSolution
+    checkSolution : checkSolution
 }
 
 });
