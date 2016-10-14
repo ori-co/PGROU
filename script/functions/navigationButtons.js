@@ -23,8 +23,8 @@ function homeButtons() {
 	goToFreeModeButton.events.onInputOver.add(sounds.sound_freeMode,this);
 	goToFreeModeButton.addChild(game.make.text(30,30,wording.freemode,goToStyle));
 	
-	pat = game.add.sprite(100,game.height - 500,'home-patrick');
-	pat.scale.setTo(0.5,0.5);
+	game.global.ui.pat = game.add.sprite(100,game.height - 500,'home-patrick');
+	game.global.ui.pat.scale.setTo(0.5,0.5);
 }
 
 function levelsButtons(){

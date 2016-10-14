@@ -2,13 +2,15 @@ define ([
   "global",
   "data/palette",
   "functions/gameButtons",
-  "functions/dragAndDrop"
+  "functions/dragAndDrop",
+  "functions/sounds"
 
   ], function(
     globals,
     colors,
     gameButtons,
-    dragAndDrop
+    dragAndDrop,
+    sounds
     ) {
 
 
@@ -18,7 +20,12 @@ function onClickAddAShape(item){
 	
 	addShape(shapeName);
 	
-	globals.game.global.shapes[shapeName].shapeButton.label.setText(evaluateShapes(shapeName,'shapesInPlace'));
+  var nb = evaluateShapes(shapeName,'shapesInPlace');
+
+	globals.game.global.shapes[shapeName].shapeButton.label.setText(nb);
+
+  // sounds
+  sounds.sound_addRemoveShape(shapeName, nb, true);
 }
 
 
