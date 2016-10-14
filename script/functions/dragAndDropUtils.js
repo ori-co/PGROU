@@ -14,16 +14,19 @@ define ([
 // to delete a shape on the game
 function deleteSprite(tempSprite) {
 	var game = globals.game;
-
-    // sound !!
-	
+    var shapeName = tempSprite.key;
+    
+    // Remove the shape of the game and the in place array
 	game.global.shapes[tempSprite.key].shapesInPlace.splice(game.global.shapes[tempSprite.key].shapesInPlace.indexOf(tempSprite),1);
     tempSprite.destroy();
-    sounds.trashBinSound();
-	
-	
-	game.global.shapes[tempSprite.key].shapeButton.label.setText(evaluateShapes(tempSprite.key,'shapesInPlace'));
 
+    // update of the counter
+    var nb  = parseInt(game.global.shapes[shapeName].shapeButton.label.text)-1;
+    game.global.shapes[shapeName].shapeButton.label.setText(nb);
+
+    // Sounds
+	sounds.sound_addRemoveShape(shapeName, nb, false);
+    sounds.trashBinSound();
 }
 
 // to differentiate between a simple click and a real drag

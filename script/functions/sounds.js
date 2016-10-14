@@ -1,7 +1,9 @@
 define ([
-		"global"
+		"global",
+		"functions/animations"
 	], function(
-		globals
+		globals,
+		animations
 		) {
 
 var cptbegin=0;
@@ -37,111 +39,26 @@ function sound_stopAll(){
 
 
 // Sound click functions
-function trashBinSound() {
-    bintemp = soundManager.createSound({id : "bin", url: globals.game.global.language+"trashbin.mp3"});
-	bintemp.play();
-}
+function trashBinSound() { soundManager.createSound({id : "bin", url: globals.game.global.language+"trashbin.mp3"}).play(); }
 
-function clicker(){
-	var clicker = soundManager.createSound({id : "clicker", url: globals.game.global.language+"click.mp3"});
-	clicker.play();
-}
+function clicker(){ soundManager.createSound({id : "clicker", url: globals.game.global.language+"click.mp3"}).play();}
 	
 	// Add Shapes Sounds 
-	
-function sound_square(nbF1){
- 	nb1 = soundManager.createSound({id : "square"+nbF1, url:globals.game.global.language+"square"+nbF1+".mp3"});
-	soundManager.stopAll();
-    patrickSpeak(nb1); // must be before play() instruction
-	nb1.play();
-}
 
-function sound_trapeze(nbF2){
- 	nb2 = soundManager.createSound({id : "trapeze"+nbF2, url:globals.game.global.language+"trapeze"+nbF2+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(nb2);
-	nb2.play();
-}
+function sound_addRemoveShape(shapeName, nb, add){
+	var suffixe = add ? "" : "_off";
+	var soundObject = {id : shapeName+nb, url:globals.game.global.language + shapeName + suffixe + nb + ".mp3"};
+	var playSoundObject = soundManager.createSound(soundObject);
 
-function sound_hexagon(nbF3){
- 	nb3 = soundManager.createSound({id : "hexagon"+nbF3, url:globals.game.global.language+"hexagon"+nbF3+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(nb3);
-	nb3.play();
-}
-
-function sound_triangle(nbF4){
- 	nb4 = soundManager.createSound({id : "triangle"+nbF4, url:globals.game.global.language+"triangle"+nbF4+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(nb4);
-	nb4.play();
-}
-
-function sound_trirec(nbF5){
- 	nb5 = soundManager.createSound({id : "trirec"+nbF5, url:globals.game.global.language+"trirec"+nbF5+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(nb5);
-	nb5.play();
-}
-
-function sound_diamond(nbF6){
- 	nb6 = soundManager.createSound({id : "diamond"+nbF6, url:globals.game.global.language+"diamond"+nbF6+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(nb6);
-	nb6.play();
-}	
-	
-	// Remove Shapes sounds
-
-function sound_square_off(nbF1){
- 	n1 = soundManager.createSound({id : "square_off"+nbF1, url:globals.game.global.language+"square_off"+nbF1+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(n1);
-	n1.play();
-}	
-
-
-function sound_trapeze_off(nbF2){
- 	n2 = soundManager.createSound({id : "trapeze_off"+nbF2, url:globals.game.global.language+"trapeze_off"+nbF2+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(n2);
-	n2.play();
-}	
-
-
-function sound_hexagon_off(nbF3){
- 	n3 = soundManager.createSound({id : "hexagon_off"+nbF3, url:globals.game.global.language+"hexagon_off"+nbF3+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(n3);
-	n3.play();
-}	
-
-
-function sound_triangle_off(nbF4){
- 	n4 = soundManager.createSound({id : "triangle_off"+nbF4, url:globals.game.global.language+"triangle_off"+nbF4+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(n4);
-	n4.play();
-}	
-
-
-function sound_trirec_off(nbF6){
- 	n5 = soundManager.createSound({id : "trirec_off"+nbF5, url:globals.game.global.language+"trirec_off"+nbF5+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(n5);
-	n5.play();
-}	
-
-function sound_diamond_off(nbF6){
- 	n6 = soundManager.createSound({id : "diamond_off"+nbF6, url:globals.game.global.language+"diamond_off"+nbF6+".mp3"});
-	soundManager.stopAll();
-	patrickSpeak(n6);
-	n6.play();
+	sound_stopAll();
+	globals.game.global.canPlay = false;
+	animations.patrickSpeak(playSoundObject);
+	playSoundObject.play();
 }
 
 // Help sounds - explanations of the commands
 
-// play the instruction sound - play oncly if the associated counter is null
+// play the instruction sound - play only if the associated counter is null
 function playHelp(mp3Name, cpt){
 var game = globals.game;
 
@@ -195,6 +112,7 @@ return {
 	sound_stopAll:sound_stopAll,
 	trashBinSound:trashBinSound,
 	clicker	:clicker,
+	sound_addRemoveShape : sound_addRemoveShape,
 	sound_trash:sound_trash,
 	sound_rotation:sound_rotation,
 	sound_export:sound_export,
