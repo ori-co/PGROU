@@ -15,6 +15,7 @@ var preload = function preload() {
 	globals.game.load.image('background-home', 'assets/images/backgrounds/backgroundHome.png');
 	globals.game.load.image('background-win','assets/images/backgrounds/backgroundWin.png');
     globals.game.load.image('background-game','assets/images/backgrounds/backgroundGame.png');
+    globals.game.load.image('gameArea','assets/images/backgrounds/gameArea.png');
     
 	// Shapes assets
     globals.game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);

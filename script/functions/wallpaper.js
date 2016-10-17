@@ -7,25 +7,34 @@ define ([
         ) {
 
 function gameWallpaper() {
+    var game = globals.game;
 
 	//Wallpaper
-    var wallpaper = globals.game.add.sprite(0,0, 'background-game');
+    var wallpaper = game.add.sprite(0,0, 'background-game');
 	update.updateWallpaperSize(wallpaper);
 
-	globals.game.scale.setResizeCallback(function () {
+	game.scale.setResizeCallback(function () {
         update.updateWallpaperSize(wallpaper);
         update.updateSize(this);
-    }, globals.game);
+    }, game);
+
+    // Game Area
+    var origin = game.global.gameAreaOrigin;
+    var size = game.global.gameAreaSize;
+    game.add.sprite(origin.x+65,origin.y+65, 'gameArea').scale.setTo(size.x/50,size.y/50);
+
 }
 
 function menuWallpaper(background) {
-	var wallpaper = globals.game.add.sprite(0,0, background);
+    var game = globals.game;
+
+	var wallpaper = game.add.sprite(0,0, background);
 	 
 	update.updateWallpaperSize(wallpaper);
 	 
-	globals.game.scale.setResizeCallback(function () {
+	game.scale.setResizeCallback(function () {
         update.updateWallpaperSize(wallpaper);
-     }, globals.game);	
+     }, game);	
 }
 
 return {gameWallpaper:gameWallpaper, menuWallpaper:menuWallpaper};
