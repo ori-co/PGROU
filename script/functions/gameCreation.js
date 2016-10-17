@@ -43,7 +43,9 @@ function initGame(){
 	game.global.shapes = shapes;
 	// game.global.shapes[key] = { nbDir : .., mat : ..., area : ...,  shapeButton : ... , shapesInPlace : ..., shapesOfPattern : ...}
 	for (var key in game.global.shapes) {
+		if (game.global.shapes[key].shapesInPlace != undefined) for (i=0; i< game.global.shapes[key].shapesInPlace.length; i++) game.global.shapes[key].shapesInPlace[i].destroy();
 		game.global.shapes[key].shapesInPlace =[];
+		if (game.global.shapes[key].shapesOfPattern != undefined) for (i=0; i< game.global.shapes[key].shapesOfPattern.length; i++) game.global.shapes[key].shapesOfPattern[i].destroy();
 		game.global.shapes[key].shapesOfPattern = [];
 	}
 
