@@ -43,7 +43,7 @@ function addShape(shapeName) {
     tempSprite.tint = colors.palette[0];
 
     tempSprite.inputEnabled = true; //Active Input
-    tempSprite.input.enableDrag(false, true); //Mobile (drag)
+    tempSprite.input.enableDrag(false, true, true); //Mobile (drag)
     tempSprite.input.enableSnap(1, 1, false, true); //Grid of 1 pixel
     tempSprite.events.onInputDown.add(gameButtons.formInteraction, this); //Edition mode after click
     if (game.global.mode == "levelMode") {
