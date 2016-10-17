@@ -37,7 +37,7 @@ var game =globals.game;
 		tempSprite.inputEnabled = true;
 		tempSprite.tint =  colors.patternColor;
 		tempSprite.frame = Number(shapeArray[i].rotation);
-		tempSprite.alpha = 0.4;
+		tempSprite.alpha = 0.3;
 		tempSprite.wantedColor = shapeArray[i].color;
 		
 		if (jsonObj.distrib=="off") {
