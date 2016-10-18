@@ -18,15 +18,19 @@ var cptplace = 0;
 var cptmodelevels = 0;
 var cptmodefree = 0;
 
+var dir = "assets/audio/";
+
 // mute the game
 function toggleMute(item){
+	var lang = globals.game.global.language;
+
 	if (!soundManager.muted){
 		soundManager.mute();
 		item.setFrames(3, 0, 1, 0);
 		globals.game.global.muteValue = true;
 	}else{
 		soundManager.unmute();
-		click = soundManager.createSound({id : "click", url: globals.game.global.language+"click.mp3"});
+		click = soundManager.createSound({id : "click", url: dir + globals.game.global.language+"/click.mp3"});
 		click.play();
 		item.setFrames(2, 1, 0, 1);
 		globals.game.global.muteValue = false;
@@ -41,15 +45,15 @@ function sound_stopAll(){
 
 
 // Sound click functions
-function trashBinSound() { soundManager.createSound({id : "bin", url: globals.game.global.language+"trashbin.mp3"}).play(); }
+function trashBinSound() { soundManager.createSound({id : "bin", url: dir + globals.game.global.language +"/trashbin.mp3"}).play(); }
 
-function clicker(){ soundManager.createSound({id : "clicker", url: globals.game.global.language+"click.mp3"}).play();}
+function clicker(){ soundManager.createSound({id : "clicker", url: dir + globals.game.global.language+"/click.mp3"}).play();}
 	
 	// Add Shapes Sounds 
 
 function sound_addRemoveShape(shapeName, nb, add){
 	var suffixe = add ? "" : "_off";
-	var soundObject = {id : shapeName+nb, url:globals.game.global.language + shapeName + suffixe + nb + ".mp3"};
+	var soundObject = {id : shapeName+nb, url:dir + globals.game.global.language +"/"+ shapeName + suffixe + nb + ".mp3"};
 	var playSoundObject = soundManager.createSound(soundObject);
 
 	sound_stopAll();
@@ -65,7 +69,7 @@ function playHelp(mp3Name, cpt){
 var game = globals.game;
 
     if (cpt == 0){
-        var helpSound = soundManager.createSound({id : mp3Name, url:globals.game.global.language+mp3Name+".mp3"});
+        var helpSound = soundManager.createSound({id : mp3Name, url:dir + globals.game.global.language+"/" +mp3Name+".mp3"});
         if(game.global.canPlay){
             game.global.canPlay = false;
             soundManager.stopAll();

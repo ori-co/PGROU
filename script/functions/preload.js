@@ -6,7 +6,7 @@ define ([
 
 //Load the necessary files before the beginning of the game
 var preload = function preload() {
-	
+
 	// Home assets 
 	globals.game.load.spritesheet('button-goTo','assets/images/buttons/home.png',300,100);
 	globals.game.load.spritesheet('button-level','assets/images/buttons/levels.png',78,77);

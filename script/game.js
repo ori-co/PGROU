@@ -18,7 +18,7 @@ globals.game = game;
 
 game.global = {};
 
-game.global.language = "assets/audio/fr/";
+game.global.language = "fr";
 	
 game.global.ui = {};
 game.global.solution = {};
