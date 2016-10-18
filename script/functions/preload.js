@@ -66,6 +66,9 @@ var preload = function preload() {
 	// Winning state assets 
 	globals.game.load.spritesheet('button-again', 'assets/images/buttons/again.png', 78,77);
 	globals.game.load.spritesheet('button-next', 'assets/images/buttons/next.png',78,77);
+
+    // UI
+    globals.game.load.spritesheet('rotation-ui','assets/images/buttons/rotation_ui.png');
 }
 
 return preload;

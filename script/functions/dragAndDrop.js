@@ -27,7 +27,7 @@ game.global.solution.ok  =false;
 }
 
 //Function at the end of the drag
-function endDrag(tempSprite, pointer) {
+function endDrag(tempSprite) {
 	var game = globals.game;
 	var mode = game.global.mode;
 	
@@ -41,11 +41,9 @@ function endDrag(tempSprite, pointer) {
             tempSprite.position.copyFrom(tempSprite.originalPosition); 
 	    }
 	    else {
-            if (dragAndDropUtils.isDrag()) {
                 dragAndDropUtils.snapEffect(tempSprite);
                 dragAndDropUtils.colorSprite(tempSprite);
 				tempSprite.originalPosition = tempSprite.position.clone();
-            }
 		}
 	}
 	if (mode!="freeMode") {dragAndDropUtils.checkSolution();}
