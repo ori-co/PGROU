@@ -21,7 +21,7 @@ function gameWallpaper() {
     // Game Area
     var origin = game.global.gameAreaOrigin;
     var size = game.global.gameAreaSize;
-    game.add.sprite(origin.x+65,origin.y+65, 'gameArea').scale.setTo(size.x/50,size.y/50);
+    var gameArea = game.add.sprite(origin.x+65,origin.y+65, 'gameArea').scale.setTo(size.x/50,size.y/50);
 
 }
 

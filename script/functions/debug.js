@@ -1,7 +1,16 @@
+define ([
+  "global"
+
+  ], function(
+    globals
+    ) {
+
 //Debugging Mode
-function render() {
-    //game.debug.style = '#fff';
-    //game.debug.text('Squares : ' + nbF1, 16, 48);
+return function render() {
+    // globals.game.debug.style = '#fff';
+    // globals.game.debug.text('angle BC : ' + globals.game.debugangle, 16, 48);
+    // globals.game.debug.text('begin position : ' + globals.game.beginpos, 16, 60);
+    // globals.game.debug.text('current position : ' + globals.game.currentpos, 16, 72);
     //game.debug.text('Trapezes : ' + nbF2, 16, 60);
     //game.debug.text('Hexagons : ' + nbF3, 16, 72);
     //game.debug.text('Triangles : ' + nbF4, 16, 84);
@@ -18,3 +27,4 @@ function render() {
     //game.debug.text('MatSolution : ' + matSolution[180][22], 16, 132);
     //game.debug.inputInfo(16, 144);
 }
+});

@@ -45,6 +45,7 @@ function addShape(shapeName) {
     tempSprite.input.enableDrag(false, true, true);
     tempSprite.events.onInputDown.add( onClickOnShape,this);
     tempSprite.events.onDragStop.add( onReleaseShape,this);
+    //tempSprite.events.onInputUp.add(onReleaseShape, this);
 
     tempSprite.rotationAnimation = tempSprite.animations.add('rotation');
 
@@ -67,7 +68,7 @@ function addRotationUI(tempSprite,angle){
     rotationUI.events.onDragStop.add(onRotationEnd,this);
 
 
-    rotationUI.shapeOriginPosition = {x:tempSprite.x + 65,y:tempSprite.y+65}
+    //rotationUI.shapeOriginPosition = {x:tempSprite.x + 65,y:tempSprite.y+65};
     rotationUI.rotationUIPosition = rotationUI.position.clone();
 
     tempSprite.bringToTop();
@@ -78,9 +79,17 @@ function removeRotationUI(tempSprite){
   if (tempSprite.rotationUI != null) tempSprite.rotationUI.destroy();
 }
 
+function removeAllRotationUI(){
+  for (var key in globals.game.global.shapes){
+    for (i=0;i<globals.game.global.shapes[key].shapesInPlace.length;i++){
+      removeRotationUI(globals.game.global.shapes[key].shapesInPlace[i]);
+    }
+  }
+}
+
 function onRotationStart(item,pointer){
 
-    item.beginDragPointerPosition = pointer.position.clone();
+    item.beginDragPosition = pointer.position.clone();
     item.beginDir = item.shapeSprite.frame;
     item.beginAngle = item.angle;
 
@@ -91,15 +100,17 @@ function onRotationUpdate(item,pointer){
    item.position = item.rotationUIPosition.clone();
 
   if (item.beginDir != undefined) {
-    var beginAngle = Phaser.Point.angle(item.beginDragPointerPosition, item.shapeOriginPosition);
-    var pointerAngle = Phaser.Point.angle(pointer.position, item.shapeOriginPosition);
-    var angle = pointerAngle - beginAngle;
+    var origin = item.position;
+    var beginPosition = item.beginDragPosition;
+    var currentPosition = pointer.position;
+
+    var angle = (Phaser.Point.angle(origin, currentPosition)-Phaser.Point.angle(origin, beginPosition)) * 57; // conversion en degrés
+      
     var maxDir = globals.game.global.shapes[item.shapeSprite.key].nbDir;
-    var newDir = (item.beginDir + Math.floor(20* angle / 12)) % maxDir;
-    var rotationDirection = (newDir<0) ? newDir+maxDir : newDir;
- 
-    item.angle = item.beginAngle + angle*60;
-    item.shapeSprite.frame =  rotationDirection;
+    var newDir = item.beginDir + Math.floor(angle / 30);
+
+    item.shapeSprite.frame = (newDir+maxDir) % maxDir;
+    item.angle = item.beginAngle + angle ;
 
     item.shapeSprite.updateCache();
   }
@@ -113,11 +124,7 @@ function onRotationEnd(item){
 }
 
 function onClickOnShape(tempSprite){
-  for (var key in globals.game.global.shapes){
-    for (i=0;i<globals.game.global.shapes[key].shapesInPlace.length;i++){
-      removeRotationUI(globals.game.global.shapes[key].shapesInPlace[i]);
-    }
-  }
+  removeAllRotationUI();
   dragAndDrop.beginDrag();
   
 }
@@ -165,6 +172,6 @@ var game = globals.game;
 	return res;
 }
 
-return {onClickAddAShape:onClickAddAShape, addShape:addShape, evaluateShapes:evaluateShapes};
+return {onClickAddAShape:onClickAddAShape, addShape:addShape, evaluateShapes:evaluateShapes, removeAllRotationUI};
 
 });
