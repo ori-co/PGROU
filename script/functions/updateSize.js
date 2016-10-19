@@ -32,8 +32,8 @@ function updateSize() {
     game.global.ui.basketRight.y = game.height - (5 + game.global.ui.basketRight.height); 
     
     // Buttons on basket
-    game.global.ui.rotL.y = game.height - 210;
-    game.global.ui.rotR.y = game.height - 210;
+   // game.global.ui.rotL.y = game.height - 210;
+   // game.global.ui.rotR.y = game.height - 210;
     if (mode == "freeMode"){
         game.global.ui.col.y =game.height - 210;
     }
@@ -44,7 +44,7 @@ function updateSize() {
     
     //Patrick position
     game.global.ui.pat.x=game.global.ui.basketRight.x+5;
-    game.global.ui.pat.y=game.global.ui.basketRight.y-135;
+    game.global.ui.pat.y=game.global.ui.basketRight.y-85;
     
     //positions of shapes in the basket aka outside of the gamezone
 	var minX = game.global.gameAreaOrigin.x;

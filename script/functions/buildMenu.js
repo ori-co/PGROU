@@ -68,10 +68,10 @@ function buildGameInterface() {
     game.global.ui.basketRight.y = game.height - (5 + game.global.ui.basketRight.height);     
 
     //Add rotation and color buttons
-    game.global.ui.rotR = game.add.button(75, game.height - 210, 'button-rotate-right', gameButtons.rotationRightButton, this, 2,1, 0, 1);
-    game.global.ui.rotR.events.onInputOver.add(sounds.sound_rotation, this);
-    game.global.ui.rotL = game.add.button(15, game.height - 210, 'button-rotate-left', gameButtons.rotationLeftButton, this, 2, 1, 0, 1);
-    game.global.ui.rotL.events.onInputOver.add(sounds.sound_rotation, this);
+    // game.global.ui.rotR = game.add.button(75, game.height - 210, 'button-rotate-right', gameButtons.rotationRightButton, this, 2,1, 0, 1);
+    // game.global.ui.rotR.events.onInputOver.add(sounds.sound_rotation, this);
+    // game.global.ui.rotL = game.add.button(15, game.height - 210, 'button-rotate-left', gameButtons.rotationLeftButton, this, 2, 1, 0, 1);
+    // game.global.ui.rotL.events.onInputOver.add(sounds.sound_rotation, this);
 	
 	game.global.ui.unlockButton = game.add.button(5, 5, 'ribbon', gameButtons.unlockStore, this, 1, 0, 1, 0);
 	game.global.ui.unlockButton.events.onInputOver.add(sounds.unlock_store, this);
@@ -87,7 +87,7 @@ function buildPatrick() {
     game.global.ui.pat = game.add.group();
     // position
     game.global.ui.pat.x = game.global.ui.basketRight.x+5;
-    game.global.ui.pat.y = game.global.ui.basketRight.y-135;
+    game.global.ui.pat.y = game.global.ui.basketRight.y-85;
     game.global.ui.pat.scale.set(0.27, 0.27);
     // independant elements
     var patBody = game.add.sprite(0,0,'patrick');

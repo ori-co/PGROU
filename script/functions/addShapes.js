@@ -35,8 +35,6 @@ function addShape(shapeName) {
     var position = Math.random()*(game.width-310)+90;
     var tempSprite = game.add.sprite(position, game.height - 155, shapeName);
 
-    // tempSprite.anchor.x = 0;
-    // tempSprite.anchor.y = 0;
     tempSprite.originalPosition = tempSprite.position.clone();
     
     tempSprite.tint = colors.palette[0];
@@ -48,44 +46,18 @@ function addShape(shapeName) {
     tempSprite.events.onInputDown.add( onClickOnShape,this);
     tempSprite.events.onDragStop.add( onReleaseShape,this);
 
-   tempSprite.rotationAnimation = tempSprite.animations.add('rotation');
-   //tempSprite.rotationAnimation.play(0.1, true);
-   //addRotationUI(tempSprite);
-    
-   //  tempSprite.inputEnabled = true; //Active Input
-   //  tempSprite.input.enableDrag(false, true, true); //Mobile (drag)
-   //  tempSprite.input.enableSnap(1, 1, false, true); //Grid of 1 pixel
-   //  tempSprite.events.onInputDown.add(gameButtons.formInteraction, this); //Edition mode after click
-   //  if (game.global.mode == "levelMode") {
-   //   tempSprite.events.onDragStart.add(dragAndDrop.beginDrag, this); 
-   // }
-   //  tempSprite.events.onDragStop.add(dragAndDrop.endDrag, this); //End of drag
-    
-   //  tempSprite.events.onInputOver.add(function(){
-   //   switch (game.global.editingMode){
-   //     case 1:
-   //     game.canvas.style.cursor="url('assets/images/cursors/rotR.png'),default";
-   //     break;
-   //     case 2:
-   //     game.canvas.style.cursor="url('assets/images/cursors/rotL.png'),default";
-   //     break;
-   //     case 3:
-   //     game.canvas.style.cursor="url('assets/images/cursors/col.png'),default";
-   //     break;
-   //     default:
-   //     game.canvas.style.cusor="default";
-   //   } 
-   // });
-
-
+    tempSprite.rotationAnimation = tempSprite.animations.add('rotation');
 
     game.global.shapes[shapeName].shapesInPlace.push(tempSprite);
   }
 
-function addRotationUI(tempSprite){
-  var rotationUI = globals.game.add.sprite(tempSprite.x-20,tempSprite.y-20,'rotation-ui');
-  tempSprite.rotationUI = rotationUI;
-  rotationUI.shapeSprite = tempSprite;
+function addRotationUI(tempSprite,angle){
+    var rotationUI = globals.game.add.sprite(tempSprite.x+65,tempSprite.y+65,'rotation-ui');
+    rotationUI.anchor = {x:0.5, y:0.5};
+    rotationUI.angle = angle;
+
+    tempSprite.rotationUI = rotationUI;
+    rotationUI.shapeSprite = tempSprite;
 
     rotationUI.inputEnabled =true;
     rotationUI.input.pixelPerfectOver = true;
@@ -96,7 +68,7 @@ function addRotationUI(tempSprite){
 
 
     rotationUI.shapeOriginPosition = {x:tempSprite.x + 65,y:tempSprite.y+65}
-    rotationUI.beginDrag = rotationUI.position.clone();
+    rotationUI.rotationUIPosition = rotationUI.position.clone();
 
     tempSprite.bringToTop();
 }
@@ -108,20 +80,25 @@ function removeRotationUI(tempSprite){
 
 function onRotationStart(item,pointer){
 
+    item.beginDragPointerPosition = pointer.position.clone();
     item.beginDir = item.shapeSprite.frame;
+    item.beginAngle = item.angle;
 
 }
 
 function onRotationUpdate(item,pointer){
 
-   item.position = item.beginDrag.clone();
+   item.position = item.rotationUIPosition.clone();
 
   if (item.beginDir != undefined) {
-    var angle = Phaser.Point.angle(pointer.position, item.shapeOriginPosition);
+    var beginAngle = Phaser.Point.angle(item.beginDragPointerPosition, item.shapeOriginPosition);
+    var pointerAngle = Phaser.Point.angle(pointer.position, item.shapeOriginPosition);
+    var angle = pointerAngle - beginAngle;
     var maxDir = globals.game.global.shapes[item.shapeSprite.key].nbDir;
     var newDir = (item.beginDir + Math.floor(20* angle / 12)) % maxDir;
     var rotationDirection = (newDir<0) ? newDir+maxDir : newDir;
  
+    item.angle = item.beginAngle + angle*60;
     item.shapeSprite.frame =  rotationDirection;
 
     item.shapeSprite.updateCache();
@@ -129,9 +106,10 @@ function onRotationUpdate(item,pointer){
 }
 
 function onRotationEnd(item){
-  removeRotationUI(tempSprite);
-  addRotationUI(tempSprite);
 
+  var tempSprite = item.shapeSprite;
+  removeRotationUI(tempSprite);
+  addRotationUI(tempSprite, item.angle );
 }
 
 function onClickOnShape(tempSprite){
@@ -162,7 +140,7 @@ function onReleaseShape(tempSprite){
       //todo
     }
 
-    addRotationUI(tempSprite);
+    addRotationUI(tempSprite,0);
 }
 
 
