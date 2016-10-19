@@ -85,7 +85,16 @@ function buildGameInterface() {
     		currentButton.children[0].tint = currentButton.color;
 
     	}
-    } 
+    } else {
+    	var stars = basket.addChildAt(game.add.group(),3);
+
+    	for (j=0;j<3; j++){
+
+    		var currentStar = stars.add(game.add.sprite(10+j*60,20, 'stars'));
+    		basket.children[3].addChildAt(currentStar,j);
+    		currentStar.frame =0;
+    	}
+    }
 	
 	game.global.ui.unlockButton = game.add.button(5, 5, 'ribbon', gameButtons.unlockStore, this, 1, 0, 1, 0);
 	game.global.ui.unlockButton.events.onInputOver.add(sounds.unlock_store, this);

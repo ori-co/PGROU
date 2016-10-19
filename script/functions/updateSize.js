@@ -30,12 +30,6 @@ function updateSize() {
     game.global.ui.basket.children[1].width = game.width - (game.global.ui.basket.children[0].width + game.global.ui.basket.children[2].width);
     game.global.ui.basket.children[2].x = game.width - (5 + game.global.ui.basket.children[2].width);
     
-    // // Buttons on basket - palette of colors
-    // if (mode == "freeMode"){
-    //     game.global.ui.basket
-    //     game.global.ui.col.y =game.height - 210;
-    // }
-    
     // Menu position
 	game.global.ui.menu.x = game.width;
 

@@ -14,6 +14,13 @@ return function update(){
 			if (game.global.solution.ok) game.state.start("win");
         }, delay);
     }
+
+    if (game.global.solution.ko){
+    	var delay = 200;
+        setTimeout(function () {
+			game.state.start("levelsMap");
+        }, delay);
+    }
 }
 
 	});

@@ -26,6 +26,8 @@ function onClickAddAShape(item){
 
   // sounds
   sounds.sound_addRemoveShape(shapeName, nb, true);
+
+  if (globals.game.global.mode == "levelMode" ) checkStars();
 }
 
 
@@ -148,9 +150,11 @@ function onReleaseShape(tempSprite){
       tempSprite.position.copyFrom(tempSprite.originalPosition); 
       
       // if color chnage color
-      globals.game.global.ui.basket.children[3].forEach(function(colorButton){
-          tempSprite.tint = colorButton.value ? colorButton.color : tempSprite.tint;
-      });
+      if (globals.game.global.mode == "freeMode"){
+        globals.game.global.ui.basket.children[3].forEach(function(colorButton){
+            tempSprite.tint = colorButton.value ? colorButton.color : tempSprite.tint;
+        });
+      }
     }
 
     addRotationUI(tempSprite,0);
@@ -170,6 +174,21 @@ var game = globals.game;
 			res ++;
 	}
 	return res;
+}
+
+function checkStars(){
+  var game = globals.game;
+  var stars = game.global.ui.basket.children[3];
+if (game.global.secondChance){
+  for (i=0;i<3;i++){
+    if (stars.children[i].frame == 0){
+      stars.children[i].frame = 2;
+      stars.children[i].updateCache();
+      break;
+    } 
+  }
+  if (stars.children[2].frame == 2) game.global.solution.ko = true;
+}
 }
 
 return {onClickAddAShape:onClickAddAShape, addShape:addShape, evaluateShapes:evaluateShapes, removeAllRotationUI};

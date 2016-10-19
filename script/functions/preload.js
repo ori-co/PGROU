@@ -70,6 +70,7 @@ var preload = function preload() {
 
     // UI
     globals.game.load.spritesheet('rotation-ui','assets/images/buttons/rotation_ui.png');
+    globals.game.load.spritesheet('stars', 'assets/images/stars/stars.png',60,60);
 }
 
 return preload;
