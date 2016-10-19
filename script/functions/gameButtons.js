@@ -9,120 +9,21 @@ define ([
     sounds
     ) {
 
-//Edition Modes (colors and rotation)
-function formInteraction(tempSprite) {
-	var game = globals.game;
-    var test = game.global.editingMode;
-	
-   	switch (test) {
-        case 0:
-            break;
-        case 1:
-            tempSprite.frame ++;
-            tempSprite.updateCache();
-            break;
-        case 2:
-            if (tempSprite.frame == 0){
-                tempSprite.animations.add('test');
-                tempSprite.frame=tempSprite.animations.frameTotal -1;
-            } else {
-                tempSprite.frame--;
-            }
-            tempSprite.updateCache();
-            break;
-        case 3:
-			var colorIndex=0;
-			for (i=0; i<colors.palette.length-1;i++){
-				if (tempSprite.tint == colors.palette[i]) colorIndex = i+1;
-			}
-			tempSprite.tint = colors.palette[colorIndex];
-			
-            break;
-    }
-	game.global.editingMode=test;
+// toggle the buttons of the palette
+function colorButton(item){
+    globals.game.global.ui.basket.children[3].forEach(function (colorButton){
+        if (colorButton != item || item.value){
+            setColorButtonValue(colorButton,false);
+        } else {
+            setColorButtonValue(item,true);
+        }
+    });    
 }
 
-//Activation of the rotation button
-function rotationRightButton() {
-    var game = globals.game;
-	var test = game.global.editingMode;
-    switch (test) {
-        case 0:
-            test = 1;
-            game.global.ui.rotR.setFrames(3, 0, 1, 0);
-            break;
-        case 1:
-            test = 0;
-            game.global.ui.rotR.setFrames(2, 1, 0, 1);
-            break;
-        case 2:
-            test = 1;
-            game.global.ui.rotR.setFrames(3, 0, 1, 0);
-            game.global.ui.rotL.setFrames(2, 1, 0, 1);
-            break;
-        case 3:
-            test = 1;
-            game.global.ui.rotR.setFrames(3, 0, 1, 0);
-            game.global.ui.col.setFrames(2, 1, 0, 1);
-            break;
-    }
-	game.global.editingMode=test;
-    sounds.clicker();
-}
-
-function rotationLeftButton() {
-    var game = globals.game;
-	var test = game.global.editingMode;
-    switch (test) {
-        case 0:
-            test = 2;
-            game.global.ui.rotL.setFrames(3, 0, 1, 0);
-            break;
-        case 1:
-            test = 2;
-            game.global.ui.rotL.setFrames(3, 0, 1, 0);
-            game.global.ui.rotR.setFrames(2, 1, 0, 1);
-            break;
-        case 2:
-            test = 0;
-            game.global.ui.rotL.setFrames(2, 1, 0, 1);
-            break;
-        case 3:
-            test = 2;
-            game.global.ui.rotL.setFrames(3, 0, 1, 0);
-            game.global.ui.col.setFrames(2, 1, 0, 1);
-            break;
-    }
-	game.global.editingMode=test;
-    sounds.clicker();
-}
-
-// Change color
-function colorButton() {
-    var game = globals.game;
-	var test = game.global.editingMode;
-    switch (test) {
-        case 0:
-            test = 3;
-            game.global.ui.col.setFrames(3, 0, 1, 0);
-            break;
-        case 1:
-            test = 3;
-            game.global.ui.rotR.setFrames(2, 1, 0, 1);
-            game.global.ui.col.setFrames(3, 0, 1, 0);
-            break;
-        case 2:
-            test = 3;
-            game.global.ui.rotL.setFrames(2, 1, 0, 1);
-            game.global.ui.col.setFrames(3, 0, 1, 0);
-            break;
-        case 3:
-            test = 0;
-            game.global.ui.col.setFrames(2, 1, 0, 1);
-            break;
-    }
-	game.global.editingMode=test;
-    sounds.clicker();
+function setColorButtonValue(button,value){
+    button.value = value;
+    if (value) button.setFrames(3, 0, 1, 0); else button.setFrames(2, 1, 0, 1);
+    button.children[0].position = value ? {x:4,y:4} : {x:0,y:0};
 }
 
 // Unlock the store once the unlockButton is clicked
@@ -171,10 +72,11 @@ function exportProblem() {
 }
 
 return {
-formInteraction:formInteraction,
-rotationRightButton : rotationRightButton,
-rotationLeftButton : rotationLeftButton,
+// formInteraction:formInteraction,
+// rotationRightButton : rotationRightButton,
+// rotationLeftButton : rotationLeftButton,
 colorButton : colorButton,
+setColorButtonValue: setColorButtonValue,
 unlockStore : unlockStore,
 setUnlockButton : setUnlockButton,
 enableUnlockButton : enableUnlockButton,

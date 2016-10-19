@@ -127,7 +127,11 @@ function onReleaseShape(tempSprite){
     var dist = Phaser.Point.distance(tempSprite.originalPosition, tempSprite.position);
     if (dist>10){
         // disable color if freemode
-        // todo
+        if (globals.game.global.mode == "freeMode"){
+          globals.game.global.ui.basket.children[3].forEach(function(colorButton){
+            gameButtons.setColorButtonValue(colorButton,false);
+          });
+        }
 
         // snap effect
         dragAndDrop.endDrag(tempSprite);
@@ -137,7 +141,9 @@ function onReleaseShape(tempSprite){
       tempSprite.position.copyFrom(tempSprite.originalPosition); 
       
       // if color chnage color
-      //todo
+      globals.game.global.ui.basket.children[3].forEach(function(colorButton){
+          tempSprite.tint = colorButton.value ? colorButton.color : tempSprite.tint;
+      });
     }
 
     addRotationUI(tempSprite,0);

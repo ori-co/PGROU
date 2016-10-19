@@ -23,28 +23,26 @@ function updateSize() {
 
     // Adapt the size of the interface to the screen    
     game.global.ui.pipe.height = game.height - (390 + 212);
+
     // Basket position
-    game.global.ui.basketLeft.y = game.height - (5 + game.global.ui.basketLeft.height);
-    game.global.ui.basketMiddle.x = game.global.ui.basketLeft.x + game.global.ui.basketLeft.width;
-    game.global.ui.basketMiddle.y = game.height - (5 + game.global.ui.basketLeft.height);
-    game.global.ui.basketMiddle.width = game.width - (game.global.ui.basketLeft.width + game.global.ui.basketRight.width);
-    game.global.ui.basketRight.x = game.width - (5 + game.global.ui.basketRight.width);
-    game.global.ui.basketRight.y = game.height - (5 + game.global.ui.basketRight.height); 
+    game.global.ui.basket.y = game.height - (5 + game.global.ui.basket.children[0].height);
     
-    // Buttons on basket
-   // game.global.ui.rotL.y = game.height - 210;
-   // game.global.ui.rotR.y = game.height - 210;
-    if (mode == "freeMode"){
-        game.global.ui.col.y =game.height - 210;
-    }
+    game.global.ui.basket.children[1].width = game.width - (game.global.ui.basket.children[0].width + game.global.ui.basket.children[2].width);
+    game.global.ui.basket.children[2].x = game.width - (5 + game.global.ui.basket.children[2].width);
+    
+    // // Buttons on basket - palette of colors
+    // if (mode == "freeMode"){
+    //     game.global.ui.basket
+    //     game.global.ui.col.y =game.height - 210;
+    // }
     
     // Menu position
 	game.global.ui.menu.x = game.width;
 
     
     //Patrick position
-    game.global.ui.pat.x=game.global.ui.basketRight.x+5;
-    game.global.ui.pat.y=game.global.ui.basketRight.y-85;
+    game.global.ui.pat.x = game.global.ui.basket.children[2].x+5;
+    game.global.ui.pat.y = game.global.ui.basket.y-40;
     
     //positions of shapes in the basket aka outside of the gamezone
 	var minX = game.global.gameAreaOrigin.x;

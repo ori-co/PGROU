@@ -5,7 +5,8 @@ define ([
 		"functions/gameButtons",
 		"functions/animations",
 		"functions/navigationButtons",
-		"data/wording"
+		"data/wording",
+		"data/palette"
 	], function(
 		globals,
 		sounds,
@@ -13,7 +14,8 @@ define ([
 		gameButtons,
 		animations,
 		navigationButtons,
-		wording
+		wording,
+		colors
 		) {
 
 // to create the entire game interface (basket, store and patrick)
@@ -56,22 +58,34 @@ function buildGameInterface() {
 	}
 
     // Basket creation
-    game.global.ui.basketLeft = game.add.sprite(5, 0, 'basket-left');
-    game.global.ui.basketMiddle = game.add.sprite(0, 0, 'basket-middle');
-    game.global.ui.basketRight = game.add.sprite(0, 0, 'basket-right');
-    
-    game.global.ui.basketLeft.y = game.height - (5 + game.global.ui.basketLeft.height);
-    game.global.ui.basketMiddle.x = game.global.ui.basketLeft.x + game.global.ui.basketLeft.width;
-    game.global.ui.basketMiddle.y = game.height - (5 + game.global.ui.basketLeft.height);
-    game.global.ui.basketMiddle.width = game.width - (game.global.ui.basketLeft.width + game.global.ui.basketRight.width);
-    game.global.ui.basketRight.x = game.width - (5 + game.global.ui.basketRight.width);
-    game.global.ui.basketRight.y = game.height - (5 + game.global.ui.basketRight.height);     
+    game.global.ui.basket = game.add.group();
+    var basket = game.global.ui.basket;
 
-    //Add rotation and color buttons
-    // game.global.ui.rotR = game.add.button(75, game.height - 210, 'button-rotate-right', gameButtons.rotationRightButton, this, 2,1, 0, 1);
-    // game.global.ui.rotR.events.onInputOver.add(sounds.sound_rotation, this);
-    // game.global.ui.rotL = game.add.button(15, game.height - 210, 'button-rotate-left', gameButtons.rotationLeftButton, this, 2, 1, 0, 1);
-    // game.global.ui.rotL.events.onInputOver.add(sounds.sound_rotation, this);
+    var basketLeft = basket.addChildAt(game.add.sprite(5, 0, 'basket-left'),0);
+    var basketMiddle = basket.addChildAt(game.add.sprite(0, 0, 'basket-middle'),1);
+    var basketRight = basket.addChildAt(game.add.sprite(0, 0, 'basket-right'),2);
+
+    basket.y = game.height - (5 + basket.children[0].height);
+
+    basketMiddle.x = basketLeft.x + basketLeft.width;
+    basketMiddle.width = game.width - (basketLeft.width + basketRight.width);
+    basketRight.x = game.width - (5 + basketRight.width);
+
+    if (game.global.mode == "freeMode"){
+    	var colorsButtons = basket.addChildAt(game.add.group(),3);
+    	colorsButtons.position = {x:15,y:5}
+
+    	for (i=1; i< colors.palette.length;i++){
+    		var posX = ((i-1)%3)*60;
+    		var posY = Math.floor((i-1)/3)*50;
+    		var currentButton = colorsButtons.add(game.add.button(posX, posY, 'button-colors', gameButtons.colorButton, this, 2, 1, 0, 1));
+    		currentButton.value = false;
+    		currentButton.color = colors.palette[i];
+    		currentButton.addChild(game.add.sprite(0, 0,'button-colors-picto'));
+    		currentButton.children[0].tint = currentButton.color;
+
+    	}
+    } 
 	
 	game.global.ui.unlockButton = game.add.button(5, 5, 'ribbon', gameButtons.unlockStore, this, 1, 0, 1, 0);
 	game.global.ui.unlockButton.events.onInputOver.add(sounds.unlock_store, this);
@@ -86,8 +100,8 @@ function buildPatrick() {
 	// Add Patrick to the menu
     game.global.ui.pat = game.add.group();
     // position
-    game.global.ui.pat.x = game.global.ui.basketRight.x+5;
-    game.global.ui.pat.y = game.global.ui.basketRight.y-85;
+    game.global.ui.pat.x = game.global.ui.basket.children[2].x+5;
+    game.global.ui.pat.y = game.global.ui.basket.y-40;
     game.global.ui.pat.scale.set(0.27, 0.27);
     // independant elements
     var patBody = game.add.sprite(0,0,'patrick');
@@ -156,9 +170,6 @@ function buildNavigationMenu() {
             break;
         case "freeMode":
 			navigationMenu("", [buttonHome, buttonMute, buttonExport]);
-
-			game.global.ui.col = game.add.button(135, game.height - 210, 'button-colors', gameButtons.colorButton, this, 2, 1, 0, 1);
-            game.global.ui.col.events.onInputOver.add(sounds.sound_color,this);
             break;
 		case "win":
 			navigationMenu(wording.levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute]);
