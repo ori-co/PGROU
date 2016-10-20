@@ -48,13 +48,6 @@ function initGame(){
 		if (game.global.shapes[key].shapesOfPattern != undefined) for (i=0; i< game.global.shapes[key].shapesOfPattern.length; i++) game.global.shapes[key].shapesOfPattern[i].destroy();
 		game.global.shapes[key].shapesOfPattern = [];
 	}
-
-	// Current editing mode
-	// 0 : drag/drop
-	// 1 : rotation droite
-	// 2 : rotation gauche
-	// 3 : changement de couleur
-	game.global.editingMode=0;
 	
 
 	// temp initialisatipn of different matrix
