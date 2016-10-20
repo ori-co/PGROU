@@ -11,7 +11,7 @@ return function update(){
     if (game.global.solution.ok){
 	    var delay = 1000;
         setTimeout(function () {
-			if (game.global.solution.ok) game.state.start("win");
+			if (game.global.solution.ok) game.global.ui.winUI.visible=true;//game.state.start("win");
         }, delay);
     }
 

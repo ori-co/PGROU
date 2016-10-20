@@ -47,27 +47,6 @@ function levelsButtons(){
 	//game.add.button(600,li*80 + 100+200,'button-import', goToImportJSON, this, 2,1,0,1);
 }
 
-function winButtons(){
-	var game = globals.game;
-
-	var levelStyle = {font: "30px Arial", fontWeight: "bold", fill: "#0D004C"};
-	
-	var curLevel = game.global.levelnum;
-	var again = game.add.button(600,500, 'button-level', goToLevelPlay, this,  2,1, 0, 1 );
-	again.number = curLevel;
-	again.addChild(game.make.text(30,35,again.number,levelStyle));
-	again.addChild(game.make.sprite(3,5,'level-status',4));
-	
-	if ( curLevel < levels.length -1){
-		var next = game.add.button(700,500, 'button-level', goToLevelPlay, this,  2,1, 0, 1 );
-		next.number = curLevel+1;
-		next.addChild(game.make.text(30,35,next.number,levelStyle));
-		next.addChild(game.make.sprite(4,5,'level-status',5));
-	}
-	
-	game.add.sprite(300,300,'win-patrick');
-}
-
 function goToFreePlay(){
 	sounds.clicker();
 	globals.game.state.start('freePlay');
@@ -84,11 +63,6 @@ function goToLevelPlay(item){
 	globals.game.state.start('levelPlay');
 }
 
-// function goToImportJSON(item) {
-// 	sounds.clicker();
-// 	// selection d'un json + go
-// }
-
 function goToHome() {
 	sounds.clicker();
 	globals.game.state.start('menu');
@@ -98,7 +72,7 @@ function goToHome() {
 return {
 	homeButtons:homeButtons,
 	levelsButtons:levelsButtons,
-	winButtons:winButtons,
+	// winButtons:winButtons,
 	goToFreePlay:goToFreePlay,
 	goToLevelsMap:goToLevelsMap,
 	goToLevelPlay : goToLevelPlay,

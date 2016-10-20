@@ -37,6 +37,9 @@ function updateSize() {
     //Patrick position
     game.global.ui.pat.x = game.global.ui.basket.children[2].x+5;
     game.global.ui.pat.y = game.global.ui.basket.y-40;
+
+    // Win UI position
+    game.global.ui.winUI.y = game.height - 250;
     
     //positions of shapes in the basket aka outside of the gamezone
 	var minX = game.global.gameAreaOrigin.x;

@@ -71,16 +71,16 @@ var freePlayState = {
 	}
 };
 
-// Win
-var winState = {
-	create : function () {
-		globals.game.global.mode = 'win';
-		wallpaper.menuWallpaper('background-win');
-		buildMenu.buildNavigationMenu();
-		navigationButtons.winButtons();
-		sounds.winAutoPlaySound();
-	}
-}
+// // Win
+// var winState = {
+// 	create : function () {
+// 		globals.game.global.mode = 'win';
+// 		wallpaper.menuWallpaper('background-win');
+// 		buildMenu.buildNavigationMenu();
+// 		navigationButtons.winButtons();
+// 		sounds.winAutoPlaySound();
+// 	}
+// }
 
 return {
 	loadState:loadState, 
@@ -88,6 +88,6 @@ return {
 	levelsMapState:levelsMapState, 
 	levelPlayState:levelPlayState, 
 	freePlayState:freePlayState, 
-	winState:winState  
+	// winState:winState  
 };
 });

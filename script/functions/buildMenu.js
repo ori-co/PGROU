@@ -6,7 +6,8 @@ define ([
 		"functions/animations",
 		"functions/navigationButtons",
 		"data/wording",
-		"data/palette"
+		"data/palette",
+		"data/levels"
 	], function(
 		globals,
 		sounds,
@@ -15,7 +16,8 @@ define ([
 		animations,
 		navigationButtons,
 		wording,
-		colors
+		colors,
+		levels
 		) {
 
 // to create the entire game interface (basket, store and patrick)
@@ -28,6 +30,8 @@ function buildMenu() {
 	buildBasket();
 	
 	buildPatrick();
+
+	buildWinUI();
 }
 
 // to build only the ui element
@@ -228,6 +232,37 @@ function navigationMenu(label, buttons){
 		if(buttons[i].name == "button-mute" && game.global.ui.muteValue) curButton.setFrames(3, 0, 1, 0);
 	}
 	
+}
+
+function buildWinUI(){
+	var game = globals.game;
+
+	game.global.ui.winUI = game.add.group();
+	var winUI = game.global.ui.winUI;
+
+	winUI.x = 220;
+	winUI.y = game.height - 250;
+
+	var levelStyle = {font: "30px Arial", fontWeight: "bold", fill: "#0D004C"};
+	
+	var curLevel = game.global.levelnum;
+	var again = winUI.addChild(game.add.button(0,0, 'button-level', navigationButtons.goToLevelPlay, this,  2,1, 0, 1 ));
+	again.number = curLevel;
+	again.addChild(game.make.text(30,35,again.number,levelStyle));
+	again.addChild(game.make.sprite(3,5,'level-status',4));
+	
+	if ( curLevel < levels.length -1){
+		var next = winUI.addChild(game.add.button(90,0, 'button-level', navigationButtons.goToLevelPlay, this,  2,1, 0, 1 ));
+		next.number = curLevel+1;
+		next.addChild(game.make.text(30,35,next.number,levelStyle));
+		next.addChild(game.make.sprite(4,5,'level-status',5));
+	}
+	
+	winUI.addChild(game.add.sprite(-180,-400,'win-patrick'));
+
+	winUI.visible=false;
+	
+	// sound ??
 }
 
 return {buildMenu:buildMenu,buildNavigationMenu:buildNavigationMenu};
