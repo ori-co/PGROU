@@ -21,15 +21,17 @@ define ([
 // to create the entire game interface (basket, store and patrick)
 function buildMenu() {
 	
-    buildGameInterface();
-	
 	buildNavigationMenu();
+
+	buildStore();
+
+	buildBasket();
 	
 	buildPatrick();
 }
 
 // to build only the ui element
-function buildGameInterface() {
+function buildStore() {
     var game = globals.game;
 
 	// Store Creation
@@ -56,9 +58,17 @@ function buildGameInterface() {
 		
 		position ++;
 	}
+	
+	game.global.ui.unlockButton = game.add.button(5, 5, 'ribbon', gameButtons.unlockStore, this, 1, 0, 1, 0);
+	game.global.ui.unlockButton.events.onInputOver.add(sounds.unlock_store, this);
+	gameButtons.setUnlockButton(false);
+}
 
-    // Basket creation
-    game.global.ui.basket = game.add.group();
+
+function buildBasket(){
+	var game = globals.game;
+
+	game.global.ui.basket = game.add.group();
     var basket = game.global.ui.basket;
 
     var basketLeft = basket.addChildAt(game.add.sprite(5, 0, 'basket-left'),0);
@@ -90,17 +100,12 @@ function buildGameInterface() {
 
     	for (j=0;j<3; j++){
 
-    		var currentStar = stars.add(game.add.sprite(10+j*60,20, 'stars'));
+    		var currentStar = stars.add(game.add.sprite(10+j*60,20, 'stars',0));
+    		currentStar.scale.setTo(0.4,0.4);
     		basket.children[3].addChildAt(currentStar,j);
-    		currentStar.frame =0;
     	}
     }
-	
-	game.global.ui.unlockButton = game.add.button(5, 5, 'ribbon', gameButtons.unlockStore, this, 1, 0, 1, 0);
-	game.global.ui.unlockButton.events.onInputOver.add(sounds.unlock_store, this);
-	gameButtons.setUnlockButton(false);
 }
-
 
 // to create patrick and his animations
 function buildPatrick() {
@@ -220,7 +225,7 @@ function navigationMenu(label, buttons){
 		game.global.ui.menu.addChild(curButton);
 		
 		// Check the value of the mute function to update the mute button
-		if(buttons[i].name == "button-mute" && game.global.muteValue) curButton.setFrames(3, 0, 1, 0);
+		if(buttons[i].name == "button-mute" && game.global.ui.muteValue) curButton.setFrames(3, 0, 1, 0);
 	}
 	
 }

@@ -27,13 +27,13 @@ function toggleMute(item){
 	if (!soundManager.muted){
 		soundManager.mute();
 		item.setFrames(3, 0, 1, 0);
-		globals.game.global.muteValue = true;
+		globals.game.global.ui.muteValue = true;
 	}else{
 		soundManager.unmute();
 		click = soundManager.createSound({id : "click", url: dir + globals.game.global.language+"/click.mp3"});
 		click.play();
 		item.setFrames(2, 1, 0, 1);
-		globals.game.global.muteValue = false;
+		globals.game.global.ui.muteValue = false;
 	}
 }
 

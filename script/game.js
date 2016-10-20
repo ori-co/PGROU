@@ -12,7 +12,8 @@ requirejs([
 
 
 //Create a new Phaser JS game
-var game = new Phaser.Game("100%", "100%", Phaser.CANVAS);
+//var game = new Phaser.Game("100%", "100%", Phaser.CANVAS);
+var game = new Phaser.Game("100", "100",Phaser.CANVAS );
 
 globals.game = game;
 
@@ -22,9 +23,10 @@ game.global.language = "fr";
 	
 game.global.ui = {};
 game.global.solution = {};
+game.global.saveData = [];
 
 // Current value for mute button
-game.global.muteValue=false;
+game.global.ui.muteValue=false;
 
 
 // Add the states of the game

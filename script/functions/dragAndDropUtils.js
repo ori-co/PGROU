@@ -40,6 +40,8 @@ function updateInPlaceMatrix(tempSprite){
 function deleteSprite(tempSprite) {
 	var game = globals.game;
     var shapeName = tempSprite.key;
+
+    removeAStar(true); // remove a star for condition "true" : always remove a star
     
     // Remove the shape of the game and the in place array
 	game.global.shapes[tempSprite.key].shapesInPlace.splice(game.global.shapes[tempSprite.key].shapesInPlace.indexOf(tempSprite),1);
@@ -191,7 +193,38 @@ function checkSolution() {
     }
 
     var errorMargin = Math.floor(game.global.solution.areaPattern*0.05);
-    if (error < errorMargin && complete_area == game.global.solution.areaPattern) game.global.solution.ok = true;
+    if (error < errorMargin && complete_area == game.global.solution.areaPattern) {
+        game.global.solution.ok = true;
+        var currentNb = (game.global.saveData[game.global.levelnum-1] != undefined) ? game.global.saveData[game.global.levelnum-1] : 0;
+        game.global.saveData[game.global.levelnum-1] = Math.max(checkStars(), currentNb);
+    }
+}
+
+function checkStars(){
+    var game = globals.game;
+    var stars = game.global.ui.basket.children[3];
+    var res = 0;
+
+    for (i=0;i<3;i++){
+        if (stars.children[i].frame == 0) res ++;
+    }
+
+    return res;
+}
+
+function removeAStar(condition){
+  var game = globals.game;
+  var stars = game.global.ui.basket.children[3];
+if (condition){
+  for (i=0;i<3;i++){
+    if (stars.children[i].frame == 0){
+      stars.children[i].frame = 2;
+      stars.children[i].updateCache();
+      break;
+    } 
+  }
+  if (stars.children[2].frame == 2) game.global.solution.ko = true;
+}
 }
 
 
@@ -201,7 +234,8 @@ return {
     isDrag : isDrag,
     snapEffect : snapEffect,
     colorSprite : colorSprite,
-    checkSolution : checkSolution
+    checkSolution : checkSolution,
+    removeAStar : removeAStar
 }
 
 });

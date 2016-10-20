@@ -3,6 +3,7 @@ define ([
   "data/palette",
   "functions/gameButtons",
   "functions/dragAndDrop",
+  "functions/dragAndDropUtils",
   "functions/sounds"
 
   ], function(
@@ -10,6 +11,7 @@ define ([
     colors,
     gameButtons,
     dragAndDrop,
+    dragAndDropUtils,
     sounds
     ) {
 
@@ -27,7 +29,7 @@ function onClickAddAShape(item){
   // sounds
   sounds.sound_addRemoveShape(shapeName, nb, true);
 
-  if (globals.game.global.mode == "levelMode" ) checkStars();
+  if (globals.game.global.mode == "levelMode" ) dragAndDropUtils.removeAStar(globals.game.global.secondChance); // remove a star with condition second chance
 }
 
 
@@ -176,21 +178,8 @@ var game = globals.game;
 	return res;
 }
 
-function checkStars(){
-  var game = globals.game;
-  var stars = game.global.ui.basket.children[3];
-if (game.global.secondChance){
-  for (i=0;i<3;i++){
-    if (stars.children[i].frame == 0){
-      stars.children[i].frame = 2;
-      stars.children[i].updateCache();
-      break;
-    } 
-  }
-  if (stars.children[2].frame == 2) game.global.solution.ko = true;
-}
-}
 
-return {onClickAddAShape:onClickAddAShape, addShape:addShape, evaluateShapes:evaluateShapes, removeAllRotationUI};
+
+return {onClickAddAShape:onClickAddAShape, addShape:addShape, evaluateShapes:evaluateShapes };
 
 });
