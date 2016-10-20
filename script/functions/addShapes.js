@@ -128,8 +128,9 @@ function onRotationEnd(item){
 }
 
 function onClickOnShape(tempSprite){
+  tempSprite.wasSelected = (tempSprite.rotationUI != undefined) ? tempSprite.rotationUI.exists : false;
   removeAllRotationUI();
-  dragAndDrop.beginDrag();
+  if (globals.game.global.mode != 'freeMode') dragAndDrop.beginDrag();
   
 }
 
@@ -147,6 +148,7 @@ function onReleaseShape(tempSprite){
         // snap effect
         dragAndDrop.endDrag(tempSprite);
         tempSprite.originalPosition = tempSprite.position.clone();
+        if (tempSprite.exists) addRotationUI(tempSprite,0);
     } else {
       // stay at the orginal position
       tempSprite.position.copyFrom(tempSprite.originalPosition); 
@@ -157,9 +159,9 @@ function onReleaseShape(tempSprite){
             tempSprite.tint = colorButton.value ? colorButton.color : tempSprite.tint;
         });
       }
-    }
 
-    addRotationUI(tempSprite,0);
+      if (tempSprite.exists && !tempSprite.wasSelected) addRotationUI(tempSprite,0);
+    }
 }
 
 

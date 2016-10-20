@@ -10,7 +10,7 @@ var preload = function preload() {
 	// Home assets 
 	globals.game.load.spritesheet('button-goTo','assets/images/buttons/home.png',300,100);
 	globals.game.load.spritesheet('button-level','assets/images/buttons/levels.png',78,77);
-	globals.game.load.spritesheet('button-import','assets/images/buttons/import.png',87,100);
+	//globals.game.load.spritesheet('button-import','assets/images/buttons/import.png',87,100);
 	
 	globals.game.load.image('background-home', 'assets/images/backgrounds/backgroundHome.png');
 	globals.game.load.image('background-win','assets/images/backgrounds/backgroundWin.png');
