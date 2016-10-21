@@ -13,6 +13,8 @@ function updateWallpaperSize(wallpaper){
 	wallpaper.width = game.width;
 	if (game.global.ui.menu != null) game.global.ui.menu.x = game.width;
 	if (game.global.ui.pat != null) game.global.ui.pat.y=globals.game.height - 500;
+    if (game.global.ui.homeUI != null) game.global.ui.homeUI.position = {x:0.5 * game.width,y: 0.5 * game.height};
+    if (game.global.ui.levelsUI != null) game.global.ui.levelsUI.position = {x:0.3 * game.width,y: 0.3 * game.height};
 }
 
 //Update function that is always running on the background to resize

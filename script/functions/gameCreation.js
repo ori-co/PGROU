@@ -37,7 +37,7 @@ function initGame(){
 	// Game area
 	game.global.gameAreaSize = {x:1000, y:600};
 	game.global.safeAreaSize = {x:1300, y:1300};
-	game.global.gameAreaOrigin = {x:200,y:25};
+	game.global.gameAreaOrigin = {x:130,y:0};
 
 	//game.global.shapes = { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , triangleEqui:objTriangleEqui , triangleRect:objTriangleRect , diamond:objDiamond};
 	game.global.shapes = shapes;
