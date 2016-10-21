@@ -73,16 +73,25 @@ function exportProblem() {
     window.open().document.write(json);
 }
 
+function pdf() {
+
+    var pdf = new jsPDF('l','cm','a4');
+
+    pdf.addHTML(document.body,function() {
+        pdf.output('datauri');
+    });
+
+    pdf.save(exportPDFname+'.pdf');
+}
+
 return {
-// formInteraction:formInteraction,
-// rotationRightButton : rotationRightButton,
-// rotationLeftButton : rotationLeftButton,
 colorButton : colorButton,
 setColorButtonValue: setColorButtonValue,
 unlockStore : unlockStore,
 setUnlockButton : setUnlockButton,
 enableUnlockButton : enableUnlockButton,
-exportProblem:exportProblem
+exportProblem:exportProblem,
+pdf :pdf
 };
 
 });
