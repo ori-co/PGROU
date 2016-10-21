@@ -14,18 +14,6 @@ define ([
 var complete_InPlaceMat = [];
 var complete_area = 0;
 
-// to differentiate between a simple click and a real drag
-function isDrag() {
-    var game = globals.game;
-
-    var distanceFromLastUp = distance(game.input.activePointer.positionDown.x, game.input.activePointer.positionDown.y, game.input.activePointer.x, game.input.activePointer.y);
-    if (distanceFromLastUp > 2) { // value 2 determined empiracally
-        return true;
-    } else {
-        return false;
-    }
-}
-
 // update complete_inPlaceMat and area
 function updateInPlaceMatrix(tempSprite){
     var game = globals.game;

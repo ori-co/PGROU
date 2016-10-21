@@ -49,8 +49,6 @@ var game =globals.game;
 		
 		game.global.shapes[shapeName].shapesOfPattern.push(tempSprite);
 
-		//addShapeToMatrix(tempSprite, game.global.solution.matPattern);
-		//addShapeToArea(tempSprite,game.global.solution.areaPattern);
 	}
 	
 	if (jsonObj.distrib=="off") {

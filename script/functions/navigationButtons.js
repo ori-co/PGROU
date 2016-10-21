@@ -92,11 +92,9 @@ function goToHome() {
 return {
 	homeButtons:homeButtons,
 	levelsButtons:levelsButtons,
-	// winButtons:winButtons,
 	goToFreePlay:goToFreePlay,
 	goToLevelsMap:goToLevelsMap,
 	goToLevelPlay : goToLevelPlay,
-	// goToImportJSON:goToImportJSON,
 	goToHome:goToHome
 };
 

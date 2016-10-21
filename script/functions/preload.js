@@ -13,7 +13,6 @@ var preload = function preload() {
 	//globals.game.load.spritesheet('button-import','assets/images/buttons/import.png',87,100);
 	
 	globals.game.load.image('background-home', 'assets/images/backgrounds/backgroundHome.png');
-	// globals.game.load.image('background-win','assets/images/backgrounds/backgroundWin.png');
     globals.game.load.image('background-game','assets/images/backgrounds/backgroundGame.png');
     globals.game.load.image('gameArea','assets/images/backgrounds/gameArea.png');
     
@@ -42,8 +41,6 @@ var preload = function preload() {
     globals.game.load.image('basket-right', 'assets/images/menu/basket-right.png');
     globals.game.load.image('basket-middle', 'assets/images/menu/basket-middle.png');
     
-    //globals.game.load.spritesheet('button-rotate-left', 'assets/images/buttons/option-rotateL.png', 48, 48);
-    //globals.game.load.spritesheet('button-rotate-right', 'assets/images/buttons/option-rotateR.png', 48, 48);
     globals.game.load.spritesheet('button-colors', 'assets/images/buttons/option-color.png', 48, 48);
     globals.game.load.spritesheet('button-colors-picto','assets/images/buttons/option-color-picto.png',48,48)
     globals.game.load.spritesheet('button-back', 'assets/images/buttons/option-map.png', 48, 48);

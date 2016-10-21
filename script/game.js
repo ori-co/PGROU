@@ -11,33 +11,33 @@ requirejs([
     //the module value for "helper/util".
 
 
-//Create a new Phaser JS game
-//var game = new Phaser.Game("100%", "100%", Phaser.CANVAS);
-var game = new Phaser.Game("100", "100",Phaser.CANVAS );
+	//Create a new Phaser JS game
+	//var game = new Phaser.Game("100%", "100%", Phaser.CANVAS);
+	var game = new Phaser.Game("100", "100",Phaser.CANVAS );
 
-globals.game = game;
+	globals.game = game;
 
-game.global = {};
+	game.global = {};
 
-game.global.language = "fr";
-	
-game.global.ui = {};
-game.global.solution = {};
-game.global.saveData = [];
+	game.global.language = "fr";
+		
+	game.global.ui = {};
+	game.global.solution = {};
+	game.global.saveData = [];
 
-// Current value for mute button
-game.global.ui.muteValue=false;
+	// Current value for mute button
+	game.global.ui.muteValue=false;
 
 
-// Add the states of the game
-game.state.add('load', states.loadState);
-game.state.add('menu', states.menuState);
-game.state.add('levelsMap',states.levelsMapState);
-game.state.add('levelPlay', states.levelPlayState);
-game.state.add('freePlay', states.freePlayState);
-game.state.add('win', states.winState);
+	// Add the states of the game
+	game.state.add('load', states.loadState);
+	game.state.add('menu', states.menuState);
+	game.state.add('levelsMap',states.levelsMapState);
+	game.state.add('levelPlay', states.levelPlayState);
+	game.state.add('freePlay', states.freePlayState);
+	game.state.add('win', states.winState);
 
-// Call the first state of the game
-game.state.start('load');
+	// Call the first state of the game
+	game.state.start('load');
 
 });
