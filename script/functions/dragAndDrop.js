@@ -15,7 +15,6 @@ define ([
 function beginDrag() {
 var game = globals.game;
 
-game.global.solution.ok  =false;
 	if (!game.global.ui.storeLocked) {
 		gameButtons.setUnlockButton(true);
 		gameButtons.enableUnlockButton(true);

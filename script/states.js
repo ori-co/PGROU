@@ -5,8 +5,7 @@ define ([
 		"functions/buildMenu",
 		"functions/navigationButtons",
 		"functions/sounds",
-		"functions/gameCreation",
-		"functions/update"
+		"functions/gameCreation"
 	], function(
 		globals,
 		preload,
@@ -14,8 +13,7 @@ define ([
 		buildMenu,
 		navigationButtons,
 		sounds,
-		gameCreation,
-		update
+		gameCreation
 		) {
 
 // Define the states of the game
@@ -52,7 +50,6 @@ var levelsMapState = {
 
 // LevelMode
 var levelPlayState = {
-	update : update,
     create: function (){
 		globals.game.global.mode = 'levelMode';
 		gameCreation.initGame();

@@ -61,12 +61,12 @@ var preload = function preload() {
     globals.game.load.image('patrick', 'assets/images/patrick/patrick.png');
     globals.game.load.spritesheet('patrick-mouth','assets/images/patrick/mouth.png',31,22,4);
     globals.game.load.spritesheet('patrick-eyes','assets/images/patrick/eyes.png',80,66,5);
-	globals.game.load.image('home-patrick','assets/images/patrick/home-patrick.gif',531,970);
-	globals.game.load.image('win-patrick','assets/images/patrick/win-patrick.gif',279,414);
-  
-	// Winning state assets 
-	globals.game.load.spritesheet('button-again', 'assets/images/buttons/again.png', 78,77);
-	globals.game.load.spritesheet('button-next', 'assets/images/buttons/next.png',78,77);
+	globals.game.load.image('home-patrick','assets/images/patrick/home-patrick.png',531,970);
+	globals.game.load.image('win-patrick','assets/images/patrick/win-patrick.png');
+    globals.game.load.spritesheet('win-patrick-mouth','assets/images/patrick/win-mouth.png',28,18,4);
+    globals.game.load.spritesheet('fail-patrick-mouth','assets/images/patrick/fail-mouth.png',28,18,4);
+    globals.game.load.spritesheet('win-patrick-eyes','assets/images/patrick/win-eyes.png',70,40,7);
+
 
     // UI
     globals.game.load.spritesheet('rotation-ui','assets/images/buttons/rotation_ui.png');

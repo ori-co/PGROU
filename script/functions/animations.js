@@ -4,25 +4,25 @@ define ([
         globals
         ) {
 
-function patrickSpeak(sound){
+function patrickSpeak(sound, mouthSprite){
     var game = globals.game;
 
     sound.options.onplay = function(){
-        game.global.ui.patMouth.animations.play('talk',8,true);
+        if (typeof mouthSprite !== 'undefined') mouthSprite.animations.play('talk',8,true);
     } 
     
     sound.options.onfinish = function(){
-        game.global.ui.patMouth.animations.stop(null,true);
+        if (typeof mouthSprite !== 'undefined') mouthSprite.animations.stop(null,true);
         game.global.canPlay = true;
     }
 }
 
-function patrickBlink(){
+function patrickBlink(eyesSprite){
 var game =globals.game;
 
-    game.global.ui.patEyes.animations.play('blink',10,false);
+    eyesSprite.animations.play('blink',10,false);
     var delay = Math.random()*3 +2;
-    game.time.events.add(Phaser.Timer.SECOND * delay, patrickBlink, this);
+    game.time.events.add(Phaser.Timer.SECOND * delay, function(){patrickBlink(eyesSprite)}, this);
 }
 
 return { 

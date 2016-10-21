@@ -41,14 +41,10 @@ function updateSize() {
     game.global.ui.pat.y = game.global.ui.basket.y-40;
 
     // Win UI position
-    game.global.ui.winUI.y = game.height - 250;
+    game.global.ui.winUI.x = game.width;
+    game.global.ui.winUI.y = game.height;
     
     //positions of shapes in the basket aka outside of the gamezone
-	var minX = game.global.gameAreaOrigin.x;
-	var maxX = game.global.gameAreaOrigin.x + game.global.gameAreaSize.x;
-	var minY = game.global.gameAreaOrigin.y;
-	var maxY = game.global.gameAreaOrigin.y + game.global.gameAreaSize.y;
-	
 	for (var key in game.global.shapes){
 		var shapeArray = game.global.shapes[key].shapesInPlace;
 		for (i=0;i<shapeArray.length;i++){

@@ -53,8 +53,6 @@ function initGame(){
 	// temp initialisatipn of different matrix
 	game.global.solution.matPattern = matrixUtils.matrixInitialisation(game.global.safeAreaSize.x,game.global.safeAreaSize.y);
 	game.global.solution.areaPattern = 0;
-	game.global.solution.ok = false;
-	game.global.solution.ko = false;
 
 	game.global.secondChance = false;
 }

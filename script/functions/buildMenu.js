@@ -97,6 +97,7 @@ function buildBasket(){
     		currentButton.color = colors.palette[i];
     		currentButton.addChild(game.add.sprite(0, 0,'button-colors-picto'));
     		currentButton.children[0].tint = currentButton.color;
+    		currentButton.events.onInputOver.add(sounds.sound_color, this);
 
     	}
     } else {
@@ -132,7 +133,7 @@ function buildPatrick() {
     game.global.ui.patMouth.animations.add('talk');
     game.global.ui.patEyes.animations.add('blink');
 	
-	animations.patrickBlink();
+	animations.patrickBlink(game.global.ui.patEyes);
 }
 
 // to create the navigation menu top - right corner
@@ -159,8 +160,8 @@ function buildNavigationMenu() {
 	// // Unused buttons (lang, print and export)
 	// var buttonPrint = new Object;
 	// buttonPrint['name'] = 'button-print';
-	// buttonPrint['action'] = pdf;
-	// buttonPrint['instructions'] = sound_print;
+	// buttonPrint['action'] = gameButtons.pdf;
+	// buttonPrint['instructions'] = sounds.sound_print;
 	
 	var buttonExport = new Object;
 	buttonExport['name'] = 'button-export';
@@ -168,9 +169,9 @@ function buildNavigationMenu() {
 	buttonExport['instructions'] = sounds.sound_export;
 
 	// var buttonLang = new Object;
-	// buttonLang['name'] = 'button-print';
-	// buttonLang['action'] = sound_empty;
-	// buttonLang['instructions'] = sound_empty;	
+	// buttonLang['name'] = 'button-??';
+	// buttonLang['action'] = ??;
+	// buttonLang['instructions'] = ??;	
 	
 	// Menu construction
     switch (mode) {
@@ -181,7 +182,7 @@ function buildNavigationMenu() {
 			navigationMenu("Mode classique", [buttonHome,buttonMute])
 			break;
         case "levelMode":
-            navigationMenu(wording.levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute]);
+            navigationMenu(wording.levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome, buttonMute]);
             break;
         case "loadMode":
             navigationMenu(levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute])
@@ -189,9 +190,6 @@ function buildNavigationMenu() {
         case "freeMode":
 			navigationMenu("", [buttonHome, buttonMute, buttonExport]);
             break;
-		case "win":
-			navigationMenu(wording.levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome,buttonMute]);
-			break;
     }	    
 }
 
@@ -240,29 +238,37 @@ function buildWinUI(){
 	game.global.ui.winUI = game.add.group();
 	var winUI = game.global.ui.winUI;
 
-	winUI.x = 220;
-	winUI.y = game.height - 250;
+	winUI.x = game.width;
+	winUI.y = game.height;
 
 	var levelStyle = {font: "30px Arial", fontWeight: "bold", fill: "#0D004C"};
+
+	var patrick = winUI.addChild(game.add.sprite(0,0,'win-patrick'));
+	patrick.anchor = {x:1,y:1};
+	patrick.addChildAt(game.add.sprite(-173,-230,'win-patrick-eyes'),0);
+	patrick.addChildAt(game.add.sprite(-153,-160,'win-patrick-mouth'),1);
+	patrick.addChildAt(game.add.sprite(-153,-160,'fail-patrick-mouth'),2);
+
+	patrick.children[0].animations.add('blink');
+	animations.patrickBlink(patrick.children[0]);
+
+	patrick.children[1].animations.add('talk');
+	patrick.children[2].animations.add('talk');
 	
 	var curLevel = game.global.levelnum;
-	var again = winUI.addChild(game.add.button(0,0, 'button-level', navigationButtons.goToLevelPlay, this,  2,1, 0, 1 ));
+	var again = winUI.addChild(game.add.button(-220,-100, 'button-level', navigationButtons.goToLevelPlay, this,  2,1, 0, 1 ));
 	again.number = curLevel;
 	again.addChild(game.make.text(30,35,again.number,levelStyle));
 	again.addChild(game.make.sprite(3,5,'level-status',4));
 	
 	if ( curLevel < levels.length -1){
-		var next = winUI.addChild(game.add.button(90,0, 'button-level', navigationButtons.goToLevelPlay, this,  2,1, 0, 1 ));
+		var next = winUI.addChild(game.add.button(-140,-100, 'button-level', navigationButtons.goToLevelPlay, this,  2,1, 0, 1 ));
 		next.number = curLevel+1;
 		next.addChild(game.make.text(30,35,next.number,levelStyle));
 		next.addChild(game.make.sprite(4,5,'level-status',5));
 	}
-	
-	winUI.addChild(game.add.sprite(-180,-400,'win-patrick'));
 
 	winUI.visible=false;
-	
-	// sound ??
 }
 
 return {buildMenu:buildMenu,buildNavigationMenu:buildNavigationMenu};

@@ -183,20 +183,24 @@ function checkSolution() {
 	
     // Vérification de la solution    
     var error = 0;
-
-    for (var i = 0; i < game.global.safeAreaSize.y; i++) {
-        for (var j = 0; j < game.global.safeAreaSize.x; j++) {
-            if (complete_InPlaceMat[i][j] != game.global.solution.matPattern[i][j]) {
-                error++;
+    if (!game.global.ui.winUI.visible){ // no solution update if the win ui is already on screen
+        for (var i = 0; i < game.global.safeAreaSize.y; i++) {
+            for (var j = 0; j < game.global.safeAreaSize.x; j++) {
+                if (complete_InPlaceMat[i][j] != game.global.solution.matPattern[i][j]) {
+                    error++;
+                }
             }
         }
-    }
 
-    var errorMargin = Math.floor(game.global.solution.areaPattern*0.05);
-    if (error < errorMargin && complete_area == game.global.solution.areaPattern) {
-        game.global.solution.ok = true;
-        var currentNb = (game.global.saveData[game.global.levelnum-1] != undefined) ? game.global.saveData[game.global.levelnum-1] : 0;
-        game.global.saveData[game.global.levelnum-1] = Math.max(checkStars(), currentNb);
+        var errorMargin = Math.floor(game.global.solution.areaPattern*0.05);
+
+        if (error < errorMargin && complete_area == game.global.solution.areaPattern) {
+            var previousScore = (game.global.saveData[game.global.levelnum-1] != undefined) ? game.global.saveData[game.global.levelnum-1] : 0;
+            var newScore = checkStars();
+            game.global.saveData[game.global.levelnum-1] = Math.max(newScore, previousScore);
+
+            endOfGame(500, newScore); 
+        }
     }
 }
 
@@ -215,23 +219,38 @@ function checkStars(){
 function removeAStar(condition){
   var game = globals.game;
   var stars = game.global.ui.basket.children[3];
-if (condition){
-  for (i=0;i<3;i++){
-    if (stars.children[i].frame == 0){
-      stars.children[i].frame = 2;
-      stars.children[i].updateCache();
-      break;
-    } 
-  }
-  if (stars.children[2].frame == 2) game.global.solution.ko = true;
+  if (!game.global.ui.winUI.visible){ // no change of the stars if the win ui is already on screen
+    if (condition){
+      for (i=0;i<3;i++){
+        if (stars.children[i].frame == 0){
+          stars.children[i].frame = 2;
+          stars.children[i].updateCache();
+          break;
+        } 
+      }
+      if (stars.children[2].frame == 2) endOfGame(500,0);
+    }
+    }
 }
-}
+
+// param : win / full win / fail
+function endOfGame(delay, score){
+    var game = globals.game;
+
+    var hiddenMouthIndex = (score==0) ? 1 : 2;
+    var visibleMouthIndex = (score==0) ? 2 : 1;
+
+    setTimeout(function () {
+        game.global.ui.winUI.visible=true;
+        game.global.ui.winUI.children[0].children[hiddenMouthIndex].visible = false;
+        sounds.sound_endOfGame(game.global.ui.winUI.children[0].children[visibleMouthIndex],score);
+        }, delay);
+    }
 
 
 return {
     updateInPlaceMatrix: updateInPlaceMatrix,
     deleteSprite : deleteSprite,
-    isDrag : isDrag,
     snapEffect : snapEffect,
     colorSprite : colorSprite,
     checkSolution : checkSolution,

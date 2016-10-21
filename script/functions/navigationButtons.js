@@ -1,11 +1,13 @@
 define ([
 		"global",
 		"functions/sounds",
+		"functions/animations",
 		"data/wording",
 		"data/levels"
 	], function(
 		globals,
 		sounds,
+		animations,
 		wording,
 		levels
 		) {
@@ -29,6 +31,15 @@ function homeButtons() {
 
 	var patrick = homeUI.addChild(game.make.sprite(-300,-50,'home-patrick'));
 	patrick.scale.setTo(0.5,0.5);
+	var eyes = patrick.addChild(game.make.sprite(320,80,'patrick-eyes'));
+	eyes.scale.setTo(-1,1);
+	eyes.animations.add('blink');
+	var mouth = patrick.addChild(game.make.sprite(300,170,'patrick-mouth'));
+	mouth.scale.setTo(-1,1);
+	mouth.animations.add('talk');
+
+	game.global.ui.patMouth = mouth;
+	animations.patrickBlink(eyes);
 
 }
 

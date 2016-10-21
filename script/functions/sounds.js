@@ -58,26 +58,23 @@ function sound_addRemoveShape(shapeName, nb, add){
 
 	sound_stopAll();
 	globals.game.global.canPlay = false;
-	animations.patrickSpeak(playSoundObject);
+	animations.patrickSpeak(playSoundObject, globals.game.global.ui.patMouth);
 	playSoundObject.play();
 }
 
 // Help sounds - explanations of the commands
 
 // play the instruction sound - play only if the associated counter is null
-function playHelp(mp3Name, cpt){
+function playHelp(mp3Name, cpt, mouthSprite){
 var game = globals.game;
 
+	if (typeof mouthSprite === 'undefined'){ mouthSprite = globals.game.global.ui.patMouth; }
     if (cpt == 0){
         var helpSound = soundManager.createSound({id : mp3Name, url:dir + globals.game.global.language+"/" +mp3Name+".mp3"});
         if(game.global.canPlay){
             game.global.canPlay = false;
             soundManager.stopAll();
-            if (typeof patMouth !== 'undefined'){
-				patrickSpeak(helpSound);
-			} else {
-				helpSound.options.onfinish = function(){game.global.canPlay = true;};
-			}
+			animations.patrickSpeak(helpSound, mouthSprite);
             helpSound.play();
             cpt++;
         }
@@ -111,7 +108,21 @@ function levelModeAutoPlaySound(){sound_stopAll();playHelp("help_begin",cptbegin
 
 function freeModeAutoPlaySound(){sound_stopAll();playHelp("help_creation",crea);}
 
-function winAutoPlaySound() {sound_stopAll();playHelp("success",0);}	
+function sound_endOfGame(mouthSprite,score) {
+	var mp3file = "";
+	sound_stopAll();
+	switch(score){
+		case 0: 
+			mp3file = "fail";
+			break;
+		case 3:
+			mp3file = "success-full";
+			break;
+		default:
+			mp3file = "success";
+		}
+	playHelp(mp3file,0, mouthSprite);
+}
 
 return {
 	toggleMute:toggleMute,
@@ -132,7 +143,7 @@ return {
 	levelsMapAutoPlaySound:levelsMapAutoPlaySound,
 	levelModeAutoPlaySound:levelModeAutoPlaySound,
 	freeModeAutoPlaySound:freeModeAutoPlaySound,
-	winAutoPlaySound,winAutoPlaySound
+	sound_endOfGame : sound_endOfGame
 };
 
 });
