@@ -183,8 +183,9 @@ function checkSolution() {
         }
 
         var errorMargin = Math.floor(game.global.solution.areaPattern*0.05);
+        var areaError = complete_area - game.global.solution.areaPattern;
 
-        if (error < errorMargin && complete_area == game.global.solution.areaPattern) {
+        if (error < errorMargin && areaError <errorMargin) {
             var previousScore = (game.global.saveData[game.global.levelnum-1] != undefined) ? game.global.saveData[game.global.levelnum-1] : 0;
             var newScore = checkStars();
             game.global.saveData[game.global.levelnum-1] = Math.max(newScore, previousScore);
