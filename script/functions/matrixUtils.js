@@ -23,11 +23,13 @@ function matrixInitialisation(maxX,maxY){
 
 // add the pixels according to the Contour logic
 // superposition of 2 contours, so it is no more a contour (pixel = 1) 
-// a , b = 0, 1, 2
+// a , b = 0, 1, 2, 3
 function pixelsContoursAddition(a,b){
 
   var res;
-    if (a==2 || b==2){
+    if (a==3 || b == 3){
+      res =3;
+    } else if (a==2 || b==2){
       res = (a==2 && b==2) ? 1 : 2;
     } else {
       res = (a==0 && b==0) ? 0 : 1;

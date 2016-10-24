@@ -114,13 +114,15 @@ function calculateCommonContours(tempSprite, i, j,snapMat) {
         for (var jj = 0; jj < nbPixels; jj++) {
             if (matShape[ii][jj] == 2 && snapMat[i + ii][j + jj] == 2) {
                 res++;
+            } else if (matShape[ii][jj] == 3 && snapMat[i + ii][j + jj] == 3) {
+                res = res + 2;
             }
         }
     }
     return res;
 }
 
-function colorSprite(tempSprite, gameMode) { // gameMode = 'levelMode' or 'freeMode' ...
+function colorSprite(tempSprite) { // gameMode = 'levelMode' or 'freeMode' ...
     var game = globals.game;
 
     var gameMode = game.global.mode;
