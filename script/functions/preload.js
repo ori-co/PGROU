@@ -22,7 +22,7 @@ var preload = function preload() {
     globals.game.load.spritesheet('diamond','assets/sprites/lozenge.png',130,130);
     globals.game.load.spritesheet('trapeze','assets/sprites/trapezoid.png',130,130);
     globals.game.load.spritesheet('triangleEqui','assets/sprites/triangle-equi.png',130,130);
-    globals.game.load.spritesheet('triangleRect','assets/sprites/triangle-rect.png',130,130);
+    globals.game.load.spritesheet('triangle','assets/sprites/triangle.png',130,130);
     
     // Game menu assets (basket, store and buttons)
     globals.game.load.image('store', 'assets/images/menu/store.png');
@@ -34,7 +34,7 @@ var preload = function preload() {
     globals.game.load.spritesheet('button-trapeze', 'assets/images/buttons/shape-trapeze.png', 78, 77);
     globals.game.load.spritesheet('button-triangleEqui', 'assets/images/buttons/shape-t-equi.png', 78, 77);
     globals.game.load.spritesheet('button-hexagon', 'assets/images/buttons/shape-hexagon.png', 78, 77);
-    globals.game.load.spritesheet('button-triangleRect', 'assets/images/buttons/shape-t-rect.png', 78, 77);
+    globals.game.load.spritesheet('button-triangle', 'assets/images/buttons/shape-triangle.png', 78, 77);
     globals.game.load.spritesheet('button-diamond', 'assets/images/buttons/shape-diamond.png', 78, 77);
     
     globals.game.load.image('basket-left', 'assets/images/menu/basket-left.png');

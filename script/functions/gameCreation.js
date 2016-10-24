@@ -39,7 +39,7 @@ function initGame(){
 	game.global.safeAreaSize = {x:1300, y:1300};
 	game.global.gameAreaOrigin = {x:130,y:0};
 
-	//game.global.shapes = { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , triangleEqui:objTriangleEqui , triangleRect:objTriangleRect , diamond:objDiamond};
+	//game.global.shapes = { square:objSquare , trapeze:objTrapeze , hexagon:objHexagon , triangleEqui:objTriangleEqui , triangle:objTriangle , diamond:objDiamond};
 	game.global.shapes = shapes;
 	// game.global.shapes[key] = { nbDir : .., mat : ..., area : ...,  shapeButton : ... , shapesInPlace : ..., shapesOfPattern : ...}
 	for (var key in game.global.shapes) {
