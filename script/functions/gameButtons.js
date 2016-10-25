@@ -28,8 +28,6 @@ function setColorButtonValue(button,value){
 // Unlock the store once the unlockButton is clicked
 function unlockStore(lockButton) {
     var game = globals.game;
-
-    game.global.secondChance = true;
     
 	setUnlockButton(false);
 	for (var key in game.global.shapes){

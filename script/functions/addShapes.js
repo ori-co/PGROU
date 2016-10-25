@@ -131,8 +131,6 @@ function onRotationEnd(item){
 function onClickOnShape(tempSprite){
   tempSprite.wasSelected = (tempSprite.rotationUI != undefined) ? tempSprite.rotationUI.exists : false;
   removeAllRotationUI();
-  if (globals.game.global.mode != 'freeMode') dragAndDrop.beginDrag();
-  
 }
 
 function onReleaseShape(tempSprite){
