@@ -21,12 +21,9 @@ function onClickAddAShape(item){
 	var shapeName = item.shape;
 	
 	addShape(shapeName);
-	
-  var nb = evaluateShapes(shapeName,'shapesInPlace');
-
-	globals.game.global.shapes[shapeName].shapeButton.label.setText(nb);
 
   // sounds
+  var nb = evaluateShapes(shapeName,'shapesInPlace');
   sounds.sound_addRemoveShape(shapeName, nb, true);
 
   if (globals.game.global.mode == "levelMode" ) dragAndDropUtils.removeAStar(globals.game.global.secondChance); // remove a star with condition second chance
@@ -54,6 +51,10 @@ function addShape(shapeName) {
     tempSprite.rotationAnimation = tempSprite.animations.add('rotation');
 
     game.global.shapes[shapeName].shapesInPlace.push(tempSprite);
+
+    var nb = evaluateShapes(shapeName,'shapesInPlace');
+
+    game.global.shapes[shapeName].shapeButton.label.setText(nb);
   }
 
 function addRotationUI(tempSprite,angle){

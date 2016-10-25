@@ -29,7 +29,7 @@ function deleteSprite(tempSprite) {
 	var game = globals.game;
     var shapeName = tempSprite.key;
 
-    removeAStar(true); // remove a star for condition "true" : always remove a star
+    removeAStar(globals.game.global.secondChance); // remove a star only if the unlock button add been clicked
     
     // Remove the shape of the game and the in place array
 	game.global.shapes[tempSprite.key].shapesInPlace.splice(game.global.shapes[tempSprite.key].shapesInPlace.indexOf(tempSprite),1);

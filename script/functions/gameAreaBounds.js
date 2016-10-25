@@ -16,6 +16,6 @@ function isOutOfGameArea(tempSprite){
     return (tempSprite.y > maxY) ||  (tempSprite.y < minY) || (tempSprite.x > maxX) || (tempSprite.x < minX);
 }
 
-return {isOutOfGameArea:isOutOfGameArea};
+return {isOutOfGameArea: isOutOfGameArea};
 
 });

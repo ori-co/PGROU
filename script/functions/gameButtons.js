@@ -1,12 +1,11 @@
 define ([
   "global",
-  "data/palette",
-  "functions/sounds"
-
+  "functions/gameAreaBounds",
+  "data/palette"
   ], function(
     globals,
-    colors,
-    sounds
+    gameAreaBounds,
+    colors
     ) {
 
 // toggle the buttons of the palette
@@ -53,24 +52,29 @@ function enableUnlockButton(value){
 
 function exportProblem() {
 
-    var json = '{\"problem\":{\"pattern\":[';
     var game = globals.game;
+
+    var problem = {};
+    problem.pattern=[];
+    problem.basket=[];
+    problem.storeEnabled=true;
 
     for (var key in game.global.shapes){
         var shapeArray = game.global.shapes[key].shapesInPlace;
         
         for (i=0; i<shapeArray.length;i++){
             var formItem = shapeArray[i];
-            json = json + '{\"shape\":\"'+ key +'\",\"color\":\"' + formItem.tint + '\",\"rotation\":\"' + formItem.frame + '\",\"anchorPoint\": {\"x\":\"' + formItem.x + '\",\"y\":\"' + formItem.y + '\"}}';
-            json += ',';
+            if (gameAreaBounds.isOutOfGameArea(formItem)){
+                problem.basket.push({shape:formItem.key, color:formItem.tint, rotation:formItem.frame});
+            } else {
+                problem.pattern.push({shape:formItem.key, color:formItem.tint, rotation:formItem.frame, anchorPoint:{x:formItem.x, y:formItem.y}});
+            }
         }
-        
     }
-    json = json.slice(0, -1);
-    json = json + ']},"distrib" :"on"}';
 
-//Open a pop-up to save the json file
-    window.open().document.write(json);
+
+    //Open a pop-up to save the json file
+    window.open().document.write(JSON.stringify(problem));
 }
 
 function pdf() {

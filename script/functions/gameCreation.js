@@ -27,7 +27,7 @@ function create() {
     buildMenu.buildMenu();
 
 	// Build the pattern
-	if (game.global.mode == "levelMode") patternCreation(levels[game.global.levelnum]);
+	if (game.global.mode == "levelMode") patternCreation.patternCreation(levels[game.global.levelnum]);
 }
 
 // to initialisa all game variables

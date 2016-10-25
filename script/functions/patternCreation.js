@@ -12,46 +12,31 @@ define ([
 		colors
 		) {
 
-return function patternCreation(levelText) {
-var game =globals.game;
+function patternCreation(levelText) {
+	var game =globals.game;
+	//JSON analysis				
+    var problem = JSON.parse(levelText);
+	var pattern = problem.pattern;
+	var basket = problem.basket;
+	var storeEnabled = problem.storeEnabled;
 
 	// Initially no button on distrib
-	for (var key in game.global.shapes){
-		game.global.shapes[key].shapeButton.visible=false;
-		game.global.shapes[key].shapeButton.inputEnabled=false;
-	}
-	
-	
-	//JSON analysis				
-    var jsonObj = JSON.parse(levelText);
-	var shapeArray = jsonObj.problem.pattern;
+	for (var key in game.global.shapes) switchShapeButton(key, false);
 
-    
 	//Pattern creation
+    for (var i = 0; i < pattern.length; i++) {
+    	addShapeToPattern(pattern[i].shape, pattern[i].anchorPoint, pattern[i].color, pattern[i].rotation);
+    	if (storeEnabled) switchShapeButton(pattern[i].shape, true);
+    }
 
-    for (var i = 0; i < shapeArray.length; i++) {
-
-		var shapeName = shapeArray[i].shape;
-		
-		var tempSprite = game.add.sprite(Number(shapeArray[i].anchorPoint.x), Number(shapeArray[i].anchorPoint.y), shapeName);
-		tempSprite.inputEnabled = true;
-		tempSprite.tint =  colors.patternColor;
-		tempSprite.frame = Number(shapeArray[i].rotation);
-		tempSprite.alpha = 0.3;
-		tempSprite.wantedColor = shapeArray[i].color;
-		
-		if (jsonObj.distrib=="off") {
-			addShapes.addShape(shapeName);
-		} else {
-			game.global.shapes[shapeName].shapeButton.visible=true;
-			game.global.shapes[shapeName].shapeButton.inputEnabled=true;
-		}
-		
-		game.global.shapes[shapeName].shapesOfPattern.push(tempSprite);
-
+    // Add shapes in basket
+    for (var i = 0; i < basket.length; i++) {
+		addShapes.addShape(basket[i].shape);
+		if (storeEnabled) switchShapeButton(basket[i].shape, true);
 	}
 	
-	if (jsonObj.distrib=="off") {
+	// Unabled store if necessary
+	if (!storeEnabled) {
 		game.global.ui.bin.visible = false;
 			
 		gameButtons.setUnlockButton(true);
@@ -65,4 +50,25 @@ var game =globals.game;
     
 }	
 
+function addShapeToPattern(shapeName, anchorPosition, color, rotation){
+	var game =globals.game;
+
+	var tempSprite = game.add.sprite(Number(anchorPosition.x), Number(anchorPosition.y), shapeName);
+	tempSprite.inputEnabled = true;
+	tempSprite.tint =  colors.patternColor;
+	tempSprite.frame = Number(rotation);
+	tempSprite.alpha = 0.3;
+	tempSprite.wantedColor = color;
+
+	// add to shapes Of pattern list
+	game.global.shapes[shapeName].shapesOfPattern.push(tempSprite);
+}
+
+function switchShapeButton(shapeName, value){
+	var game =globals.game;
+	game.global.shapes[shapeName].shapeButton.visible=value;
+	game.global.shapes[shapeName].shapeButton.inputEnabled=value;
+}
+
+return { patternCreation:patternCreation};
 });
