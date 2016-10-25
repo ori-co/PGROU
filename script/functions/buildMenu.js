@@ -89,9 +89,9 @@ function buildBasket(){
     	var colorsButtons = basket.addChildAt(game.add.group(),3);
     	colorsButtons.position = {x:15,y:5}
 
-    	for (i=1; i< colors.palette.length;i++){
-    		var posX = ((i-1)%3)*60;
-    		var posY = Math.floor((i-1)/3)*50;
+    	for (i=0; i< colors.palette.length;i++){
+    		var posX = (i%3)*60;
+    		var posY = Math.floor(i/3)*50;
     		var currentButton = colorsButtons.add(game.add.button(posX, posY, 'button-colors', gameButtons.colorButton, this, 2, 1, 0, 1));
     		currentButton.value = false;
     		currentButton.color = colors.palette[i];

@@ -50,7 +50,7 @@ function patternCreation(levelText) {
     
 }	
 
-function addShapeToPattern(shapeName, anchorPosition, color, rotation){
+function addShapeToPattern(shapeName, anchorPosition, colorIndex, rotation){
 	var game =globals.game;
 
 	var tempSprite = game.add.sprite(Number(anchorPosition.x), Number(anchorPosition.y), shapeName);
@@ -58,7 +58,7 @@ function addShapeToPattern(shapeName, anchorPosition, color, rotation){
 	tempSprite.tint =  colors.patternColor;
 	tempSprite.frame = Number(rotation);
 	tempSprite.alpha = 0.3;
-	tempSprite.wantedColor = color;
+	tempSprite.wantedColor = (colorIndex >= 0) ? colors.palette[colorIndex] : colors.defaultColor;
 
 	// add to shapes Of pattern list
 	game.global.shapes[shapeName].shapesOfPattern.push(tempSprite);

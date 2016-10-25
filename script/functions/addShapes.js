@@ -38,7 +38,7 @@ function addShape(shapeName) {
 
     tempSprite.originalPosition = tempSprite.position.clone();
     
-    tempSprite.tint = colors.palette[0];
+    tempSprite.tint = colors.defaultColor;
 
     tempSprite.inputEnabled = true;
     tempSprite.input.enableSnap(1, 1, false, true); //Grid of 1 pixel

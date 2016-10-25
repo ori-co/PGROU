@@ -129,39 +129,37 @@ function colorSprite(tempSprite) { // gameMode = 'levelMode' or 'freeMode' ...
 
     var matPattern= game.global.solution.matPattern;
 
-    if (gameMode != 'freeMode') {
-        var isColored = 0;	
-		
+    if (gameMode != 'freeMode') {		
 		var matShape = game.global.shapes[tempSprite.key].mat[tempSprite.frame];
 
         var nbPixels = matShape.length;
 		
-        var isIN = 1;
+        var inPixels = 0;
         for (var i = 0; i < nbPixels; i++) {
-                for (var j = 0; j < nbPixels; j++) {
-                    if (matShape[i][j] == 1) {
-                        if (matPattern[tempSprite.y+i][tempSprite.x+j] != 1 && matPattern[tempSprite.y+i][tempSprite.x+j] != 2) {
-                        isIN = 0;
-                        }
+            for (var j = 0; j < nbPixels; j++) {
+                if (matShape[i][j] == 1) {
+                    if (matPattern[tempSprite.y+i][tempSprite.x+j] != 0) {
+                    inPixels ++;
                     }
-                }          
+                }
+            }          
         }
         
-        if (isIN ==1){
+
+        var errorMargin = game.global.shapes[tempSprite.key].area[tempSprite.frame] * 0.85;
+        if (inPixels > errorMargin){ 
+            // random color within palette 
+            tempSprite.tint = colors.palette[Math.floor(Math.random() * colors.palette.length)];
+
+            // check the position with the shapes of the pattern
             var patternShapeArray = game.global.shapes[tempSprite.key].shapesOfPattern;
 			for (i =0; i< patternShapeArray.length;i++){
                    if (tempSprite.x == patternShapeArray[i].x && tempSprite.y == patternShapeArray[i].y  && tempSprite.frame == patternShapeArray[i].frame ){
                         tempSprite.tint = patternShapeArray[i].wantedColor;
-                        isColored = 1;
                     }
 			}
-            if (isColored == 0){
-                tempSprite.tint = colors.palette[Math.floor(Math.random() * colors.palette.length)];
-				isColored=1;
-            }
         } else {
-            tempSprite.tint = colors.palette[0];
-			isColored=1;
+            tempSprite.tint = colors.defaultColor;
         }
 	} 
 }

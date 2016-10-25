@@ -5,7 +5,7 @@ define ([
   ], function(
     globals,
     gameAreaBounds,
-    colors
+    colors   
     ) {
 
 // toggle the buttons of the palette
@@ -65,9 +65,9 @@ function exportProblem() {
         for (i=0; i<shapeArray.length;i++){
             var formItem = shapeArray[i];
             if (gameAreaBounds.isOutOfGameArea(formItem)){
-                problem.basket.push({shape:formItem.key, color:formItem.tint, rotation:formItem.frame});
+                problem.basket.push({shape:formItem.key, color:colors.palette.indexOf(formItem.tint), rotation:formItem.frame});
             } else {
-                problem.pattern.push({shape:formItem.key, color:formItem.tint, rotation:formItem.frame, anchorPoint:{x:formItem.x, y:formItem.y}});
+                problem.pattern.push({shape:formItem.key, color:colors.palette.indexOf(formItem.tint), rotation:formItem.frame, anchorPoint:{x:formItem.x, y:formItem.y}});
             }
         }
     }
