@@ -38,14 +38,16 @@ function endDrag(tempSprite) {
 		// check if the shape stay in the game area. if not 
 	    if (gameAreaBounds.isOutOfGameArea(tempSprite)) {
             tempSprite.position.copyFrom(tempSprite.originalPosition); 
+            dragAndDropUtils.completeInPlaceInfo(tempSprite);
 	    }
 	    else {
                 dragAndDropUtils.snapEffect(tempSprite);
+                dragAndDropUtils.completeInPlaceInfo(tempSprite);
                 dragAndDropUtils.colorSprite(tempSprite);
 				tempSprite.originalPosition = tempSprite.position.clone();
 		}
 	}
-	if (mode!="freeMode") {dragAndDropUtils.checkSolution();}
+	if (mode!="freeMode") dragAndDropUtils.checkSolution();
 }
 
 return {beginDrag:beginDrag, endDrag:endDrag};

@@ -24,6 +24,12 @@ function updateInPlaceMatrix(tempSprite){
 
 }
 
+function completeInPlaceInfo(tempSprite){
+     // ajdd the optimale solution to complete_InPlaceMat to avoid to calculate again this matrix in update solution
+    complete_InPlaceMat = matrixUtils.addShapeToMatrix(tempSprite, complete_InPlaceMat);
+    complete_area = complete_area + globals.game.global.shapes[tempSprite.key].area[tempSprite.frame] ;
+}
+
 // to delete a shape on the game
 function deleteSprite(tempSprite) {
 	var game = globals.game;
@@ -94,10 +100,6 @@ function snapEffect(tempSprite) {
     }
     tempSprite.x = j_opt;
     tempSprite.y = i_opt;
-
-    // ajdd the optimale solution to complete_InPlaceMat to avoid to calculate again this matrix in update solution
-    complete_InPlaceMat = matrixUtils.addShapeToMatrix(tempSprite, complete_InPlaceMat);
-    complete_area = complete_area + game.global.shapes[tempSprite.key].area[tempSprite.frame] ;
 }
 
 
@@ -239,6 +241,7 @@ function endOfGame(delay, score){
 
 return {
     updateInPlaceMatrix: updateInPlaceMatrix,
+    completeInPlaceInfo:completeInPlaceInfo,
     deleteSprite : deleteSprite,
     snapEffect : snapEffect,
     colorSprite : colorSprite,
