@@ -176,19 +176,19 @@ function buildNavigationMenu() {
 	// Menu construction
     switch (mode) {
 		case "home":
-			navigationMenu("Patrimath", [buttonMute]);
+			navigationMenu(wording.gameName, [buttonMute]);
 			break;
 		case "levelsMap":
-			navigationMenu("Mode classique", [buttonHome,buttonMute])
+			navigationMenu(wording.levelsMapTitle, [buttonHome,buttonMute])
 			break;
         case "levelMode":
             navigationMenu(wording.levelTitle+" "+game.global.levelnum,[buttonLevelsMap, buttonHome, buttonMute]);
             break;
         case "loadMode":
-            navigationMenu(levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute])
+            navigationMenu(wording.levelTitleLoad,[buttonLevelsMap, buttonHome,buttonMute])
             break;
         case "freeMode":
-			navigationMenu("", [buttonHome, buttonMute, buttonExport]);
+			navigationMenu(wording.freemodeTitle, [buttonHome, buttonMute, buttonExport]);
             break;
     }	    
 }
