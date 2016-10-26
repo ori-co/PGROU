@@ -29,7 +29,7 @@ function endDrag(tempSprite) {
 	    game.global.secondChance = true;	
 
 		// lock the store
-		if (!game.global.ui.storeLocked) {
+		if (!game.global.ui.storeLocked && game.global.mode!="freeMode") {
 			gameButtons.setUnlockButton(true);
 			gameButtons.enableUnlockButton(true);
 			for (var key in game.global.shapes) game.global.shapes[key].shapeButton.inputEnabled=false;
