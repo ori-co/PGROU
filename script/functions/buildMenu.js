@@ -15,7 +15,7 @@ define ([
 		gameButtons,
 		animations,
 		navigationButtons,
-		wording,
+		wordings,
 		colors,
 		levels
 		) {
@@ -141,6 +141,7 @@ function buildPatrick() {
 function buildNavigationMenu() {
 	var game = globals.game;
 	var mode = game.global.mode;
+	var wording = wordings[game.global.language];
 	
 	var buttonHome = new Object;
 	buttonHome['name'] = 'button-home';
@@ -168,10 +169,10 @@ function buildNavigationMenu() {
 	buttonExport['action'] = gameButtons.exportProblem;
 	buttonExport['instructions'] = sounds.sound_export;
 
-	// var buttonLang = new Object;
-	// buttonLang['name'] = 'button-??';
-	// buttonLang['action'] = ??;
-	// buttonLang['instructions'] = ??;	
+	var buttonLang = new Object;
+	buttonLang['name'] = 'button-colors';
+	buttonLang['action'] = gameButtons.toggleLang;
+	buttonLang['instructions'] = sounds.sound_empty;
 	
 	// Menu construction
     switch (mode) {

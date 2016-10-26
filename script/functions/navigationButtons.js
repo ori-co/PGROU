@@ -8,12 +8,13 @@ define ([
 		globals,
 		sounds,
 		animations,
-		wording,
+		wordings,
 		levels
 		) {
 
 function homeButtons() {
 	var game = globals.game;
+	var wording = wordings[game.global.language];
 
 	game.global.ui.homeUI = game.add.group();
 	var homeUI = game.global.ui.homeUI;

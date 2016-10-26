@@ -86,6 +86,10 @@ function pdf() {
     pdf.save(exportPDFname+'.pdf');
 }
 
+function toggleLang(){
+    (globals.game.global.language == "fr") ? globals.game.global.language="test" : globals.game.global.language="fr";
+}
+
 return {
 colorButton : colorButton,
 setColorButtonValue: setColorButtonValue,
@@ -93,7 +97,8 @@ unlockStore : unlockStore,
 setUnlockButton : setUnlockButton,
 enableUnlockButton : enableUnlockButton,
 exportProblem:exportProblem,
-pdf :pdf
+pdf :pdf,
+toggleLang:toggleLang
 };
 
 });

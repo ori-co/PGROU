@@ -20,6 +20,7 @@ requirejs([
 	game.global = {};
 
 	game.global.language = "fr";
+	// game.global.language = "test";
 		
 	game.global.ui = {};
 	game.global.solution = {};
