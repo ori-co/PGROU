@@ -1,12 +1,12 @@
 define ([
     "ui/wallpaper",
     "ui/navigationMenu",
-    "ui/homeUI",
+    "ui/levelsMapUI",
     "sounds/autoPlaySounds"
     ], function(
         Wallpaper,
         NavigationMenu,
-        HomeUI,
+        LevelsMapUI,
         autoPlaySound
         ) {
 
@@ -16,14 +16,14 @@ define ([
          * @memberof Patrimath
          * @param {Phaser.Game} game
          */
-        function HomeState(){};
+        function LevelsMapState(){};
 
-        HomeState.prototype = {
+        LevelsMapState.prototype = {
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-home');
-                this.navigationMenu = new NavigationMenu(this.game, "home");
-                this.ui = new HomeUI(this.game);
-                new autoPlaySound.InstructionsSounds(this.game, "welcome");
+                this.navigationMenu = new NavigationMenu(this.game, "levelsMap");
+                this.ui = new LevelsMapUI(this.game);
+                new autoPlaySound.InstructionsSounds(this.game, "introduction");
 
                 var localContext = this;
                 this.game.scale.setResizeCallback(function () {
@@ -34,5 +34,5 @@ define ([
             }
         };
 
-        return HomeState;
+        return LevelsMapState;
 });

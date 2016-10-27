@@ -20,27 +20,6 @@ define ([
 // Define the states of the game
 
 
-	// Menu
-	var menuState = {
-		create : function() {
-			globals.game.global.mode = 'home';
-			wallpaper.menuWallpaper('background-home');
-			buildMenu.buildNavigationMenu();
-			navigationButtons.homeButtons();
-			sounds.homeAutoPlaySound();
-		}
-	}
-
-	var levelsMapState = {
-		create : function(){
-			globals.game.global.mode = 'levelsMap';
-			wallpaper.menuWallpaper('background-home');
-			buildMenu.buildNavigationMenu();
-			navigationButtons.levelsButtons();
-			sounds.levelsMapAutoPlaySound();
-		}
-	}
-
 	// LevelMode
 	var levelPlayState = {
 	    create: function (){

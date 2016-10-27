@@ -8,7 +8,7 @@ define ([
 
         function NavigationMenu(game, mode){
             this.menu = new Phaser.Group(game);
-            this.updateSize(game);
+            this.updatePosition(game);
 
             this.label = this.getLabel(game,mode);
             this.buttons = this.getButtonsList(game,mode);
@@ -71,7 +71,7 @@ define ([
             }
             ,
 
-            updateSize : function(game){
+            updatePosition : function(game){
                 this.menu.x = game.width;
             }
         }

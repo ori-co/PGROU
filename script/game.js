@@ -1,18 +1,18 @@
 requirejs([
-	"states/preload",
+	"states/loading",
 	"states/home",
+	"states/levelsMap",
+	"states/levelPlayState"
 	"states", 
 	"global"
 	], function(
 		LoadState,
 		HomeState,
+		LevelsMapState,
+		LevelPlayState,
 		states, 
 		globals
 		) {
-    //This function is called when scripts/helper/util.js is loaded.
-    //If util.js calls define(), then this function is not fired until
-    //util's dependencies have loaded, and the util argument will hold
-    //the module value for "helper/util".
 
      /**
      * Game Object 
@@ -33,10 +33,10 @@ requirejs([
 		this.game.saveData = saveData;
 
 		// Add the states of the game
-		this.game.state.add('preload', new LoadState());
+		this.game.state.add('loading', new LoadState());
 		this.game.state.add('menu', new HomeState());
-		// this.game.state.add('levelsMap',states.levelsMapState);
-		// this.game.state.add('levelPlay', states.levelPlayState);
+		this.game.state.add('levelsMap',new LevelsMapState());
+		this.game.state.add('levelPlay', new LevelPlayState());
 		// this.game.state.add('freePlay', states.freePlayState);
 
 		// Call the first state of the game
