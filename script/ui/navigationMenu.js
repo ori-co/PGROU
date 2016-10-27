@@ -6,11 +6,11 @@ define ([
         wordings
         ) {
 
-        function NavigationMenu(game, mode){
+        function NavigationMenu(game, mode, levelNum){
             this.menu = new Phaser.Group(game);
             this.updatePosition(game);
 
-            this.label = this.getLabel(game,mode);
+            this.label = this.getLabel(game,mode,levelNum);
             this.buttons = this.getButtonsList(game,mode);
 
             var menuRight = this.menu.addChild(game.make.sprite(0, 5, 'menu-right'));
@@ -39,7 +39,7 @@ define ([
         };
 
         NavigationMenu.prototype = {
-            getLabel : function(game, mode){
+            getLabel : function(game, mode,levelNum){
                 var wording = wordings[game.language];
 
                 switch (mode) {
@@ -48,7 +48,7 @@ define ([
                     case "levelsMap":
                         return wording.levelsMapTitle;
                     case "levelMode":
-                        return wording.levelTitle+" "+game.global.levelnum;
+                        return wording.levelTitle+" "+levelNum;
                     case "freeMode":
                         return wording.freemodeTitle;
                 } 

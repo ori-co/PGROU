@@ -25,7 +25,7 @@ define ([
         LevelButton.prototype = {
             goToLevel: function(game, item) {
                 new autoPlaySounds.SoundEffects(game, 'click');
-                game.state.start('levelPlay',true, false, levels[item.levelNumber]);
+                game.state.start('levelPlay',true, false, item.levelNumber, levels[item.levelNumber]);
             }
         };
 

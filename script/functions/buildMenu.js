@@ -4,7 +4,6 @@ define ([
 		"functions/addShapes",
 		"functions/gameButtons",
 		"functions/animations",
-		"functions/navigationButtons",
 		"data/wording",
 		"data/palette",
 		"data/levels"
@@ -14,7 +13,6 @@ define ([
 		addShapes,
 		gameButtons,
 		animations,
-		navigationButtons,
 		wordings,
 		colors,
 		levels

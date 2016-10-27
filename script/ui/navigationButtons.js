@@ -29,12 +29,12 @@ define ([
                 case 'buttonPrint':
                     this.name = 'button-print';
                     this.action = function(){this.pdf()};
-                    this.instructions = this.playHelpSound(game, 'help_print');
+                    this.instructions = function() {this.playHelpSound(game, 'help_print')};
                 break;
                 case 'buttonExport':
                     this.name = 'button-export';
                     this.action = function(){this.exportProblem()};
-                    this.instructions = this.playHelpSound(game, 'help_export');
+                    this.instructions = function() {this.playHelpSound(game, 'help_export')};
                 break;
                 case 'buttonLang':
                     this.name = 'button-colors';
@@ -112,7 +112,7 @@ define ([
                 // }
 
                 //Open a pop-up to save the json file
-                // window.open().document.write(JSON.stringify(problem));
+                window.open().document.write(JSON.stringify(problem));
             }, 
 
             toggleLang: function(game){
