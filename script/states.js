@@ -16,60 +16,52 @@ define ([
 		gameCreation
 		) {
 
+
 // Define the states of the game
-// Preload :load all assets once
-var loadState = {
-	preload : preload, 
-	create : function(){
-		globals.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-		// Call the menu state
-		globals.game.state.start('menu');
-	}
-}
 
-// Menu
-var menuState = {
-	create : function() {
-		globals.game.global.mode = 'home';
-		wallpaper.menuWallpaper('background-home');
-		buildMenu.buildNavigationMenu();
-		navigationButtons.homeButtons();
-		sounds.homeAutoPlaySound();
-	}
-}
 
-var levelsMapState = {
-	create : function(){
-		globals.game.global.mode = 'levelsMap';
-		wallpaper.menuWallpaper('background-home');
-		buildMenu.buildNavigationMenu();
-		navigationButtons.levelsButtons();
-		sounds.levelsMapAutoPlaySound();
+	// Menu
+	var menuState = {
+		create : function() {
+			globals.game.global.mode = 'home';
+			wallpaper.menuWallpaper('background-home');
+			buildMenu.buildNavigationMenu();
+			navigationButtons.homeButtons();
+			sounds.homeAutoPlaySound();
+		}
 	}
-}
 
-// LevelMode
-var levelPlayState = {
-    create: function (){
-		globals.game.global.mode = 'levelMode';
-		gameCreation.initGame();
-		gameCreation.create();
-		sounds.levelModeAutoPlaySound();
+	var levelsMapState = {
+		create : function(){
+			globals.game.global.mode = 'levelsMap';
+			wallpaper.menuWallpaper('background-home');
+			buildMenu.buildNavigationMenu();
+			navigationButtons.levelsButtons();
+			sounds.levelsMapAutoPlaySound();
+		}
 	}
-};
 
-// FreeMode
-var freePlayState = {
-    create: function (){
-		globals.game.global.mode = 'freeMode';
-		gameCreation.initGame();
-		gameCreation.create();
-		sounds.freeModeAutoPlaySound();
-	}
-};
+	// LevelMode
+	var levelPlayState = {
+	    create: function (){
+			globals.game.global.mode = 'levelMode';
+			gameCreation.initGame();
+			gameCreation.create();
+			sounds.levelModeAutoPlaySound();
+		}
+	};
+
+	// FreeMode
+	var freePlayState = {
+	    create: function (){
+			globals.game.global.mode = 'freeMode';
+			gameCreation.initGame();
+			gameCreation.create();
+			sounds.freeModeAutoPlaySound();
+		}
+	};
 
 return {
-	loadState:loadState, 
 	menuState:menuState, 
 	levelsMapState:levelsMapState, 
 	levelPlayState:levelPlayState, 

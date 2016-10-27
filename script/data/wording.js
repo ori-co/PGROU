@@ -4,6 +4,8 @@ define ([
 
 	return {
 		fr : {
+			// Dir of the sounds
+			soundsDir: "assets/audio/fr",
 			// Menu titles
 			gameName: " Patrimath",
 			levelsMapTitle : " Niveaux",
@@ -26,6 +28,8 @@ define ([
 			exportPDFname : "Patrimath-a-decouper"
 		}, 
 		test : {
+			// Dir of the sounds
+			soundsDir: "assets/audio/test",
 			// Menu titles
 			gameName: " Patrimath",
 			levelsMapTitle : " Levels",

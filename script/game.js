@@ -1,7 +1,11 @@
 requirejs([
-		"states", 
-		"global"
+	"states/preload",
+	"states/home",
+	"states", 
+	"global"
 	], function(
+		LoadState,
+		HomeState,
 		states, 
 		globals
 		) {
@@ -10,35 +14,37 @@ requirejs([
     //util's dependencies have loaded, and the util argument will hold
     //the module value for "helper/util".
 
+     /**
+     * Game Object 
+     * @class 
+     * @memberof Patrimath
+     * @param {string} lang
+     */
+    var Game = function(lang,saveData){ 
 
-	//Create a new Phaser JS game
-	//var game = new Phaser.Game("100%", "100%", Phaser.CANVAS);
-	var game = new Phaser.Game("100", "100",Phaser.CANVAS );
+		//Create a new Phaser JS game
+		this.game = new Phaser.Game("100", "100",Phaser.CANVAS );
 
-	globals.game = game;
+		// Initialize value for the global variables of the game
+		this.game.language = lang;
+		this.game.muteValue=false;
+		this.game.canPlay=true;
+		this.game.patrick=null;
+		this.game.saveData = saveData;
 
-	game.global = {};
+		// Add the states of the game
+		this.game.state.add('preload', new LoadState());
+		this.game.state.add('menu', new HomeState());
+		// this.game.state.add('levelsMap',states.levelsMapState);
+		// this.game.state.add('levelPlay', states.levelPlayState);
+		// this.game.state.add('freePlay', states.freePlayState);
 
-	game.global.language = "fr";
-	// game.global.language = "test";
-		
-	game.global.ui = {};
-	game.global.solution = {};
-	game.global.saveData = [];
+		// Call the first state of the game
+		this.game.state.start('preload');
+	};
 
-	// Current value for mute button
-	game.global.ui.muteValue=false;
+	// Instanciate the new game in french and with no saved data
+	var test = new Game("fr",[]);
 
-
-	// Add the states of the game
-	game.state.add('load', states.loadState);
-	game.state.add('menu', states.menuState);
-	game.state.add('levelsMap',states.levelsMapState);
-	game.state.add('levelPlay', states.levelPlayState);
-	game.state.add('freePlay', states.freePlayState);
-	game.state.add('win', states.winState);
-
-	// Call the first state of the game
-	game.state.start('load');
 
 });
