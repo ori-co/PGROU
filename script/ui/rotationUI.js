@@ -37,16 +37,16 @@ define ([
             onRotationUpdate: function(game, shape){
                 this.sprite.position = this.rotationUIPosition.clone();
                 if(this.beginDir != undefined) {
-                    var origin = this.sprite.position;
+                    var origin = this.sprite.worldPosition.clone();
                     var beginPosition = this.beginDragPosition;
                     var currentPosition = game.input.mousePointer.position.clone();
 
-                    var angle = (Phaser.Point.angle(origin, currentPosition)-Phaser.Point.angle(origin, beginPosition)) * 57; // conversion en degrés
+                    var angle = (Phaser.Point.angle(origin, currentPosition)-Phaser.Point.angle(origin, beginPosition)) * 57 ; // conversion en degrés
 
                     var maxDir = game.shapes[shape.key].nbDir; // ou shape.nbDir;
-                    var newDir = this.beginDir + Math.floor(angle / 30);
+                    var newDir = this.beginDir + Math.floor((angle+360) / 30);
 
-                    shape.frame = (newDir+maxDir) % maxDir;
+                    shape.frame = (newDir+12) % maxDir;
                     this.sprite.angle = this.beginAngle + angle ;
 
                     shape.updateCache();

@@ -29,8 +29,8 @@ define ([
 
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-game');
-                this.navigationMenu = new NavigationMenu(this.game, this.playMode, this.levelNum);
                 this.ui = new GameUI(this.game, this.playMode, this.levelNum, this.levelText);
+                this.navigationMenu = new NavigationMenu(this.game, this.playMode, this.levelNum);
                 new autoPlaySound.InstructionsSounds(this.game, "help_"+ this.playMode);
 
                 var localContext = this;
