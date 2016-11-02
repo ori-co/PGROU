@@ -2,12 +2,14 @@ requirejs([
 	"states/loading",
 	"states/home",
 	"states/levelsMap",
-	"states/play"
+	"states/play",
+    "data/objShapes"
 	], function(
 		LoadState,
 		HomeState,
 		LevelsMapState,
-		PlayState
+		PlayState,
+        objShapes
 		) {
 
      /**
@@ -26,6 +28,7 @@ requirejs([
 		this.game.muteValue=false;
 		this.game.canPlay=true;
 		this.game.patrick=null;
+		this.game.shapes = objShapes;
 		this.game.saveData = saveData;
 
 		// Add the states of the game

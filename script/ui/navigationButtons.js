@@ -66,7 +66,7 @@ define ([
                     if(game.canPlay){
                         game.canPlay = false;
                         soundManager.stopAll();
-                        // game.patrick.speaks(helpSound, mouthSprite);
+                        game.patrick.speaks(game ,helpSound);
                         helpSound.play();
                         this.cpt++;
                     }

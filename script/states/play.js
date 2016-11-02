@@ -2,14 +2,12 @@ define ([
     "ui/wallpaper",
     "ui/navigationMenu",
     "ui/gameUI",
-    "sounds/autoPlaySounds",
-    "data/objShapes"
+    "sounds/autoPlaySounds"
     ], function(
         Wallpaper,
         NavigationMenu,
         GameUI,
-        autoPlaySound,
-        objShapes
+        autoPlaySound
         ) {
 
         /**
@@ -20,8 +18,6 @@ define ([
          */
         function PlayState(mode){
             this.playMode = mode;
-
-            this.shapes = objShapes;
         };
 
         PlayState.prototype = {
@@ -34,9 +30,7 @@ define ([
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-game');
                 this.navigationMenu = new NavigationMenu(this.game, this.playMode, this.levelNum);
-                
-                this.ui = new GameUI(this.game, this.shapes, this.playMode);
-                // this.gameArea = new GameArea(this.game, this.levelText);
+                this.ui = new GameUI(this.game, this.playMode, this.levelNum, this.levelText);
                 new autoPlaySound.InstructionsSounds(this.game, "help_"+ this.playMode);
 
                 var localContext = this;
@@ -44,7 +38,6 @@ define ([
                     localContext.wallpaper.updateWallpaperSize(localContext.game);
                     localContext.navigationMenu.updatePosition(localContext.game);
                     localContext.ui.updatePosition(localContext.game);
-                    //localContext.gameArea.updatePosition(localContext.game);
                 }, this.game);
             }
         };

@@ -67,8 +67,18 @@ define ([
 
 
         // Sub class of Patrick for Game state
-        function PatrickGame(){
+        function PatrickGame(game,parentGroup){
             Patrick.call(game);
+
+            this.body = parentGroup.addChild(game.add.sprite(5,-40,'patrick'));
+            this.body.scale.setTo(0.27, 0.27);
+            this.mouth = this.body.addChild(game.add.sprite(217,168,'patrick-mouth'));
+            this.mouth.animations.add('talk');
+            this.eyes = this.body.addChild(game.add.sprite(196,80,'patrick-eyes'));
+            this.eyes.animations.add('blink');
+
+            this.blinks(game);
+            game.patrick = this;
         };
 
         PatrickGame.prototype = Object.create(Patrick.prototype);
@@ -77,30 +87,37 @@ define ([
 
 
         // Sub class of Patrick for win state
-        function PatrickWin(){
+        function PatrickPannel(game, parentGroup){
             Patrick.call(game);
+
+            this.body = parentGroup.addChild(game.add.sprite(0,0,'win-patrick'));
+            this.body.anchor = {x:1,y:1};
+            this.eyes = this.body.addChild(game.add.sprite(-173,-230,'win-patrick-eyes'));
+            this.eyes.animations.add('blink');
+
+            this.blinks(game);
         };
 
-        PatrickWin.prototype = Object.create(Patrick.prototype);
-        PatrickWin.prototype.constructor = PatrickWin;
+        PatrickPannel.prototype = Object.create(Patrick.prototype);
+        PatrickPannel.prototype.constructor = PatrickPannel;
 
-
-
-        // Sub class of Patrick for fail state
-        function PatrickFail(){
-            Patrick.call(game);
-        };
-
-        PatrickFail.prototype = Object.create(Patrick.prototype);
-        PatrickFail.prototype.constructor = PatrickFail;
+        PatrickPannel.prototype.setHappyMouth = function(game){
+                this.mouth = this.body.addChild(game.add.sprite(-153,-160,'win-patrick-mouth'));
+                this.mouth.animations.add('talk');
+                game.patrick = this;            
+            };
+        PatrickPannel.prototype.setSadMouth= function(game){
+                this.mouth = this.body.addChild(game.add.sprite(-153,-160,'fail-patrick-mouth'));
+                this.mouth.animations.add('talk');
+                game.patrick = this;
+            };
 
 
 
         return {
             PatrickHome : PatrickHome,
             PatrickGame : PatrickGame,
-            PatrickWin : PatrickWin, 
-            PatrickFail : PatrickFail
+            PatrickPannel : PatrickPannel
         };
 
 });
