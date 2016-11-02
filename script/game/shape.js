@@ -90,6 +90,7 @@ define ([
         };
 
         Shape.prototype.endOfShapeTween = function(game,gameArea){
+            new autoPlaySounds.SoundEffects(game, 'snap');
             this.inputEnabled=true;
             this.addRotationUI(game, 0);
             this.originalPosition = this.position.clone();
