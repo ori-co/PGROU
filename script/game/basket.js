@@ -56,6 +56,23 @@ define ([
                 this.elements.children[1].width = game.width - (this.elements.children[0].width + this.elements.children[2].width);
                 this.elements.children[2].x = game.width - (5 + this.elements.children[2].width);
             }
+            ,
+            evaluateStars: function(){
+                starIndex = 0;
+                var currentbasket = this;
+                this.stars.forEach(function(star){
+                    if (star.frame == 0) starIndex = currentbasket.stars.children.indexOf(star) +1 ;
+                });
+
+                return starIndex;
+            }
+            ,
+            deleteStar(index){
+                if(index>0){
+                    this.stars.children[index-1].frame=2;
+                    this.stars.children[index-1].updateCache();
+                }
+            }
         };
 
         return Basket;

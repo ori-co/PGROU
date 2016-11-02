@@ -31,6 +31,8 @@ define ([
 
             if (!storeEnabled) gameArea.store.lockStore(game,false);
 
+            this.updatePosition(gameArea);
+
         };
 
         Pattern.prototype = {
@@ -45,6 +47,12 @@ define ([
                 tempSprite.frame = Number(rotation);
                 tempSprite.alpha = 0.3;
                 tempSprite.wantedColor = (colorIndex >= 0) ? colors.palette[colorIndex] : colors.defaultColor;
+            }
+            ,
+            updatePosition: function(gameArea){
+                this.shapesOfPattern.x = gameArea.shapesInPlace.x;
+                this.shapesOfPattern.y = gameArea.shapesInPlace.y;
+
             }
         }
         return Pattern;

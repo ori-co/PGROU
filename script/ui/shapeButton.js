@@ -21,8 +21,6 @@ define ([
             this.label.anchor.x = 0.5;
             this.label.anchor.y = 0.5;
 
-            //game.global.shapes[key].shapeButton = currButton;
-
         };
 
         ShapeButton.prototype = {
@@ -33,7 +31,7 @@ define ([
                 this.label.setText(nb);
                 new autoPlaySounds.AddRemoveShape( game, shapeName, nb, true);
 
-                // if (mode == "levelMode" ) dragAndDropUtils.removeAStar(globals.game.global.secondChance); // remove a star with condition second chance
+                if (mode == "levelMode") gameArea.removeStar(game);
             }
             ,
             removeShape: function(game, gameArea, shapeName){

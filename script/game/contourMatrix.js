@@ -46,7 +46,7 @@ define ([
                     var res = new ContourMatrix(maxX,maxY);
                     for (i=0;i<maxY;i++){
                         for (j=0; j<maxX; j++){
-                            res[i][j] = this.contourAddition(matA[i][j], matB[i][j]);
+                            res.mat[i][j] = this.contourAddition(matA[i][j], matB[i][j]);
                         }
                     } 
                 }
@@ -70,7 +70,23 @@ define ([
                 }
 
                 this.area = this.area + shapeArea;
-            }       
+            }
+            ,
+            matContourComparison : function(otherContourMat){
+                var error = {pixels :0, area:0};
+
+                for (var i=0; i< this.mat.length; i++){
+                    for(var j=0; j<this.mat[0].length; j++){
+                        if (this.mat[i][j] != otherContourMat.mat[i][j]) {
+                            error.pixels ++;
+                        }
+                    }
+                }
+
+                error.area = Math.abs(this.area - otherContourMat.area);
+
+                return error;
+            }
         };
 
         return ContourMatrix;

@@ -1,8 +1,10 @@
 define ([
-    "game/contourMatrix"
+    "game/contourMatrix",
+    "data/palette"
 
     ], function(
-        ContourMatrix
+        ContourMatrix,
+        colors
 
         ) {
 
@@ -18,29 +20,24 @@ define ([
             this.safeArea = game.add.sprite(0,0, 'gameArea');
 
             this.shapesInPlace = new Phaser.Group(game);
-            // this.shapesOfPattern = new Phaser.Group(game);
 
             this.store=null;
             this.basket=null;
+            this.pattern=null;
+            this.winPannel=null;
 
             this.contourMat= [];
-            // this.patternMat =[];
+
 
             this.updatePosition(game);
         };
 
         GameArea.prototype = {
             updatePosition : function(game){
-                this.safeArea.x= 0.1 * game.width;
-                this.safeArea.y = 0.05* game.height;
+                this.safeArea.x= 0.5 * (game.width + 200 - this.width);
+                this.safeArea.y = 0.5* (game.height - 150 - this.height);
                 this.shapesInPlace.x=this.safeArea.x - 130;
-                this.shapesInPlace.y =this.safeArea.y-130;
-
-                // var localgamearea = this;
-                // this.shapesInPlace.forEach(function(shape){
-                //     shape.reposition(game, localgamearea, !localgamearea.isOutOfGameAreaX(shape), !localgamearea.isOutOfGameAreaY(shape));
-                // });
-
+                this.shapesInPlace.y =this.safeArea.y - 130;
             }
             , 
             isOutOfGameAreaX : function(shape){
@@ -151,15 +148,55 @@ define ([
             }
             ,
             getColorFromPattern : function(shape){
+                var color = colors.defaultColor;
+                this.pattern.shapesOfPattern.forEach(function(patternShape){
+                    if (patternShape.key == shape.key){
+                        if (patternShape.x == shape.x && patternShape.y == shape.y) {
+                            if (patternShape.frame == shape.frame){
+                                color= patternShape.wantedColor;
+                            }
+                        }
+                    }
+                });
 
+                if (color == colors.defaultColor){
+                    var inPixels=0;
+                    var matShape = shape.mat[shape.frame];
+                    for (var i = 0; i < matShape.length; i++) {
+                        for (var j = 0; j < matShape[0].length; j++) {
+                            if (matShape[i][j] == 1) {
+                                if (this.pattern.patternMat.mat[shape.y+i][shape.x+j] != 0) {
+                                    inPixels ++;
+                                }
+                            }
+                        }
+                    }
+                    var errorMargin = shape.area[shape.frame] * 0.85;
+                    if (inPixels > errorMargin) color = colors.palette[Math.floor(Math.random() * colors.palette.length)];
+                }
+
+                return color;
             }
             ,
-            compareSolutionAndPattern: function (game){
+            compareSolutionToPattern: function (game){
+                if (!this.winPannel.isDisplayed()){
+                    var error = this.pattern.patternMat.matContourComparison(this.contourMat);
+                    var errorMargin = Math.floor(this.pattern.patternMat.area*0.05);
 
+                    if (error.pixels < errorMargin && error.area < errorMargin) {
+                        var starIndex = this.basket.evaluateStars();
+                        this.winPannel.showPannel(game, starIndex);
+                        this.winPannel.saveResult(game, starIndex);
+                    }
+                }
             }
             ,
-            removeStar: function(){
-
+            removeStar: function(game){
+                if (!this.winPannel.isDisplayed() && !this.store.firstChance) {
+                    var starIndex = this.basket.evaluateStars();
+                    this.basket.deleteStar(starIndex);
+                    if (starIndex-1 == 0) this.winPannel.showPannel(game, 0);
+                }
             }
         };
 

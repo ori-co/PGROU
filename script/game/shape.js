@@ -104,22 +104,21 @@ define ([
                     this.x = snapPos.x;
                     this.y = snapPos.y;
                     this.originalPosition = this.position.clone();
+
+                    if (this.mode == "levelMode") this.tint = gameArea.getColorFromPattern(this);
                  } else {
                     this.position.copyFrom(this.originalPosition);
                  }
             }
             if (this.exists) gameArea.contourMat.addShapeToMatrix(this.mat[this.frame], this.area[this.frame], this.x, this.y);
     
-            if (this.mode == "levelMode"){
-                // if (this.exists) this.tint = gameArea.getColorFromPattern(this);
-                // gameArea.compareWithPattern();
-            }
+            if (this.mode == "levelMode") gameArea.compareSolutionToPattern(game);
 
          };
 
          Shape.prototype.deleteSprite = function(game, gameArea) {
-            //removeAStar(globals.game.global.secondChance); // remove a star only if the unlock button add been clicked
-
+            gameArea.removeStar(game); 
+            
             gameArea.store.shapeButtons[this.key].removeShape(game, gameArea, this.key);
             
             new autoPlaySounds.SoundEffects(game, 'trashbin');

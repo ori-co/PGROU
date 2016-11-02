@@ -29,11 +29,12 @@ define ([
                 i ++;
             }
 
-            this.ribbon = game.add.button(5, 5, 'ribbon', this.unlockStore, this, 1, 0, 1, 0);
+            this.ribbon = game.add.button(5, 5, 'ribbon', function(){this.unlockStore(game)}, this, 1, 0, 1, 0);
             this.ribbon.cpt = 0;
             this.ribbon.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help_lock', this.ribbon.cpt)}, this);
             
             this.unlockStore(game);
+            this.firstChance = true;
 
             this.updatePosition(game);
         };
@@ -50,6 +51,7 @@ define ([
                     this.shapeButtons[key].sprite.inputEnabled=true;
                 }
                 this.bin.inputEnabled=true;
+                this.firstChance=false;
             }
             ,
             lockStore : function(game, inputEnabled){

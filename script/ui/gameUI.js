@@ -25,8 +25,8 @@ define ([
             this.gameArea.store = new Store(game, this.gameArea , mode);
             this.gameArea.basket = new Basket(game, this.gameArea, mode);
             if (mode == "levelMode") {
+                this.gameArea.winPannel = new Pannel(game, levelNum);
                 this.gameArea.pattern = new Pattern(game, this.gameArea, levelText);
-                this.winPannel = new Pannel(game, levelNum);  
             }      
         };
 
@@ -36,6 +36,7 @@ define ([
                 this.gameArea.store.updatePosition(game);
                 this.gameArea.basket.updatePosition(game);
                 if (this.gameArea.winPannel != null) this.gameArea.winPannel.updatePosition(game);
+                if (this.gameArea.pattern !=null) this.gameArea.pattern.updatePosition(this.gameArea);
             }
         };
 
