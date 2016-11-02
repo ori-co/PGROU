@@ -41,11 +41,11 @@ define ([
             }
             , 
             isOutOfGameAreaX : function(shape){
-                return (shape.x < -100 || shape.x > this.width );
+                return (shape.x < 0 || shape.x > this.width+100 || shape.x <0);
             }
             ,
             isOutOfGameAreaY : function(shape){
-                return (shape.y < -100 || shape.y > this.height);
+                return (shape.y < 0 || shape.y > this.height+100 || shape.y<0);
             }
             ,
             isInTrashbin: function(shape){
@@ -93,7 +93,6 @@ define ([
                     var contourSnapMat = this.contourMat;
                 }   
 
-                // calculate the best position for tempSprite (snap effect)
                 var criteria = 0;
                 var criteriaTemp = 0;
                 var range_i = 30; // must be an even number
