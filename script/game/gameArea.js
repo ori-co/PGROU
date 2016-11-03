@@ -101,8 +101,8 @@ define ([
 
                 var criteria = 0;
                 var criteriaTemp = 0;
-                var range_i = 30; // must be an even number
-                var range_j = 30; // must be an even number
+                var range_i = 20; // intensity of the snap effect
+                var range_j = 20; 
                 var i_init = shape.y;
                 var j_init = shape.x;
                 var i_opt = shape.y; // to store the best position we have found for tempSprite
@@ -110,10 +110,10 @@ define ([
                 var i_temp;
                 var j_temp;
 
-                for (var i = 0; i < range_i; i++) {
-                    for (var j = 0; j < range_j; j++) {
-                        i_temp = i_init + (i - range_i / 2);
-                        j_temp = j_init + (j - range_j / 2);
+                for (var i = 0; i < range_i * 2; i++) {
+                    for (var j = 0; j < range_j * 2; j++) {
+                        i_temp = i_init + (i - range_i);
+                        j_temp = j_init + (j - range_j);
                         criteriaTemp = this.calculateCommonContours(game, contourSnapMat.mat, shape, i_temp, j_temp);
                         if ((i == 0) && (j == 0)) { // 1st iteration
                             criteria = criteriaTemp;
