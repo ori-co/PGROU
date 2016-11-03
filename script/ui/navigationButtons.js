@@ -18,37 +18,38 @@ define ([
                 case 'buttonHome':
                     this.name = 'button-home';
                     this.action = function() {this.goTo(game, 'menu')};
-                    this.instructions = function(){};
+                    this.instructions = "";
                 break;
                 case 'buttonLevelsMap':
                     this.name = 'button-back';
                     this.action = function(){this.goTo(game, 'levelsMap')};
-                    this.instructions = function(){};
+                    this.instructions = "";
                 break;
                 case 'buttonMute':
                     this.name = 'button-mute';
                     this.action = function(){this.toggleMute(this.button,game)};
-                    this.instructions = function(){};
+                    this.instructions = "";
                 break;
                 case 'buttonPrint':
                     this.name = 'button-print';
                     this.action = function(){this.pdf()};
-                    this.instructions = function() {this.playHelpSound(game, 'help_print')};
+                    this.instructions = "help-print";
                 break;
                 case 'buttonExport':
                     this.name = 'button-export';
                     this.action = function(){this.exportProblem(gameArea)};
-                    this.instructions = function() {this.playHelpSound(game, 'help_export')};
+                    this.instructions = "help-export";
                 break;
                 case 'buttonLang':
                     this.name = 'button-colors';
                     this.action = function(){this.toggleLang(game)};
-                    this.instructions = function(){};
+                    this.instructions = "";
                 break;
             }
 
             this.button = game.make.button( - (position*50 + 18), 10, this.name, this.action, this, 2, 1, 0, 1);
-            this.button.events.onInputOver.add(this.instructions, this);
+            var that = this;
+            this.button.events.onInputOver.add(function() {new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);that.cpt=1;});
             
             parentMenu.addChild(this.button);
                     
@@ -58,33 +59,18 @@ define ([
 
         NavigationButton.prototype = {
             goTo: function(game, stateName) {
-                new autoPlaySounds.SoundEffects(game, 'click');
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
                 game.state.start(stateName);
             }, 
 
-            playHelpSound: function(game, mp3Name){
-                var mouthSprite = game.patrick;
-
-                if (this.cpt == 0){
-                    var helpSound = soundManager.createSound({id : mp3Name, url:wordings[game.language].soundsDir+"/" +mp3Name+".mp3"});
-                    if(game.canPlay){
-                        game.canPlay = false;
-                        soundManager.stopAll();
-                        game.patrick.speaks(game ,helpSound);
-                        helpSound.play();
-                        this.cpt++;
-                    }
-                }
-            },
-
             toggleMute: function(item, game){
-                if (!soundManager.muted){
-                    soundManager.mute();
+                if (!game.soundManager.mute){
+                    game.soundManager.mute = true;
                     item.setFrames(3, 0, 1, 0);
                     game.muteValue = true;
                 }else{
-                    soundManager.unmute();
-                    new autoPlaySounds.SoundEffects(game, 'click');
+                    game.soundManager.mute=false;
+                    new autoPlaySounds.SoundEffects(game, 'sound-click');
                     item.setFrames(2, 1, 0, 1);
                     game.muteValue = false;
                 }

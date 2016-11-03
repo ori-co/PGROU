@@ -114,8 +114,8 @@ define ([
 
                 var criteria = 0;
                 var criteriaTemp = 0;
-                var range_i = 20; // intensity of the snap effect
-                var range_j = 20; 
+                var range_i = 15; // intensity of the snap effect
+                var range_j = 15; 
                 var i_init = shape.y;
                 var j_init = shape.x;
                 var i_opt = shape.y; // to store the best position we have found for tempSprite

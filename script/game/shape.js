@@ -98,7 +98,7 @@ define ([
         };
 
         Shape.prototype.endOfShapeTween = function(game,gameArea){
-            new autoPlaySounds.SoundEffects(game, 'snap');
+            new autoPlaySounds.SoundEffects(game, 'sound-snap');
             this.inputEnabled=true;
             this.addRotationUI(game, 0);
             this.originalPosition = this.position.clone();
@@ -112,7 +112,7 @@ define ([
         Shape.prototype.deleteSprite = function(game, gameArea) {
             gameArea.removeStar(game); 
             gameArea.store.shapeButtons[this.key].removeShape(game, gameArea, this.key);
-            new autoPlaySounds.SoundEffects(game, 'trashbin');
+            new autoPlaySounds.SoundEffects(game, 'sound-trashbin');
             this.destroy();
         };
 

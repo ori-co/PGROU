@@ -38,7 +38,7 @@ define ([
                 } else {
                     this.pat.setSadMouth(game);
                 }
-                autoPlaySounds.InstructionsSounds(game, 'end-'+nbStars);
+                autoPlaySounds.InstructionsSounds(game, 'endOfGame-'+nbStars);
                 
                 this.elements.visible= true;
             }

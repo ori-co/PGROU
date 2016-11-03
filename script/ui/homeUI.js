@@ -24,11 +24,11 @@ define ([
             new patrick.PatrickHome(game, this.buttons);
 
             var goToLevelsMapButton =this.buttons.addChild(game.add.button(0,-50, 'button-goTo', function() {this.goTo(game,'levelsMap')}, this,  2,1, 0, 1 ));
-            goToLevelsMapButton.events.onInputOver.add(function() {this.playHelpSound(game, 'classic')}, this);
+            goToLevelsMapButton.events.onInputOver.add(function() {new autoPlaySounds.HelpSounds(game, 'help-levelMode',0)}, this);
             goToLevelsMapButton.addChild(game.make.text(30,30,wordings[game.language].levelmode,goToStyle));
             
             var goToFreeModeButton = this.buttons.addChild(game.add.button(0,50, 'button-goTo', function() {this.goTo(game,'freePlay')}, this,  2,1, 0, 1 ));
-            goToFreeModeButton.events.onInputOver.add(function () {this.playHelpSound(game, 'free')},this);
+            goToFreeModeButton.events.onInputOver.add(function () {new autoPlaySounds.HelpSounds(game, 'help-freeMode',0)},this);
             goToFreeModeButton.addChild(game.make.text(30,30,wordings[game.language].freemode,goToStyle));
 
             
@@ -40,22 +40,9 @@ define ([
             }
             ,
             goTo: function(game, stateName) {
-                new autoPlaySounds.SoundEffects(game, 'click');
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
                 game.state.start(stateName);
             }
-            ,
-            playHelpSound: function(game, mp3Name){
-                var mouthSprite = game.patrick;
-
-                var helpSound = soundManager.createSound({id : mp3Name, url:wordings[game.language].soundsDir+"/" +mp3Name+".mp3"});
-                if(game.canPlay){
-                    game.canPlay = false;
-                    soundManager.stopAll();
-                    game.patrick.speaks(game, helpSound);
-                    helpSound.play();
-                }
-            }
-
         };
 
         return HomeUI;

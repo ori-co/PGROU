@@ -4,43 +4,39 @@ define ([
         wordings
         ) {
 
-        function InstructionsSounds(game, mp3Name){
-            soundManager.stopAll();
+        function InstructionsSounds(game, soundName){
+            game.soundManager.stopAll();
             game.canPlay = false;
-
-            var helpSound = soundManager.createSound({id : mp3Name, url: wordings[game.language].soundsDir+"/" +mp3Name+".mp3"});
+            var helpSound = game.soundManager.add(soundName);
             game.patrick.speaks(game, helpSound);
             helpSound.play();
         };
 
-        function HelpSounds(game, mp3Name, cpt){
+        function HelpSounds(game, soundName, cpt){
              if (cpt == 0){
-                var helpSound = soundManager.createSound({id : mp3Name, url:wordings[game.language].soundsDir+"/" +mp3Name+".mp3"});
+                var helpSound = game.soundManager.add(soundName);
                 if(game.canPlay){
                     game.canPlay = false;
-                    soundManager.stopAll();
+                    game.soundManager.stopAll();
                     game.patrick.speaks(game ,helpSound);
                     helpSound.play();
-                    cpt++;
                 }
             }
         };
 
-        function SoundEffects(game,mp3Name){
-            soundManager.createSound({id : mp3Name, url: wordings[game.language].soundsDir+"/" + mp3Name + ".mp3"}).play();
+        function SoundEffects(game,soundName){
+            game.soundManager.add(soundName).play();
         };
 
         function AddRemoveShape(game, shapeName, nb, add){
-            soundManager.stopAll();
+            game.soundManager.stopAll();
             game.canPlay = false;
 
-            var suffixe = add ? "" : "_off";
-            var playSoundObject = soundManager.createSound({id : shapeName+nb, url: wordings[game.language].soundsDir +"/"+ shapeName + suffixe + nb + ".mp3"});
+            var suffixe = add ? "on" : "off";
+            var playSoundObject = game.soundManager.add(shapeName+"_"+nb+"_"+suffixe);
             game.patrick.speaks(game, playSoundObject);
             playSoundObject.play();
         };
-
-
 
 
         return {

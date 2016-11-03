@@ -25,7 +25,7 @@ define ([
 
         ShapeButton.prototype = {
             addShape: function(game, gameArea, mode, shapeName) {
-                new autoPlaySounds.SoundEffects(game, 'click');
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
                 new Shape(game, gameArea, mode, shapeName);
                 var nb = gameArea.evaluateInPlaceShapes(shapeName);
                 this.label.setText(nb);

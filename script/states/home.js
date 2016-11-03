@@ -7,7 +7,7 @@ define ([
         Wallpaper,
         NavigationMenu,
         HomeUI,
-        autoPlaySound
+        autoPlaySounds
         ) {
 
         /**
@@ -23,7 +23,7 @@ define ([
                 this.wallpaper = new Wallpaper(this.game, 'background-home');
                 this.navigationMenu = new NavigationMenu(this.game, "home");
                 this.ui = new HomeUI(this.game);
-                new autoPlaySound.InstructionsSounds(this.game, "welcome");
+                new autoPlaySounds.InstructionsSounds(this.game, "welcome-home");
 
                 var localContext = this;
                 this.game.scale.setResizeCallback(function () {

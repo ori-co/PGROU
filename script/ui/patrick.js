@@ -1,9 +1,7 @@
 define ([
-    "sounds/autoPlaySounds",
     "data/wording"
 
     ], function(
-        autoPlaySounds,
         wordings
         ) {
             
@@ -31,15 +29,15 @@ define ([
             ,
             speaks : function(game, soundObject){
                 var localContext = this;
-                soundObject.options.onplay = function(){
+                soundObject.onPlay.addOnce(function(){
                     game.canPlay=false;
                     if (localContext.mouth != null) localContext.mouth.animations.play('talk',8,true);
-                };
+                });
 
-                soundObject.options.onfinish = function(){
+                soundObject.onStop.addOnce(function(){
                     if (localContext.mouth != null) localContext.mouth.animations.stop(null,true);
                     game.canPlay = true;
-                };
+                });
             }
         };
 

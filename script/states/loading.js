@@ -75,6 +75,31 @@ define ([
                 this.game.load.spritesheet('stars', 'assets/images/stars/reward.png',150,140);
                 this.game.load.spritesheet('level-status', 'assets/images/stars/status.png',68,35);
 
+                // Sounds 
+                var dir = "assets/audio/" + this.game.language + "/";
+                this.game.load.audio('welcome-home', dir + 'welcome.mp3');
+                this.game.load.audio('welcome-levelsMap', dir+'introduction.mp3');
+                this.game.load.audio('welcome-levelMode', dir+'help_levelMode.mp3');
+                this.game.load.audio('welcome-freeMode', dir+'help_freeMode.mp3');
+                this.game.load.audio('help-levelMode', dir+'classic.mp3');
+                this.game.load.audio('help-freeMode', dir+'free.mp3');
+                this.game.load.audio('help-trashbin', dir+'help_trash.mp3');
+                this.game.load.audio('help-color', dir+'help_color.mp3');
+                this.game.load.audio('help-print', dir+'help_print.mp3');
+                this.game.load.audio('help-lock', dir+'help_lock.mp3');
+                this.game.load.audio('help-export', dir+'help_export.mp3');
+                this.game.load.audio('help-placement', dir+'help_placement.mp3');
+                this.game.load.audio('sound-trashbin', dir+'trashbin.mp3');
+                this.game.load.audio('sound-click', dir+'click.mp3');
+                this.game.load.audio('sound-snap', dir+'snap.mp3');
+                for (var i=0;i<4;i++) this.game.load.audio('endOfGame-'+i, dir+'end-'+i+'.mp3');
+                for (var key in this.game.shapes){
+                    for (var i=0; i<15; i++) {
+                        this.game.load.audio(key + "_" + (i+1) + "_" + "on", dir+key+(i+1)+".mp3");
+                        this.game.load.audio(key + "_" + i + "_" + "off", dir+key+"_off"+i+".mp3");
+                    }
+                }
+
             }, 
 
             create : function (){

@@ -7,7 +7,7 @@ define ([
         Wallpaper,
         NavigationMenu,
         LevelsMapUI,
-        autoPlaySound
+        autoPlaySounds
         ) {
 
         /**
@@ -23,7 +23,7 @@ define ([
                 this.wallpaper = new Wallpaper(this.game, 'background-home');
                 this.navigationMenu = new NavigationMenu(this.game, "levelsMap");
                 this.ui = new LevelsMapUI(this.game);
-                new autoPlaySound.InstructionsSounds(this.game, "introduction");
+                new autoPlaySounds.InstructionsSounds(this.game, "welcome-levelsMap");
 
                 var localContext = this;
                 this.game.scale.setResizeCallback(function () {

@@ -44,7 +44,7 @@ define ([
             }
             ,
             goTo: function(game, stateName) {
-                new autoPlaySounds.SoundEffects(game, 'click');
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
                 game.state.start(stateName);
             }
         };

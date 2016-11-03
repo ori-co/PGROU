@@ -4,8 +4,6 @@ define ([
 
 	return {
 		fr : {
-			// Dir of the sounds
-			soundsDir: "assets/audio/fr",
 			// Menu titles
 			gameName: " Patrimath",
 			levelsMapTitle : " Niveaux",
@@ -17,19 +15,10 @@ define ([
 			levelmode: "Mode Classique",
 			freemode : "Mode Libre",
 
-			// //Problem Import
-			// problemImport : "Importer un probleme",
-			// loadOk : "C'est parti",
-			// errorLoad : "Votre fichier n'est pas au bon format. Choisissez un fichier JSON.",
-			// errorEmptyJson : "Votre fichier est vide.",
-			// fileSelect : "Choisissez un fichier",
-
 			//Problem Export
 			exportPDFname : "Patrimath-a-decouper"
 		}, 
-		test : {
-			// Dir of the sounds
-			soundsDir: "assets/audio/test",
+		english : {
 			// Menu titles
 			gameName: " Patrimath",
 			levelsMapTitle : " Levels",

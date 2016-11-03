@@ -19,7 +19,7 @@ define ([
             this.pipe = game.add.sprite(5, 395, 'pipe');
             this.bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
             this.bin.cpt = 0;
-            this.bin.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help_trash',this.bin.cpt)}, this);
+            this.bin.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help-trashbin',this.bin.cpt); this.bin.cpt=1;}, this);
             
             var i=0;
             for (var key in game.shapes){
@@ -31,7 +31,7 @@ define ([
 
             this.ribbon = game.add.button(5, 5, 'ribbon', function(){this.unlockStore(game)}, this, 1, 0, 1, 0);
             this.ribbon.cpt = 0;
-            this.ribbon.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help_lock', this.ribbon.cpt)}, this);
+            this.ribbon.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help-lock', this.ribbon.cpt); this.ribbon.cpt=1;}, this);
             
             this.unlockStore(game);
             this.firstChance = true;
