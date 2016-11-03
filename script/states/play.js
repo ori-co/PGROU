@@ -1,12 +1,12 @@
 define ([
     "ui/wallpaper",
     "ui/navigationMenu",
-    "ui/gameUI",
+    "game/gameArea",
     "sounds/autoPlaySounds"
     ], function(
         Wallpaper,
         NavigationMenu,
-        GameUI,
+        GameArea,
         autoPlaySound
         ) {
 
@@ -26,10 +26,9 @@ define ([
                 this.levelText = (this.playMode == "levelMode") ? levelText : "";    
             }
             ,
-
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-game');
-                this.ui = new GameUI(this.game, this.playMode, this.levelNum, this.levelText);
+                this.gameArea = new GameArea(this.game, this.playMode, this.levelNum, this.levelText, 900,600);
                 this.navigationMenu = new NavigationMenu(this.game, this.playMode, this.levelNum);
                 new autoPlaySound.InstructionsSounds(this.game, "help_"+ this.playMode);
 
@@ -37,7 +36,7 @@ define ([
                 this.game.scale.setResizeCallback(function () {
                     localContext.wallpaper.updateWallpaperSize(localContext.game);
                     localContext.navigationMenu.updatePosition(localContext.game);
-                    localContext.ui.updatePosition(localContext.game);
+                    localContext.gameArea.updatePosition(localContext.game);
                 }, this.game);
             }
         };

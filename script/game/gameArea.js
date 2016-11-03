@@ -1,8 +1,16 @@
 define ([
+    "game/store",
+    "game/basket",
+    "game/pannel",
+    "game/pattern",
     "game/contourMatrix",
     "data/palette"
 
     ], function(
+        Store,
+        Basket,
+        Pannel,
+        Pattern,
         ContourMatrix,
         colors
 
@@ -14,20 +22,19 @@ define ([
          * @memberof 
          * @param 
          */
-        function GameArea(game, width, height){
+        function GameArea(game,  mode, levelNum, levelText, width, height){
             this.width = width;
             this.height = height;
             this.safeArea = game.add.sprite(0,0, 'gameArea');
 
             this.shapesInPlace = new Phaser.Group(game);
 
-            this.store=null;
-            this.basket=null;
-            this.pattern=null;
-            this.winPannel=null;
-
+            this.store= new Store(game, this , mode);
+            this.basket= new Basket(game, this, mode);
+            this.winPannel= new Pannel(game, levelNum);
+            if (mode == "levelMode") this.pattern = new Pattern(game, this, levelText);
+            
             this.contourMat= [];
-
 
             this.updatePosition(game);
         };
@@ -38,6 +45,11 @@ define ([
                 this.safeArea.y = 0.5* (game.height - 150 - this.height);
                 this.shapesInPlace.x=this.safeArea.x - 130;
                 this.shapesInPlace.y =this.safeArea.y - 130;
+
+                this.store.updatePosition(game);
+                this.basket.updatePosition(game);
+                this.winPannel.updatePosition(game);
+                if (this.pattern !=null) this.pattern.updatePosition(this);
             }
             , 
             isOutOfGameAreaX : function(shape){
