@@ -6,7 +6,7 @@ define ([
         wordings
         ) {
 
-        function NavigationMenu(game, mode, levelNum){
+        function NavigationMenu(game, mode, levelNum, gameArea){
             this.menu = new Phaser.Group(game);
             this.updatePosition(game);
 
@@ -34,7 +34,7 @@ define ([
 
             // Add the buttons
             for (var i=0; i< this.buttons.length; i++){
-                new NavigationButton(game, this.menu, this.buttons[i], buttonsNumber-i);
+                new NavigationButton(game, gameArea, this.menu, this.buttons[i], buttonsNumber-i);
             }
         };
 
@@ -64,7 +64,7 @@ define ([
                     case "levelsMap":
                         return ["buttonHome","buttonMute"];
                     case "levelMode":
-                        return ["buttonLevelsMap", "buttonHome", "buttonMute"];
+                        return ["buttonLevelsMap", "buttonHome", "buttonMute", "buttonExport"];
                     case "freeMode":
                         return ["buttonHome", "buttonMute", "buttonExport"];
                 }     

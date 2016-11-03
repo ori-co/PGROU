@@ -29,7 +29,7 @@ define ([
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-game');
                 this.gameArea = new GameArea(this.game, this.playMode, this.levelNum, this.levelText, 900,600);
-                this.navigationMenu = new NavigationMenu(this.game, this.playMode, this.levelNum);
+                this.navigationMenu = new NavigationMenu(this.game, this.playMode, this.levelNum, this.gameArea);
                 new autoPlaySound.InstructionsSounds(this.game, "help_"+ this.playMode);
 
                 var localContext = this;

@@ -1,14 +1,18 @@
 define ([
+    "game/shape",
     "sounds/autoPlaySounds",
-    "data/wording"
+    "data/wording",
+    "data/palette"
 
     ], function(
+        Shape,
         autoPlaySounds,
-        wordings
+        wordings,
+        colors
 
         ) {
 
-        function NavigationButton(game, parentMenu, buttonName, position){
+        function NavigationButton(game, gameArea, parentMenu, buttonName, position){
             this.cpt = 0;
             switch (buttonName) {
                 case 'buttonHome':
@@ -33,7 +37,7 @@ define ([
                 break;
                 case 'buttonExport':
                     this.name = 'button-export';
-                    this.action = function(){this.exportProblem()};
+                    this.action = function(){this.exportProblem(gameArea)};
                     this.instructions = function() {this.playHelpSound(game, 'help_export')};
                 break;
                 case 'buttonLang':
@@ -92,24 +96,21 @@ define ([
                 pdf.save(wordings[game.language].exportPDFname+'.pdf');
             }, 
 
-            exportProblem : function(){
+            exportProblem : function(gameArea){
                 var problem = {};
                 problem.pattern=[];
                 problem.basket=[];
                 problem.storeEnabled=true;
 
-                // for (var key in game.global.shapes){
-                //     var shapeArray = game.global.shapes[key].shapesInPlace;
-        
-                //     for (i=0; i<shapeArray.length;i++){
-                //         var formItem = shapeArray[i];
-                //         if (gameAreaBounds.isOutOfGameArea(formItem)){
-                //             problem.basket.push({shape:formItem.key, color:colors.palette.indexOf(formItem.tint), rotation:formItem.frame});
-                //         } else {
-                //            problem.pattern.push({shape:formItem.key, color:colors.palette.indexOf(formItem.tint), rotation:formItem.frame, anchorPoint:{x:formItem.x, y:formItem.y}});
-                //         }
-                //      }
-                // }
+                gameArea.shapesInPlace.forEach(function(shape){
+                    if (shape instanceof  Shape){
+                        if (!gameArea.isOutOfGameAreaX(shape) && !gameArea.isOutOfGameAreaY(shape)){
+                            problem.pattern.push({shape:shape.key, color:colors.palette.indexOf(shape.tint), rotation:shape.frame, anchorPoint:{x:shape.x, y:shape.y}});
+                        } else {
+                            problem.basket.push({shape:shape.key /*, color:colors.palette.indexOf(shape.tint), rotation:shape.frame*/ });
+                        }
+                    }
+                });
 
                 //Open a pop-up to save the json file
                 window.open().document.write(JSON.stringify(problem));

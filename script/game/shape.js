@@ -16,7 +16,7 @@ define ([
          * @param 
          */
         function Shape(game, gameArea, mode, shapeName){
-            var posX = Math.random()*(game.width-310)+90 - gameArea.shapesInPlace.x;
+            var posX = Math.floor(Math.random()*(game.width-310))+90 - gameArea.shapesInPlace.x;
             var posY = game.height - 150 - gameArea.shapesInPlace.y;
             Phaser.Sprite.call(this, game, posX, posY, shapeName,0);
 
