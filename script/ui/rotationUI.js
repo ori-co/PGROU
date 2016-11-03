@@ -29,7 +29,7 @@ define ([
 
         RotationUI.prototype = {
             onRotationStart: function(game, shape) {
-                this.beginDragPosition = game.input.mousePointer.position.clone();
+                this.beginDragPosition = game.input.activePointer.position.clone();
                 this.beginDir = shape.frame;
                 this.beginAngle = this.sprite.angle;
             }
@@ -39,7 +39,7 @@ define ([
                 if(this.beginDir != undefined) {
                     var origin = this.sprite.worldPosition.clone();
                     var beginPosition = this.beginDragPosition;
-                    var currentPosition = game.input.mousePointer.position.clone();
+                    var currentPosition = game.input.activePointer.position.clone();
 
                     var angle = (Phaser.Point.angle(origin, currentPosition)-Phaser.Point.angle(origin, beginPosition)) * 57 ; // conversion en degrés
 
