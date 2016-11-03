@@ -32,11 +32,12 @@ define ([
             this.store= new Store(game, this , mode);
             this.basket= new Basket(game, this, mode);
             this.winPannel= new Pannel(game, levelNum);
-            if (mode == "levelMode") this.pattern = new Pattern(game, this, levelText);
             
             this.contourMat= [];
 
             this.updatePosition(game);
+
+            if (mode == "levelMode") this.pattern = new Pattern(game, this, levelText);
         };
 
         GameArea.prototype = {

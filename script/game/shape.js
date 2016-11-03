@@ -18,21 +18,29 @@ define ([
         function Shape(game, gameArea, mode, shapeName){
             var posX = Math.floor(Math.random()*(game.width-310))+90 - gameArea.shapesInPlace.x;
             var posY = game.height - 150 - gameArea.shapesInPlace.y;
-            Phaser.Sprite.call(this, game, posX, posY, shapeName,0);
 
+            Phaser.Sprite.call(this, game, -gameArea.shapesInPlace.x, posY-50, shapeName,0);
             this.tint = colors.defaultColor;
-            this.inputEnabled = true;
-            this.input.enableSnap(1, 1, false, true); 
-            this.input.pixelPerfectOver = true;
-            this.input.enableDrag(false, true, true);
-            this.events.onInputDown.add( function(){this.onClick(game, gameArea)},this);
-            this.events.onDragStop.add( function(){this.onRelease(game, gameArea)},this);
+
+            var tweenFall = game.add.tween(this);
+            var tweenSlide = game.add.tween(this);
+            tweenFall.to({y:posY},200,Phaser.Easing.Bounce.Out);
+            tweenSlide.to({x:posX},400,Phaser.Easing.Quadratic.Out);
+            tweenFall.onComplete.add(function(){ tweenSlide.start()});
+            var that = this;
+            tweenSlide.onComplete.add(function(){
+                that.inputEnabled = true;
+                that.input.enableSnap(1, 1, false, true); 
+                that.input.pixelPerfectOver = true;
+                that.input.enableDrag(false, true, true);
+                that.events.onInputDown.add( function(){that.onClick(game, gameArea)},that);
+                that.events.onDragStop.add( function(){that.onRelease(game, gameArea)},that);
+                that.originalPosition = that.position.clone();
+            });
 
             this.mode =mode;
 
             this.rotationUI = null;
-
-            this.originalPosition = this.position.clone();
 
             this.nbDir = game.shapes[shapeName].nbDir;
             this.mat = game.shapes[shapeName].mat;
@@ -40,6 +48,8 @@ define ([
 
             gameArea.shapesInPlace.add(this);
             game.world.bringToTop(gameArea.shapesInPlace);
+
+            tweenFall.start();
         };
 
         Shape.prototype = Object.create(Phaser.Sprite.prototype);
