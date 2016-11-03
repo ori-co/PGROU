@@ -75,6 +75,12 @@ define ([
                 return res;
             }
             ,
+            removeAllRotationUI: function(game){
+                this.shapesInPlace.forEach(function(shape){
+                    if (shape.rotationUI != null) shape.removeRotationUI(game);
+                });
+            }
+            ,
             calculateContourMat_withoutShape: function(shape){
                 
                 this.contourMat = new ContourMatrix(1300,1300);
@@ -183,6 +189,7 @@ define ([
                     var errorMargin = Math.floor(this.pattern.patternMat.area*0.05);
 
                     if (error.pixels < errorMargin && error.area < errorMargin) {
+                        this.removeAllRotationUI(game);
                         var starIndex = this.basket.evaluateStars();
                         this.winPannel.showPannel(game, starIndex);
                         this.winPannel.saveResult(game, starIndex);

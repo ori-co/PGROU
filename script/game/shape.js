@@ -48,9 +48,7 @@ define ([
 
         Shape.prototype.onClick= function(game, gameArea) {
             this.wasSelected = (this.rotationUI != null);
-            gameArea.shapesInPlace.forEach(function(shape){
-                if (shape.rotationUI != null) shape.removeRotationUI(game);
-            });
+            gameArea.removeAllRotationUI(game);
         };
 
         Shape.prototype.onRelease= function(game, gameArea){
