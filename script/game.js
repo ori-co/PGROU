@@ -21,16 +21,27 @@ define([
 
 		//Create a new Phaser JS game
 		this.game = new Phaser.Game("100", "100",Phaser.CANVAS );
+        this.game.name="Patrimath";
 
 		// Initialize value for the global variables of the game
-        this.game.name="Patrimath";
-		this.game.language = interface.language;
 		this.game.muteValue=false;
 		this.game.canPlay=true;
 		this.game.patrick=null;
 		this.game.shapes = objShapes;
 		this.game.saveData = interface.savedData;
         this.game.soundManager = new Phaser.SoundManager(this.game);
+
+        // Set le language (only for the audio assets dir)
+        switch (interface.language) {
+            case 'english':
+                this.game.language = "en";
+                break;
+            case 'swahili':
+                this.game.language = "sw";
+                break;
+            default :
+                this.game.language = "fr";
+        }
 
 		// Add the states of the game
 		this.game.state.add('loading', new LoadState());
