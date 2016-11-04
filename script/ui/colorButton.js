@@ -1,12 +1,7 @@
 define ([
-    // "game/shape",
-    "sounds/autoPlaySounds",
-    "data/wording"
-
+    "sounds/autoPlaySounds"
     ], function(
-        // Shape,
-        autoPlaySounds,
-        wordings
+        autoPlaySounds
         ) {
 
         /**

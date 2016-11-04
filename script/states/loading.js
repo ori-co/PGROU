@@ -12,14 +12,15 @@ define ([
 
         LoadState.prototype = {
             preload : function () {
-                // Home assets 
-                this.game.load.spritesheet('button-goTo','assets/images/buttons/home.png',300,100);
-                this.game.load.spritesheet('button-level','assets/images/buttons/levels.png',78,77);
-                //this.game.load.spritesheet('button-import','assets/images/buttons/import.png',87,100);
-                
+                // Backgrounds
                 this.game.load.image('background-home', 'assets/images/backgrounds/backgroundHome.png');
                 this.game.load.image('background-game','assets/images/backgrounds/backgroundGame.png');
                 this.game.load.image('gameArea','assets/images/backgrounds/gameArea.png');
+
+                // Buttons
+                this.game.load.spritesheet('button-goTo-freemode','assets/images/buttons/freemode.png',300,215);
+                this.game.load.spritesheet('button-goTo-levelmode','assets/images/buttons/levelmode.png',300,215);
+                this.game.load.spritesheet('button-level','assets/images/buttons/levels.png',78,77);
                 
                 // Shapes assets
                 this.game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);

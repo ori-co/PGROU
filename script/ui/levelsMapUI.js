@@ -1,13 +1,11 @@
 define ([
     "sounds/autoPlaySounds",
-    "data/wording",
     "data/levels",
     "ui/levelButton",
     "ui/patrick"
 
     ], function(
         autoPlaySounds,
-        wordings,
         levels,
         LevelButton,
         patrick

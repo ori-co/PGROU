@@ -1,9 +1,7 @@
 define ([
-    "ui/navigationButtons",
-    "data/wording"
+    "ui/navigationButtons"
     ], function(
-        NavigationButton,
-        wordings
+        NavigationButton
         ) {
 
         function NavigationMenu(game, mode, levelNum, gameArea){
@@ -40,17 +38,16 @@ define ([
 
         NavigationMenu.prototype = {
             getLabel : function(game, mode,levelNum){
-                var wording = wordings[game.language];
 
                 switch (mode) {
                     case "home":
-                        return wording.gameName;
+                        return " " + game.name;
                     case "levelsMap":
-                        return wording.levelsMapTitle;
+                        return "";
                     case "levelMode":
-                        return wording.levelTitle+" "+levelNum;
+                        return " n° " + levelNum.toString();
                     case "freeMode":
-                        return wording.freemodeTitle;
+                        return "";
                 } 
             }
             ,
@@ -64,7 +61,7 @@ define ([
                     case "levelsMap":
                         return ["buttonHome","buttonMute"];
                     case "levelMode":
-                        return ["buttonLevelsMap", "buttonHome", "buttonMute", "buttonExport"];
+                        return ["buttonLevelsMap", "buttonHome", "buttonMute"];
                     case "freeMode":
                         return ["buttonHome", "buttonMute", "buttonExport"];
                 }     

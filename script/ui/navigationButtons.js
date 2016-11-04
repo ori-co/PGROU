@@ -1,13 +1,11 @@
 define ([
     "game/shape",
     "sounds/autoPlaySounds",
-    "data/wording",
     "data/palette"
 
     ], function(
         Shape,
         autoPlaySounds,
-        wordings,
         colors
 
         ) {
@@ -32,7 +30,7 @@ define ([
                 break;
                 case 'buttonPrint':
                     this.name = 'button-print';
-                    this.action = function(){this.pdf()};
+                    this.action = function(){this.pdf(game)};
                     this.instructions = "help-print";
                 break;
                 case 'buttonExport':
@@ -76,10 +74,10 @@ define ([
                 }
             }, 
 
-            pdf : function(){
+            pdf : function(game){
                 var pdf = new jsPDF('l','cm','a4');
                 pdf.addHTML(document.body,function() { pdf.output('datauri'); });
-                pdf.save(wordings[game.language].exportPDFname+'.pdf');
+                pdf.save(game.name + '.pdf');
             }, 
 
             exportProblem : function(gameArea){

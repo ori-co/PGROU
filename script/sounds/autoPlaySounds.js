@@ -1,7 +1,5 @@
 define ([
-    "data/wording"
     ], function(
-        wordings
         ) {
 
         function InstructionsSounds(game, soundName){

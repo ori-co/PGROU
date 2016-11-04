@@ -23,6 +23,7 @@ define([
 		this.game = new Phaser.Game("100", "100",Phaser.CANVAS );
 
 		// Initialize value for the global variables of the game
+        this.game.name="Patrimath";
 		this.game.language = interface.language;
 		this.game.muteValue=false;
 		this.game.canPlay=true;
