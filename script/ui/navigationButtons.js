@@ -54,15 +54,15 @@ define ([
             var that = this;
             this.button.events.onInputOver.add(function() {
                 if (that.instructions != ""){
-                    new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);
-                    that.cpt=1;
+                    var temp = new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);
+                    if (temp.done) that.cpt=1;
                 }
             });
             
             parentMenu.addChild(this.button);
                     
             // Check the value of the mute function to update the mute button
-            if(buttonName == "buttonMute" && game.muteValue) this.button.setFrames(3, 0, 1, 0);
+            if(buttonName == "buttonMute" && game.sound.mute) this.button.setFrames(3, 0, 1, 0);
         };
 
         NavigationButton.prototype = {
@@ -72,15 +72,12 @@ define ([
             }, 
 
             toggleMute: function(item, game){
-                if (!game.soundManager.mute){
-                    game.soundManager.mute = true;
+                game.sound.mute = !game.sound.mute;
+                if (game.sound.mute) {
                     item.setFrames(3, 0, 1, 0);
-                    game.muteValue = true;
-                }else{
-                    game.soundManager.mute=false;
+                } else {
                     new autoPlaySounds.SoundEffects(game, 'sound-click');
-                    item.setFrames(2, 1, 0, 1);
-                    game.muteValue = false;
+                    item.setFrames(2, 0, 1, 0);
                 }
             }, 
 

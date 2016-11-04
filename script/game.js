@@ -24,11 +24,9 @@ define([
         this.game.name="Patrimath";
 
 		// Initialize value for the global variables of the game
-		this.game.muteValue=false;
 		this.game.canPlay=true;
 		this.game.patrick=null;
 		this.game.shapes = objShapes;
-        this.game.soundManager = new Phaser.SoundManager(this.game);
 
         // previous results
 		this.game.savedData = interface.savedData;
@@ -58,7 +56,7 @@ define([
 
     var fakeInterface = {
         savedData : [],
-        language : 'fr',
+        language : 'francais',
         save : save,
         close : close
     };

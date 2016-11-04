@@ -18,7 +18,10 @@ define ([
             this.addChild(game.add.sprite(0, 0,'button-colors-picto'));
             this.children[0].tint = color;
 
-            this.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game,'help-color',parentGroup.cpt); parentGroup.cpt=1;}, this);
+            this.events.onInputOver.add(function(){
+                var temp = new autoPlaySounds.HelpSounds(game,'help-color',parentGroup.cpt); 
+                if (temp.done) parentGroup.cpt=1;
+            }, this);
 
         };
 
