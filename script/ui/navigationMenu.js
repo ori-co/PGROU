@@ -32,12 +32,12 @@ define ([
 
             // Add the buttons
             for (var i=0; i< this.buttons.length; i++){
-                new NavigationButton(game, gameArea, this.menu, this.buttons[i], buttonsNumber-i);
+                new NavigationButton(game, gameArea, levelNum, this.menu, this.buttons[i], buttonsNumber-i);
             }
         };
 
         NavigationMenu.prototype = {
-            getLabel : function(game, mode,levelNum){
+            getLabel : function(game, mode, levelNum){
 
                 switch (mode) {
                     case "home":
@@ -61,9 +61,9 @@ define ([
                     case "levelsMap":
                         return ["buttonHome","buttonMute"];
                     case "levelMode":
-                        return ["buttonLevelsMap", "buttonHome", "buttonMute"];
+                        return ["buttonRetry", "buttonLevelsMap", "buttonHome", "buttonMute"];
                     case "freeMode":
-                        return ["buttonHome", "buttonMute", "buttonExport"];
+                        return ["buttonRetry", "buttonHome", "buttonMute", "buttonExport"];
                 }     
             }
             ,

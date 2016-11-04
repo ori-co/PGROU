@@ -2,12 +2,14 @@ define ([
     "ui/wallpaper",
     "ui/navigationMenu",
     "game/gameArea",
-    "sounds/autoPlaySounds"
+    "sounds/autoPlaySounds",
+    "data/levels"
     ], function(
         Wallpaper,
         NavigationMenu,
         GameArea,
-        autoPlaySounds
+        autoPlaySounds,
+        levels
         ) {
 
         /**
@@ -21,9 +23,9 @@ define ([
         };
 
         PlayState.prototype = {
-            init : function (levelNum, levelText){
+            init : function (levelNum){
                 this.levelNum = levelNum;
-                this.levelText = (this.playMode == "levelMode") ? levelText : "";    
+                this.levelText = (this.playMode == "levelMode") ? levels[levelNum] : "";  
             }
             ,
             create : function (){

@@ -10,7 +10,7 @@ define ([
 
         ) {
 
-        function NavigationButton(game, gameArea, parentMenu, buttonName, position){
+        function NavigationButton(game, gameArea, levelNum, parentMenu, buttonName, position){
             this.cpt = 0;
             switch (buttonName) {
                 case 'buttonHome':
@@ -43,11 +43,21 @@ define ([
                     this.action = function(){this.toggleLang(game)};
                     this.instructions = "";
                 break;
+                case 'buttonRetry': 
+                    this.name = 'button-retry';
+                    this.action = function() {this.retry(game, levelNum)};
+                    this.instructions = "";
+                break;
             }
 
             this.button = game.make.button( - (position*50 + 18), 10, this.name, this.action, this, 2, 1, 0, 1);
             var that = this;
-            this.button.events.onInputOver.add(function() {new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);that.cpt=1;});
+            this.button.events.onInputOver.add(function() {
+                if (that.instructions != ""){
+                    new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);
+                    that.cpt=1;
+                }
+            });
             
             parentMenu.addChild(this.button);
                     
@@ -102,6 +112,11 @@ define ([
 
             toggleLang: function(game){
                 (game.language == "fr") ? game.language="test" : game.language="fr";
+            },
+
+            retry: function(game, levelNum){
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
+                game.state.restart(true, false, levelNum);
             }
         }
 

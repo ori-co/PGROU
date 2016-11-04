@@ -1,10 +1,8 @@
 define ([
-    "sounds/autoPlaySounds",
-    "data/levels"
+    "sounds/autoPlaySounds"
 
     ], function(
-        autoPlaySounds,
-        levels
+        autoPlaySounds
         ) {
 
         /**
@@ -25,7 +23,7 @@ define ([
         LevelButton.prototype = {
             goToLevel: function(game, item) {
                 new autoPlaySounds.SoundEffects(game, 'sound-click');
-                game.state.start('levelPlay',true, false, item.levelNumber, levels[item.levelNumber]);
+                game.state.start('levelPlay',true, false, item.levelNumber);
             }
         };
 
