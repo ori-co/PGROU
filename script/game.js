@@ -28,8 +28,10 @@ define([
 		this.game.canPlay=true;
 		this.game.patrick=null;
 		this.game.shapes = objShapes;
-		this.game.saveData = interface.savedData;
         this.game.soundManager = new Phaser.SoundManager(this.game);
+
+        // previous results
+		this.game.savedData = interface.savedData;
 
         // Set le language (only for the audio assets dir)
         switch (interface.language) {

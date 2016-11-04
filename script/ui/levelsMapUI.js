@@ -28,7 +28,7 @@ define ([
 
                 var posX = (i % 7) * 90;
                 var posY = Math.floor( i / 7 ) * 90;
-                var status = (i<game.saveData.length) ? game.saveData[i] : 0 ;
+                var status = (i<game.savedData.length) ? game.savedData[i] : 0 ;
 
                 new LevelButton(game, this.buttons, posX, posY, i+1, status);
             }

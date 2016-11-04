@@ -53,8 +53,8 @@ define ([
             }
             ,
             saveResult(game, score){
-                var oldScore = (game.saveData[this.levelNum-1] ==undefined) ? 0 : game.saveData[this.levelNum-1]; 
-                game.saveData[this.levelNum-1]=Math.max(oldScore, score);;
+                var oldScore = (game.savedData[this.levelNum-1] ==undefined) ? 0 : game.savedData[this.levelNum-1]; 
+                game.savedData[this.levelNum-1]=Math.max(oldScore, score);;
             }
         };
 
