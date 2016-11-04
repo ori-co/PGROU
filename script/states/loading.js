@@ -81,8 +81,8 @@ define ([
                 var dir = "assets/audio/" + this.game.language + "/";
                 this.game.load.audio('welcome-home', dir + 'welcome.mp3');
                 this.game.load.audio('welcome-levelsMap', dir+'introduction.mp3');
-                this.game.load.audio('welcome-levelMode', dir+'help_levelMode.mp3');
-                this.game.load.audio('welcome-freeMode', dir+'help_freeMode.mp3');
+                this.game.load.audio('welcome-levelPlay', dir+'help_levelMode.mp3');
+                this.game.load.audio('welcome-freePlay', dir+'help_freeMode.mp3');
                 this.game.load.audio('help-levelMode', dir+'classic.mp3');
                 this.game.load.audio('help-freeMode', dir+'free.mp3');
                 this.game.load.audio('help-trashbin', dir+'help_trash.mp3');

@@ -36,8 +36,8 @@ define([
 		this.game.state.add('loading', new LoadState());
 		this.game.state.add('menu', new HomeState());
 		this.game.state.add('levelsMap',new LevelsMapState());
-		this.game.state.add('levelPlay', new PlayState("levelMode"));
-		this.game.state.add('freePlay', new PlayState("freeMode"));
+		this.game.state.add('levelPlay', new PlayState());
+		this.game.state.add('freePlay', new PlayState());
 
 		// Call the first state of the game
 		this.game.state.start('loading');

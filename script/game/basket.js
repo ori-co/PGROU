@@ -19,7 +19,7 @@ define ([
          * @memberof 
          * @param 
          */
-        function Basket(game, gameArea, mode){
+        function Basket(game, gameArea){
  
             this.elements = new Phaser.Group(game);
             this.elements.addChildAt(game.add.sprite(5, 0, 'basket-left'),0);
@@ -28,7 +28,7 @@ define ([
 
             this.patrick = new patrick.PatrickGame(game,this.elements.children[2]);
 
-            if (mode == "freeMode"){
+            if (game.state.current == "freePlay"){
                 this.colorsButtons = this.elements.addChildAt(game.add.group(),3);
                 this.colorsButtons.position = {x:15,y:5};
                 this.colorsButtons.cpt=0;

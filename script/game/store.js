@@ -13,7 +13,7 @@ define ([
          * @memberof 
          * @param 
          */
-        function Store(game, gameArea, mode){
+        function Store(game, gameArea){
             this.shapeButtons = {};
             this.store = game.add.sprite(5, 5, 'store');
             this.pipe = game.add.sprite(5, 395, 'pipe');
@@ -25,7 +25,7 @@ define ([
             for (var key in game.shapes){
                 var posY = Math.floor(i/2) * 90 + 110 ;
                 var posX = (i % 2) * 90 + 15;
-                this.shapeButtons[key] = new ShapeButton(game, posX, posY, key, gameArea, mode);
+                this.shapeButtons[key] = new ShapeButton(game, posX, posY, key, gameArea);
                 i ++;
             }
 

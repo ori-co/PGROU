@@ -21,7 +21,7 @@ define ([
         HomeState.prototype = {
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-home');
-                this.navigationMenu = new NavigationMenu(this.game, "home");
+                this.navigationMenu = new NavigationMenu(this.game);
                 this.ui = new HomeUI(this.game);
                 new autoPlaySounds.InstructionsSounds(this.game, "welcome-home");
 

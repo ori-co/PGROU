@@ -13,10 +13,10 @@ define ([
          * @memberof 
          * @param 
          */
-        function ShapeButton(game, posX, posY, shapeName, gameArea, mode){
+        function ShapeButton(game, posX, posY, shapeName, gameArea){
             var style = {font: "25px Arial", fontWeight: "bold", fill: "#93AFBD"};
 
-            this.sprite = game.add.button(posX,posY,'button-'+shapeName, function() {this.addShape(game, gameArea, mode, shapeName)}, this, 2,1,0,1);
+            this.sprite = game.add.button(posX,posY,'button-'+shapeName, function() {this.addShape(game, gameArea, shapeName)}, this, 2,1,0,1);
             this.label = this.sprite.addChild(game.make.text(38, 38, 0, style));
             this.label.anchor.x = 0.5;
             this.label.anchor.y = 0.5;
@@ -24,14 +24,14 @@ define ([
         };
 
         ShapeButton.prototype = {
-            addShape: function(game, gameArea, mode, shapeName) {
+            addShape: function(game, gameArea, shapeName) {
                 new autoPlaySounds.SoundEffects(game, 'sound-click');
-                new Shape(game, gameArea, mode, shapeName);
+                new Shape(game, gameArea, shapeName);
                 var nb = gameArea.evaluateInPlaceShapes(shapeName);
                 this.label.setText(nb);
                 new autoPlaySounds.AddRemoveShape( game, shapeName, nb, true);
 
-                if (mode == "levelMode") gameArea.removeStar(game);
+                if (game.state.current == "levelPlay") gameArea.removeStar(game);
             }
             ,
             removeShape: function(game, gameArea, shapeName){

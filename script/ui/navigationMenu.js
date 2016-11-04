@@ -4,12 +4,12 @@ define ([
         NavigationButton
         ) {
 
-        function NavigationMenu(game, mode, levelNum, gameArea){
+        function NavigationMenu(game, levelNum, gameArea){
             this.menu = new Phaser.Group(game);
             this.updatePosition(game);
 
-            this.label = this.getLabel(game,mode,levelNum);
-            this.buttons = this.getButtonsList(game,mode);
+            this.label = this.getLabel(game,levelNum);
+            this.buttons = this.getButtonsList(game);
 
             var menuRight = this.menu.addChild(game.make.sprite(0, 5, 'menu-right'));
             var menuLeft = this.menu.addChild(game.make.sprite(0, 5, 'menu-left'));
@@ -37,32 +37,32 @@ define ([
         };
 
         NavigationMenu.prototype = {
-            getLabel : function(game, mode, levelNum){
+            getLabel : function(game, levelNum){
 
-                switch (mode) {
-                    case "home":
+                switch (game.state.current) {
+                    case "menu":
                         return " " + game.name;
                     case "levelsMap":
                         return "";
-                    case "levelMode":
+                    case "levelPlay":
                         return " n° " + levelNum.toString();
-                    case "freeMode":
+                    case "freePlay":
                         return "";
                 } 
             }
             ,
 
-            getButtonsList : function(game,mode) {
+            getButtonsList : function(game) {
 
                     // buttons : buttonHome, buttonLevelsMap, buttonMute, buttonPrint, buttonExport, buttonLang
-                switch (mode) {
-                    case "home":
+                switch (game.state.current) {
+                    case "menu":
                         return ["buttonMute"];
                     case "levelsMap":
                         return ["buttonHome","buttonMute"];
-                    case "levelMode":
+                    case "levelPlay":
                         return ["buttonRetry", "buttonLevelsMap", "buttonHome", "buttonMute"];
-                    case "freeMode":
+                    case "freePlay":
                         return ["buttonRetry", "buttonHome", "buttonMute", "buttonExport"];
                 }     
             }
