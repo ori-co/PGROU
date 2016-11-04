@@ -57,13 +57,13 @@ define ([
                     // buttons : buttonHome, buttonLevelsMap, buttonMute, buttonPrint, buttonExport, buttonLang
                 switch (game.state.current) {
                     case "menu":
-                        return ["buttonMute"];
+                        return ["buttonMute", "buttonDebug"];
                     case "levelsMap":
-                        return ["buttonHome","buttonMute"];
+                        return ["buttonHome","buttonMute", "buttonDebug"];
                     case "levelPlay":
-                        return ["buttonRetry", "buttonLevelsMap", "buttonHome", "buttonMute"];
+                        return ["buttonRetry", "buttonLevelsMap", "buttonHome", "buttonMute", "buttonDebug"];
                     case "freePlay":
-                        return ["buttonRetry", "buttonHome", "buttonMute", "buttonExport"];
+                        return ["buttonRetry", "buttonHome", "buttonMute", "buttonDebug"];
                 }     
             }
             ,

@@ -106,6 +106,7 @@ define ([
 
             create : function (){
                 this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+                this.game.scale.fullScreenScaleMode =  Phaser.ScaleManager.RESIZE;
                 // Call the menu state
                 this.game.state.start('menu');
             }

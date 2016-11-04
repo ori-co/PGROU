@@ -38,9 +38,9 @@ define ([
                     this.action = function(){this.exportProblem(gameArea)};
                     this.instructions = "help-export";
                 break;
-                case 'buttonLang':
+                case 'buttonDebug':
                     this.name = 'button-colors';
-                    this.action = function(){this.toggleLang(game)};
+                    this.action = function(){this.toggleDebug(game)};
                     this.instructions = "";
                 break;
                 case 'buttonRetry': 
@@ -77,7 +77,8 @@ define ([
                     item.setFrames(3, 0, 1, 0);
                 } else {
                     new autoPlaySounds.SoundEffects(game, 'sound-click');
-                    item.setFrames(2, 0, 1, 0);
+                    item.setFrames(2, 1, 0, 1);
+                    game.scale.stopFullScreen();
                 }
             }, 
 
@@ -104,11 +105,12 @@ define ([
                 });
 
                 //Open a pop-up to save the json file
-                window.open().document.write(JSON.stringify(problem));
+                window.open().document.write(JSON.stringify(prosblem));
             }, 
 
-            toggleLang: function(game){
-                (game.language == "fr") ? game.language="test" : game.language="fr";
+            toggleDebug: function(game){
+                game.scale.startFullScreen(false);
+                // (game.language == "fr") ? game.language="test" : game.language="fr";
             },
 
             retry: function(game, levelNum){
