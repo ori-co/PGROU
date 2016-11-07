@@ -105,7 +105,7 @@ define ([
                 });
 
                 //Open a pop-up to save the json file
-                window.open().document.write(JSON.stringify(prosblem));
+                window.open().document.write(JSON.stringify(problem));
             }, 
 
             toggleDebug: function(game){
