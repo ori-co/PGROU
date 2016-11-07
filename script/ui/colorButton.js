@@ -10,8 +10,11 @@ define ([
          * @memberof 
          * @param 
          */
-        function ColorButton(game, parentGroup, posX, posY, color){
-            Phaser.Button.call(this, game, posX, posY, 'button-colors', this.onColorButton, this.sprite, 2, 1, 0, 1);
+        function ColorButton(game, gameArea, parentGroup, posX, posY, color){
+            Phaser.Button.call(this, game, posX, posY, 'button-colors', function() {
+                gameArea.removeAllRotationUI(game);
+                this.onColorButton();
+            }, this.sprite, 2, 1, 0, 1);
             parentGroup.add(this);
             this.value = false;
             this.color = color;

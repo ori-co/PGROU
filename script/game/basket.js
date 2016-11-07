@@ -35,7 +35,7 @@ define ([
                 for (var i=0; i< colors.palette.length;i++){
                     var posX = (i%3) * 60;
                     var posY = Math.floor(i/3) * 50;
-                    new ColorButton(game, this.colorsButtons, posX, posY, colors.palette[i]);
+                    new ColorButton(game, gameArea, this.colorsButtons, posX, posY, colors.palette[i]);
                 }
             } else {
                 this.stars = this.elements.addChildAt(game.add.group(),3);
