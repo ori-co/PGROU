@@ -20,10 +20,10 @@ define([
     var Game = function(interface){ 
 
 		//Create a new Phaser JS game
-		this.game = new Phaser.Game("100", "100",Phaser.CANVAS );
+		this.game = new Phaser.Game("100", "100",Phaser.AUTO );
         this.game.name="Patrimath";
 
-		// Initialize value for the global variables of the game
+		// Initialize the global variables of the game
 		this.game.canPlay=true;
 		this.game.patrick=null;
 		this.game.shapes = objShapes;

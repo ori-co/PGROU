@@ -29,6 +29,7 @@ define ([
                 this.game.load.spritesheet('trapeze','assets/sprites/trapezoid.png',130,130);
                 this.game.load.spritesheet('triangleEqui','assets/sprites/triangle-equi.png',130,130);
                 this.game.load.spritesheet('triangle','assets/sprites/triangle.png',130,130);
+                this.game.load.spritesheet('parallelogram','assets/sprites/parallelogram.png',130,130);
                 
                 // Game menu assets (basket, store and buttons)
                 this.game.load.image('store', 'assets/images/menu/store.png');
@@ -42,6 +43,7 @@ define ([
                 this.game.load.spritesheet('button-hexagon', 'assets/images/buttons/shape-hexagon.png', 78, 77);
                 this.game.load.spritesheet('button-triangle', 'assets/images/buttons/shape-triangle.png', 78, 77);
                 this.game.load.spritesheet('button-diamond', 'assets/images/buttons/shape-diamond.png', 78, 77);
+                this.game.load.spritesheet('button-parallelogram', 'assets/images/buttons/shape-parallelogram.png', 78, 77);
                 
                 this.game.load.image('basket-left', 'assets/images/menu/basket-left.png');
                 this.game.load.image('basket-right', 'assets/images/menu/basket-right.png');
