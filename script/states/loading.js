@@ -8,75 +8,75 @@ define ([
          * @memberof Patrimath
          * @param {Phaser.Game} game
          */
-        function LoadState(){};
+        function LoadState (){}
 
         LoadState.prototype = {
             preload : function () {
                 // Home assets 
-                this.game.load.spritesheet('button-goTo','assets/images/buttons/home.png',300,100);
-                this.game.load.spritesheet('button-level','assets/images/buttons/levels.png',78,77);
-                //this.game.load.spritesheet('button-import','assets/images/buttons/import.png',87,100);
+                this.game.load.spritesheet('button-goTo', Config.assetsPath + 'images/buttons/home.png',300,100);
+                this.game.load.spritesheet('button-level', Config.assetsPath + 'images/buttons/levels.png',78,77);
+                //this.game.load.spritesheet('button-import', Config.assetsPath + 'images/buttons/import.png',87,100);
                 
-                this.game.load.image('background-home', 'assets/images/backgrounds/backgroundHome.png');
-                this.game.load.image('background-game','assets/images/backgrounds/backgroundGame.png');
-                this.game.load.image('gameArea','assets/images/backgrounds/gameArea.png');
+                this.game.load.image('background-home', Config.assetsPath + 'images/backgrounds/backgroundHome.png');
+                this.game.load.image('background-game', Config.assetsPath + 'images/backgrounds/backgroundGame.png');
+                this.game.load.image('gameArea', Config.assetsPath + 'images/backgrounds/gameArea.png');
                 
                 // Shapes assets
-                this.game.load.spritesheet('hexagon','assets/sprites/hexagon.png',130,130);
-                this.game.load.spritesheet('square','assets/sprites/square.png',130,130);
-                this.game.load.spritesheet('diamond','assets/sprites/lozenge.png',130,130);
-                this.game.load.spritesheet('trapeze','assets/sprites/trapezoid.png',130,130);
-                this.game.load.spritesheet('triangleEqui','assets/sprites/triangle-equi.png',130,130);
-                this.game.load.spritesheet('triangle','assets/sprites/triangle.png',130,130);
+                this.game.load.spritesheet('hexagon', Config.assetsPath + 'sprites/hexagon.png',130,130);
+                this.game.load.spritesheet('square', Config.assetsPath + 'sprites/square.png',130,130);
+                this.game.load.spritesheet('diamond', Config.assetsPath + 'sprites/lozenge.png',130,130);
+                this.game.load.spritesheet('trapeze', Config.assetsPath + 'sprites/trapezoid.png',130,130);
+                this.game.load.spritesheet('triangleEqui', Config.assetsPath + 'sprites/triangle-equi.png',130,130);
+                this.game.load.spritesheet('triangle', Config.assetsPath + 'sprites/triangle.png',130,130);
                 
                 // Game menu assets (basket, store and buttons)
-                this.game.load.image('store', 'assets/images/menu/store.png');
-                this.game.load.image('pipe', 'assets/images/menu/store-pipe.png');
+                this.game.load.image('store', Config.assetsPath + 'images/menu/store.png');
+                this.game.load.image('pipe', Config.assetsPath + 'images/menu/store-pipe.png');
                 
-                this.game.load.spritesheet('trashbin', 'assets/images/buttons/trashbin.png', 83, 76);
+                this.game.load.spritesheet('trashbin', Config.assetsPath + 'images/buttons/trashbin.png', 83, 76);
                 
-                this.game.load.spritesheet('button-square', 'assets/images/buttons/shape-square.png', 78, 77);
-                this.game.load.spritesheet('button-trapeze', 'assets/images/buttons/shape-trapeze.png', 78, 77);
-                this.game.load.spritesheet('button-triangleEqui', 'assets/images/buttons/shape-t-equi.png', 78, 77);
-                this.game.load.spritesheet('button-hexagon', 'assets/images/buttons/shape-hexagon.png', 78, 77);
-                this.game.load.spritesheet('button-triangle', 'assets/images/buttons/shape-triangle.png', 78, 77);
-                this.game.load.spritesheet('button-diamond', 'assets/images/buttons/shape-diamond.png', 78, 77);
+                this.game.load.spritesheet('button-square', Config.assetsPath + 'images/buttons/shape-square.png', 78, 77);
+                this.game.load.spritesheet('button-trapeze', Config.assetsPath + 'images/buttons/shape-trapeze.png', 78, 77);
+                this.game.load.spritesheet('button-triangleEqui', Config.assetsPath + 'images/buttons/shape-t-equi.png', 78, 77);
+                this.game.load.spritesheet('button-hexagon', Config.assetsPath + 'images/buttons/shape-hexagon.png', 78, 77);
+                this.game.load.spritesheet('button-triangle', Config.assetsPath + 'images/buttons/shape-triangle.png', 78, 77);
+                this.game.load.spritesheet('button-diamond', Config.assetsPath + 'images/buttons/shape-diamond.png', 78, 77);
                 
-                this.game.load.image('basket-left', 'assets/images/menu/basket-left.png');
-                this.game.load.image('basket-right', 'assets/images/menu/basket-right.png');
-                this.game.load.image('basket-middle', 'assets/images/menu/basket-middle.png');
+                this.game.load.image('basket-left', Config.assetsPath + 'images/menu/basket-left.png');
+                this.game.load.image('basket-right', Config.assetsPath + 'images/menu/basket-right.png');
+                this.game.load.image('basket-middle', Config.assetsPath + 'images/menu/basket-middle.png');
                 
-                this.game.load.spritesheet('button-colors', 'assets/images/buttons/option-color.png', 48, 48);
-                this.game.load.spritesheet('button-colors-picto','assets/images/buttons/option-color-picto.png',48,48)
-                this.game.load.spritesheet('button-back', 'assets/images/buttons/option-map.png', 48, 48);
-                this.game.load.spritesheet('button-home', 'assets/images/buttons/option-home.png', 48, 48);
-                this.game.load.spritesheet('button-export', 'assets/images/buttons/option-export.png', 48, 48);
-                this.game.load.spritesheet('button-print', 'assets/images/buttons/option-print.png', 48, 48);
-                this.game.load.spritesheet('button-mute', 'assets/images/buttons/option-mute.png', 48, 48);
-                this.game.load.spritesheet('ribbon', 'assets/images/buttons/ribbon.png', 204, 391);
+                this.game.load.spritesheet('button-colors', Config.assetsPath + 'images/buttons/option-color.png', 48, 48);
+                this.game.load.spritesheet('button-colors-picto', Config.assetsPath + 'images/buttons/option-color-picto.png',48,48)
+                this.game.load.spritesheet('button-back', Config.assetsPath + 'images/buttons/option-map.png', 48, 48);
+                this.game.load.spritesheet('button-home', Config.assetsPath + 'images/buttons/option-home.png', 48, 48);
+                this.game.load.spritesheet('button-export', Config.assetsPath + 'images/buttons/option-export.png', 48, 48);
+                this.game.load.spritesheet('button-print', Config.assetsPath + 'images/buttons/option-print.png', 48, 48);
+                this.game.load.spritesheet('button-mute', Config.assetsPath + 'images/buttons/option-mute.png', 48, 48);
+                this.game.load.spritesheet('ribbon', Config.assetsPath + 'images/buttons/ribbon.png', 204, 391);
                 
-                this.game.load.image('menu-left', 'assets/images/menu/menu-left.png');
-                this.game.load.image('menu-right', 'assets/images/menu/menu-right.png');
-                this.game.load.image('menu-middle', 'assets/images/menu/menu-middle.png');
+                this.game.load.image('menu-left', Config.assetsPath + 'images/menu/menu-left.png');
+                this.game.load.image('menu-right', Config.assetsPath + 'images/menu/menu-right.png');
+                this.game.load.image('menu-middle', Config.assetsPath + 'images/menu/menu-middle.png');
                 
                 // Patrick animations assets
-                this.game.load.image('patrick', 'assets/images/patrick/patrick.png');
-                this.game.load.spritesheet('patrick-mouth','assets/images/patrick/mouth.png',31,22,4);
-                this.game.load.spritesheet('patrick-eyes','assets/images/patrick/eyes.png',80,66,5);
-                this.game.load.image('home-patrick','assets/images/patrick/home-patrick.png',531,970);
-                this.game.load.image('win-patrick','assets/images/patrick/win-patrick.png');
-                this.game.load.spritesheet('win-patrick-mouth','assets/images/patrick/win-mouth.png',28,18,4);
-                this.game.load.spritesheet('fail-patrick-mouth','assets/images/patrick/fail-mouth.png',28,18,4);
-                this.game.load.spritesheet('win-patrick-eyes','assets/images/patrick/win-eyes.png',70,40,7);
+                this.game.load.image('patrick', Config.assetsPath + 'images/patrick/patrick.png');
+                this.game.load.spritesheet('patrick-mouth', Config.assetsPath + 'images/patrick/mouth.png',31,22,4);
+                this.game.load.spritesheet('patrick-eyes', Config.assetsPath + 'images/patrick/eyes.png',80,66,5);
+                this.game.load.image('home-patrick', Config.assetsPath + 'images/patrick/home-patrick.png',531,970);
+                this.game.load.image('win-patrick', Config.assetsPath + 'images/patrick/win-patrick.png');
+                this.game.load.spritesheet('win-patrick-mouth', Config.assetsPath + 'images/patrick/win-mouth.png',28,18,4);
+                this.game.load.spritesheet('fail-patrick-mouth', Config.assetsPath + 'images/patrick/fail-mouth.png',28,18,4);
+                this.game.load.spritesheet('win-patrick-eyes', Config.assetsPath + 'images/patrick/win-eyes.png',70,40,7);
 
 
                 // UI
-                this.game.load.spritesheet('rotation-ui','assets/images/buttons/rotation_ui.png');
-                this.game.load.spritesheet('stars', 'assets/images/stars/reward.png',150,140);
-                this.game.load.spritesheet('level-status', 'assets/images/stars/status.png',68,35);
+                this.game.load.spritesheet('rotation-ui', Config.assetsPath + 'images/buttons/rotation_ui.png');
+                this.game.load.spritesheet('stars', Config.assetsPath + 'images/stars/reward.png',150,140);
+                this.game.load.spritesheet('level-status', Config.assetsPath + 'images/stars/status.png',68,35);
 
                 // Sounds 
-                var dir = "assets/audio/" + this.game.language + "/";
+                var dir = Config.assetsPath + 'audio/' + this.game.language + "/";
                 this.game.load.audio('welcome-home', dir + 'welcome.mp3');
                 this.game.load.audio('welcome-levelsMap', dir+'introduction.mp3');
                 this.game.load.audio('welcome-levelMode', dir+'help_levelMode.mp3');

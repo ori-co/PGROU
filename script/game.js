@@ -1,34 +1,48 @@
 define([
-	"states/loading",
-	"states/home",
-	"states/levelsMap",
-	"states/play",
-    "data/objShapes"
-	], function(
-		LoadState,
-		HomeState,
-		LevelsMapState,
-		PlayState,
-        objShapes
-		) {
-     /**
+	'states/loading',
+	'states/home',
+	'states/levelsMap',
+	'states/play',
+    'data/objShapes'
+], function(
+	LoadState,
+	HomeState,
+	LevelsMapState,
+	PlayState,
+    objShapes
+) {
+
+    /**
      * Game Object 
      * @class 
      * @memberof Patrimath
      * @param {string} lang
      */
-    var Game = function(interface){ 
+    var Game = function (pInterface){ 
 
 		//Create a new Phaser JS game
-		this.game = new Phaser.Game("100", "100",Phaser.CANVAS );
+		this.game = new Phaser.Game("100", "100", Phaser.AUTO);
 
 		// Initialize value for the global variables of the game
-		this.game.language = interface.language;
+		this.game.language = pInterface.language;
 		this.game.muteValue=false;
 		this.game.canPlay=true;
 		this.game.patrick=null;
 		this.game.shapes = objShapes;
-		this.game.saveData = interface.savedData;
+		this.game._saveData = pInterface.savedData;
+
+        this.game.saveData = {
+            get: function () {
+                console.log(this);
+                return this._saveData;
+            },
+            set: function (value) {
+                this._saveData = value;
+                pInterface.save(value);
+                return null;
+            }
+        };
+
         this.game.soundManager = new Phaser.SoundManager(this.game);
 
 		// Add the states of the game
@@ -41,23 +55,6 @@ define([
 		// Call the first state of the game
 		this.game.state.start('loading');
 	};
-
-    var fakeInterface = {
-        savedData : [],
-        language : 'fr',
-        save : save,
-        close : close
-    };
-
-    function close () {
-        console.log("The canvas should be closed now.");
-    }
-
-    function save (data) {
-        console.log("Kalulu will save your data now.");
-    }
-	// Instanciate the new game in french and with no saved data
-	var test = new Game(fakeInterface);
-
-
+    
+    return Game;
 });
