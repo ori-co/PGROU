@@ -50,7 +50,13 @@ define([
                 break;
             default :
                 this.game.language = "fr";
-        }
+        };
+
+        // Quit the game
+        this.game.close = function(){
+            this.destroy();
+            interface.close();
+        };
 
 		// Add the states of the game
 		this.game.state.add('loading', new LoadState());

@@ -12,6 +12,10 @@ define ([
 
         LoadState.prototype = {
             preload : function () {
+                //  Kalulu Assets
+                this.game.load.spritesheet('button-goTo-Kalulu', 'assets/images/buttons/kalulu.png',78,77);
+
+
                 // Backgrounds
                 this.game.load.image('background-home', 'assets/images/backgrounds/backgroundHome.png');
                 this.game.load.image('background-game','assets/images/backgrounds/backgroundGame.png');
