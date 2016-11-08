@@ -206,6 +206,7 @@ define ([
                         var starIndex = this.basket.evaluateStars();
                         this.winPannel.showPannel(game, starIndex);
                         this.winPannel.saveResult(game, starIndex);
+                        this.basket.animateStars(game);
                     }
                 }
             }

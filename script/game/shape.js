@@ -84,26 +84,28 @@ define ([
                     var snapPos = gameArea.getSnapPosition(game, this);
                     var shapeTween = game.add.tween(this);
                     shapeTween.to({x:snapPos.x, y:snapPos.y},100,Phaser.Easing.Exponential.In);
-                    shapeTween.onComplete.add(function(){this.endOfShapeTween(game,gameArea)}, this);
+                    shapeTween.onComplete.add(function(){this.endOfShapeTween(game,gameArea, true)}, this);
                     shapeTween.start();
                 } else {
                     var shapeTween = game.add.tween(this);
                     shapeTween.to({x:this.originalPosition.x, y:this.originalPosition.y},400,Phaser.Easing.Exponential.Out);
-                    shapeTween.onComplete.add(function(){this.endOfShapeTween(game,gameArea)}, this);
+                    shapeTween.onComplete.add(function(){this.endOfShapeTween(game,gameArea, false)}, this);
                     shapeTween.start();
                 }
             }
         };
 
-        Shape.prototype.endOfShapeTween = function(game,gameArea){
+        Shape.prototype.endOfShapeTween = function(game,gameArea, inSafeArea){
             new autoPlaySounds.SoundEffects(game, 'sound-snap');
             this.inputEnabled=true;
             this.addRotationUI(game, 0);
             this.originalPosition = this.position.clone();
-            gameArea.contourMat.addShapeToMatrix(this.mat[this.frame], this.area[this.frame], this.x, this.y);
-            if (game.state.current == "levelPlay") {
-                this.tint = gameArea.getColorFromPattern(this);
-                gameArea.compareSolutionToPattern(game);
+            if (inSafeArea){
+                gameArea.contourMat.addShapeToMatrix(this.mat[this.frame], this.area[this.frame], this.x, this.y);
+                if (game.state.current == "levelPlay") {
+                    this.tint = gameArea.getColorFromPattern(this);
+                    gameArea.compareSolutionToPattern(game);
+                }
             }
         };
 

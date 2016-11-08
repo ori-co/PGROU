@@ -40,7 +40,7 @@ define ([
             } else {
                 this.stars = this.elements.addChildAt(game.add.group(),3);
                 for (j=0;j<3; j++){
-                    new Star(game, this.stars,10+j*60, 20);
+                    new Star(game, this.stars,40+j*60, 50);
                 }
             }
 
@@ -67,11 +67,35 @@ define ([
                 return starIndex;
             }
             ,
-            deleteStar(index){
+            deleteStar : function(index){
                 if(index>0){
                     this.stars.children[index-1].frame=2;
                     this.stars.children[index-1].updateCache();
                 }
+            }
+            ,
+            animateStars : function(game){
+                var counter = 1;
+                this.stars.forEach(function(star){
+                    if (star.frame == 0) {
+                        var tween = game.add.tween(star).to({x:300, y:200*counter - 600},1000,Phaser.Easing.Linear.None);
+                        tween.onComplete.add(function(){emitter.start(true, 1000, null, 10)},this);
+                        tween.start();
+                        game.add.tween(star).to({angle:360},1000,Phaser.Easing.Linear.None).start();
+                        game.add.tween(star.scale).to({x:1.4, y:1.4},1000,Phaser.Easing.Elastic.Out).start();
+                        counter++;
+
+                        var emitter = star.addChild(game.add.emitter(0,0, 100));
+                        emitter.makeParticles('star-particle');
+                        emitter.scale.setTo(0.5,0.5);
+                        emitter.gravity = 0;
+                        // emitter.minParticleAlpha =
+                        // emitter.minParticleScale =
+                        // emitter.minParticleSpeed =
+                        // emitter.maxParticleScale =
+                        // emitter.maxParticleSpeed =
+                    }
+                });  
             }
         };
 

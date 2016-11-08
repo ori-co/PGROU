@@ -82,6 +82,7 @@ define ([
                 this.game.load.spritesheet('rotation-ui','assets/images/buttons/rotation_ui.png');
                 this.game.load.spritesheet('stars', 'assets/images/stars/reward.png',150,140);
                 this.game.load.spritesheet('level-status', 'assets/images/stars/status.png',68,35);
+                this.game.load.image('star-particle', 'assets/images/stars/star-particle.png');
 
                 // Sounds 
                 var dir = "assets/audio/" + this.game.language + "/";
