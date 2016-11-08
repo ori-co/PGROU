@@ -637,12 +637,9 @@ define("phaser-bundle", [], function() { return /******/ (function(modules) { //
 	    PIXI: PIXI || {}
 	
 	};
-	console.log(pixiGenerator);
+	
 	PIXI = pixiGenerator(Phaser);
 	Phaser.PIXI = PIXI;
-	console.log(Phaser);
-	console.log(PIXI);
-	console.log(p2);
 	
 	/**
 	* @copyright    2016 Photon Storm Ltd.
