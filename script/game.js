@@ -28,8 +28,17 @@ define([
 		this.game.patrick=null;
 		this.game.shapes = objShapes;
 
-        // previous results
-		this.game.savedData = interface.savedData;
+        // Get and set the previous results
+        Object.defineProperty(this.game, 'savedData', {
+            get: function() {
+                return savedData;
+            },
+            set: function(data) {
+                savedData = data;
+                interface.save(data);
+            }
+        });
+        this.game.savedData = interface.savedData;
 
         // Set le language (only for the audio assets dir)
         switch (interface.language) {
@@ -54,6 +63,19 @@ define([
 		this.game.state.start('loading');
 	};
 
+
+
+    //////////////////////////////////////////////////////////////
+    ////////// Launch Game with fake interface for debug /////////
+    //////////////////////////////////////////////////////////////
+
+    save = function(data){
+        console.log("Kalulu will save your data now.");
+    }
+    close = function(){
+        console.log("The canvas should be closed now.");
+    }
+
     var fakeInterface = {
         savedData : [],
         language : 'francais',
@@ -61,14 +83,7 @@ define([
         close : close
     };
 
-    function close () {
-        console.log("The canvas should be closed now.");
-    }
-
-    function save (data) {
-        console.log("Kalulu will save your data now.");
-    }
-	// Instanciate the new game in french and with no saved data
+	// Instanciate the new game 
 	var test = new Game(fakeInterface);
 
 
