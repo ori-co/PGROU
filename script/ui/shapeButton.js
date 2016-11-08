@@ -31,7 +31,7 @@ define ([
                 this.label.setText(nb);
                 new autoPlaySounds.AddRemoveShape( game, shapeName, nb, true);
 
-                if (game.state.current == "levelPlay") gameArea.removeStar(game);
+                // if (game.state.current == "levelPlay") gameArea.removeStar(game);
             }
             ,
             removeShape: function(game, gameArea, shapeName){

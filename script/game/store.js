@@ -29,11 +29,11 @@ define ([
                 i ++;
             }
 
-            this.ribbon = game.add.button(5, 5, 'ribbon', function(){this.unlockStore(game)}, this, 1, 0, 1, 0);
+            this.ribbon = game.add.button(5, 5, 'ribbon', function(){this.unlockStore(game,gameArea)}, this, 1, 0, 1, 0);
             this.ribbon.cpt = 0;
             this.ribbon.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help-lock', this.ribbon.cpt); this.ribbon.cpt=1;}, this);
             
-            this.unlockStore(game);
+            this.ribbon.visible = false;
             this.firstChance = true;
 
             this.updatePosition(game);
@@ -45,13 +45,14 @@ define ([
                 this.pipe.height = game.height - (390 + 212);
             }
             ,
-            unlockStore : function(game){
+            unlockStore : function(game,gameArea){
                 this.ribbon.visible = false;
                 for (var key in game.shapes){
                     this.shapeButtons[key].sprite.inputEnabled=true;
                 }
                 this.bin.inputEnabled=true;
-                this.firstChance=false;
+                // this.firstChance=false;
+                if (game.state.current == "levelPlay") gameArea.removeStar(game);
             }
             ,
             lockStore : function(game, inputEnabled){

@@ -110,7 +110,7 @@ define ([
         };
 
         Shape.prototype.deleteSprite = function(game, gameArea) {
-            gameArea.removeStar(game); 
+            // gameArea.removeStar(game); 
             gameArea.store.shapeButtons[this.key].removeShape(game, gameArea, this.key);
             new autoPlaySounds.SoundEffects(game, 'sound-trashbin');
             this.destroy();

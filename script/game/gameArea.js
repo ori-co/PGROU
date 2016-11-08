@@ -212,7 +212,7 @@ define ([
             }
             ,
             removeStar: function(game){
-                if (!this.winPannel.isDisplayed() && !this.store.firstChance) {
+                if (!this.winPannel.isDisplayed() /*&& !this.store.firstChance*/) {
                     var starIndex = this.basket.evaluateStars();
                     this.basket.deleteStar(starIndex);
                     if (starIndex-1 == 0) this.winPannel.showPannel(game, 0);
