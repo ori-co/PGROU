@@ -85,7 +85,7 @@ define ([
                 this.game.load.image('star-particle', Config.assetsPath + 'images/stars/star-particle.png');
 
                 // Sounds 
-                var dir = Config.assetsPath + 'assets/audio/' + this.game.language + "/";
+                var dir = Config.assetsPath + 'audio/' + this.game.language + "/";
                 this.game.load.audio('welcome-home', dir + 'welcome.mp3');
                 this.game.load.audio('welcome-levelsMap', dir+'introduction.mp3');
                 this.game.load.audio('welcome-levelPlay', dir+'help_levelMode.mp3');
