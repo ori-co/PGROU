@@ -1,31 +1,36 @@
 define([
-	"states/loading",
-	"states/home",
-	"states/levelsMap",
-	"states/play",
-    "data/objShapes"
-	], function(
-		LoadState,
-		HomeState,
-		LevelsMapState,
-		PlayState,
-        objShapes
-		) {
-     /**
+	'states/loading',
+	'states/home',
+	'states/levelsMap',
+	'states/play',
+    'data/objShapes'
+], function(
+	LoadState,
+	HomeState,
+	LevelsMapState,
+	PlayState,
+    objShapes
+) {
+
+    /**
      * Game Object 
      * @class 
      * @memberof Patrimath
      * @param {string} lang
      */
-    var Game = function(interface){ 
+    var Game = function (pInterface){
 
 		//Create a new Phaser JS game
-		this.game = new Phaser.Game("100", "100",Phaser.AUTO );
-        this.game.name="Patrimath";
+		this.game = new Phaser.Game("100", "100", Phaser.AUTO );
+        this.game.name = "Patrimath";
+
+		// Initialize value for the global variables of the game
+		this.game.language = pInterface.language;
+		this.game.muteValue = false;
 
 		// Initialize the global variables of the game
-		this.game.canPlay=true;
-		this.game.patrick=null;
+		this.game.canPlay = true;
+		this.game.patrick = null;
 		this.game.shapes = objShapes;
 
         // Get and set the previous results
@@ -35,13 +40,14 @@ define([
             },
             set: function(data) {
                 savedData = data;
-                interface.save(data);
+                pInterface.save(data);
             }
         });
-        this.game.savedData = interface.savedData;
+        
+        this.game.savedData = pInterface.savedData;
 
         // Set le language (only for the audio assets dir)
-        switch (interface.language) {
+        switch (pInterface.language) {
             case 'english':
                 this.game.language = "en";
                 break;
@@ -55,7 +61,7 @@ define([
         // Quit the game
         this.game.close = function(){
             this.destroy();
-            interface.close();
+            pInterface.close();
         };
 
 		// Add the states of the game
@@ -68,29 +74,6 @@ define([
 		// Call the first state of the game
 		this.game.state.start('loading');
 	};
-
-
-
-    //////////////////////////////////////////////////////////////
-    ////////// Launch Game with fake interface for debug /////////
-    //////////////////////////////////////////////////////////////
-
-    save = function(data){
-        console.log("Kalulu will save your data now.");
-    }
-    close = function(){
-        console.log("The canvas should be closed now.");
-    }
-
-    var fakeInterface = {
-        savedData : [],
-        language : 'francais',
-        save : save,
-        close : close
-    };
-
-	// Instanciate the new game 
-	var test = new Game(fakeInterface);
-
-
+    
+    return Game;
 });
