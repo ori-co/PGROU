@@ -15,7 +15,7 @@ define ([
          * @memberof 
          * @param 
          */
-        function Shape(game, gameArea, mode, shapeName){
+        function Shape(game, gameArea, shapeName){
             var posX = Math.floor(Math.random()*(game.width-310))+90 - gameArea.shapesInPlace.x;
             var posY = game.height - 150 - gameArea.shapesInPlace.y;
 
@@ -37,8 +37,6 @@ define ([
                 that.events.onDragStop.add( function(){that.onRelease(game, gameArea)},that);
                 that.originalPosition = that.position.clone();
             });
-
-            this.mode =mode;
 
             this.rotationUI = null;
 
@@ -64,11 +62,11 @@ define ([
         Shape.prototype.onRelease= function(game, gameArea){
             var dist = Phaser.Point.distance(this.position, this.originalPosition);
             if (dist>5){ // considered as drag 
-                if (this.mode == "freeMode") gameArea.unableColorsButtons();
+                if (game.state.current == "freePlay") gameArea.unableColorsButtons();
                 this.endDrag(game, gameArea);
             } else { // considered as a click
               this.position.copyFrom(this.originalPosition); 
-              if (this.mode == "freeMode") this.tint = gameArea.getColorFromButtons(this);
+              if (game.state.current == "freePlay") this.tint = gameArea.getColorFromButtons(this);
               if (!this.wasSelected) this.addRotationUI(game,0);
             }
         };
@@ -79,11 +77,11 @@ define ([
 
             if (gameArea.isInTrashbin(this)) {
                 this.deleteSprite(game, gameArea);
-                if (this.mode == "levelMode") gameArea.compareSolutionToPattern(game);
+                if (game.state.current == "levelPlay") gameArea.compareSolutionToPattern(game);
             } else {
-                if (this.mode == "levelMode") gameArea.store.lockStore(game,true);
+                if (game.state.current == "levelPlay") gameArea.store.lockStore(game,true);
                 if (!gameArea.isOutOfGameAreaX(this) && !gameArea.isOutOfGameAreaY(this)){
-                    var snapPos = gameArea.getSnapPosition(game, this.mode, this);
+                    var snapPos = gameArea.getSnapPosition(game, this);
                     var shapeTween = game.add.tween(this);
                     shapeTween.to({x:snapPos.x, y:snapPos.y},100,Phaser.Easing.Exponential.In);
                     shapeTween.onComplete.add(function(){this.endOfShapeTween(game,gameArea)}, this);
@@ -103,7 +101,7 @@ define ([
             this.addRotationUI(game, 0);
             this.originalPosition = this.position.clone();
             gameArea.contourMat.addShapeToMatrix(this.mat[this.frame], this.area[this.frame], this.x, this.y);
-            if (this.mode == "levelMode") {
+            if (game.state.current == "levelPlay") {
                 this.tint = gameArea.getColorFromPattern(this);
                 gameArea.compareSolutionToPattern(game);
             }

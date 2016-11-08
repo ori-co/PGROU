@@ -25,7 +25,7 @@ define ([
             }
 
             for (var i = 0; i < basket.length; i++) {
-                gameArea.store.shapeButtons[basket[i].shape].addShape(game, gameArea, "levelMode", basket[i].shape);
+                gameArea.store.shapeButtons[basket[i].shape].addShape(game, gameArea, basket[i].shape);
                 if (storeEnabled) gameArea.store.enableShapeButton(basket[i].shape);
             }
 

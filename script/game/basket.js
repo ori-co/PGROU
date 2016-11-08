@@ -19,7 +19,7 @@ define ([
          * @memberof 
          * @param 
          */
-        function Basket(game, gameArea, mode){
+        function Basket(game, gameArea){
  
             this.elements = new Phaser.Group(game);
             this.elements.addChildAt(game.add.sprite(5, 0, 'basket-left'),0);
@@ -28,14 +28,14 @@ define ([
 
             this.patrick = new patrick.PatrickGame(game,this.elements.children[2]);
 
-            if (mode == "freeMode"){
+            if (game.state.current == "freePlay"){
                 this.colorsButtons = this.elements.addChildAt(game.add.group(),3);
                 this.colorsButtons.position = {x:15,y:5};
                 this.colorsButtons.cpt=0;
                 for (var i=0; i< colors.palette.length;i++){
                     var posX = (i%3) * 60;
                     var posY = Math.floor(i/3) * 50;
-                    new ColorButton(game, this.colorsButtons, posX, posY, colors.palette[i]);
+                    new ColorButton(game, gameArea, this.colorsButtons, posX, posY, colors.palette[i]);
                 }
             } else {
                 this.stars = this.elements.addChildAt(game.add.group(),3);

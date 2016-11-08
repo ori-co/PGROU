@@ -1,17 +1,15 @@
 define ([
-    "ui/navigationButtons",
-    "data/wording"
+    "ui/navigationButtons"
     ], function(
-        NavigationButton,
-        wordings
+        NavigationButton
         ) {
 
-        function NavigationMenu(game, mode, levelNum, gameArea){
+        function NavigationMenu(game, levelNum, gameArea){
             this.menu = new Phaser.Group(game);
             this.updatePosition(game);
 
-            this.label = this.getLabel(game,mode,levelNum);
-            this.buttons = this.getButtonsList(game,mode);
+            this.label = this.getLabel(game,levelNum);
+            this.buttons = this.getButtonsList(game);
 
             var menuRight = this.menu.addChild(game.make.sprite(0, 5, 'menu-right'));
             var menuLeft = this.menu.addChild(game.make.sprite(0, 5, 'menu-left'));
@@ -34,39 +32,38 @@ define ([
 
             // Add the buttons
             for (var i=0; i< this.buttons.length; i++){
-                new NavigationButton(game, gameArea, this.menu, this.buttons[i], buttonsNumber-i);
+                new NavigationButton(game, gameArea, levelNum, this.menu, this.buttons[i], buttonsNumber-i);
             }
         };
 
         NavigationMenu.prototype = {
-            getLabel : function(game, mode,levelNum){
-                var wording = wordings[game.language];
+            getLabel : function(game, levelNum){
 
-                switch (mode) {
-                    case "home":
-                        return wording.gameName;
+                switch (game.state.current) {
+                    case "menu":
+                        return " " + game.name;
                     case "levelsMap":
-                        return wording.levelsMapTitle;
-                    case "levelMode":
-                        return wording.levelTitle+" "+levelNum;
-                    case "freeMode":
-                        return wording.freemodeTitle;
+                        return "";
+                    case "levelPlay":
+                        return " n° " + levelNum.toString();
+                    case "freePlay":
+                        return "";
                 } 
             }
             ,
 
-            getButtonsList : function(game,mode) {
+            getButtonsList : function(game) {
 
                     // buttons : buttonHome, buttonLevelsMap, buttonMute, buttonPrint, buttonExport, buttonLang
-                switch (mode) {
-                    case "home":
-                        return ["buttonMute"];
+                switch (game.state.current) {
+                    case "menu":
+                        return ["buttonMute", "buttonDebug"];
                     case "levelsMap":
-                        return ["buttonHome","buttonMute"];
-                    case "levelMode":
-                        return ["buttonLevelsMap", "buttonHome", "buttonMute", "buttonExport"];
-                    case "freeMode":
-                        return ["buttonHome", "buttonMute", "buttonExport"];
+                        return ["buttonHome","buttonMute", "buttonDebug"];
+                    case "levelPlay":
+                        return ["buttonRetry", "buttonLevelsMap", "buttonHome", "buttonMute", "buttonDebug"];
+                    case "freePlay":
+                        return ["buttonRetry", "buttonHome", "buttonMute", "buttonDebug"];
                 }     
             }
             ,

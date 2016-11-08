@@ -1,12 +1,7 @@
 define ([
-    // "game/shape",
-    "sounds/autoPlaySounds",
-    "data/wording"
-
+    "sounds/autoPlaySounds"
     ], function(
-        // Shape,
-        autoPlaySounds,
-        wordings
+        autoPlaySounds
         ) {
 
         /**
@@ -15,15 +10,21 @@ define ([
          * @memberof 
          * @param 
          */
-        function ColorButton(game, parentGroup, posX, posY, color){
-            Phaser.Button.call(this, game, posX, posY, 'button-colors', this.onColorButton, this.sprite, 2, 1, 0, 1);
+        function ColorButton(game, gameArea, parentGroup, posX, posY, color){
+            Phaser.Button.call(this, game, posX, posY, 'button-colors', function() {
+                gameArea.removeAllRotationUI(game);
+                this.onColorButton();
+            }, this.sprite, 2, 1, 0, 1);
             parentGroup.add(this);
             this.value = false;
             this.color = color;
             this.addChild(game.add.sprite(0, 0,'button-colors-picto'));
             this.children[0].tint = color;
 
-            this.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game,'help-color',parentGroup.cpt); parentGroup.cpt=1;}, this);
+            this.events.onInputOver.add(function(){
+                var temp = new autoPlaySounds.HelpSounds(game,'help-color',parentGroup.cpt); 
+                if (temp.done) parentGroup.cpt=1;
+            }, this);
 
         };
 

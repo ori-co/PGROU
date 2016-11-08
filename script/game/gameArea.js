@@ -22,22 +22,22 @@ define ([
          * @memberof 
          * @param 
          */
-        function GameArea(game,  mode, levelNum, levelText, width, height){
+        function GameArea(game, levelNum, levelText, width, height){
             this.width = width;
             this.height = height;
             this.safeArea = game.add.sprite(0,0, 'gameArea');
 
             this.shapesInPlace = new Phaser.Group(game);
 
-            this.store= new Store(game, this , mode);
-            this.basket= new Basket(game, this, mode);
+            this.store= new Store(game, this);
+            this.basket= new Basket(game, this);
             this.winPannel= new Pannel(game, levelNum);
             
             this.contourMat= [];
 
             this.updatePosition(game);
 
-            if (mode == "levelMode") this.pattern = new Pattern(game, this, levelText);
+            if (game.state.current == "levelPlay") this.pattern = new Pattern(game, this, levelText);
         };
 
         GameArea.prototype = {
@@ -105,8 +105,8 @@ define ([
                 });
             }
             ,
-            getSnapPosition: function(game, mode, shape){
-                if (mode == "levelMode"){
+            getSnapPosition: function(game, shape){
+                if (game.state.current == "levelPlay"){
                     var contourSnapMat = this.contourMat.matContourAddition(this.pattern.patternMat);
                 } else {
                     var contourSnapMat = this.contourMat;

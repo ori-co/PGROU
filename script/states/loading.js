@@ -8,18 +8,23 @@ define ([
          * @memberof Patrimath
          * @param {Phaser.Game} game
          */
-        function LoadState (){}
+        function LoadState(){};
 
         LoadState.prototype = {
             preload : function () {
-                // Home assets 
-                this.game.load.spritesheet('button-goTo', Config.assetsPath + 'images/buttons/home.png',300,100);
-                this.game.load.spritesheet('button-level', Config.assetsPath + 'images/buttons/levels.png',78,77);
-                //this.game.load.spritesheet('button-import', Config.assetsPath + 'images/buttons/import.png',87,100);
-                
+                //  Kalulu Assets
+                this.game.load.spritesheet('button-goTo-Kalulu', Config.assetsPath + 'images/buttons/kalulu.png',78,77);
+
+
+                // Backgrounds
                 this.game.load.image('background-home', Config.assetsPath + 'images/backgrounds/backgroundHome.png');
                 this.game.load.image('background-game', Config.assetsPath + 'images/backgrounds/backgroundGame.png');
                 this.game.load.image('gameArea', Config.assetsPath + 'images/backgrounds/gameArea.png');
+
+                // Buttons
+                this.game.load.spritesheet('button-goTo-freemode', Config.assetsPath + 'images/buttons/freemode.png',300,215);
+                this.game.load.spritesheet('button-goTo-levelmode', Config.assetsPath + 'images/buttons/levelmode.png',300,215);
+                this.game.load.spritesheet('button-level', Config.assetsPath + 'images/buttons/levels.png',78,77);
                 
                 // Shapes assets
                 this.game.load.spritesheet('hexagon', Config.assetsPath + 'sprites/hexagon.png',130,130);
@@ -28,6 +33,7 @@ define ([
                 this.game.load.spritesheet('trapeze', Config.assetsPath + 'sprites/trapezoid.png',130,130);
                 this.game.load.spritesheet('triangleEqui', Config.assetsPath + 'sprites/triangle-equi.png',130,130);
                 this.game.load.spritesheet('triangle', Config.assetsPath + 'sprites/triangle.png',130,130);
+                this.game.load.spritesheet('parallelogram', Config.assetsPath + 'sprites/parallelogram.png',130,130);
                 
                 // Game menu assets (basket, store and buttons)
                 this.game.load.image('store', Config.assetsPath + 'images/menu/store.png');
@@ -41,6 +47,7 @@ define ([
                 this.game.load.spritesheet('button-hexagon', Config.assetsPath + 'images/buttons/shape-hexagon.png', 78, 77);
                 this.game.load.spritesheet('button-triangle', Config.assetsPath + 'images/buttons/shape-triangle.png', 78, 77);
                 this.game.load.spritesheet('button-diamond', Config.assetsPath + 'images/buttons/shape-diamond.png', 78, 77);
+                this.game.load.spritesheet('button-parallelogram', Config.assetsPath + 'images/buttons/shape-parallelogram.png', 78, 77);
                 
                 this.game.load.image('basket-left', Config.assetsPath + 'images/menu/basket-left.png');
                 this.game.load.image('basket-right', Config.assetsPath + 'images/menu/basket-right.png');
@@ -53,6 +60,7 @@ define ([
                 this.game.load.spritesheet('button-export', Config.assetsPath + 'images/buttons/option-export.png', 48, 48);
                 this.game.load.spritesheet('button-print', Config.assetsPath + 'images/buttons/option-print.png', 48, 48);
                 this.game.load.spritesheet('button-mute', Config.assetsPath + 'images/buttons/option-mute.png', 48, 48);
+                this.game.load.spritesheet('button-retry', Config.assetsPath + 'images/buttons/option-retry.png', 48, 48);
                 this.game.load.spritesheet('ribbon', Config.assetsPath + 'images/buttons/ribbon.png', 204, 391);
                 
                 this.game.load.image('menu-left', Config.assetsPath + 'images/menu/menu-left.png');
@@ -76,11 +84,11 @@ define ([
                 this.game.load.spritesheet('level-status', Config.assetsPath + 'images/stars/status.png',68,35);
 
                 // Sounds 
-                var dir = Config.assetsPath + 'audio/' + this.game.language + "/";
+                var dir = Config.assetsPath + 'assets/audio/' + this.game.language + "/";
                 this.game.load.audio('welcome-home', dir + 'welcome.mp3');
                 this.game.load.audio('welcome-levelsMap', dir+'introduction.mp3');
-                this.game.load.audio('welcome-levelMode', dir+'help_levelMode.mp3');
-                this.game.load.audio('welcome-freeMode', dir+'help_freeMode.mp3');
+                this.game.load.audio('welcome-levelPlay', dir+'help_levelMode.mp3');
+                this.game.load.audio('welcome-freePlay', dir+'help_freeMode.mp3');
                 this.game.load.audio('help-levelMode', dir+'classic.mp3');
                 this.game.load.audio('help-freeMode', dir+'free.mp3');
                 this.game.load.audio('help-trashbin', dir+'help_trash.mp3');
@@ -101,9 +109,10 @@ define ([
                 }
 
             }, 
-
+            
             create : function (){
                 this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+                this.game.scale.fullScreenScaleMode =  Phaser.ScaleManager.RESIZE;
                 // Call the menu state
                 this.game.state.start('menu');
             }

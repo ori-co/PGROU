@@ -21,7 +21,7 @@ define ([
         LevelsMapState.prototype = {
             create : function (){
                 this.wallpaper = new Wallpaper(this.game, 'background-home');
-                this.navigationMenu = new NavigationMenu(this.game, "levelsMap");
+                this.navigationMenu = new NavigationMenu(this.game);
                 this.ui = new LevelsMapUI(this.game);
                 new autoPlaySounds.InstructionsSounds(this.game, "welcome-levelsMap");
 

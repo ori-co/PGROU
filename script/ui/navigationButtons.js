@@ -1,18 +1,16 @@
 define ([
     "game/shape",
     "sounds/autoPlaySounds",
-    "data/wording",
     "data/palette"
 
     ], function(
         Shape,
         autoPlaySounds,
-        wordings,
         colors
 
         ) {
 
-        function NavigationButton(game, gameArea, parentMenu, buttonName, position){
+        function NavigationButton(game, gameArea, levelNum, parentMenu, buttonName, position){
             this.cpt = 0;
             switch (buttonName) {
                 case 'buttonHome':
@@ -32,7 +30,7 @@ define ([
                 break;
                 case 'buttonPrint':
                     this.name = 'button-print';
-                    this.action = function(){this.pdf()};
+                    this.action = function(){this.pdf(game)};
                     this.instructions = "help-print";
                 break;
                 case 'buttonExport':
@@ -40,21 +38,31 @@ define ([
                     this.action = function(){this.exportProblem(gameArea)};
                     this.instructions = "help-export";
                 break;
-                case 'buttonLang':
+                case 'buttonDebug':
                     this.name = 'button-colors';
-                    this.action = function(){this.toggleLang(game)};
+                    this.action = function(){this.toggleDebug(game)};
+                    this.instructions = "";
+                break;
+                case 'buttonRetry': 
+                    this.name = 'button-retry';
+                    this.action = function() {this.retry(game, levelNum)};
                     this.instructions = "";
                 break;
             }
 
             this.button = game.make.button( - (position*50 + 18), 10, this.name, this.action, this, 2, 1, 0, 1);
             var that = this;
-            this.button.events.onInputOver.add(function() {new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);that.cpt=1;});
+            this.button.events.onInputOver.add(function() {
+                if (that.instructions != ""){
+                    var temp = new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);
+                    if (temp.done) that.cpt=1;
+                }
+            });
             
             parentMenu.addChild(this.button);
                     
             // Check the value of the mute function to update the mute button
-            if(buttonName == "buttonMute" && game.muteValue) this.button.setFrames(3, 0, 1, 0);
+            if(buttonName == "buttonMute" && game.sound.mute) this.button.setFrames(3, 0, 1, 0);
         };
 
         NavigationButton.prototype = {
@@ -64,22 +72,20 @@ define ([
             }, 
 
             toggleMute: function(item, game){
-                if (!game.soundManager.mute){
-                    game.soundManager.mute = true;
+                game.sound.mute = !game.sound.mute;
+                if (game.sound.mute) {
                     item.setFrames(3, 0, 1, 0);
-                    game.muteValue = true;
-                }else{
-                    game.soundManager.mute=false;
+                } else {
                     new autoPlaySounds.SoundEffects(game, 'sound-click');
                     item.setFrames(2, 1, 0, 1);
-                    game.muteValue = false;
+                    game.scale.stopFullScreen();
                 }
             }, 
 
-            pdf : function(){
+            pdf : function(game){
                 var pdf = new jsPDF('l','cm','a4');
                 pdf.addHTML(document.body,function() { pdf.output('datauri'); });
-                pdf.save(wordings[game.language].exportPDFname+'.pdf');
+                pdf.save(game.name + '.pdf');
             }, 
 
             exportProblem : function(gameArea){
@@ -102,8 +108,14 @@ define ([
                 window.open().document.write(JSON.stringify(problem));
             }, 
 
-            toggleLang: function(game){
-                (game.language == "fr") ? game.language="test" : game.language="fr";
+            toggleDebug: function(game){
+                game.scale.startFullScreen(false);
+                // (game.language == "fr") ? game.language="test" : game.language="fr";
+            },
+
+            retry: function(game, levelNum){
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
+                game.state.restart(true, false, levelNum);
             }
         }
 

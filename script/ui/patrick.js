@@ -1,8 +1,5 @@
 define ([
-    "data/wording"
-
     ], function(
-        wordings
         ) {
             
          /**
@@ -46,8 +43,8 @@ define ([
         function PatrickHome(game,parentGroup){
             Patrick.call(game);
 
-            this.body = parentGroup.addChild(game.make.sprite(-300,-50,'home-patrick'));
-            this.body.scale.setTo(0.5,0.5);
+            this.body = parentGroup.addChild(game.make.sprite(-450,-150,'home-patrick'));
+            this.body.scale.setTo(0.6,0.6);
             this.eyes = this.body.addChild(game.make.sprite(320,80,'patrick-eyes'));
             this.eyes.scale.setTo(-1,1);
             this.eyes.animations.add('blink');
