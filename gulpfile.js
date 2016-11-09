@@ -193,7 +193,7 @@ function onBuild(done) {
     };
 }
 
-function b (buildType) {
+function updateAssetPath (buildType) {
     
     console.log("config updated for build type <" + buildType + ">");
     if (buildType === "standalone") {
