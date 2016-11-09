@@ -81,7 +81,7 @@ define ([
                 this.stars.forEach(function(star){
                     if (star.frame == 0) {
                         var delay=800 + 200*counter;
-                        var tween = game.add.tween(star).to({x:300, y:-200*counter},delay,Phaser.Easing.Linear.None);
+                        var tween = game.add.tween(star).to({x:300, y:-150*counter},delay,Phaser.Easing.Linear.None);
                         tween.onComplete.add(function(){
                             new autoPlaySounds.SoundEffects(game, 'sound-success');
                             emitter.start(true, 1000, null, 25);

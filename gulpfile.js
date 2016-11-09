@@ -198,9 +198,11 @@ function updateAssetPath (buildType) {
     console.log("config updated for build type <" + buildType + ">");
     if (buildType === "standalone") {
         config.assetsPath = config.standaloneBuildAssetsPath;
+        config.debugButton = true;
     }
     else if (buildType === "module") {
         config.assetsPath = config.moduleBuildAssetsPath;
+        config.debugButton = false;
     }
     
     fs.writeFileSync(configPath, JSON.stringify(config));
