@@ -2,7 +2,7 @@ define(["game"], function (Game) {
 
     var fakeInterface = {
         savedData : [],
-        language : 'fr',
+        language : 'english',
         save : save,
         close : close
     };

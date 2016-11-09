@@ -1,9 +1,7 @@
 define ([
-
-
+    "sounds/autoPlaySounds"
     ], function(
-        colors,
-        RotationUI
+       autoPlaySounds
         ) {
 
         /**
@@ -46,7 +44,12 @@ define ([
                     var maxDir = game.shapes[shape.key].nbDir; // ou shape.nbDir;
                     var newDir = this.beginDir + Math.floor((angle+360) / 30);
 
-                    shape.frame = (newDir+12) % maxDir;
+                    var newFrame = (newDir+12) % maxDir;
+                    if (shape.frame != newFrame){
+                        new autoPlaySounds.SoundEffects(game, 'sound-rotation');
+                        shape.frame = newFrame;
+                    }
+                    
                     this.sprite.angle = this.beginAngle + angle ;
 
                     shape.updateCache();

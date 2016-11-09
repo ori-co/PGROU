@@ -25,11 +25,12 @@ define ([
 
         ShapeButton.prototype = {
             addShape: function(game, gameArea, shapeName) {
-                new autoPlaySounds.SoundEffects(game, 'sound-click');
                 new Shape(game, gameArea, shapeName);
                 var nb = gameArea.evaluateInPlaceShapes(shapeName);
                 this.label.setText(nb);
                 new autoPlaySounds.AddRemoveShape( game, shapeName, nb, true);
+                new autoPlaySounds.SoundEffects(game, 'sound-click');
+                new autoPlaySounds.SoundEffects(game, 'sound-distrib');                
 
                 // if (game.state.current == "levelPlay") gameArea.removeStar(game);
             }

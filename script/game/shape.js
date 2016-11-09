@@ -66,7 +66,13 @@ define ([
                 this.endDrag(game, gameArea);
             } else { // considered as a click
               this.position.copyFrom(this.originalPosition); 
-              if (game.state.current == "freePlay") this.tint = gameArea.getColorFromButtons(this);
+              if (game.state.current == "freePlay") {
+                  var newColor = gameArea.getColorFromButtons(this);
+                  if (this.tint != newColor) {
+                      new autoPlaySounds.SoundEffects(game, 'sound-color');
+                      this.tint = newColor;
+                  }
+              }
               if (!this.wasSelected) this.addRotationUI(game,0);
             }
         };

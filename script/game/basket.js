@@ -80,11 +80,15 @@ define ([
                 var counter = 0;
                 this.stars.forEach(function(star){
                     if (star.frame == 0) {
-                        var tween = game.add.tween(star).to({x:300, y:-200*counter},1000,Phaser.Easing.Linear.None);
-                        tween.onComplete.add(function(){emitter.start(true, 1000, null, 25)},this);
+                        var delay=800 + 200*counter;
+                        var tween = game.add.tween(star).to({x:300, y:-200*counter},delay,Phaser.Easing.Linear.None);
+                        tween.onComplete.add(function(){
+                            new autoPlaySounds.SoundEffects(game, 'sound-success');
+                            emitter.start(true, 1000, null, 25);
+                        },this);
                         tween.start();
-                        game.add.tween(star).to({angle:360},1000,Phaser.Easing.Linear.None).start();
-                        game.add.tween(star.scale).to({x:1.4, y:1.4},1000,Phaser.Easing.Elastic.Out).start();
+                        game.add.tween(star).to({angle:360},delay,Phaser.Easing.Linear.None).start();
+                        game.add.tween(star.scale).to({x:1.4, y:1.4},delay,Phaser.Easing.Elastic.Out).start();
                         counter++;
 
                         var emitter = star.addChild(game.add.emitter(0,0, 100));

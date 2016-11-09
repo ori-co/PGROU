@@ -13,7 +13,7 @@ define ([
         function ColorButton(game, gameArea, parentGroup, posX, posY, color){
             Phaser.Button.call(this, game, posX, posY, 'button-colors', function() {
                 gameArea.removeAllRotationUI(game);
-                this.onColorButton();
+                this.onColorButton(game);
             }, this.sprite, 2, 1, 0, 1);
             parentGroup.add(this);
             this.value = false;
@@ -32,7 +32,8 @@ define ([
 
         ColorButton.prototype.constructor = ColorButton;
 
-        ColorButton.prototype.onColorButton= function() {
+        ColorButton.prototype.onColorButton= function(game) {
+            new autoPlaySounds.SoundEffects(game, 'sound-click');
             var localContext = this;
             this.parent.forEach(function (colorButton){
                 if (colorButton != localContext) colorButton.setButtonValue(false);
