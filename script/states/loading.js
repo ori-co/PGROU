@@ -84,7 +84,16 @@ define ([
                 this.game.load.spritesheet('level-status', Config.assetsPath + 'images/stars/status.png',68,35);
                 this.game.load.image('star-particle', Config.assetsPath + 'images/stars/star-particle.png');
 
-                // Sounds 
+                // Sounds effects
+                this.game.load.audio('sound-trashbin', Config.assetsPath + 'audio/effects/trashbin.mp3');
+                this.game.load.audio('sound-click', Config.assetsPath + 'audio/effects/click.mp3');
+                this.game.load.audio('sound-snap', Config.assetsPath + 'audio/effects/snap.mp3');
+                this.game.load.audio('sound-rotation', Config.assetsPath + 'audio/effects/rotate.mp3');
+                this.game.load.audio('sound-color', Config.assetsPath + 'audio/effects/color.mp3');
+                this.game.load.audio('sound-distrib', Config.assetsPath + 'audio/effects/distrib.mp3');
+                this.game.load.audio('sound-success', Config.assetsPath + 'audio/effects/winning.mp3');
+
+                // Instructions
                 var dir = Config.assetsPath + 'audio/' + this.game.language + "/";
                 this.game.load.audio('welcome-home', dir + 'welcome.mp3');
                 this.game.load.audio('welcome-levelsMap', dir+'introduction.mp3');
@@ -94,13 +103,10 @@ define ([
                 this.game.load.audio('help-freeMode', dir+'free.mp3');
                 this.game.load.audio('help-trashbin', dir+'help_trash.mp3');
                 this.game.load.audio('help-color', dir+'help_color.mp3');
-                this.game.load.audio('help-print', dir+'help_print.mp3');
+                // this.game.load.audio('help-print', dir+'help_print.mp3');
                 this.game.load.audio('help-lock', dir+'help_lock.mp3');
-                this.game.load.audio('help-export', dir+'help_export.mp3');
-                this.game.load.audio('help-placement', dir+'help_placement.mp3');
-                this.game.load.audio('sound-trashbin', dir+'trashbin.mp3');
-                this.game.load.audio('sound-click', dir+'click.mp3');
-                this.game.load.audio('sound-snap', dir+'snap.mp3');
+                // this.game.load.audio('help-export', dir+'help_export.mp3');
+                // this.game.load.audio('help-placement', dir+'help_placement.mp3');
                 for (var i=0;i<4;i++) this.game.load.audio('endOfGame-'+i, dir+'end-'+i+'.mp3');
                 for (var key in this.game.shapes){
                     for (var i=0; i<15; i++) {
