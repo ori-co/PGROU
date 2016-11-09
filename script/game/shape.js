@@ -73,7 +73,9 @@ define ([
                       this.tint = newColor;
                   }
               }
-              if (!this.wasSelected) this.addRotationUI(game,0);
+              if (!this.wasSelected) {
+                  if (!gameArea.isOutOfGameAreaX(this) && !gameArea.isOutOfGameAreaY(this)) this.addRotationUI(game,0);
+              }
             }
         };
 
@@ -104,10 +106,10 @@ define ([
         Shape.prototype.endOfShapeTween = function(game,gameArea, inSafeArea){
             new autoPlaySounds.SoundEffects(game, 'sound-snap');
             this.inputEnabled=true;
-            this.addRotationUI(game, 0);
             this.originalPosition = this.position.clone();
             if (inSafeArea){
                 gameArea.contourMat.addShapeToMatrix(this.mat[this.frame], this.area[this.frame], this.x, this.y);
+                this.addRotationUI(game, 0);
                 if (game.state.current == "levelPlay") {
                     this.tint = gameArea.getColorFromPattern(this);
                     gameArea.compareSolutionToPattern(game);
