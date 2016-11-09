@@ -7,6 +7,7 @@ define ([
             game.canPlay = false;
             var helpSound = game.sound.add(soundName);
             game.patrick.speaks(game, helpSound);
+            game.sound.previousMessage = helpSound;
             helpSound.play();
         };
 
@@ -18,6 +19,7 @@ define ([
                     game.canPlay = false;
                     game.sound.stopAll();
                     game.patrick.speaks(game ,helpSound);
+                    game.sound.previousMessage = helpSound;
                     helpSound.play();
                     this.done= true;
                 } 
@@ -38,11 +40,22 @@ define ([
             playSoundObject.play();
         };
 
+        function Replay(game) {
+            if(game.canPlay){
+                game.patrick.speaks(game ,game.sound.previousMessage);
+                game.sound.previousMessage.play();
+            } else {
+                game.sound.stopAll();
+                game.canPlay = true;
+            }
+        };
+
 
         return {
             InstructionsSounds : InstructionsSounds,
             HelpSounds : HelpSounds,
             SoundEffects : SoundEffects,
-            AddRemoveShape:AddRemoveShape
+            AddRemoveShape:AddRemoveShape,
+            Replay: Replay
         };
     });

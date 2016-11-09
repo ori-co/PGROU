@@ -1,5 +1,7 @@
 define ([
+    "sounds/autoPlaySounds"
     ], function(
+        autoPlaySounds
         ) {
             
          /**
@@ -12,6 +14,7 @@ define ([
             this.body = null;
             this.mouth =null;
             this.eyes = null;
+            this.previousSoundObject= null;
         };
 
         Patrick.prototype = {
@@ -35,6 +38,8 @@ define ([
                     if (localContext.mouth != null) localContext.mouth.animations.stop(null,true);
                     game.canPlay = true;
                 });
+
+                this.previousSoundObject = soundObject;
             }
         };
 
@@ -54,6 +59,11 @@ define ([
 
             this.blinks(game);
             game.patrick = this; // to create animation of patrick mouth thanks to this.speaks(game, soundObject)
+
+            this.body.inputEnabled = true;
+            this.body.events.onInputDown.add( function(){
+                new autoPlaySounds.Replay(game);
+            },this);
         };
 
         PatrickHome.prototype = Object.create(Patrick.prototype);
@@ -74,6 +84,11 @@ define ([
 
             this.blinks(game);
             game.patrick = this;
+
+            this.body.inputEnabled = true;
+            this.body.events.onInputDown.add( function(){
+                new autoPlaySounds.Replay(game);
+            },this);
         };
 
         PatrickGame.prototype = Object.create(Patrick.prototype);
@@ -91,6 +106,11 @@ define ([
             this.eyes.animations.add('blink');
 
             this.blinks(game);
+
+            this.body.inputEnabled = true;
+            this.body.events.onInputDown.add( function(){
+                new autoPlaySounds.Replay(game);
+            },this);
         };
 
         PatrickPannel.prototype = Object.create(Patrick.prototype);
