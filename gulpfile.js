@@ -193,16 +193,18 @@ function onBuild(done) {
     };
 }
 
-function updateAssetPath (buildType) {
+function b (buildType) {
     
     console.log("config updated for build type <" + buildType + ">");
     if (buildType === "standalone") {
         config.assetsPath = config.standaloneBuildAssetsPath;
         config.debugButton = true;
+        config.exportButton = false;
     }
     else if (buildType === "module") {
         config.assetsPath = config.moduleBuildAssetsPath;
         config.debugButton = false;
+        config.exportButton = false;
     }
     
     fs.writeFileSync(configPath, JSON.stringify(config));

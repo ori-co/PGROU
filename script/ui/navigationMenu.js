@@ -63,7 +63,7 @@ define ([
                     case "levelPlay":
                         return ["buttonRetry", "buttonLevelsMap", "buttonHome", "buttonMute"];
                     case "freePlay":
-                        return ["buttonRetry", "buttonHome", "buttonMute"];
+                        return (Config.exportButton) ? ["buttonRetry", "buttonHome", "buttonMute", "exportButton"] : ["buttonRetry", "buttonHome", "buttonMute"];
                 }     
             }
             ,

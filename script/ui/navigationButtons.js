@@ -36,7 +36,7 @@ define ([
                 case 'buttonExport':
                     this.name = 'button-export';
                     this.action = function(){this.exportProblem(gameArea)};
-                    this.instructions = "help-export";
+                    this.instructions = "";
                 break;
                 case 'buttonDebug':
                     this.name = 'button-colors';
