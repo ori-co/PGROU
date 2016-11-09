@@ -78,7 +78,6 @@ define ([
                 } else {
                     new autoPlaySounds.SoundEffects(game, 'sound-click');
                     item.setFrames(2, 1, 0, 1);
-                    game.scale.stopFullScreen();
                 }
             }, 
 
