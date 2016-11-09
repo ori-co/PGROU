@@ -10,18 +10,18 @@ define ([
             helpSound.play();
         };
 
-        function HelpSounds(game, soundName, cpt){
-            this.done = false;
-            if (cpt == 0){
+        function HelpSounds(game, soundName, alreadyPlayed){
+            this.done = alreadyPlayed;
+            if (!alreadyPlayed){
                 var helpSound = game.sound.add(soundName);
                 if(game.canPlay){
                     game.canPlay = false;
                     game.sound.stopAll();
                     game.patrick.speaks(game ,helpSound);
                     helpSound.play();
-                    this.done=true;
-                }
-            }
+                    this.done= true;
+                } 
+            } 
         };
 
         function SoundEffects(game,soundName){

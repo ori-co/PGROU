@@ -22,8 +22,8 @@ define ([
             this.children[0].tint = color;
 
             this.events.onInputOver.add(function(){
-                var temp = new autoPlaySounds.HelpSounds(game,'help-color',parentGroup.cpt); 
-                if (temp.done) parentGroup.cpt=1;
+                var help = new autoPlaySounds.HelpSounds(game,'help-color',parentGroup.alreadyPlayed); 
+                parentGroup.alreadyPlayed = help.done;
             }, this);
 
         };

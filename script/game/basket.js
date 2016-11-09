@@ -2,14 +2,16 @@ define ([
     "data/palette",
     "ui/colorButton",
     "ui/star",
-    "ui/patrick"
+    "ui/patrick",
+    "sounds/autoPlaySounds"
 
 
     ], function(
         colors,
         ColorButton,
         Star,
-        patrick
+        patrick,
+        autoPlaySounds
 
         ) {
 
@@ -31,7 +33,7 @@ define ([
             if (game.state.current == "freePlay"){
                 this.colorsButtons = this.elements.addChildAt(game.add.group(),3);
                 this.colorsButtons.position = {x:15,y:5};
-                this.colorsButtons.cpt=0;
+                this.colorsButtons.alreadyPlayed=false;
                 for (var i=0; i< colors.palette.length;i++){
                     var posX = (i%3) * 60;
                     var posY = Math.floor(i/3) * 50;

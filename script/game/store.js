@@ -18,8 +18,11 @@ define ([
             this.store = game.add.sprite(5, 5, 'store');
             this.pipe = game.add.sprite(5, 395, 'pipe');
             this.bin = game.add.button(55, 20, 'trashbin', null, this, 2, 1, 0, 1);
-            this.bin.cpt = 0;
-            this.bin.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help-trashbin',this.bin.cpt); this.bin.cpt=1;}, this);
+            this.bin.alreadyPlayed = false;
+            this.bin.events.onInputOver.add(function(){
+                var help = new autoPlaySounds.HelpSounds(game, 'help-trashbin',this.bin.alreadyPlayed); 
+                this.alreadyPlayed = help.done;
+            }, this);
             
             var i=0;
             for (var key in game.shapes){
@@ -30,11 +33,9 @@ define ([
             }
 
             this.ribbon = game.add.button(5, 5, 'ribbon', function(){this.unlockStore(game,gameArea)}, this, 1, 0, 1, 0);
-            this.ribbon.cpt = 0;
-            this.ribbon.events.onInputOver.add(function(){autoPlaySounds.HelpSounds(game, 'help-lock', this.ribbon.cpt); this.ribbon.cpt=1;}, this);
-            
+            this.ribbon.alreadyPlayed = false;            
             this.ribbon.visible = false;
-            this.firstChance = true;
+            // this.firstChance = true;
 
             this.updatePosition(game);
         };
@@ -60,6 +61,10 @@ define ([
                 this.unableShapesButtons(game);
                 this.bin.inputEnabled=false;
                 this.ribbon.inputEnabled = inputEnabled;
+                if (inputEnabled) {
+                    var help = new autoPlaySounds.HelpSounds(game, 'help-lock', this.ribbon.alreadyPlayed); 
+                    this.ribbon.alreadyPlayed=help.done;
+                }
             }
             ,
             unableShapesButtons:function(game){

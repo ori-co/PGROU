@@ -20,10 +20,10 @@ define ([
             new patrick.PatrickHome(game, this.buttons);
 
             var goToLevelsMapButton =this.buttons.addChild(game.add.button(-150,0, 'button-goTo-levelmode', function() {this.goTo(game,'levelsMap')}, this,  2,1, 0, 1 ));
-            goToLevelsMapButton.events.onInputOver.add(function() {new autoPlaySounds.HelpSounds(game, 'help-levelMode',0)}, this);
+            goToLevelsMapButton.events.onInputOver.add(function() {new autoPlaySounds.HelpSounds(game, 'help-levelMode',false)}, this);
             
             var goToFreeModeButton = this.buttons.addChild(game.add.button(150,0, 'button-goTo-freemode', function() {this.goTo(game,'freePlay')}, this,  2,1, 0, 1 ));
-            goToFreeModeButton.events.onInputOver.add(function () {new autoPlaySounds.HelpSounds(game, 'help-freeMode',0)},this);
+            goToFreeModeButton.events.onInputOver.add(function () {new autoPlaySounds.HelpSounds(game, 'help-freeMode',false)},this);
             
         };
 

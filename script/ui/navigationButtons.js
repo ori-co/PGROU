@@ -11,7 +11,7 @@ define ([
         ) {
 
         function NavigationButton(game, gameArea, levelNum, parentMenu, buttonName, position){
-            this.cpt = 0;
+            this.alreadyPlayed = false;
             switch (buttonName) {
                 case 'buttonHome':
                     this.name = 'button-home';
@@ -54,8 +54,8 @@ define ([
             var that = this;
             this.button.events.onInputOver.add(function() {
                 if (that.instructions != ""){
-                    var temp = new autoPlaySounds.HelpSounds(game, that.instructions, that.cpt);
-                    if (temp.done) that.cpt=1;
+                    var help = new autoPlaySounds.HelpSounds(game, that.instructions, that.alreadyPlayed);
+                    that.alreadyPlayed = help.done;
                 }
             });
             
