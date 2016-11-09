@@ -92,6 +92,7 @@ define ([
                 this.game.load.audio('sound-color', Config.assetsPath + 'audio/effects/color.mp3');
                 this.game.load.audio('sound-distrib', Config.assetsPath + 'audio/effects/distrib.mp3');
                 this.game.load.audio('sound-success', Config.assetsPath + 'audio/effects/winning.mp3');
+                this.game.load.audio('sound-unlock', Config.assetsPath + 'audio/effects/ribbon.mp3');
 
                 // Instructions
                 var dir = Config.assetsPath + 'audio/' + this.game.language + "/";

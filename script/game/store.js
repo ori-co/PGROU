@@ -47,6 +47,7 @@ define ([
             }
             ,
             unlockStore : function(game,gameArea){
+                new autoPlaySounds.SoundEffects(game, 'sound-unlock');
                 this.ribbon.visible = false;
                 for (var key in game.shapes){
                     this.shapeButtons[key].sprite.inputEnabled=true;
