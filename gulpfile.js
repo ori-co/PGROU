@@ -76,6 +76,34 @@ var defaultConfig = {
     ]
 };
 
+var standAloneConfig = overrideDefaultConfigWith({ // This config allows you to test your project stand-alone, with a dummy set of data
+    resolve : {
+        alias : {
+            'phaser': path.join(__dirname, 'libraries/phaser-bundle')
+        },
+    },
+    plugins:[
+        new webpack.ProvidePlugin({ // the plugin is a wrapper for libraries and objects we need in all the modules, so we don't need to require them all the time
+            Phaser: 'phaser',
+        })
+    ],
+    entry: path.join(scriptsFullPath, 'launcher.js'),
+    output: {
+        path: standAloneFullPath,
+        filename: MODULE_ID + '.js'
+    }
+});
+
+var moduleConfig = overrideDefaultConfigWith({ // This config is to be used when the game is ready, to generate the module to include in Kalulu.
+    entry: path.join(scriptsFullPath, 'game.js'),
+    output: {
+        path: path.join(__dirname, MODULE_ID),
+        filename: MODULE_ID + '.js',
+        library: MODULE_ID,
+        libraryTarget: "amd"
+    }
+});
+
 // ##################################################
 // ################### GULP TASKS ###################
 // ##################################################
@@ -108,24 +136,6 @@ gulp.task('build_std', ['clean'], function (done) {
     gulp.src(['assets/**/**']).pipe(gulp.dest(standAloneBuildFolder + '/assets'));
     gulp.src(['libraries/**/**'])/*.pipe(updater)*/.pipe(gulp.dest(path.join(standAloneBuildFolder, 'libraries')));
     gulp.src(['index.html'])/*.pipe(updater)*/.pipe(gulp.dest(standAloneBuildFolder));
-    
-    var standAloneConfig = overrideDefaultConfigWith({ // This config allows you to test your project stand-alone, with a dummy set of data
-        resolve : {
-            alias : {
-                'phaser': path.join(__dirname, 'libraries/phaser-bundle')
-            },
-        },
-        plugins:[
-            new webpack.ProvidePlugin({ // the plugin is a wrapper for libraries and objects we need in all the modules, so we don't need to require them all the time
-                Phaser: 'phaser',
-            })
-        ],
-        entry: path.join(scriptsFullPath, 'launcher.js'),
-        output: {
-            path: standAloneFullPath,
-            filename: MODULE_ID + '.js'
-        }
-    });
 
     webpack(standAloneConfig).run(onBuild(done));
 });
@@ -150,15 +160,6 @@ gulp.task('build_mod', ['clean'], function (done) {
 
     gulp.src(['assets/**/**']).pipe(gulp.dest(MODULE_ID + '/assets'));
     
-    var moduleConfig = overrideDefaultConfigWith({ // This config is to be used when the game is ready, to generate the module to include in Kalulu.
-        entry: path.join(scriptsFullPath, 'game.js'),
-        output: {
-            path: path.join(__dirname, MODULE_ID),
-            filename: MODULE_ID + '.js',
-            library: MODULE_ID,
-            libraryTarget: "amd"
-        }
-    });
     webpack(moduleConfig).run(onBuild(done));
 });
 
